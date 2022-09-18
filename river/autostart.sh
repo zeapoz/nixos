@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Kill applications.
-killall -q waybar
+killall -q .waybar-wrapped
 killall -q swaybg
 
 # Start background applications.

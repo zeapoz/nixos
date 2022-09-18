@@ -85,17 +85,25 @@
     alacritty
     brightnessctl
     emacs28NativeComp
-    foot
+    fd
+    freetube
     git
     grim
     htop
+    killall
     neofetch
+    nixfmt
+    nodePackages.npm
     pavucontrol
     pulseaudio
+    python3
     qutebrowser
+    ripgrep
     river
     rivercarro
     rofi-wayland
+    rustup
+    spotify
     slurp
     swaybg
     swayidle
@@ -108,6 +116,8 @@
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
+      emacs-all-the-icons-fonts
+      fira
       fira-code
       fira-code-symbols
       font-awesome
@@ -129,6 +139,7 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+  services.tlp.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
