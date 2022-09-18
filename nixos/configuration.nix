@@ -82,6 +82,7 @@
       alacritty
       bat
       brightnessctl
+      discord
       emacs28NativeComp
       exa
       fd
@@ -99,14 +100,12 @@
       ripgrep
       river
       rivercarro
-      rofi-wayland
       rustup
-      spotify
       slurp
+      spotify
       swaybg
       swayidle
       swaylock
-      waybar
       wl-clipboard
     ];
 
@@ -129,12 +128,36 @@
         ls = "exa -1 --group-directories-first --icons";
       };
     };
-    
+
+    programs.starship = {
+      enable = true;
+      settings = {
+        add_newline = true;
+        character = {
+          success_symbol = "➜";
+          error_symbol = "➜";
+        };
+      };
+    };
+
     programs.git = {
       enable = true;
       userEmail = "zeapo@pm.me";
       userName = "zeapoz";
     };
+
+    programs.rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
+      theme = "gruvbox-dark-soft";
+      font = "Fira Code 14";
+      extraConfig = {
+        show-icons = true;
+      };
+    };
+
+    programs.waybar.enable = true; # TODO: Move config file here.
+    programs.zoxide.enable = true;
   };
 
   # Enable automatic login for the user.
@@ -162,6 +185,7 @@
   };
 
   programs.fish.enable = true;
+  programs.steam.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
