@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -70,7 +71,70 @@
     isNormalUser = true;
     description = "jonathan";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+  };
+
+  home-manager.users.jonathan = { pkgs, ... }: {
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
+
+    # Packages that should be installed to the user profile.
+    home.packages = with pkgs; [
+      alacritty
+      bat
+      brightnessctl
+      emacs28NativeComp
+      exa
+      fd
+      freetube
+      grim
+      htop
+      killall
+      neofetch
+      nixfmt
+      nodePackages.npm
+      pavucontrol
+      pulseaudio
+      python3
+      qutebrowser
+      ripgrep
+      river
+      rivercarro
+      rofi-wayland
+      rustup
+      spotify
+      slurp
+      swaybg
+      swayidle
+      swaylock
+      waybar
+      wl-clipboard
+    ];
+
+    # This value determines the Home Manager release that your
+    # configuration is compatible with. This helps avoid breakage
+    # when a new Home Manager release introduces backwards
+    # incompatible changes.
+    #
+    # You can update Home Manager without changing this value. See
+    # the Home Manager release notes for a list of state version
+    # changes in each release.
+    home.stateVersion = "22.05";
+
+    # Let Home Manager install and manage itself.
+    programs.home-manager.enable = true;
+
+    programs.fish = {
+      enable = true;
+      shellAliases = {
+        ls = "exa -1 --group-directories-first --icons";
+      };
+    };
+    
+    programs.git = {
+      enable = true;
+      userEmail = "zeapo@pm.me";
+      userName = "zeapoz";
+    };
   };
 
   # Enable automatic login for the user.
@@ -82,35 +146,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    alacritty
-    brightnessctl
-    emacs28NativeComp
-    fd
-    freetube
-    git
-    grim
-    htop
-    killall
-    neofetch
-    nixfmt
-    nodePackages.npm
-    pavucontrol
-    pulseaudio
-    python3
-    qutebrowser
-    ripgrep
-    river
-    rivercarro
-    rofi-wayland
-    rustup
-    spotify
-    slurp
-    swaybg
-    swayidle
-    swaylock
     vim
-    waybar
-    wl-clipboard
   ];
 
   fonts = {
