@@ -54,7 +54,7 @@
           };
           "custom/kernel" = {
             interval = "once";
-            format = "{}";
+            format = " {}";
             exec = "uname -r";
           };
           "disk" = {
