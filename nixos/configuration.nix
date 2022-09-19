@@ -5,11 +5,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./modules/home.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./modules/home.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -70,7 +69,7 @@
   users.users.jonathan = {
     isNormalUser = true;
     description = "jonathan";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "input" ];
   };
 
   # Enable automatic login for the user.
@@ -81,9 +80,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-  ];
+  environment.systemPackages = with pkgs; [ vim ];
 
   fonts = {
     enableDefaultFonts = true;
@@ -93,7 +90,7 @@
       fira-code
       fira-code-symbols
       font-awesome
-      (nerdfonts.override { fonts = ["FiraCode"]; })
+      (nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];
   };
 

@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    <home-manager/nixos>
-  ];
+  imports = [ <home-manager/nixos> ./alacritty.nix ./waybar.nix ];
 
   home-manager.users.jonathan = { pkgs, ... }: {
     # Allow unfree packages
@@ -11,13 +9,13 @@
 
     # Packages that should be installed to the user profile.
     home.packages = with pkgs; [
-      alacritty
       bat
       brightnessctl
       discord
       emacs28NativeComp
       exa
       fd
+      firefox
       freetube
       grim
       htop
@@ -28,7 +26,6 @@
       pavucontrol
       pulseaudio
       python3
-      qutebrowser
       ripgrep
       river
       rivercarro
@@ -56,9 +53,10 @@
 
     programs.fish = {
       enable = true;
-      shellAliases = {
-        ls = "exa -1 --group-directories-first --icons";
-      };
+      shellAliases = { ls = "exa -1 --group-directories-first --icons"; };
+      shellInit = ''
+        set fish_greeting
+      '';
     };
 
     programs.starship = {
@@ -83,12 +81,9 @@
       package = pkgs.rofi-wayland;
       theme = "gruvbox-dark-soft";
       font = "Fira Code 14";
-      extraConfig = {
-        show-icons = true;
-      };
+      extraConfig = { show-icons = true; };
     };
 
-    programs.waybar.enable = true; # TODO: Move config file here.
     programs.zoxide.enable = true;
   };
 }
