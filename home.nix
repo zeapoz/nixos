@@ -24,6 +24,8 @@
     ripgrep
     river
     rivercarro
+    rnix-lsp
+    rust-analyzer
     rustup
     slurp
     spotify
@@ -31,6 +33,7 @@
     swayidle
     swaylock
     wl-clipboard
+    zig
   ];
 
   # This value determines the Home Manager release that your
@@ -80,4 +83,9 @@
   };
 
   programs.zoxide.enable = true;
+
+  xdg.configFile."river" = {
+    source = ./config/river;
+    recursive = true;
+  };
 }
