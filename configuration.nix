@@ -73,7 +73,7 @@
   users.users.jonathan = {
     isNormalUser = true;
     description = "jonathan";
-    extraGroups = [ "networkmanager" "wheel" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "audio" ];
   };
 
   # Enable automatic login for the user.

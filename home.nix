@@ -2,6 +2,7 @@
 
 {
   imports = [ ./modules/alacritty.nix ./modules/waybar.nix ];
+
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     bat
@@ -28,10 +29,8 @@
     rust-analyzer
     rustup
     slurp
-    spotify
+    spotify-tui
     swaybg
-    swayidle
-    swaylock
     wl-clipboard
     zig
   ];
@@ -87,5 +86,16 @@
   xdg.configFile."river" = {
     source = ./config/river;
     recursive = true;
+  };
+
+  services.spotifyd = {
+    enable = true;
+    settings = {
+      global = {
+        username_cmd = "/home/jonathan/secrets/spotifyd.user";
+        password_cmd = "/home/jonathan/secrets/spotifyd.pass";
+        device_name = "nixos";
+      };
+    };
   };
 }
