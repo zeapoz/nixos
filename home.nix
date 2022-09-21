@@ -14,7 +14,6 @@
     firefox
     freetube
     grim
-    htop
     killall
     neofetch
     nixfmt
@@ -50,7 +49,13 @@
 
   programs.fish = {
     enable = true;
-    shellAliases = { ls = "exa -1 --group-directories-first --icons"; };
+    shellAliases = {
+      ls = "exa -1 --group-directories-first --icons";
+      nix-rebuild = "z ~/.config/NixOS && sudo nixos-rebuild switch";
+      nix-update =
+        "z ~/.config/NixOS && sudo nix flake update && sudo nixos-rebuild switch";
+      nix-clean = "sudo nix-collect-garbage -d";
+    };
     shellInit = ''
       set fish_greeting
     '';

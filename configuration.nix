@@ -84,7 +84,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ vim ];
+  environment.systemPackages = with pkgs; [ gcc git htop vim ];
 
   fonts = {
     enableDefaultFonts = true;
