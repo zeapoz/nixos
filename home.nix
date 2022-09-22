@@ -40,6 +40,22 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Pop-dark";
+      package = pkgs.pop-gtk-theme;
+    };
+    iconTheme = {
+      name = "Pop";
+      package = pkgs.pop-icon-theme;
+    };
+    font = {
+      name = "Fira Sans";
+      size = 12;
+    };
+  };
+
   programs.fish = {
     enable = true;
     shellAliases = {
