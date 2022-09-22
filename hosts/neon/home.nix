@@ -5,7 +5,7 @@
 
   home.packages = with pkgs; [ brightnessctl ];
 
-  programs.alacritty.settings.font.size = 15;
+  programs.kitty.font.size = 15;
 
   # Waybar settings.
   programs.waybar.settings.mainBar = {

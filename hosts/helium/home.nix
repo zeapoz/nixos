@@ -3,7 +3,7 @@
 {
   imports = [ ../../home.nix ];
 
-  programs.alacritty.settings.font.size = 13;
+  programs.kitty.font.size = 13;
 
   # Waybar settings.
   programs.waybar.settings.mainBar = {

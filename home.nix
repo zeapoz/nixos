@@ -1,14 +1,13 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./modules/alacritty.nix ./modules/river ];
+  imports = [ ./modules/river ];
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     bat
     discord
     emacs28NativeComp
-    exa
     fd
     firefox
     freetube
@@ -61,8 +60,12 @@
       enable = true;
       shellAliases = {
         cat = "bat";
+
         ls = "exa -1 --group-directories-first --icons";
-        tree = "exa -T";
+        la = "exa -1a --group-directories-first --icons";
+        ll = "exa -la --group-directories-first --icons";
+        lt = "exa -T --icons";
+
         nix-rebuild = "z ~/.config/NixOS && sudo nixos-rebuild switch";
         nix-update =
         "z ~/.config/NixOS && sudo nix flake update && sudo nixos-rebuild switch";
@@ -73,15 +76,21 @@
       '';
     };
 
+    kitty = {
+      enable = true;
+      font = {
+        name = "FiraCode Nerd Font";
+      };
+      settings = {
+        background_opacity = "0.9";
+        confirm_os_window_close = "0";
+      };
+      theme = "Gruvbox Dark";
+    };
+
     starship = {
       enable = true;
-      settings = {
-        add_newline = true;
-        character = {
-          success_symbol = "➜";
-          error_symbol = "➜";
-        };
-      };
+      settings.add_newline = true;
     };
 
     git = {
@@ -94,6 +103,7 @@
       delta.enable = true;
     };
 
+    exa.enable = true;
     zoxide.enable = true;
   };
 

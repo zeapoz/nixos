@@ -19,7 +19,7 @@ riverctl spawn "systemctl --user import-environment"
 riverctl input 1739:52656:PNP0C50:00_06CB:CDB0_Touchpad tap enabled
 
 # Terminal emulator.
-riverctl map normal Super Return spawn "alacritty"
+riverctl map normal Super Return spawn "kitty"
 
 # Application launcher.
 riverctl map normal Super D spawn "rofi -show drun"
@@ -27,7 +27,7 @@ riverctl map normal Super D spawn "rofi -show drun"
 # Useful applications.
 riverctl map normal Super I spawn "emacsclient -nc -a 'emacs'"
 riverctl map normal Super B spawn "firefox"
-riverctl map normal Super S spawn "alacritty -e spt"
+riverctl map normal Super S spawn "kitty spt"
 riverctl map normal Super Y spawn "freetube"
 
 # Screenshotting utilities.
