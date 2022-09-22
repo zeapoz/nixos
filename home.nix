@@ -56,41 +56,46 @@
     };
   };
 
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      cat = "bat";
-      ls = "exa -1 --group-directories-first --icons";
-      tree = "exa -T";
-      nix-rebuild = "z ~/.config/NixOS && sudo nixos-rebuild switch";
-      nix-update =
+  programs = {
+    fish = {
+      enable = true;
+      shellAliases = {
+        cat = "bat";
+        ls = "exa -1 --group-directories-first --icons";
+        tree = "exa -T";
+        nix-rebuild = "z ~/.config/NixOS && sudo nixos-rebuild switch";
+        nix-update =
         "z ~/.config/NixOS && sudo nix flake update && sudo nixos-rebuild switch";
-      nix-clean = "sudo nix-collect-garbage -d";
+        nix-clean = "sudo nix-collect-garbage -d";
+      };
+      shellInit = ''
+        set fish_greeting
+      '';
     };
-    shellInit = ''
-      set fish_greeting
-    '';
-  };
 
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = true;
-      character = {
-        success_symbol = "➜";
-        error_symbol = "➜";
+    starship = {
+      enable = true;
+      settings = {
+        add_newline = true;
+        character = {
+          success_symbol = "➜";
+          error_symbol = "➜";
+        };
       };
     };
-  };
 
-  programs.git = {
-    enable = true;
-    userEmail = "zeapo@pm.me";
-    userName = "zeapoz";
-    extraConfig = { credential.helper = "store"; };
-  };
+    git = {
+      enable = true;
+      userEmail = "zeapo@pm.me";
+      userName = "zeapoz";
+      extraConfig = {
+        credential.helper = "store";
+      };
+      delta.enable = true;
+    };
 
-  programs.zoxide.enable = true;
+    zoxide.enable = true;
+  };
 
   services.spotifyd = {
     enable = true;
