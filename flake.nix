@@ -21,16 +21,32 @@
       lib = nixpkgs.lib;
     in {
       nixosConfigurations = {
-        nixos = lib.nixosSystem {
+        helium = lib.nixosSystem {
           inherit system;
 
           modules = [
+            ./hosts/helium/hardware-configuration.nix
             ./configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.jonathan = import ./home.nix;
+              home-manager.users.jonathan = import ./hosts/helium/home.nix;
+            }
+          ];
+        };
+
+        neon = lib.nixosSystem {
+          inherit system;
+
+          modules = [
+            ./hosts/neon/hardware-configuration.nix
+            ./configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.jonathan = import ./hosts/neon/home.nix;
             }
           ];
         };

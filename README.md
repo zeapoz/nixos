@@ -4,15 +4,16 @@ This repository houses my personal NixOS configuration. Keep in mind, this is ve
 
 ## Installation
 
-This configuration is based on flakes. Thus, the command to rebuild NixOS with this configuration is:
+This configuration is based on flakes. Thus, you have to specify a machine configuration after `--flakes`. Valid configurations are `.#helium` and `.#neon`. Therefore, the command to rebuild NixOS with this configuration is:
 
 ``` fish
-sudo nixos-rebuild switch --flakes .#
+cd path/to/directory
+sudo nixos-rebuild switch --flakes .#machine
 ```
 
 Alternatively, if you prefer to symlink the configuration to `/etc/nixos/flake.nix`, use this:
 
 ``` fish
 sudo ln -s path/to/flake.nix /etc/nixos/flake.nix
-sudo nixos-rebuild switch
+sudo nixos-rebuild switch --flakes .#machine
 ```

@@ -6,7 +6,6 @@
     settings = {
       window.opacity = 0.9;
       font = {
-        size = 15;
         normal = {
           family = "FiraCode Nerd Font";
           style = "Regular";

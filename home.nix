@@ -76,6 +76,9 @@
     enable = true;
     userEmail = "zeapo@pm.me";
     userName = "zeapoz";
+    extraConfig = {
+      credential.helper = "store";
+    };
   };
 
   programs.rofi = {

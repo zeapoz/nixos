@@ -23,6 +23,20 @@
           num-tags = 4;
           tag-labels = [ "" "" "" "" ];
         };
+        "cpu" = {
+          interval = 10;
+          format = " {usage}%";
+          tooltip = false;
+        };
+        "memory" = {
+          interval = 10;
+          format = " {}%";
+        };
+        "disk" = {
+          interval = 600;
+          format = " {percentage_used}%";
+          path = "/";
+        };
         "clock" = {
           interval = 60;
           format = "{: %b %e %H:%M}";
@@ -38,37 +52,21 @@
         };
         "temperature" = {
           interval = 5;
-          hwmon-path =
-            "/sys/module/k10temp/drivers/pci:k10temp/0000:00:18.3/hwmon/hwmon3/temp1_input";
           critical-threshold = 60;
           format = " {temperatureC}°C";
-        };
-        "network" = {
-          format-wifi = " ({signalStrength}%)";
-          format-ethernet = "";
-          tooltip-format = "{ifname} via {gwaddr}";
-          format-linked = "{ifname} (No IP)";
-          format-disconnected = "";
-          format-alt = "{ipaddr}";
         };
         "custom/kernel" = {
           interval = "once";
           format = " {}";
           exec = "uname -r";
         };
-        "disk" = {
-          interval = 600;
-          format = " {percentage_used}%";
-          path = "/";
-        };
-        "cpu" = {
-          interval = 10;
-          format = " {usage}%";
-          tooltip = false;
-        };
-        "memory" = {
-          interval = 10;
-          format = " {}%";
+        "network" = {
+          format-wifi = " {signalStrength}%";
+          format-ethernet = "";
+          tooltip-format = "{ifname} via {gwaddr}";
+          format-linked = "{ifname} (No IP)";
+          format-disconnected = "";
+          format-alt = "{ipaddr}";
         };
         "pulseaudio" = {
           format = "{icon} {volume}% {format_source}";
@@ -81,17 +79,6 @@
           on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
           on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
           on-click-middle = "pavucontrol";
-        };
-        "battery" = {
-          interval = 60;
-          states = {
-            warning = 20;
-            critical = 10;
-          };
-          format = "{capacity}% {icon}";
-          format-charging = "{capacity}% ";
-          format-icons = [ "" "" "" "" ];
-          format-alt = "{time} {icon}";
         };
         "tray" = { spacing = 10; };
       };
