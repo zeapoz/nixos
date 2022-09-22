@@ -21,7 +21,13 @@
   };
 
   xdg.configFile."river" = {
-    source = ./config;
+    source = ./config/river;
     recursive = true;
+  };
+
+  # Autostart river from tty1.
+  xdg.configFile."fish/conf.d/river.fish" = {
+    source = ./config/river.fish;
+    executable = true;
   };
 }

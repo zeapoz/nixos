@@ -46,12 +46,6 @@
     LC_TIME = "en_US.utf8";
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
-
   # Enable sound with pipewire.
   security.rtkit.enable = true;
   services.pipewire = {
