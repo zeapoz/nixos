@@ -1,19 +1,17 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./modules/alacritty.nix ./modules/waybar.nix ];
+  imports = [ ./modules/alacritty.nix ./modules/river ];
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     bat
-    brightnessctl
     discord
     emacs28NativeComp
     exa
     fd
     firefox
     freetube
-    grim
     killall
     neofetch
     nixfmt
@@ -22,15 +20,10 @@
     pulseaudio
     python3
     ripgrep
-    river
-    rivercarro
     rnix-lsp
     rust-analyzer
     rustup
-    slurp
     spotify-tui
-    swaybg
-    wl-clipboard
     zig
   ];
 
@@ -50,7 +43,9 @@
   programs.fish = {
     enable = true;
     shellAliases = {
+      cat = "bat";
       ls = "exa -1 --group-directories-first --icons";
+      tree = "exa -T";
       nix-rebuild = "z ~/.config/NixOS && sudo nixos-rebuild switch";
       nix-update =
         "z ~/.config/NixOS && sudo nix flake update && sudo nixos-rebuild switch";
@@ -76,25 +71,10 @@
     enable = true;
     userEmail = "zeapo@pm.me";
     userName = "zeapoz";
-    extraConfig = {
-      credential.helper = "store";
-    };
-  };
-
-  programs.rofi = {
-    enable = true;
-    package = pkgs.rofi-wayland;
-    theme = "gruvbox-dark-soft";
-    font = "Fira Code 14";
-    extraConfig = { show-icons = true; };
+    extraConfig = { credential.helper = "store"; };
   };
 
   programs.zoxide.enable = true;
-
-  xdg.configFile."river" = {
-    source = ./config/river;
-    recursive = true;
-  };
 
   services.spotifyd = {
     enable = true;
