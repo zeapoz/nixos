@@ -23,7 +23,9 @@
     rust-analyzer
     rustup
     spotify-tui
+    unzip
     zig
+    zip
   ];
 
   # This value determines the Home Manager release that your
@@ -68,11 +70,12 @@
 
         nix-rebuild = "z ~/.config/NixOS && sudo nixos-rebuild switch";
         nix-update =
-        "z ~/.config/NixOS && sudo nix flake update && sudo nixos-rebuild switch";
+          "z ~/.config/NixOS && sudo nix flake update && sudo nixos-rebuild switch";
         nix-clean = "sudo nix-collect-garbage -d";
       };
       shellInit = ''
         set fish_greeting
+        fish_add_path /home/jonathan/.emacs.d/bin
       '';
     };
 
