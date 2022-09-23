@@ -6,7 +6,8 @@
     settings = {
       mainBar = {
         layer = "top";
-        position = "bottom";
+        position = "top";
+        margin = "5 10 -5 10";
         modules-left = [ "cpu" "memory" "disk" ];
         modules-center = [ "clock" ];
         modules-right = [
@@ -103,11 +104,12 @@
       }
 
       window#waybar {
-        background: rgba(28, 28, 28, 0.8);
         color: @fg;
+        background: rgba(28, 28, 28, 0.8);
+        border-radius: 90px;
+        padding: 5px;
       }
 
-      #mode,
       #cpu,
       #memory,
       #disk,
@@ -119,10 +121,8 @@
       #pulseaudio,
       #battery,
       #tray {
-        background: rgba(28, 28, 28, 0);
         padding: 2px 12px;
         margin: 0 4px;
-        border-radius: 90px;
         font-weight: bold;
       }
 
