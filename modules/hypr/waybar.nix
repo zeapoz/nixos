@@ -36,8 +36,7 @@
         };
         "clock" = {
           interval = 60;
-          format = "{: %b %e %H:%M}";
-          format-alt = "{: %a %d-%m-%y}";
+          format = "{: %a %b %e %H:%M}";
         };
         "keyboard-state" = {
           capslock = true;

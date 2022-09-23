@@ -2,7 +2,7 @@
 
 # Kill applications.
 killall -q .waybar-wrapped -9
-killall -q swaybg -0
+killall -q swaybg -9
 
 # Start background applications.
 waybar &
