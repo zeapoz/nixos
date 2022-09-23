@@ -7,9 +7,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, hyprland, ... }:
     let
       system = "x86_64-linux";
 
@@ -28,7 +32,10 @@
             ./hosts/helium/hardware-configuration.nix
             ./configuration.nix
             home-manager.nixosModules.home-manager
+            hyprland.nixosModules.default
             {
+              programs.hyprland.enable = true;
+
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.jonathan = import ./hosts/helium/home.nix;

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ../../home.nix ];
+  imports = [ ../../home.nix ../../modules/river ];
 
   home.packages = with pkgs; [ brightnessctl ];
 

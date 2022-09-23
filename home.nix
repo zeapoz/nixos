@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./modules/river ];
-
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     bat
@@ -16,6 +14,7 @@
     nixfmt
     nodePackages.npm
     pavucontrol
+    playerctl
     pulseaudio
     python3
     ripgrep
