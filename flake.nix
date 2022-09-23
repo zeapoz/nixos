@@ -26,7 +26,7 @@
     in {
       nixosConfigurations = {
         helium = lib.nixosSystem {
-          inherit system;
+          inherit system pkgs;
 
           modules = [
             ./hosts/helium/hardware-configuration.nix
@@ -44,12 +44,13 @@
         };
 
         neon = lib.nixosSystem {
-          inherit system;
+          inherit system pkgs;
 
           modules = [
             ./hosts/neon/hardware-configuration.nix
             ./configuration.nix
             home-manager.nixosModules.home-manager
+            hyprland.nixosModules.default
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
