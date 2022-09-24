@@ -72,7 +72,6 @@
           tooltip-format = "{ifname} via {gwaddr}";
           format-linked = "{ifname} (No IP)";
           format-disconnected = "";
-          format-alt = "{ipaddr}";
         };
         "pulseaudio" = {
           format = "{icon} {volume}% {format_source}";

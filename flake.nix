@@ -30,8 +30,7 @@
       };
 
       lib = nixpkgs.lib;
-    in
-    {
+    in {
       nixosConfigurations = {
         helium = lib.nixosSystem {
           inherit system pkgs;
@@ -39,15 +38,8 @@
           modules = [
             ./hosts/helium/hardware-configuration.nix
             ./configuration.nix
-            home-manager.nixosModules.home-manager
             hyprland.nixosModules.default
-            {
-              programs.hyprland.enable = true;
-
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.jonathan = import ./hosts/helium/home.nix;
-            }
+            { networking.hostName = "helium"; }
           ];
         };
 
@@ -57,14 +49,22 @@
           modules = [
             ./hosts/neon/hardware-configuration.nix
             ./configuration.nix
-            home-manager.nixosModules.home-manager
-            hyprland.nixosModules.default
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.jonathan = import ./hosts/neon/home.nix;
-            }
+            { networking.hostName = "neon"; }
           ];
+        };
+      };
+
+      homeConfigurations = {
+        "jonathan@helium" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          modules = [ ./hosts/helium/home.nix hyprland.homeManagerModules.default ];
+        };
+
+        "jonathan@neon" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          modules = [ ./hosts/neon/home.nix hyprland.homeManagerModules.default ];
         };
       };
     };

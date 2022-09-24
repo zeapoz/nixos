@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
+  home.username = "jonathan";
+  home.homeDirectory = "/home/jonathan";
+
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     bat
