@@ -20,10 +20,18 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        overlays = [
+          (final: prev: {
+            waybar = prev.waybar.overrideAttrs (old: {
+              mesonFlags = old.mesonFlags ++ [ "-Dexperimental=true" ];
+            });
+          })
+        ];
       };
 
       lib = nixpkgs.lib;
-    in {
+    in
+    {
       nixosConfigurations = {
         helium = lib.nixosSystem {
           inherit system pkgs;

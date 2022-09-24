@@ -8,7 +8,7 @@
         layer = "top";
         position = "top";
         margin = "5 10 -5 10";
-        modules-left = [ "cpu" "memory" "disk" ];
+        modules-left = [ "wlr/workspaces" "cpu" "memory" "disk" ];
         modules-center = [ "clock" ];
         modules-right = [
           "keyboard-state"
@@ -20,6 +20,16 @@
           "tray"
         ];
 
+        "wlr/workspaces" = {
+          format = "{icon}";
+          format-icons = {
+            "1" = "";
+            "2" = "";
+            "3" = "";
+            "4" = "";
+          };
+          all-outputs = true;
+        };
         "cpu" = {
           interval = 10;
           format = " {usage}%";
@@ -98,6 +108,7 @@
 
       * {
         font-family: "FiraCode", "Font Awesome 6 Free";
+        font-weight: bold;
         font-size: 14px;
         min-height: 0px;
       }
@@ -106,9 +117,9 @@
         color: @fg;
         background: rgba(28, 28, 28, 0.8);
         border-radius: 90px;
-        padding: 5px;
       }
 
+      #wlr-workspaces,
       #cpu,
       #memory,
       #disk,
@@ -122,7 +133,20 @@
       #tray {
         padding: 2px 12px;
         margin: 0 4px;
-        font-weight: bold;
+      }
+
+      #workspaces button {
+        color: @fg;
+        border-radius: 90px;
+        margin-bottom: 3px;
+      }
+
+      #workspaces button.active {
+        color: @yellow-normal;
+      }
+
+      #workspaces button.urgent {
+        color: @red-normal;
       }
 
       #cpu {
@@ -159,6 +183,10 @@
 
       #network {
         color: @blue-accent;
+      }
+
+      #network.ethernet {
+        margin-bottom: 3px;
       }
 
       #battery.warning {
