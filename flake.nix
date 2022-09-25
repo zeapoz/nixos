@@ -25,6 +25,9 @@
             waybar = prev.waybar.overrideAttrs (old: {
               mesonFlags = old.mesonFlags ++ [ "-Dexperimental=true" ];
             });
+            spotifyd = prev.spotifyd.override {
+              withMpris = true;
+            };
           })
         ];
       };
@@ -38,7 +41,6 @@
           modules = [
             ./hosts/helium/hardware-configuration.nix
             ./configuration.nix
-            hyprland.nixosModules.default
             { networking.hostName = "helium"; }
           ];
         };

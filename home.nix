@@ -70,9 +70,6 @@
         ll = "exa -la --group-directories-first --icons";
         lt = "exa -T --icons";
 
-        ga = "git add";
-        gc = "git commit";
-
         nix-rebuild = "z ~/.config/NixOS && sudo nixos-rebuild switch";
         nix-update =
           "z ~/.config/NixOS && sudo nix flake update && sudo nixos-rebuild switch";
@@ -107,6 +104,13 @@
       userName = "zeapoz";
       extraConfig = {
         credential.helper = "store";
+      };
+      aliases = {
+        a = "add";
+        c = "commit";
+        co = "checkout";
+        f = "fetch";
+        s = "status";
       };
       delta.enable = true;
     };
