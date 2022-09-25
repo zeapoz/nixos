@@ -7,13 +7,15 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, hyprland, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
 
@@ -29,11 +31,14 @@
               withMpris = true;
             };
           })
+          inputs.emacs-overlay.overlay
+          inputs.neovim-nightly-overlay.overlay
         ];
       };
 
       lib = nixpkgs.lib;
-    in {
+    in
+    {
       nixosConfigurations = {
         helium = lib.nixosSystem {
           inherit system pkgs;
@@ -60,13 +65,13 @@
         "jonathan@helium" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
 
-          modules = [ ./hosts/helium/home.nix hyprland.homeManagerModules.default ];
+          modules = [ ./hosts/helium/home.nix inputs.hyprland.homeManagerModules.default ];
         };
 
         "jonathan@neon" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
 
-          modules = [ ./hosts/neon/home.nix hyprland.homeManagerModules.default ];
+          modules = [ ./hosts/neon/home.nix inputs.hyprland.homeManagerModules.default ];
         };
       };
     };

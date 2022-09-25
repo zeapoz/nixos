@@ -8,14 +8,14 @@
   home.packages = with pkgs; [
     bat
     discord
-    emacs28NativeComp
+    emacsNativeComp
     fd
     firefox
     freetube
     killall
     neofetch
+    neovim-nightly
     nixfmt
-    nodePackages.npm
     pavucontrol
     playerctl
     pulseaudio
@@ -70,10 +70,13 @@
         ll = "exa -la --group-directories-first --icons";
         lt = "exa -T --icons";
 
-        nix-rebuild = "z ~/.config/NixOS && sudo nixos-rebuild switch";
-        nix-update =
-          "z ~/.config/NixOS && sudo nix flake update && sudo nixos-rebuild switch";
-        nix-clean = "sudo nix-collect-garbage -d";
+        v = "nvim";
+
+        nix-rebuild = "z ~/.config/NixOS && sudo nixos-rebuild switch --flake .";
+        nix-rehome = "z ~/.config/NixOS && home-manager switch --flake .";
+        nix-fetch = "z ~/.config/NixOS && sudo nix flake update";
+        nix-up = "nix-fetch && nix-rebuild && nix-rehome";
+        nix-gc = "sudo nix-collect-garbage -d";
       };
       shellInit = ''
         set fish_greeting
