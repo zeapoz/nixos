@@ -21,8 +21,8 @@
       nixfmt
       pavucontrol
       playerctl
-      pulseaudio
       python3
+      ranger
       ripgrep
       rnix-lsp
       rust-analyzer
@@ -51,6 +51,8 @@
     fish = {
       enable = true;
       shellAliases = {
+        g = "git";
+        v = "nvim";
         cat = "bat";
 
         ls = "exa -1 --group-directories-first --icons";
@@ -58,16 +60,18 @@
         ll = "exa -la --group-directories-first --icons";
         lt = "exa -T --icons";
 
-        v = "nvim";
-
         nix-rebuild = "z ~/.config/NixOS && sudo nixos-rebuild switch --flake .";
         nix-rehome = "z ~/.config/NixOS && home-manager switch --flake .";
         nix-fetch = "z ~/.config/NixOS && sudo nix flake update";
         nix-up = "nix-fetch && nix-rebuild && nix-rehome";
         nix-gc = "sudo nix-collect-garbage -d";
+
+        "..." = "cd ../..";
       };
       shellInit = ''
+        set -gx EDITOR nvim
         set fish_greeting
+
         fish_add_path /home/jonathan/.emacs.d/bin
       '';
     };
