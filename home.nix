@@ -1,65 +1,53 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.username = "jonathan";
-  home.homeDirectory = "/home/jonathan";
+  imports = [ ./modules/theme.nix ];
 
-  # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [
-    bat
-    discord
-    emacsNativeComp
-    fd
-    firefox
-    freetube
-    killall
-    neofetch
-    neovim-nightly
-    nixfmt
-    pavucontrol
-    playerctl
-    pulseaudio
-    python3
-    ripgrep
-    rnix-lsp
-    rust-analyzer
-    rustup
-    spotify-tui
-    unzip
-    zig
-    zip
-  ];
+  home = {
+    username = "jonathan";
+    homeDirectory = "/home/jonathan";
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "22.05";
+    # Packages that should be installed to the user profile.
+    packages = with pkgs; [
+      bat
+      discord
+      emacsNativeComp
+      fd
+      firefox
+      freetube
+      killall
+      neofetch
+      neovim-nightly
+      nixfmt
+      pavucontrol
+      playerctl
+      pulseaudio
+      python3
+      ripgrep
+      rnix-lsp
+      rust-analyzer
+      rustup
+      spotify-tui
+      unzip
+      zig
+      zip
+    ];
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Pop-dark";
-      package = pkgs.pop-gtk-theme;
-    };
-    iconTheme = {
-      name = "Pop";
-      package = pkgs.pop-icon-theme;
-    };
-    font = {
-      name = "Fira Sans";
-      size = 12;
-    };
+    # This value determines the Home Manager release that your
+    # configuration is compatible with. This helps avoid breakage
+    # when a new Home Manager release introduces backwards
+    # incompatible changes.
+    #
+    # You can update Home Manager without changing this value. See
+    # the Home Manager release notes for a list of state version
+    # changes in each release.
+    stateVersion = "22.05";
   };
 
   programs = {
+    # Let Home Manager install and manage itself.
+    home-manager.enable = true;
+
     fish = {
       enable = true;
       shellAliases = {
