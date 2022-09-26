@@ -21,6 +21,7 @@
       nixfmt
       pavucontrol
       playerctl
+      pulseaudio
       python3
       ranger
       ripgrep
