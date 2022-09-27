@@ -19,9 +19,14 @@
       recursive = true;
     };
 
-    "wofi" = {
-      source = ./config/wofi;
-      recursive = true;
+    "wofi/style.css" = {
+      source = ./config/wofi/style.css;
+    };
+
+    # Power menu script.
+    "wofi/power-menu.sh" = {
+      source = ./config/wofi/power-menu.sh;
+      executable = true;
     };
 
     # Autostart Hyprland from tty1.
