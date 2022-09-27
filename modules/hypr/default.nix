@@ -7,22 +7,20 @@
     grim
     slurp
     swaybg
+    wofi
     wl-clipboard
   ];
 
   wayland.windowManager.hyprland.enable = true;
 
-  programs.rofi = {
-    enable = true;
-    package = pkgs.rofi-wayland;
-    theme = "gruvbox-dark-soft";
-    font = "Fira Code 14";
-    extraConfig = { show-icons = true; };
-  };
-
   xdg.configFile = {
     "hypr" = {
       source = ./config/hypr;
+      recursive = true;
+    };
+
+    "wofi" = {
+      source = ./config/wofi;
       recursive = true;
     };
 

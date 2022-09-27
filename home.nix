@@ -21,6 +21,7 @@
       nixfmt
       pavucontrol
       playerctl
+      polymc
       pulseaudio
       python3
       ranger
