@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./modules/theme.nix ];
+  imports = [ ./modules/theme.nix ./modules/editors ];
 
   home = {
     username = "jonathan";
