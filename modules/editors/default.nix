@@ -9,7 +9,12 @@
     enable = true;
     package = pkgs.neovim-nightly;
     plugins = with pkgs.vimPlugins; [
+      auto-pairs
+      gitsigns-nvim
       gruvbox-material
+      nvim-tree-lua
+      nvim-treesitter
+      telescope-nvim
     ];
   };
 
