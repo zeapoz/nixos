@@ -14,6 +14,7 @@
       gruvbox-material
       nvim-tree-lua
       nvim-treesitter
+      nvim-web-devicons
       telescope-nvim
     ];
   };
