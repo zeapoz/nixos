@@ -12,6 +12,7 @@
       auto-pairs
       gitsigns-nvim
       gruvbox-material
+      nvim-lspconfig
       nvim-tree-lua
       nvim-treesitter
       nvim-web-devicons
