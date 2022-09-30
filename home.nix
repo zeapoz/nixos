@@ -60,11 +60,11 @@
         ls = "exa -1 --group-directories-first --icons";
         la = "exa -1a --group-directories-first --icons";
         ll = "exa -la --group-directories-first --icons";
-        lt = "exa -T --icons";
+        lt = "exa -T --group-directories-first --icons";
 
-        nix-rebuild = "z ~/.config/NixOS && sudo nixos-rebuild switch --flake .";
-        nix-rehome = "z ~/.config/NixOS && home-manager switch --flake .";
-        nix-fetch = "z ~/.config/NixOS && sudo nix flake update";
+        nix-rebuild = " sudo nixos-rebuild switch --flake ~/.config/NixOS";
+        nix-rehome = "home-manager switch --flake ~/.config/NixOS";
+        nix-fetch = "sudo nix flake update ~/.config/NixOS";
         nix-up = "nix-fetch && nix-rebuild && nix-rehome";
         nix-gc = "sudo nix-collect-garbage -d";
 
