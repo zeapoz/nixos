@@ -32,6 +32,11 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
-require('lspconfig')['rust_analyzer'].setup {
+local lsp = require('lspconfig')
+
+lsp['rnix'].setup {
+    on_attach = on_attach,
+}
+lsp['rust_analyzer'].setup {
     on_attach = on_attach,
 }
