@@ -14,12 +14,13 @@
       discord
       emacsNativeComp
       fd
-      firefox
+      firefox-wayland
       freetube
       gimp
       guitarix
       helvum
       killall
+      librewolf-wayland
       neofetch
       neovim-nightly
       nixfmt
