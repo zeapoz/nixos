@@ -9,12 +9,16 @@
 
     # Packages that should be installed to the user profile.
     packages = with pkgs; [
+      ardour
       bat
       discord
       emacsNativeComp
       fd
       firefox
       freetube
+      gimp
+      guitarix
+      helvum
       killall
       neofetch
       neovim-nightly
@@ -29,7 +33,9 @@
       rnix-lsp
       rust-analyzer
       rustup
+      signal-desktop
       spotify-tui
+      sunvox
       unzip
       zig
       zip
