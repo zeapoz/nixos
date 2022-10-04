@@ -18,16 +18,19 @@ db.custom_center = {
   {
     icon = '  ',
     desc = 'Recently opened files                ',
+    action = ':Telescope oldfiles',
     shortcut = 'SPC f r',
   },
   {
     icon = '  ',
     desc = 'Find file                            ',
+    action = ':Telescope find_files',
     shortcut = 'SPC f f',
   },
   {
     icon = '  ',
     desc = 'Find word                            ',
+    action = ':Telescope live_grep',
     shortcut = 'SPC f w',
   },
 }

@@ -16,6 +16,7 @@
       cmp-path
       cmp_luasnip
       dashboard-nvim
+      friendly-snippets
       gitsigns-nvim
       gruvbox-material
       lualine-nvim
