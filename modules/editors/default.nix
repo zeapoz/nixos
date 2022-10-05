@@ -30,6 +30,8 @@
       ]))
       nvim-web-devicons
       telescope-nvim
+      toggleterm-nvim
+      which-key-nvim
     ];
   };
 

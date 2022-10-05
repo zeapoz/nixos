@@ -22,7 +22,7 @@ db.custom_center = {
     shortcut = 'SPC f r',
   },
   {
-    icon = '  ',
+    icon = '  ',
     desc = 'Find file                            ',
     action = ':Telescope find_files',
     shortcut = 'SPC f f',
