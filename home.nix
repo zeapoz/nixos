@@ -16,6 +16,7 @@
       fd
       firefox-wayland
       freetube
+      godot
       gimp
       guitarix
       helvum

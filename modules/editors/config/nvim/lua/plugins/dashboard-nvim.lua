@@ -16,6 +16,12 @@ db.custom_header = {
 
 db.custom_center = {
   {
+    icon = '  ',
+    desc = 'Browse directory                     ',
+    action = ':NvimTreeOpen',
+    shortcut = 'SPC o p',
+  },
+  {
     icon = '  ',
     desc = 'Recently opened files                ',
     action = ':Telescope oldfiles',
