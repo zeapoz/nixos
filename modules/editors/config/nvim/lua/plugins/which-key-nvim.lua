@@ -8,6 +8,7 @@ wk.register({
     b = { ':Telescope buffers<CR>', 'Open Buffers' },
     r = { ':Telescope oldfiles<CR>', 'Open Recent File' },
     c = { ':Telescope colorscheme<CR>', 'Set Colorscheme' },
+    d = { ':Telescope diagnostics<CR>', 'Open Diagnostics' },
   },
   o = {
     name = 'Open',

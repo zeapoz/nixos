@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./modules/theme.nix ./modules/editors ];
+  imports = [ ./modules/theme ./modules/dev ./modules/editors ];
 
   home = {
     username = "jonathan";
@@ -16,7 +16,6 @@
       fd
       firefox-wayland
       freetube
-      godot
       gimp
       guitarix
       helvum
@@ -24,7 +23,6 @@
       librewolf-wayland
       neofetch
       neovim-nightly
-      nixfmt
       pavucontrol
       playerctl
       polymc
@@ -32,12 +30,8 @@
       python3
       ranger
       ripgrep
-      rnix-lsp
-      rust-analyzer
-      rustup
       signal-desktop
       spotify-tui
-      sumneko-lua-language-server
       sunvox
       unzip
       zig
@@ -104,24 +98,6 @@
       settings.add_newline = true;
     };
 
-    git = {
-      enable = true;
-      userEmail = "zeapo@pm.me";
-      userName = "zeapoz";
-      extraConfig = {
-        credential.helper = "store";
-      };
-      aliases = {
-        a = "add";
-        c = "commit";
-        co = "checkout";
-        f = "fetch";
-        s = "status";
-      };
-      delta.enable = true;
-    };
-
-    exa.enable = true;
     zoxide.enable = true;
   };
 
