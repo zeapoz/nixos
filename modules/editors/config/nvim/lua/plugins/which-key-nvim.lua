@@ -11,7 +11,7 @@ wk.register({
   },
   o = {
     name = 'Open',
-    p = { ':NvimTreeOpen<CR>', 'Open NvimTree' },
+    p = { ':NvimTreeToggle<CR>', 'Toggle NvimTree' },
     f = { ':NvimTreeFindFile<CR>', 'Find File NvimTree' },
     t = { ':ToggleTerm<CR>', 'Toggle Terminal' },
   },

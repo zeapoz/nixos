@@ -40,6 +40,11 @@ lsp['rnix'].setup {
     capabilities = capabilities,
 }
 
+lsp['sumneko_lua'].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
 lsp['rust_analyzer'].setup {
     on_attach = on_attach,
     capabilities = capabilities,

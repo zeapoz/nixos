@@ -9,3 +9,7 @@ map('v', '<A-k>', ":m '<-2<CR>gv=gv")
 -- Stay in indent mode.
 map('v', '<', '<gv')
 map('v', '>', '>gv')
+
+-- Bufferline.
+map('n', 'gH', ':BufferLineCyclePrev<CR>')
+map('n', 'gL', ':BufferLineCycleNext<CR>')

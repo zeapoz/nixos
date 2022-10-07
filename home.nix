@@ -37,6 +37,7 @@
       rustup
       signal-desktop
       spotify-tui
+      sumneko-lua-language-server
       sunvox
       unzip
       zig
