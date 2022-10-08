@@ -31,7 +31,7 @@
       ranger
       ripgrep
       signal-desktop
-      spotify-tui
+      spotify
       sunvox
       unzip
       zig

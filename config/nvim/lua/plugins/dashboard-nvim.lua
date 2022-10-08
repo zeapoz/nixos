@@ -1,4 +1,3 @@
-local home = os.getenv('HOME')
 local db = require('dashboard')
 
 db.custom_header = {
@@ -20,6 +19,12 @@ db.custom_center = {
     desc = 'Browse directory                     ',
     action = ':NvimTreeOpen',
     shortcut = 'SPC o p',
+  },
+  {
+    icon = '  ',
+    desc = 'Open empty buffer                    ',
+    action = ':DashboardNewFile',
+    shortcut = 'SPC o e',
   },
   {
     icon = '  ',

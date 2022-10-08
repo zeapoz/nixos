@@ -27,7 +27,7 @@ riverctl map normal Super D spawn "rofi -show drun"
 # Useful applications.
 riverctl map normal Super I spawn "emacsclient -nc -a 'emacs'"
 riverctl map normal Super B spawn "librewolf"
-riverctl map normal Super S spawn "kitty spt"
+riverctl map normal Super S spawn "spotify"
 riverctl map normal Super Y spawn "freetube"
 
 # Screenshotting utilities.

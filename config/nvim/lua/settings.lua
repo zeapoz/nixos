@@ -6,9 +6,11 @@ vim.cmd [[ colorscheme gruvbox-material ]]
 
 -- General settings.
 opt.number = true
+opt.relativenumber = true
 opt.signcolumn = 'yes'
 opt.cursorline = true
 opt.hlsearch = false
+opt.cmdheight = 0
 opt.mouse = 'a'
 
 -- Tab settings.
