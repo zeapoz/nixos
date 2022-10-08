@@ -15,23 +15,23 @@
 
   xdg.configFile = {
     "hypr" = {
-      source = ./config/hypr;
+      source = ../../config/hypr;
       recursive = true;
     };
 
     "wofi/style.css" = {
-      source = ./config/wofi/style.css;
+      source = ../../config/wofi/style.css;
     };
 
     # Power menu script.
     "wofi/power-menu.sh" = {
-      source = ./config/wofi/power-menu.sh;
+      source = ../../config/wofi/power-menu.sh;
       executable = true;
     };
 
     # Autostart Hyprland from tty1.
     "fish/conf.d/hypr.fish" = {
-      source = ./config/hypr.fish;
+      source = ../../config/fish/hypr.fish;
       executable = true;
     };
   };
