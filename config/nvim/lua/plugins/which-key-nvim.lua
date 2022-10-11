@@ -22,6 +22,14 @@ wk.register({
     r = { ':Telescope oldfiles<CR>', 'Open Recent File' },
     c = { ':Telescope colorscheme<CR>', 'Set Colorscheme' },
     d = { ':Telescope diagnostics<CR>', 'Open Diagnostics' },
+    t = { ':Telescope treesitter<CR>', 'Treesitter Picker' },
+  },
+  g = {
+    name = 'Git',
+    b =  { ':Telescope git_branches<CR>', 'Branches' },
+    c =  { ':Telescope git_commits<CR>', 'Commits' },
+    g =  { ':Telescope git_status<CR>', 'Status' },
+    s =  { ':Telescope git_stash<CR>', 'Stashes' },
   },
   o = {
     name = 'Open',
