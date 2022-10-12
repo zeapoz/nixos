@@ -115,7 +115,6 @@
       window#waybar {
         color: @fg;
         background: rgba(28, 28, 28, 0.8);
-        border-radius: 6px;
       }
 
       #wlr-workspaces,
@@ -136,7 +135,6 @@
 
       #workspaces button {
         color: @fg;
-        border-radius: 6px;
         margin-bottom: 3px;
       }
 
