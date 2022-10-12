@@ -27,6 +27,11 @@ db.custom_center = {
     shortcut = 'SPC o e',
   },
   {
+    icon = '  ',
+    desc = 'Open project                         ',
+    shortcut = 'SPC f p',
+  },
+  {
     icon = '  ',
     desc = 'Recently opened files                ',
     action = ':Telescope oldfiles',

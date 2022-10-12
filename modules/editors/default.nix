@@ -32,6 +32,7 @@
         tree-sitter-rust
       ]))
       nvim-web-devicons
+      project-nvim
       telescope-nvim
       toggleterm-nvim
       which-key-nvim

@@ -22,6 +22,7 @@ wk.register({
     r = { ':Telescope oldfiles<CR>', 'Open Recent File' },
     c = { ':Telescope colorscheme<CR>', 'Set Colorscheme' },
     d = { ':Telescope diagnostics<CR>', 'Open Diagnostics' },
+    p = { ':Telescope projects<CR>', 'Open Project' },
     t = { ':Telescope treesitter<CR>', 'Treesitter Picker' },
   },
   g = {
