@@ -12,7 +12,19 @@ require('plugins/bufferline')
 require('plugins/nvim-tree')
 require('plugins/nvim-cmp')
 require('plugins/lualine')
-require('project_nvim').setup()
+require('project_nvim').setup {
+  show_hidden = true,
+}
+require('telescope').setup {
+  pickers = {
+    find_files = {
+      hidden = true,
+    },
+    live_grep = {
+      hidden = true,
+    },
+  },
+}
 require('telescope').load_extension('projects')
 require('gitsigns').setup()
 require('Comment').setup()

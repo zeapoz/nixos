@@ -3,7 +3,7 @@
 {
   imports = [ ../../home.nix ../../modules/hypr ];
 
-  programs.kitty.font.size = 13;
+  programs.kitty.font.size = 12;
 
   # Waybar settings.
   programs.waybar.settings.mainBar = {
