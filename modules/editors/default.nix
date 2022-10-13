@@ -21,8 +21,11 @@
       friendly-snippets
       gitsigns-nvim
       gruvbox-material
+      indent-blankline-nvim
+      lspkind-nvim
       lualine-nvim
       luasnip
+      neogit
       nvim-cmp
       nvim-lspconfig
       nvim-tree-lua
@@ -32,6 +35,7 @@
         tree-sitter-rust
       ]))
       nvim-web-devicons
+      plenary-nvim
       project-nvim
       telescope-nvim
       toggleterm-nvim

@@ -27,10 +27,11 @@ wk.register({
   },
   g = {
     name = 'Git',
-    b =  { ':Telescope git_branches<CR>', 'Branches' },
-    c =  { ':Telescope git_commits<CR>', 'Commits' },
-    g =  { ':Telescope git_status<CR>', 'Status' },
-    s =  { ':Telescope git_stash<CR>', 'Stashes' },
+    g = { ':Neogit<CR>', 'Neogit' },
+    b = { ':Telescope git_branches<CR>', 'Branches' },
+    c = { ':Telescope git_commits<CR>', 'Commits' },
+    s = { ':Telescope git_status<CR>', 'Status' },
+    z = { ':Telescope git_stash<CR>', 'Stashes' },
   },
   o = {
     name = 'Open',

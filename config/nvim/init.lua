@@ -3,6 +3,7 @@ require('settings')
 require('keybindings')
 
 -- Plugin configurations.
+require('plugins/indent-blankline')
 require('plugins/dashboard-nvim')
 require('plugins/nvim-lspconfig')
 require('plugins/nvim-treesitter')
@@ -28,3 +29,4 @@ require('telescope').setup {
 require('telescope').load_extension('projects')
 require('gitsigns').setup()
 require('Comment').setup()
+require('neogit').setup()
