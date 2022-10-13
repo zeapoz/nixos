@@ -7,7 +7,6 @@
       mainBar = {
         layer = "top";
         position = "top";
-        margin = "3 6 -3 6";
         modules-left = [ "wlr/workspaces" "cpu" "memory" "disk" ];
         modules-center = [ "clock" ];
         modules-right = [
@@ -114,7 +113,7 @@
 
       window#waybar {
         color: @fg;
-        background: rgba(28, 28, 28, 0.8);
+        background: rgba(40, 40, 40, 0.9);
       }
 
       #wlr-workspaces,

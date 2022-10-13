@@ -18,9 +18,8 @@
 window {
   margin: 5px;
   font-family: "Fira Sans";
-  background-color: rgba(28, 28, 28, 0.9);
+  background-color: rgba(40, 40, 40, 0.9);
   border: 3px solid @fg4;
-  border-radius: 10px;
 }
 
 #input {
@@ -28,7 +27,6 @@ window {
   color: @fg1;
   background-color: @bg;
   border: none;
-  border-radius: 10px;
 }
 
 #inner-box {
@@ -45,7 +43,6 @@ window {
 
 #entry:selected {
   background-color: @bg1;
-  border-radius: 10px;
 }
 
 #text:selected {
