@@ -21,12 +21,14 @@ riverctl input 1739:52656:PNP0C50:00_06CB:CDB0_Touchpad tap enabled
 # Terminal emulator.
 riverctl map normal Super Return spawn "kitty"
 
-# Application launcher.
+# Application launcher and power menu.
 riverctl map normal Super D spawn "rofi -show drun"
+riverctl map normal Super X spawn "~/.config/wofi/power-menu.sh"
 
 # Useful applications.
-riverctl map normal Super I spawn "emacsclient -nc -a 'emacs'"
+riverctl map normal Super N spawn "neovide"
 riverctl map normal Super B spawn "librewolf"
+riverctl map normal Super E spawn "kitty fish -c ranger"
 riverctl map normal Super S spawn "spotify"
 riverctl map normal Super Y spawn "freetube"
 
@@ -61,8 +63,8 @@ riverctl map normal Super+Shift Comma send-to-output previous
 riverctl map normal Super+Shift Return zoom
 
 # Super+H and Super+L to decrease/increase the main ratio of rivertile(1).
-riverctl map normal Super H send-layout-cmd rivercarro "main-ratio -0.05"
-riverctl map normal Super L send-layout-cmd rivercarro "main-ratio +0.05"
+riverctl map normal Super H send-layout-cmd rivercarro "main-ratio +0.05"
+riverctl map normal Super L send-layout-cmd rivercarro "main-ratio -0.05"
 
 # Super+Shift+H and Super+Shift+L to increment/decrement the main count of rivertile(1).
 riverctl map normal Super+Shift H send-layout-cmd rivercarro "main-count +1"
@@ -92,21 +94,29 @@ riverctl map-pointer normal Super BTN_LEFT move-view
 # Super + Right Mouse Button to resize views.
 riverctl map-pointer normal Super BTN_RIGHT resize-view
 
+# Bindings for workspaces.
+declare -a w_bindings=(
+[1]=U
+[2]=I
+[3]=O
+[4]=P
+)
+
 for i in $(seq 1 4)
 do
     tags=$((1 << ($i - 1)))
 
     # Super+[1-9] to focus tag [0-8].
-    riverctl map normal Super $i set-focused-tags $tags
+    riverctl map normal Super ${w_bindings[$i]} set-focused-tags $tags
 
     # Super+Shift+[1-9] to tag focused view with tag [0-8].
-    riverctl map normal Super+Shift $i set-view-tags $tags
+    riverctl map normal Super+Shift ${w_bindings[$i]} set-view-tags $tags
 
     # Super+Ctrl+[1-9] to toggle focus of tag [0-8].
-    riverctl map normal Super+Control $i toggle-focused-tags $tags
+    riverctl map normal Super+Control ${w_bindings[$i]} toggle-focused-tags $tags
 
     # Super+Shift+Ctrl+[1-9] to toggle tag [0-8] of focused view.
-    riverctl map normal Super+Shift+Control $i toggle-view-tags $tags
+    riverctl map normal Super+Shift+Control ${w_bindings[$i]} toggle-view-tags $tags
 done
 
 # Super+0 to focus all tags.
@@ -116,8 +126,8 @@ riverctl map normal Super 0 set-focused-tags $all_tags
 riverctl map normal Super+Shift 0 set-view-tags $all_tags
 
 # Focus and send views to previous tags (jumping back and forth).
-riverctl map normal Super P focus-previous-tags
-riverctl map normal Super+Shift P send-to-previous-tags
+riverctl map normal Super M focus-previous-tags
+riverctl map normal Super+Shift M send-to-previous-tags
 
 # Super+Space to toggle float.
 riverctl map normal Super Space toggle-float

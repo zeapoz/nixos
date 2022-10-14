@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     emacsNativeComp
+    neovide
   ];
 
   programs.neovim = {
