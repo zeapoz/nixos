@@ -7,8 +7,8 @@
       mainBar = {
         layer = "top";
         position = "bottom";
-        modules-left = [ "river/tags" "cpu" "memory" "disk" ];
-        modules-center = [ "clock" ];
+        modules-left = [ "clock" "cpu" "memory" "disk" ];
+        modules-center = [ "river/tags" ];
         modules-right = [
           "keyboard-state"
           "temperature"
@@ -39,8 +39,7 @@
         };
         "clock" = {
           interval = 60;
-          format = "{: %b %e %H:%M}";
-          format-alt = "{: %a %d-%m-%y}";
+          format = "{: %a %b %e %H:%M}";
         };
         "keyboard-state" = {
           capslock = true;
@@ -66,7 +65,6 @@
           tooltip-format = "{ifname} via {gwaddr}";
           format-linked = "{ifname} (No IP)";
           format-disconnected = "";
-          format-alt = "{ipaddr}";
         };
         "pulseaudio" = {
           format = "{icon} {volume}% {format_source}";
@@ -102,17 +100,17 @@
 
       * {
         font-family: "FiraCode", "Font Awesome 6 Free";
+        font-weight: bold;
         font-size: 14px;
         min-height: 0px;
       }
 
       window#waybar {
-        background: rgba(28, 28, 28, 0.8);
         color: @fg;
+        background: rgba(29, 32, 33, 0.9);
       }
 
       #tags,
-      #mode,
       #cpu,
       #memory,
       #disk,
@@ -124,22 +122,18 @@
       #pulseaudio,
       #battery,
       #tray {
-        background: rgba(28, 28, 28, 0);
         padding: 2px 12px;
         margin: 0 4px;
-        border-radius: 90px;
-        font-weight: bold;
       }
 
       #tags button {
         color: @fg;
-        border-radius: 0;
-        border-bottom: 2px solid rgba(0, 0, 0, 0);
+        margin-bottom: 3px;
+        padding: 2px 12px;
       }
 
       #tags button.focused {
         color: @yellow-normal;
-        border-bottom: 2px solid @yellow-normal;
       }
 
       #tags button.active {
@@ -184,6 +178,10 @@
 
       #network {
         color: @blue-accent;
+      }
+
+      #network.ethernet {
+        margin-bottom: 3px;
       }
 
       #battery.warning {

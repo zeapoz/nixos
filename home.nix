@@ -33,6 +33,7 @@
       ripgrep
       signal-desktop
       spotify
+      spotify-tui
       sunvox
       unzip
       zig
