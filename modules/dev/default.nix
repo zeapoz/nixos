@@ -23,7 +23,9 @@
         b = "branch";
         c = "commit";
         co = "checkout";
+        d = "diff";
         f = "fetch";
+        l = "log";
         p = "pull";
         pu = "push";
         r = "reset";

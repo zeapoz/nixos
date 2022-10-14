@@ -10,20 +10,23 @@
     slurp
     swaybg
     wl-clipboard
+    wofi
   ];
-
-  programs.rofi = {
-    enable = true;
-    package = pkgs.rofi-wayland;
-    theme = "gruvbox-dark-soft";
-    font = "Fira Code 14";
-    extraConfig = { show-icons = true; };
-  };
 
   xdg.configFile = {
     "river" = {
       source = ../../config/river;
       recursive = true;
+    };
+
+    "wofi/style.css" = {
+      source = ../../config/wofi/style.css;
+    };
+
+    # Power menu script.
+    "wofi/power-menu.sh" = {
+      source = ../../config/wofi/power-menu.sh;
+      executable = true;
     };
 
     # Autostart river from tty1.

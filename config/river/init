@@ -22,7 +22,7 @@ riverctl input 1739:52656:PNP0C50:00_06CB:CDB0_Touchpad tap enabled
 riverctl map normal Super Return spawn "kitty"
 
 # Application launcher and power menu.
-riverctl map normal Super D spawn "rofi -show drun"
+riverctl map normal Super D spawn "wofi --show drun -I"
 riverctl map normal Super X spawn "~/.config/wofi/power-menu.sh"
 
 # Useful applications.
@@ -151,12 +151,6 @@ riverctl map normal Super F11 enter-mode passthrough
 
 # Super+F11 to return to normal mode.
 riverctl map passthrough Super F11 enter-mode normal
-
-# Declare an exit mode. This mode makes it easier to shutdown, reboot and suspend.
-riverctl declare-mode exit
-riverctl map normal Super X enter-mode exit
-riverctl map exit Super X enter-mode normal
-riverctl map exit Super Escape enter-mode normal
 
 # Exit commands.
 riverctl map exit Super S spawn "systemctl suspend"

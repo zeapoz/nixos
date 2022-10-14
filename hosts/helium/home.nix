@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ../../home.nix ../../modules/hypr ];
+  imports = [ ../../home.nix ../../modules/river ];
 
   programs.kitty.font.size = 12;
 
