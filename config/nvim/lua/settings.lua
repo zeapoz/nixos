@@ -1,4 +1,3 @@
-local g = vim.go
 local o = vim.o
 
 -- Theme.
@@ -23,7 +22,7 @@ o.autoindent = true
 o.smartindent = true
 
 -- Gui settings.
-o.guifont = 'FiraCode Nerd Font:h15'
+o.guifont = 'FiraCode Nerd Font:h12'
 vim.api.nvim_set_var('neovide_transparency', 0.9)
 
 -- Use system clipboard.
