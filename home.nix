@@ -3,6 +3,9 @@
 {
   imports = [ ./modules/theme ./modules/dev ./modules/editors ];
 
+  # https://github.com/NixOS/nixpkgs/issues/196651
+  manual.manpages.enable = false;
+
   home = {
     username = "jonathan";
     homeDirectory = "/home/jonathan";
