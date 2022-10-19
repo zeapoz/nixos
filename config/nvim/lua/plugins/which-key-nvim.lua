@@ -1,6 +1,8 @@
 local wk = require('which-key')
 
 wk.register({
+  ['.'] = { ':Telescope find_files<CR>', 'Find File' },
+  ['<space>'] = { ':Telescope find_files<CR>', 'Find File' },
   b = {
     name = 'Buffers',
     d = { ':bp<bar>bd#<CR>', 'Delete Buffer' },
