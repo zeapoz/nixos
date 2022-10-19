@@ -35,6 +35,22 @@
         "type": "github"
       }
     },
+    "flake-compat_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1650374568,
+        "narHash": "sha256-Z+s0J8/r907g149rllvwhb4pKi8Wam5ij0st8PwAh+E=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "b4a34015c698c7793d592d66adbab377907a2be8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1659877975,
@@ -104,6 +120,22 @@
       "original": {
         "owner": "hyprwm",
         "repo": "Hyprland",
+        "type": "github"
+      }
+    },
+    "libnbtplusplus": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1650031308,
+        "narHash": "sha256-TvVOjkUobYJD9itQYueELJX3wmecvEdCbJ0FinW2mL4=",
+        "owner": "PrismLauncher",
+        "repo": "libnbtplusplus",
+        "rev": "2203af7eeb48c45398139b583615134efd8d407f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PrismLauncher",
+        "repo": "libnbtplusplus",
         "type": "github"
       }
     },
@@ -195,6 +227,22 @@
         "type": "indirect"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1658119717,
+        "narHash": "sha256-4upOZIQQ7Bc4CprqnHsKnqYfw+arJeAuU+QcpjYBXW0=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9eb60f25aff0d2218c848dd4574a0ab5e296cabe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpks": {
       "locked": {
         "lastModified": 1665732960,
@@ -210,6 +258,27 @@
         "type": "indirect"
       }
     },
+    "prism-launcher": {
+      "inputs": {
+        "flake-compat": "flake-compat_2",
+        "libnbtplusplus": "libnbtplusplus",
+        "nixpkgs": "nixpkgs_4",
+        "tomlplusplus": "tomlplusplus"
+      },
+      "locked": {
+        "lastModified": 1666174393,
+        "narHash": "sha256-E/A25K4NVuA78RpHqomFnjdTAFQBe4/MuAO6UA0cWjk=",
+        "owner": "PrismLauncher",
+        "repo": "PrismLauncher",
+        "rev": "c6515c1dad7e2d3698e78398f838ac60bd5d376f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PrismLauncher",
+        "repo": "PrismLauncher",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "emacs-overlay": "emacs-overlay",
@@ -217,7 +286,24 @@
         "hyprland": "hyprland",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_3",
-        "nixpks": "nixpks"
+        "nixpks": "nixpks",
+        "prism-launcher": "prism-launcher"
+      }
+    },
+    "tomlplusplus": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1664034574,
+        "narHash": "sha256-EFMAl6tsTvkgK0DWC/pZfOIq06b2e5SnxJa1ngGRIQA=",
+        "owner": "marzer",
+        "repo": "tomlplusplus",
+        "rev": "8aa5c8b2a4ff2c440d4630addf64fa4f62146170",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marzer",
+        "repo": "tomlplusplus",
+        "type": "github"
       }
     },
     "utils": {

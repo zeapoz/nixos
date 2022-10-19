@@ -26,7 +26,7 @@
       neovim-nightly
       pavucontrol
       playerctl
-      polymc
+      prismlauncher
       pulseaudio
       python3
       ranger
