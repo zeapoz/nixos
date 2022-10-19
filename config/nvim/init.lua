@@ -14,6 +14,7 @@ require('plugins/telescope')
 require('plugins/nvim-tree')
 require('plugins/nvim-cmp')
 require('plugins/lualine')
+require('nvim-surround').setup()
 require('project_nvim').setup {
   show_hidden = true,
 }

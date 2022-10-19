@@ -15,6 +15,7 @@
       cmp-buffer
       cmp-cmdline
       cmp-nvim-lsp
+      cmp-nvim-lsp-signature-help
       cmp-path
       cmp_luasnip
       comment-nvim
@@ -29,6 +30,7 @@
       neogit
       nvim-cmp
       nvim-lspconfig
+      nvim-surround
       nvim-tree-lua
       (nvim-treesitter.withPlugins (plugins: with plugins; [
         tree-sitter-nix
