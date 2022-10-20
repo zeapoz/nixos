@@ -50,3 +50,6 @@ db.custom_center = {
     shortcut = 'SPC f w',
   },
 }
+
+db.hide_statusline = false
+db.hide_tabline = false
