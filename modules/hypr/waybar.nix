@@ -7,8 +7,8 @@
       mainBar = {
         layer = "top";
         position = "top";
-        modules-left = [ "wlr/workspaces" "cpu" "memory" "disk" ];
-        modules-center = [ "clock" ];
+        modules-left = [ "clock" "cpu" "memory" "disk" ];
+        modules-center = [ "wlr/workspaces" ];
         modules-right = [
           "keyboard-state"
           "temperature"
