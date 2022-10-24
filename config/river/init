@@ -29,7 +29,7 @@ riverctl map normal Super X spawn "~/.config/wofi/power-menu.sh"
 riverctl map normal Super N spawn "neovide"
 riverctl map normal Super B spawn "librewolf"
 riverctl map normal Super E spawn "kitty fish -c ranger"
-riverctl map normal Super S spawn "spotify"
+riverctl map normal Super S spawn "kitty spt"
 riverctl map normal Super Y spawn "freetube"
 
 # Screenshotting utilities.
