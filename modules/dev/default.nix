@@ -8,6 +8,7 @@
     rust-analyzer
     rustup
     sumneko-lua-language-server
+    zig
   ];
 
   programs = {
