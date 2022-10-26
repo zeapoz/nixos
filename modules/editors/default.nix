@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     emacsNativeComp
     neovide
+    neovim-nightly
   ];
 
   programs.neovim = {

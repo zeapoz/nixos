@@ -13,7 +13,6 @@
       ardour
       bat
       discord
-      emacsNativeComp
       fd
       firefox-wayland
       freetube
@@ -23,7 +22,6 @@
       killall
       librewolf-wayland
       neofetch
-      neovim-nightly
       pavucontrol
       playerctl
       prismlauncher
