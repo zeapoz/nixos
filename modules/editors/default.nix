@@ -29,14 +29,16 @@
       lualine-nvim
       luasnip
       neogit
+      neo-tree-nvim
+      nvim-cokeline
       nvim-cmp
       nvim-lspconfig
       nvim-surround
-      nvim-tree-lua
       (nvim-treesitter.withPlugins (plugins: with plugins; [
         tree-sitter-nix
         tree-sitter-lua
         tree-sitter-rust
+        tree-sitter-zig
       ]))
       nvim-web-devicons
       plenary-nvim

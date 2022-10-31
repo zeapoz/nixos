@@ -35,14 +35,16 @@ wk.register({
     s = { ':Telescope git_status<CR>', 'Status' },
     z = { ':Telescope git_stash<CR>', 'Stashes' },
   },
+  n = { 'Switch Next buffer' },
   o = {
     name = 'Open',
-    p = { ':NvimTreeToggle<CR>', 'Toggle NvimTree' },
-    f = { ':NvimTreeFindFile<CR>', 'Find File NvimTree' },
+    p = { ':Neotree filesystem reveal left show toggle<CR>', 'Toggle Neotree' },
+    f = { ':Neotree filesystem focus current<CR>', 'Show Neotree' },
     t = { ':ToggleTerm<CR>', 'Toggle Terminal' },
     h = { ':Dashboard<CR>', 'Dashboard' },
     e = { ':DashboardNewFile<CR>', 'Empty Buffer' },
   },
+  p = { 'Switch Previous Buffer' },
   r = {
     name = 'Rename',
     n = 'LSP Rename',

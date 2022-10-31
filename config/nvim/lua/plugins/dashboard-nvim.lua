@@ -17,8 +17,8 @@ db.custom_center = {
   {
     icon = '  ',
     desc = 'Browse directory                     ',
-    action = ':NvimTreeOpen',
-    shortcut = 'SPC o p',
+    action = ':Neotree filesystem focus current',
+    shortcut = 'SPC o f',
   },
   {
     icon = '  ',
