@@ -1,7 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ../../home.nix ../../modules/river ];
+  imports = [ ../../home.nix ../../modules/desktops ];
+
+  desktops.river = {
+    enable = true;
+    autostart = true;
+  };
 
   programs.kitty.font.size = 12;
 

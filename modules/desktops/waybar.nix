@@ -184,6 +184,10 @@
         margin-bottom: 3px;
       }
 
+      #pulseaudio {
+        color: @fg;
+      }
+
       #battery.warning {
         color: @yellow-normal;
       }

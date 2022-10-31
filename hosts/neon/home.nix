@@ -1,9 +1,14 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ../../home.nix ../../modules/river ];
+  imports = [ ../../home.nix ../../modules/desktops ];
 
   home.packages = with pkgs; [ brightnessctl ];
+
+  desktops.river = {
+    enable = true;
+    autostart = true;
+  };
 
   programs.kitty.font.size = 15;
 
