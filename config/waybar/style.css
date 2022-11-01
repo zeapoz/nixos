@@ -1,0 +1,117 @@
+@define-color bg #282828;
+@define-color bg1 #3c3836;
+@define-color fg #ebdbb2;
+@define-color red-normal #cc241d;
+@define-color red-accent #fb4934;
+@define-color green-normal #98971a;
+@define-color green-accent #b8bb26;
+@define-color yellow-normal #d79921;
+@define-color yellow-accent #fabd2f;
+@define-color blue-normal #458588;
+@define-color blue-accent #83a598;
+@define-color purple-normal #b16286;
+@define-color purple-accent #d3869b;
+@define-color orange-normal #d65d0e;
+@define-color orange-accent #fe8019;
+
+* {
+  font-family: "FiraCode", "Font Awesome 6 Free";
+  font-weight: bold;
+  font-size: 14px;
+  min-height: 0px;
+}
+
+window#waybar {
+  color: @fg;
+  background: rgba(29, 32, 33, 0.9);
+}
+
+#tags,
+#cpu,
+#memory,
+#disk,
+#clock,
+#keyboard-state label.locked,
+#temperature,
+#custom-kernel,
+#network,
+#pulseaudio,
+#battery,
+#tray {
+  padding: 2px 12px;
+  margin: 0 4px;
+}
+
+#tags button {
+  color: @fg;
+  margin-bottom: 3px;
+  padding: 2px 12px;
+}
+
+#tags button.focused {
+  color: @yellow-normal;
+}
+
+#tags button.active {
+  background-color: @bg;
+}
+
+#tags button.urgent {
+  color: @red-normal;
+}
+
+#cpu {
+  color: @red-accent;
+}
+
+#memory {
+  color: @green-accent;
+}
+
+#disk {
+  color: @purple-normal;
+}
+
+#clock {
+  color: @blue-accent;
+}
+
+#keyboard-state {
+  color: @red-accent;
+}
+
+#temperature {
+  color: @yellow-normal;
+}
+
+#temperature.critical {
+  color: @red-normal;
+}
+
+#custom-kernel {
+  color: @purple-normal;
+}
+
+#network {
+  color: @blue-accent;
+}
+
+#network.ethernet {
+  margin-bottom: 3px;
+}
+
+#pulseaudio {
+  color: @fg;
+}
+
+#battery {
+  color: @fg;
+}
+
+#battery.warning {
+  color: @yellow-normal;
+}
+
+#battery.critical {
+  color: @red-normal;
+}

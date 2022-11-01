@@ -1,13 +1,13 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.desktops.hyprland;
+  cfg = config.desktop.hyprland;
 in
 {
   imports = [ ../waybar.nix ];
 
-  options.desktops.hyprland = {
-    enable = mkEnableOption "Hyprland desktop";
+  options.desktop.hyprland = {
+    enable = mkEnableOption "hyprland desktop";
     autostart = mkOption {
       type = types.bool;
       default = false;
@@ -16,6 +16,7 @@ in
 
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland.enable = true;
+    desktop.waybar.enable = true;
 
     home.packages = with pkgs; [
       grim

@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.desktops.river;
+  cfg = config.desktop.river;
 in
 {
   imports = [ ../waybar.nix ];
 
-  options.desktops.river = {
+  options.desktop.river = {
     enable = mkEnableOption "river desktop";
     autostart = mkOption {
       type = types.bool;
@@ -15,6 +15,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    desktop.waybar.enable = true;
+
     home.packages = with pkgs; [
       grim
       river
