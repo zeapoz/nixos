@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ../../home.nix ../../modules/desktop ];
+  imports = [ ../../home.nix ];
 
   desktop = {
     river = {
@@ -13,6 +13,10 @@
       keyboardPath = "/dev/input/event3";
     };
   };
+
+  dev.enable = true;
+  theme.enable = true;
+  editors.neovim.enable = true;
 
   programs.kitty.font.size = 12;
 }

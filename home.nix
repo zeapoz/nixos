@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./modules/theme ./modules/dev ./modules/editors ];
+  imports = [ ./modules/theme ./modules/dev ./modules/editors ./modules/desktop ];
 
   home = {
     username = "jonathan";
