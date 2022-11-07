@@ -8,7 +8,7 @@ in
 
   config = mkIf cfg.enable {
     home.pointerCursor = {
-      name = "Pop-dark";
+      name = "Adwaita";
       package = pkgs.gnome.adwaita-icon-theme;
       size = 24;
     };
