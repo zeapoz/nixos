@@ -35,7 +35,7 @@ in
             "custom/kernel"
             "network"
             "pulseaudio"
-            "battery"
+            (mkIf cfg.enableBatteryModule "battery")
             "tray"
           ];
 
@@ -100,7 +100,6 @@ in
             on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
             on-click-middle = "pavucontrol";
           };
-          "tray" = { spacing = 10; };
           "battery" = mkIf cfg.enableBatteryModule {
             interval = 60;
             states = {
@@ -112,6 +111,7 @@ in
             format-icons = [ "" "" "" "" ];
             format-alt = "{time} {icon}";
           };
+          "tray" = { spacing = 10; };
         };
       };
       style = ../../config/waybar/style.css;

@@ -7,7 +7,7 @@ in
   imports = [ ../waybar.nix ];
 
   options.desktop.hyprland = {
-    enable = mkEnableOption "hyprland desktop";
+    enable = mkEnableOption "hyprland";
     autostart = mkOption {
       type = types.bool;
       default = false;

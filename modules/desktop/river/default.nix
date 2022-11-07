@@ -7,7 +7,7 @@ in
   imports = [ ../waybar.nix ];
 
   options.desktop.river = {
-    enable = mkEnableOption "river desktop";
+    enable = mkEnableOption "river";
     autostart = mkOption {
       type = types.bool;
       default = false;
