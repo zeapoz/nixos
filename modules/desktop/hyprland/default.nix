@@ -15,37 +15,39 @@ in
   };
 
   config = mkIf cfg.enable {
-    wayland.windowManager.hyprland.enable = true;
     desktop.waybar.enable = true;
+    programs.hyprland.enable = true;
 
-    home.packages = with pkgs; [
-      grim
-      slurp
-      swaybg
-      wofi
-      wl-clipboard
-    ];
+    home-manager.users.jonathan = {
+      home.packages = with pkgs; [
+        grim
+        slurp
+        swaybg
+        wofi
+        wl-clipboard
+      ];
 
-    xdg.configFile = {
-      "hypr" = {
-        source = ../../../config/hypr;
-        recursive = true;
-      };
+      xdg.configFile = {
+        "hypr" = {
+          source = ../../../config/hypr;
+          recursive = true;
+        };
 
-      "wofi/style.css" = {
-        source = ../../../config/wofi/style.css;
-      };
+        "wofi/style.css" = {
+          source = ../../../config/wofi/style.css;
+        };
 
-      # Power menu script.
-      "wofi/power-menu.sh" = {
-        source = ../../../config/wofi/power-menu.sh;
-        executable = true;
-      };
+        # Power menu script.
+        "wofi/power-menu.sh" = {
+          source = ../../../config/wofi/power-menu.sh;
+          executable = true;
+        };
 
-      # Autostart Hyprland from tty1.
-      "fish/conf.d/hyprland.fish" = mkIf cfg.autostart {
-        source = ../../../config/fish/hyprland.fish;
-        executable = true;
+        # Autostart Hyprland from tty1.
+        "fish/conf.d/hyprland.fish" = mkIf cfg.autostart {
+          source = ../../../config/fish/hyprland.fish;
+          executable = true;
+        };
       };
     };
   };
