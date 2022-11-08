@@ -46,7 +46,15 @@
           modules = [
             ./hosts/helium/hardware-configuration.nix
             ./configuration.nix
-            { networking.hostName = "helium"; }
+            ./modules
+            home-manager.nixosModules.home-manager
+            inputs.hyprland.nixosModules.default
+            {
+              networking.hostName = "helium";
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.jonathan = import ./hosts/helium/home.nix;
+            }
           ];
         };
 
@@ -56,22 +64,18 @@
           modules = [
             ./hosts/neon/hardware-configuration.nix
             ./configuration.nix
-            { networking.hostName = "neon"; }
+            ./modules
+            home-manager.nixosModules.home-manager
+            inputs.hyprland.nixosModules.default
+            {
+              imports = [ ./hosts/neon ];
+
+              networking.hostName = "neon";
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.jonathan = import ./hosts/neon/home.nix;
+            }
           ];
-        };
-      };
-
-      homeConfigurations = {
-        "jonathan@helium" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          modules = [ ./hosts/helium/home.nix inputs.hyprland.homeManagerModules.default ];
-        };
-
-        "jonathan@neon" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          modules = [ ./hosts/neon/home.nix inputs.hyprland.homeManagerModules.default ];
         };
       };
     };

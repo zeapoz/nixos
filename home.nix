@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./modules/theme ./modules/dev ./modules/editors ./modules/desktop ];
-
   home = {
     username = "jonathan";
     homeDirectory = "/home/jonathan";
@@ -65,9 +63,8 @@
         lt = "exa -T --group-directories-first --icons";
 
         nix-rebuild = " sudo nixos-rebuild switch --flake ~/.config/NixOS";
-        nix-rehome = "home-manager switch --flake ~/.config/NixOS";
         nix-fetch = "sudo nix flake update ~/.config/NixOS";
-        nix-up = "nix-fetch && nix-rebuild && nix-rehome";
+        nix-up = "nix-fetch && nix-rebuild";
         nix-gc = "sudo nix-collect-garbage -d";
 
         "..." = "cd ../..";
