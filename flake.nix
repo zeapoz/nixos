@@ -50,6 +50,8 @@
             home-manager.nixosModules.home-manager
             inputs.hyprland.nixosModules.default
             {
+              imports = [ ./hosts/helium ];
+
               networking.hostName = "helium";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
