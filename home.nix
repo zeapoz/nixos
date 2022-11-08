@@ -8,14 +8,10 @@
     # Packages that should be installed to the user profile.
     packages = with pkgs; [
       anki
-      ardour
       bat
       discord
       fd
       firefox-wayland
-      freetube
-      gimp
-      guitarix
       helvum
       killall
       librewolf-wayland
@@ -28,8 +24,6 @@
       ranger
       ripgrep
       signal-desktop
-      spotify
-      spotify-tui
       sunvox
       unzip
       zip
@@ -95,16 +89,5 @@
     };
 
     zoxide.enable = true;
-  };
-
-  services.spotifyd = {
-    enable = true;
-    settings = {
-      global = {
-        username_cmd = "/home/jonathan/secrets/spotifyd.user";
-        password_cmd = "/home/jonathan/secrets/spotifyd.pass";
-        device_name = "nixos";
-      };
-    };
   };
 }

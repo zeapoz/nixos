@@ -42,6 +42,7 @@ in
             re = "rebase";
             res = "restore";
             s = "status";
+            st = "stash";
           };
           delta.enable = true;
         };

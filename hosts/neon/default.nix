@@ -14,5 +14,6 @@
 
   dev.enable = true;
   theme.enable = true;
+  media.enable = true;
   editors.neovim.enable = true;
 }
