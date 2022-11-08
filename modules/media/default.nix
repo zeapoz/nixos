@@ -18,15 +18,15 @@ in
         spotify
         spotify-tui
       ];
-    };
 
-    services.spotifyd = {
-      enable = true;
-      settings = {
-        global = {
-          username_cmd = "/home/jonathan/secrets/spotifyd.user";
-          password_cmd = "/home/jonathan/secrets/spotifyd.pass";
-          device_name = "nixos";
+      services.spotifyd = {
+        enable = true;
+        settings = {
+          global = {
+            username_cmd = "/home/jonathan/secrets/spotifyd.user";
+            password_cmd = "/home/jonathan/secrets/spotifyd.pass";
+            device_name = "nixos";
+          };
         };
       };
     };
