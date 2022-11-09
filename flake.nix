@@ -36,12 +36,22 @@
         ];
       };
 
-      lib = nixpkgs.lib;
+      lib = nixpkgs.lib.extend
+        (final: prev: {
+          mkBoolOpt = default: prev.mkOption {
+            inherit default;
+            type = prev.types.bool;
+          };
+          mkStrOpt = default: prev.mkOption {
+            inherit default;
+            type = prev.types.str;
+          };
+        });
     in
     {
       nixosConfigurations = {
         helium = lib.nixosSystem {
-          inherit system pkgs;
+          inherit system pkgs lib;
 
           modules = [
             ./hosts/helium/hardware-configuration.nix
@@ -61,7 +71,7 @@
         };
 
         neon = lib.nixosSystem {
-          inherit system pkgs;
+          inherit system pkgs lib;
 
           modules = [
             ./hosts/neon/hardware-configuration.nix

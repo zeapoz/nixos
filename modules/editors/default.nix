@@ -7,10 +7,7 @@ in
   options.editors = {
     neovim = {
       enable = mkEnableOption "neovim";
-      disableGui = mkOption {
-        type = types.bool;
-        default = false;
-      };
+      disableGui = mkBoolOpt false;
     };
     emacs.enable = mkEnableOption "emacs";
   };

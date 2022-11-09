@@ -6,18 +6,9 @@ in
 {
   options.desktop.waybar = {
     enable = mkEnableOption "waybar";
-    enableBatteryModule = mkOption {
-      type = types.bool;
-      default = false;
-    };
-    temperaturePath = mkOption {
-      type = types.str;
-      default = "";
-    };
-    keyboardPath = mkOption {
-      type = types.str;
-      default = "";
-    };
+    enableBatteryModule = mkBoolOpt false;
+    temperaturePath = mkStrOpt "";
+    keyboardPath = mkStrOpt "";
   };
 
   config = mkIf cfg.enable {

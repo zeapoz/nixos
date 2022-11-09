@@ -8,10 +8,7 @@ in
 
   options.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
-    autostart = mkOption {
-      type = types.bool;
-      default = false;
-    };
+    autostart = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
