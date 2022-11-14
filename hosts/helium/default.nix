@@ -12,8 +12,13 @@
     };
   };
 
+  editors = {
+    neovim.enable = true;
+    emacs.enable = true;
+  };
+
   dev.enable = true;
   theme.enable = true;
   media.enable = true;
-  editors.neovim.enable = true;
+  hardware.keychron.enable = true;
 }

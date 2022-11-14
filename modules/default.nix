@@ -7,5 +7,6 @@
     ./editors
     ./theme
     ./media
+    ./hardware
   ];
 }
