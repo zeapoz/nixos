@@ -3,7 +3,9 @@
 {
   imports = [ ../../home.nix ];
 
-  home.packages = with pkgs; [ brightnessctl ];
+  home-manager.users.${config.user.name} = {
+    home.packages = with pkgs; [ brightnessctl ];
 
-  programs.kitty.font.size = 14;
+    programs.kitty.font.size = 14;
+  };
 }

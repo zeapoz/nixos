@@ -14,7 +14,7 @@ in
   config = mkIf cfg.enable {
     desktop.waybar.enable = true;
 
-    home-manager.users.jonathan = {
+    home-manager.users.${config.user.name} = {
       home.packages = with pkgs; [
         grim
         river

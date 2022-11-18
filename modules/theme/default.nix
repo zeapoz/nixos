@@ -7,7 +7,7 @@ in
   options.theme.enable = mkEnableOption "theme";
 
   config = mkIf cfg.enable {
-    home-manager.users.jonathan = {
+    home-manager.users.${config.user.name} = {
       home.pointerCursor = {
         name = "Adwaita";
         package = pkgs.gnome.adwaita-icon-theme;

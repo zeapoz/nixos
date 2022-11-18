@@ -15,7 +15,7 @@ in
     desktop.waybar.enable = true;
     programs.hyprland.enable = true;
 
-    home-manager.users.jonathan = {
+    home-manager.users.${config.user.name} = {
       home.packages = with pkgs; [
         grim
         slurp

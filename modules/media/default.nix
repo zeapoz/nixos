@@ -9,7 +9,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.jonathan = {
+    home-manager.users.${config.user.name} = {
       home.packages = with pkgs; [
         ardour
         freetube
@@ -23,9 +23,9 @@ in
         enable = true;
         settings = {
           global = {
-            username_cmd = "/home/jonathan/secrets/spotifyd.user";
-            password_cmd = "/home/jonathan/secrets/spotifyd.pass";
-            device_name = "nixos";
+            username_cmd = "/home/${config.user.name}/secrets/spotifyd.user";
+            password_cmd = "/home/${config.user.name}/secrets/spotifyd.pass";
+            device_name = "${config.networking.hostName}";
           };
         };
       };
