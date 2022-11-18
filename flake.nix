@@ -60,12 +60,15 @@
             home-manager.nixosModules.home-manager
             inputs.hyprland.nixosModules.default
             {
-              imports = [ ./hosts/helium ];
+              imports = [
+                ./hosts/helium
+                ./hosts/helium/home.nix
+              ];
 
               networking.hostName = "helium";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.jonathan = import ./hosts/helium/home.nix;
+
             }
           ];
         };
@@ -80,12 +83,14 @@
             home-manager.nixosModules.home-manager
             inputs.hyprland.nixosModules.default
             {
-              imports = [ ./hosts/neon ];
+              imports = [
+                ./hosts/neon
+                ./hosts/neon/home.nix
+              ];
 
               networking.hostName = "neon";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.jonathan = import ./hosts/neon/home.nix;
             }
           ];
         };

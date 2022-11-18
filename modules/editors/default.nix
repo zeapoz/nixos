@@ -13,7 +13,7 @@ in
   };
 
   config = {
-    home-manager.users.jonathan = {
+    home-manager.users.${config.user.name} = {
       home.packages = with pkgs; [
         (mkIf (cfg.emacs.enable) emacsNativeComp)
         (mkIf (cfg.neovim.enable) neovim-nightly)

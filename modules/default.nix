@@ -8,5 +8,6 @@
     ./theme
     ./media
     ./hardware
+    ./options.nix
   ];
 }

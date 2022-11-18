@@ -12,7 +12,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.jonathan = {
+    home-manager.users.${config.user.name} = {
       programs.waybar = {
         enable = true;
         settings = {

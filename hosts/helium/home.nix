@@ -3,5 +3,5 @@
 {
   imports = [ ../../home.nix ];
 
-  programs.kitty.font.size = 12;
+  home-manager.users.${config.user.name}.programs.kitty.font.size = 12;
 }

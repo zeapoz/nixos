@@ -59,14 +59,14 @@
   users.defaultUserShell = pkgs.fish;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.jonathan = {
+  users.users.${config.user.name} = {
     isNormalUser = true;
-    description = "jonathan";
+    description = "${config.user.name}";
     extraGroups = [ "networkmanager" "wheel" "input" "audio" ];
   };
 
   # Enable automatic login for the user.
-  services.getty.autologinUser = "jonathan";
+  services.getty.autologinUser = "${config.user.name}";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

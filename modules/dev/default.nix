@@ -9,7 +9,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.jonathan = {
+    home-manager.users.${config.user.name} = {
       home.packages = with pkgs; [
         godot
         nixfmt
