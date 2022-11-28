@@ -6,6 +6,7 @@ in
 {
   options.desktop.waybar = {
     enable = mkEnableOption "waybar";
+    mainDesktop = mkStrOpt "";
     enableBatteryModule = mkBoolOpt false;
     temperaturePath = mkStrOpt "";
     keyboardPath = mkStrOpt "";
@@ -20,7 +21,10 @@ in
             layer = "top";
             position = "top";
             modules-left = [ "clock" "cpu" "memory" "disk" ];
-            modules-center = [ "river/tags" ];
+            modules-center = [
+              (mkIf (cfg.mainDesktop == "hyprland") "wlr/workspaces")
+              (mkIf (cfg.mainDesktop == "river") "river/tags")
+            ];
             modules-right = [
               "keyboard-state"
               "temperature"
@@ -31,7 +35,17 @@ in
               "tray"
             ];
 
-            "river/tags" = {
+            "wlr/workspaces" = mkIf (cfg.mainDesktop == "hyprland") {
+              format = "{icon}";
+              all-outputs = true;
+              format-icons = {
+                "1" = "";
+                "2" = "";
+                "3" = "";
+                "4" = "";
+              };
+            };
+            "river/tags" = mkIf (cfg.mainDesktop == "river") {
               num-tags = 4;
               tag-labels = [ "" "" "" "" ];
             };

@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./river ./hyprland ];
+  imports = [
+    ./river
+    ./hyprland
+  ];
 }

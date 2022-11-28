@@ -27,6 +27,7 @@ window#waybar {
 }
 
 #tags,
+#workspaces,
 #cpu,
 #memory,
 #disk,
@@ -42,21 +43,24 @@ window#waybar {
   margin: 0 4px;
 }
 
-#tags button {
+#tags button
+#workspaces button {
   color: @fg;
   margin-bottom: 3px;
   padding: 2px 10px;
-}
-
-#tags button.focused {
-  color: @yellow-normal;
 }
 
 #tags button.active {
   background-color: @bg;
 }
 
-#tags button.urgent {
+#tags button.focused
+#workspaces button.active {
+  color: @yellow-normal;
+}
+
+#tags button.urgent
+#workspaces button.urgent {
   color: @red-normal;
 }
 
