@@ -16,8 +16,8 @@ in
   };
 
   editors = {
-    neovim.enable = true;
     emacs.enable = true;
+    neovim.enable = true;
   };
 
   dev.enable = true;
