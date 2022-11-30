@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.media;
+  cfg = config.modules.media;
 in
 {
-  options.media = {
+  options.modules.media = {
     enable = mkEnableOption "media";
   };
 
@@ -17,6 +17,7 @@ in
         guitarix
         spotify
         spotify-tui
+        sunvox
       ];
 
       services.spotifyd = {

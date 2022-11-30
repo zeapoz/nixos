@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.theme;
+  cfg = config.modules.theme;
 in
 {
-  options.theme.enable = mkEnableOption "theme";
+  options.modules.theme.enable = mkEnableOption "theme";
 
   config = mkIf cfg.enable {
     home-manager.users.${config.user.name} = {

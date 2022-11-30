@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.desktop.waybar;
+  cfg = config.modules.desktop.waybar;
 in
 {
-  options.desktop.waybar = {
+  options.modules.desktop.waybar = {
     enable = mkEnableOption "waybar";
     mainDesktop = mkStrOpt "";
     enableBatteryModule = mkBoolOpt false;

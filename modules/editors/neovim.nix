@@ -1,21 +1,19 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.editors;
+  cfg = config.modules.editors.neovim;
 in
 {
-  options.editors = {
-    neovim = {
-      enable = mkEnableOption "neovim";
-      disableGui = mkBoolOpt false;
-    };
+  options.modules.editors.neovim = {
+    enable = mkEnableOption "neovim";
+    disableGui = mkBoolOpt false;
   };
 
-  config = mkIf cfg.neovim.enable {
+  config = mkIf cfg.enable {
     home-manager.users.${config.user.name} = {
       home.packages = with pkgs; [
         neovim-nightly
-        (mkIf (!cfg.neovim.disableGui) neovide)
+        (mkIf (!cfg.disableGui) neovide)
       ];
 
       programs.neovim = {

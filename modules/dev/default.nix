@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.dev;
+  cfg = config.modules.dev;
 in
 {
-  options.dev = {
+  options.modules.dev = {
     enable = mkEnableOption "development";
   };
 

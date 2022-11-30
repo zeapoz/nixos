@@ -1,15 +1,15 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.editors;
+  cfg = config.modules.editors.emacs;
 in
 {
-  options.editors.emacs.enable = mkEnableOption "emacs";
+  options.modules.editors.emacs.enable = mkEnableOption "emacs";
 
-  config = {
+  config = mkIf cfg.enable {
     home-manager.users.${config.user.name} = {
       home.packages = with pkgs; [
-        (mkIf (cfg.emacs.enable) emacsPgtkNativeComp)
+        emacsPgtkNativeComp
       ];
     };
 

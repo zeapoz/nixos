@@ -27,7 +27,6 @@
         ranger
         ripgrep
         signal-desktop
-        sunvox
         unzip
         xdotool
         zip

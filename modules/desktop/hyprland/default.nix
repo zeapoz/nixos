@@ -1,18 +1,18 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.desktop.hyprland;
+  cfg = config.modules.desktop.hyprland;
 in
 {
   imports = [ ../waybar.nix ];
 
-  options.desktop.hyprland = {
+  options.modules.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
     autostart = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
-    desktop.waybar.enable = true;
+    modules.desktop.waybar.enable = true;
     programs.hyprland.enable = true;
 
     home-manager.users.${config.user.name} = {

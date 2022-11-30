@@ -1,18 +1,18 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.desktop.river;
+  cfg = config.modules.desktop.river;
 in
 {
   imports = [ ../waybar.nix ];
 
-  options.desktop.river = {
+  options.modules.desktop.river = {
     enable = mkEnableOption "river";
     autostart = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
-    desktop.waybar.enable = true;
+    modules.desktop.waybar.enable = true;
 
     home-manager.users.${config.user.name} = {
       home.packages = with pkgs; [

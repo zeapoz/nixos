@@ -8,12 +8,16 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot/efi";
+    };
 
-  # Kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+    # Kernel.
+    kernelPackages = pkgs.linuxPackages_latest;
+  };
 
   # Hardware.
   hardware.opengl.enable = true;
@@ -78,7 +82,6 @@
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
-      emacs-all-the-icons-fonts
       fira
       fira-code
       fira-code-symbols
