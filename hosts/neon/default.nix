@@ -24,5 +24,6 @@ in
     dev.enable = true;
     theme.enable = true;
     media.enable = true;
+    hardware.bluetooth.enable = true;
   };
 }
