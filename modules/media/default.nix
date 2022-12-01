@@ -15,6 +15,7 @@ in
         freetube
         gimp
         guitarix
+        musescore
         spotify
         spotify-tui
         sunvox

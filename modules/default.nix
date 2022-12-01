@@ -4,6 +4,7 @@
   imports = [
     ./desktop
     ./dev
+    ./shell
     ./editors
     ./theme
     ./media

@@ -22,6 +22,7 @@ in
     };
 
     dev.enable = true;
+    shell.enable = true;
     theme.enable = true;
     media.enable = true;
     hardware.bluetooth.enable = true;
