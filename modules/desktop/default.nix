@@ -4,5 +4,6 @@
   imports = [
     ./river
     ./hyprland
+    ./applications
   ];
 }

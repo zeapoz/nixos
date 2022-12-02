@@ -10,10 +10,8 @@
       packages = with pkgs; [
         anki
         discord
-        firefox
         helvum
         libreoffice
-        librewolf-wayland
         neofetch
         pavucontrol
         playerctl
