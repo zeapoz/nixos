@@ -41,8 +41,6 @@ in
           shellInit = ''
             set -gx EDITOR nvim
             set fish_greeting
-
-            fish_add_path /home/${config.user.name}/.emacs.d/bin
           '';
         };
 

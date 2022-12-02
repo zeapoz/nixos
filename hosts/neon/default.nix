@@ -17,7 +17,10 @@ in
     };
 
     editors = {
-      emacs.enable = true;
+      emacs = {
+        enable = true;
+        doom.enable = true;
+      };
       neovim.enable = true;
     };
 
