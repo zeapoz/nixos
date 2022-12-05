@@ -6,6 +6,7 @@ in
 {
   options.modules.editors.emacs = {
     enable = mkEnableOption "emacs";
+    server.enable = mkEnableOption "emacs server";
     doom = rec {
       enable = mkEnableOption "doom";
       repo = mkStrOpt "https://github.com/doomemacs/doomemacs";
@@ -14,6 +15,12 @@ in
   };
 
   config = mkIf cfg.enable {
+    services.emacs = mkIf cfg.server.enable {
+      enable = true;
+      package = with pkgs; ((emacsPckagesFor emacsPgtkNativeComp).emacsWithPackages
+        (epkgs: [ epkgs.vterm ]));
+    };
+
     home-manager.users.${config.user.name} = {
       home = {
         packages = with pkgs; [
