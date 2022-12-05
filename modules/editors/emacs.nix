@@ -17,14 +17,14 @@ in
   config = mkIf cfg.enable {
     services.emacs = mkIf cfg.server.enable {
       enable = true;
-      package = with pkgs; ((emacsPckagesFor emacsPgtkNativeComp).emacsWithPackages
+      package = with pkgs; ((emacsPckagesFor emacsPgtk).emacsWithPackages
         (epkgs: [ epkgs.vterm ]));
     };
 
     home-manager.users.${config.user.name} = {
       home = {
         packages = with pkgs; [
-          ((emacsPackagesFor emacsPgtkNativeComp).emacsWithPackages
+          ((emacsPackagesFor emacsPgtk).emacsWithPackages
             (epkgs: [ epkgs.vterm ]))
           # Doom dependencies.
           (ripgrep.override { withPCRE2 = true; })
