@@ -19,7 +19,7 @@
       ranger
       signal-desktop
     ];
-
-    xdg.portal.wlr.enable = true;
   };
+
+  xdg.portal.wlr.enable = true;
 }

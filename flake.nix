@@ -15,7 +15,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }:
+  outputs = inputs@{ nixpkgs, ... }:
     let
       system = "x86_64-linux";
 
@@ -36,64 +36,44 @@
         ];
       };
 
-      lib = nixpkgs.lib.extend
-        (final: prev: {
-          mkBoolOpt = default: prev.mkOption {
-            inherit default;
-            type = prev.types.bool;
-          };
-          mkStrOpt = default: prev.mkOption {
-            inherit default;
-            type = prev.types.str;
-          };
-        });
+      lib = nixpkgs.lib.extend (final: prev: {
+        mkBoolOpt = default: prev.mkOption {
+          inherit default;
+          type = prev.types.bool;
+        };
+
+        mkStrOpt = default: prev.mkOption {
+          inherit default;
+          type = prev.types.str;
+        };
+
+        mkHost = hostname: lib.nixosSystem {
+          inherit system pkgs lib;
+
+          modules = [
+            ./hosts/${hostname}/hardware-configuration.nix
+            ./configuration.nix
+            ./modules
+            inputs.home-manager.nixosModules.home-manager
+            inputs.hyprland.nixosModules.default
+            {
+              imports = [
+                ./hosts/${hostname}
+                ./hosts/${hostname}/home.nix
+              ];
+
+              networking.hostName = "${hostname}";
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+            }
+          ];
+        };
+      });
     in
     {
       nixosConfigurations = {
-        helium = lib.nixosSystem {
-          inherit system pkgs lib;
-
-          modules = [
-            ./hosts/helium/hardware-configuration.nix
-            ./configuration.nix
-            ./modules
-            home-manager.nixosModules.home-manager
-            inputs.hyprland.nixosModules.default
-            {
-              imports = [
-                ./hosts/helium
-                ./hosts/helium/home.nix
-              ];
-
-              networking.hostName = "helium";
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-
-            }
-          ];
-        };
-
-        neon = lib.nixosSystem {
-          inherit system pkgs lib;
-
-          modules = [
-            ./hosts/neon/hardware-configuration.nix
-            ./configuration.nix
-            ./modules
-            home-manager.nixosModules.home-manager
-            inputs.hyprland.nixosModules.default
-            {
-              imports = [
-                ./hosts/neon
-                ./hosts/neon/home.nix
-              ];
-
-              networking.hostName = "neon";
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-            }
-          ];
-        };
+        helium = lib.mkHost "helium";
+        neon = lib.mkHost "neon";
       };
     };
 }
