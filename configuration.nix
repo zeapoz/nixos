@@ -90,7 +90,6 @@
     ];
   };
 
-  programs.fish.enable = true;
   programs.dconf.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -106,7 +105,6 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
   services.tlp.enable = true;
-  xdg.portal.wlr.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

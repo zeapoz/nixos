@@ -6,21 +6,6 @@
       username = "${config.user.name}";
       homeDirectory = "/home/${config.user.name}";
 
-      # Packages that should be installed to the user profile.
-      packages = with pkgs; [
-        anki
-        discord
-        helvum
-        libreoffice
-        neofetch
-        pavucontrol
-        playerctl
-        pulseaudio
-        python3
-        ranger
-        signal-desktop
-      ];
-
       # This value determines the Home Manager release that your
       # configuration is compatible with. This helps avoid breakage
       # when a new Home Manager release introduces backwards

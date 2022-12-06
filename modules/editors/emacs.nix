@@ -6,7 +6,7 @@ in
 {
   options.modules.editors.emacs = {
     enable = mkEnableOption "emacs";
-    server.enable = mkEnableOption "emacs server";
+    server.enable = mkBoolOpt true;
     doom = rec {
       enable = mkEnableOption "doom";
       repo = mkStrOpt "https://github.com/doomemacs/doomemacs";
@@ -17,7 +17,7 @@ in
   config = mkIf cfg.enable {
     services.emacs = mkIf cfg.server.enable {
       enable = true;
-      package = with pkgs; ((emacsPckagesFor emacsPgtk).emacsWithPackages
+      package = with pkgs; ((emacsPackagesFor emacsPgtk).emacsWithPackages
         (epkgs: [ epkgs.vterm ]));
     };
 

@@ -7,11 +7,14 @@ in
   options.modules.shell.enable = mkEnableOption "shell";
 
   config = mkIf cfg.enable {
+    programs.fish.enable = true;
+
     home-manager.users.${config.user.name} = {
       home.packages = with pkgs; [
         bat
         fd
         killall
+        neofetch
         ripgrep
         unzip
         zip

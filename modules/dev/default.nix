@@ -13,6 +13,7 @@ in
       home.packages = with pkgs; [
         godot
         nixfmt
+        python3
         rnix-lsp
         rust-analyzer
         rustup
