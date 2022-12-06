@@ -91,7 +91,6 @@
   };
 
   programs.fish.enable = true;
-  programs.steam.enable = true;
   programs.dconf.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are

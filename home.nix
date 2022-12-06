@@ -15,7 +15,6 @@
         neofetch
         pavucontrol
         playerctl
-        prismlauncher
         pulseaudio
         python3
         ranger

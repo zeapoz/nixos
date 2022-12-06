@@ -14,7 +14,10 @@ in
         enableBatteryModule = true;
         temperaturePath = "/sys/module/k10temp/drivers/pci:k10temp/0000:00:18.3/hwmon/hwmon3/temp1_input";
       };
-      applications.browsers.enable = true;
+      applications = {
+        browsers.enable = true;
+        gaming.enable = true;
+      };
     };
 
     editors = {
