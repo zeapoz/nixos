@@ -9,9 +9,11 @@ in
   config = mkIf cfg.enable {
     home-manager.users.${config.user.name} = {
       home.pointerCursor = {
-        name = "Adwaita";
-        package = pkgs.gnome.adwaita-icon-theme;
+        name = "Bibata-Original-Ice";
+        package = pkgs.bibata-cursors;
         size = 24;
+        gtk.enable = true;
+        x11.enable = true;
       };
 
       gtk = {
