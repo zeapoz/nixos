@@ -9,10 +9,8 @@ in
   config = mkIf cfg.enable {
     programs.steam.enable = true;
 
-    home-manager.users.${config.user.name} = {
-      home.packages = with pkgs; [
-        prismlauncher
-      ];
-    };
+    hm.packages = with pkgs; [
+      prismlauncher
+    ];
   };
 }

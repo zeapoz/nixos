@@ -7,7 +7,7 @@ in
   options.modules.theme.enable = mkEnableOption "theme";
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.user.name} = {
+    hm.user = {
       home.pointerCursor = {
         name = "Bibata-Original-Ice";
         package = pkgs.bibata-cursors;

@@ -7,8 +7,8 @@
     ./applications
   ];
 
-  home-manager.users.${config.user.name} = {
-    home.packages = with pkgs; [
+  hm = {
+    packages = with pkgs; [
       anki
       discord
       helvum

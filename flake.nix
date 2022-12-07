@@ -37,6 +37,10 @@
       };
 
       lib = nixpkgs.lib.extend (final: prev: {
+        mkOpt = type: default: prev.mkOption {
+          inherit type default;
+        };
+
         mkBoolOpt = default: prev.mkOption {
           inherit default;
           type = prev.types.bool;

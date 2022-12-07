@@ -7,7 +7,7 @@ in
   options.modules.hardware.keychron.enable = mkEnableOption "keychron";
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.user.name}.home.packages = with pkgs; [ vial ];
+    hm.packages = with pkgs; [ vial ];
 
     services.udev.packages = [
       (pkgs.writeTextFile {

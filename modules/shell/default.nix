@@ -9,8 +9,8 @@ in
   config = mkIf cfg.enable {
     programs.fish.enable = true;
 
-    home-manager.users.${config.user.name} = {
-      home.packages = with pkgs; [
+    hm = {
+      packages = with pkgs; [
         bat
         fd
         killall

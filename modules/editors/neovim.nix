@@ -10,8 +10,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.user.name} = {
-      home.packages = with pkgs; [
+    hm = {
+      packages = with pkgs; [
         neovim-nightly
         (mkIf (!cfg.disableGui) neovide)
       ];
@@ -59,7 +59,7 @@ in
         ];
       };
 
-      xdg.configFile."nvim" = {
+      configFile."nvim" = {
         source = ../../config/nvim;
         recursive = true;
       };

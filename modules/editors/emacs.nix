@@ -21,16 +21,16 @@ in
         (epkgs: [ epkgs.vterm ]));
     };
 
-    home-manager.users.${config.user.name} = {
-      home = {
-        packages = with pkgs; [
-          ((emacsPackagesFor emacsPgtk).emacsWithPackages
-            (epkgs: [ epkgs.vterm ]))
-          # Doom dependencies.
-          (ripgrep.override { withPCRE2 = true; })
-          fd
-        ];
+    hm = {
+      packages = with pkgs; [
+        ((emacsPackagesFor emacsPgtk).emacsWithPackages
+          (epkgs: [ epkgs.vterm ]))
+        # Doom dependencies.
+        (ripgrep.override { withPCRE2 = true; })
+        fd
+      ];
 
+      user.home = {
         sessionPath = mkIf cfg.doom.enable [ "$HOME/.emacs.d/bin" ];
 
         activation = mkIf cfg.doom.enable {

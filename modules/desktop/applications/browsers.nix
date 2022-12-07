@@ -7,7 +7,7 @@ in
   options.modules.desktop.applications.browsers.enable = mkEnableOption "browsers";
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.user.name} = {
+    hm = {
       programs.librewolf = {
         enable = true;
         package = pkgs.librewolf-wayland;

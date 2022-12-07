@@ -9,16 +9,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.user.name} = {
-      programs.vscode = {
-        enable = true;
-        package = pkgs.vscodium;
-        extensions = with pkgs.vscode-extensions; [
-          bbenoist.nix
-          vscodevim.vim
-          jdinhlife.gruvbox
-        ];
-      };
+    hm.programs.vscode = {
+      enable = true;
+      package = pkgs.vscodium;
+      extensions = with pkgs.vscode-extensions; [
+        bbenoist.nix
+        vscodevim.vim
+        jdinhlife.gruvbox
+      ];
     };
   };
 }

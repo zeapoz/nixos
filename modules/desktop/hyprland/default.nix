@@ -15,8 +15,8 @@ in
     modules.desktop.waybar.enable = true;
     programs.hyprland.enable = true;
 
-    home-manager.users.${config.user.name} = {
-      home.packages = with pkgs; [
+    hm = {
+      packages = with pkgs; [
         grim
         slurp
         swaybg
@@ -24,7 +24,7 @@ in
         wl-clipboard
       ];
 
-      xdg.configFile = {
+      configFile = {
         "hypr" = {
           source = ../../../config/hypr;
           recursive = true;

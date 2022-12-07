@@ -9,26 +9,24 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${config.user.name} = {
-      home.packages = with pkgs; [
-        ardour
-        freetube
-        gimp
-        guitarix
-        musescore
-        spotify
-        spotify-tui
-        sunvox
-      ];
+    hm.packages = with pkgs; [
+      ardour
+      freetube
+      gimp
+      guitarix
+      musescore
+      spotify
+      spotify-tui
+      sunvox
+    ];
 
-      services.spotifyd = {
-        enable = true;
-        settings = {
-          global = {
-            username_cmd = "/home/${config.user.name}/secrets/spotifyd.user";
-            password_cmd = "/home/${config.user.name}/secrets/spotifyd.pass";
-            device_name = "${config.networking.hostName}";
-          };
+    services.spotifyd = {
+      enable = true;
+      settings = {
+        global = {
+          username_cmd = "/home/${config.user.name}/secrets/spotifyd.user";
+          password_cmd = "/home/${config.user.name}/secrets/spotifyd.pass";
+          device_name = "${config.networking.hostName}";
         };
       };
     };

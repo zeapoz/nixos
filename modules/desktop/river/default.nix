@@ -14,8 +14,8 @@ in
   config = mkIf cfg.enable {
     modules.desktop.waybar.enable = true;
 
-    home-manager.users.${config.user.name} = {
-      home.packages = with pkgs; [
+    hm = {
+      packages = with pkgs; [
         grim
         river
         rivercarro
@@ -25,7 +25,7 @@ in
         wofi
       ];
 
-      xdg.configFile = {
+      configFile = {
         "river" = {
           source = ../../../config/river;
           recursive = true;
