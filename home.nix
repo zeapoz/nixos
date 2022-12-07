@@ -15,7 +15,12 @@ with lib;
   };
 
   config = {
-    home-manager.users.${config.user.name} = mkAliasDefinitions options.hm.user;
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+
+      users.${config.user.name} = mkAliasDefinitions options.hm.user;
+    };
 
     hm.user = {
       home = {
