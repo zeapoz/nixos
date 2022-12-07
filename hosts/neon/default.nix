@@ -26,6 +26,7 @@ in
         doom.enable = true;
       };
       neovim.enable = true;
+      vscode.enable = true;
     };
 
     dev.enable = true;
