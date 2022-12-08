@@ -7,7 +7,6 @@
     ./shell
     ./editors
     ./theme
-    ./media
     ./hardware
     ./options.nix
   ];

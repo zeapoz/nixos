@@ -20,13 +20,13 @@ inputs.nixpkgs.lib.extend (final: prev: {
       inherit system pkgs lib;
 
       modules = [
-        ../hosts/${hostName}/hardware-configuration.nix
-        ../configuration.nix
         ../modules
+        ../home.nix
+        ../configuration.nix
         inputs.home-manager.nixosModules.home-manager
         inputs.hyprland.nixosModules.default
         {
-          imports = [ ../hosts/${hostName} ../hosts/${hostName}/home.nix ];
+          imports = [ ../hosts/${hostName} ];
 
           networking.hostName = "${hostName}";
         }

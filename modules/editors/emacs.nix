@@ -15,12 +15,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.emacs = mkIf cfg.server.enable {
-      enable = true;
-      package = with pkgs; ((emacsPackagesFor emacsPgtk).emacsWithPackages
-        (epkgs: [ epkgs.vterm ]));
-    };
-
     hm = {
       packages = with pkgs; [
         ((emacsPackagesFor emacsPgtk).emacsWithPackages
@@ -29,6 +23,12 @@ in
         (ripgrep.override { withPCRE2 = true; })
         fd
       ];
+
+      services.emacs = mkIf cfg.server.enable {
+        enable = true;
+        package = with pkgs; ((emacsPackagesFor emacsPgtk).emacsWithPackages
+          (epkgs: [ epkgs.vterm ]));
+      };
 
       user.home = {
         sessionPath = mkIf cfg.doom.enable [ "$HOME/.emacs.d/bin" ];

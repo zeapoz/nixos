@@ -2,15 +2,18 @@
 with lib;
 {
   # Aliases for a better typing experience.
+  # home-manager.users.${config.user.name}                -> hm.user
   # home-manager.users.${config.user.name}.xdg.configFile -> hm.configFile
   # home-manager.users.${config.user.name}.home.packages  -> hm.packages
   # home-manager.users.${config.user.name}.programs       -> hm.programs
+  # home-manager.users.${config.user.name}.services       -> hm.services
   options = with types; {
     hm = {
       user = mkOpt attrs { };
       configFile = mkOpt attrs { };
       packages = mkOpt attrs { };
       programs = mkOpt attrs { };
+      services = mkOpt attrs { };
     };
   };
 
@@ -42,6 +45,7 @@ with lib;
 
       xdg.configFile = mkAliasDefinitions options.hm.configFile;
       programs = mkAliasDefinitions options.hm.programs;
+      services = mkAliasDefinitions options.hm.services;
     };
 
     # Let Home Manager install and manage itself.

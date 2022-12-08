@@ -3,6 +3,8 @@ let
   mainDesktop = "hyprland";
 in
 {
+  imports = [ ./hardware-configuration.nix ];
+
   modules = {
     desktop = {
       ${mainDesktop} = {
@@ -17,6 +19,7 @@ in
       applications = {
         browsers.enable = true;
         gaming.enable = true;
+        media.enable = true;
       };
     };
 
@@ -32,7 +35,12 @@ in
     dev.enable = true;
     shell.enable = true;
     theme.enable = true;
-    media.enable = true;
     hardware.bluetooth.enable = true;
+  };
+
+  # Home-manager settings.
+  hm = {
+    packages = with pkgs; [ brightnessctl ];
+    programs.kitty.font.size = 14;
   };
 }

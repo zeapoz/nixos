@@ -3,6 +3,8 @@ let
   mainDesktop = "hyprland";
 in
 {
+  imports = [ ./hardware-configuration.nix ];
+
   modules = {
     desktop = {
       ${mainDesktop} = {
@@ -17,6 +19,7 @@ in
       applications = {
         browsers.enable = true;
         gaming.enable = true;
+        media.enable = true;
       };
     };
 
@@ -32,7 +35,9 @@ in
     dev.enable = true;
     shell.enable = true;
     theme.enable = true;
-    media.enable = true;
     hardware.keychron.enable = true;
   };
+
+  # Home-manager settings.
+  hm.programs.kitty.font.size = 12;
 }
