@@ -19,63 +19,25 @@
     let
       system = "x86_64-linux";
 
+      overlays = import ./overlays { inherit inputs; };
+
       pkgs = import nixpkgs {
-        inherit system;
+        inherit system overlays;
         config.allowUnfree = true;
-        overlays = [
-          (final: prev: {
-            spotifyd = prev.spotifyd.override {
-              withMpris = true;
-            };
-            waybar = prev.waybar.overrideAttrs (old: {
-              mesonFlags = old.mesonFlags ++ [ "-Dexperimental=true" ];
-            });
-          })
-          inputs.emacs-overlay.overlay
-          inputs.neovim-nightly-overlay.overlay
-        ];
       };
 
-      lib = nixpkgs.lib.extend (final: prev: {
-        mkOpt = type: default: prev.mkOption {
-          inherit type default;
-        };
-
-        mkBoolOpt = default: prev.mkOption {
-          inherit default;
-          type = prev.types.bool;
-        };
-
-        mkStrOpt = default: prev.mkOption {
-          inherit default;
-          type = prev.types.str;
-        };
-
-        mkHost = hostname: lib.nixosSystem {
+      lib = import ./lib { inherit inputs; };
+    in {
+      nixosConfigurations = with lib; {
+        helium = mkHost {
+          hostName = "helium";
           inherit system pkgs lib;
-
-          modules = [
-            ./hosts/${hostname}/hardware-configuration.nix
-            ./configuration.nix
-            ./modules
-            inputs.home-manager.nixosModules.home-manager
-            inputs.hyprland.nixosModules.default
-            {
-              imports = [
-                ./hosts/${hostname}
-                ./hosts/${hostname}/home.nix
-              ];
-
-              networking.hostName = "${hostname}";
-            }
-          ];
         };
-      });
-    in
-    {
-      nixosConfigurations = {
-        helium = lib.mkHost "helium";
-        neon = lib.mkHost "neon";
+
+        neon = mkHost {
+          hostName = "neon";
+          inherit system pkgs lib;
+        };
       };
     };
 }
