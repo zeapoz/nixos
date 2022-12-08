@@ -3,7 +3,7 @@ with lib;
 let
   cfg = config.modules.editors.vscode;
 
-  configFile = import ./config.nix;
+  configFile = import ./config.nix { inherit config lib; };
   userSettings = configFile.userSettings;
   keybindings = configFile.keybindings;
 in {
