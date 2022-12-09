@@ -24,7 +24,7 @@ with lib; {
     git = {
       autofetch = true;
       autoStash = true;
-    }
+    };
 
     nix.formatterPath = "nixfmt";
 
