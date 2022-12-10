@@ -19,12 +19,13 @@ inputs.nixpkgs.lib.extend (final: prev: {
     prev.nixosSystem {
       inherit system pkgs lib;
 
+      specialArgs = { inherit inputs; };
+
       modules = [
         ../modules
         ../home.nix
         ../configuration.nix
         inputs.home-manager.nixosModules.home-manager
-        inputs.hyprland.nixosModules.default
         {
           imports = [ ../hosts/${hostName} ];
 

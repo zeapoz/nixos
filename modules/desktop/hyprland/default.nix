@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 with lib;
 let
   cfg = config.modules.desktop.hyprland;
-in
-{
+
+  configFile = import ./config.nix { inherit config lib; };
+  hyprlandConfig = configFile.hyprlandConfig;
+  autostartConfig = configFile.autostart;
+in {
   imports = [ ../waybar.nix ];
 
   options.modules.desktop.hyprland = {
@@ -13,26 +16,25 @@ in
 
   config = mkIf cfg.enable {
     modules.desktop.waybar.enable = true;
-    programs.hyprland.enable = true;
 
     hm = {
-      packages = with pkgs; [
-        grim
-        slurp
-        swaybg
-        wofi
-        wl-clipboard
-      ];
+      user = {
+        imports = [ inputs.hyprland.homeManagerModules.default ];
+        wayland.windowManager.hyprland = {
+          enable = true;
+          extraConfig = hyprlandConfig;
+        };
+      };
+
+      packages = with pkgs; [ grim slurp swaybg wofi wl-clipboard ];
 
       configFile = {
-        "hypr" = {
-          source = ../../../config/hypr;
-          recursive = true;
+        "hypr/autostart.sh" = {
+          text = autostartConfig;
+          executable = true;
         };
 
-        "wofi/style.css" = {
-          source = ../../../config/wofi/style.css;
-        };
+        "wofi/style.css" = { source = ../../../config/wofi/style.css; };
 
         # Power menu script.
         "wofi/power-menu.sh" = {
