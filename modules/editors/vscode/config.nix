@@ -31,6 +31,7 @@ with lib; {
     vim = {
       enableNeovim = true;
       useSystemClipboard = true;
+      foldfix = true;
       leader = " ";
 
       # Vim keybindings.
@@ -58,17 +59,35 @@ with lib; {
         }
         # Navigating tabs.
         {
-          before = [ "<Tab>" ];
+          before = [ "g" "l" ];
           commands = [ "workbench.action.nextEditor" ];
         }
         {
-          before = [ "<S-Tab>" ];
+          before = [ "g" "h" ];
           commands = [ "workbench.action.previousEditor" ];
+        }
+        # Focusing areas.
+        {
+          before = [ "space" "o" "e" ];
+          commands = [ "workbench.files.action.focusOpenEditorsView" ];
+        }
+        {
+          before = [ "space" "o" "p" ];
+          commands = [ "workbench.action.toggleSidebarVisibility" ];
+        }
+        # Folding code.
+        {
+          before = [ "<Tab>" ];
+          commands = [ "editor.toggleFold" ];
+        }
+        {
+          before = [ "<S-Tab>" ];
+          commands = [ "editor.unfoldAll" ];
         }
       ];
 
-      # Stay in visual mode after indenting.
       visualModeKeyBindings = [
+        # Stay in visual mode after indenting.
         {
           before = [ ">" ];
           after = [ ">" "g" "v" ];
@@ -76,6 +95,11 @@ with lib; {
         {
           before = [ "<" ];
           after = [ "<" "g" "v" ];
+        }
+        # Folding from selection.
+        {
+          before = [ "<Tab>" ];
+          commands = [ "editor.createFoldingRangeFromSelection" ];
         }
       ];
     };
@@ -108,6 +132,29 @@ with lib; {
     {
       key = "ctrl+w ctrl+l";
       command = "workbench.action.navigateRight";
+    }
+    {
+      key = "ctrl+w j";
+      command = "workbench.action.navigateDown";
+    }
+    {
+      key = "ctrl+w ctrl+j";
+      command = "workbench.action.navigateDown";
+    }
+    {
+      key = "ctrl+w k";
+      command = "workbench.action.navigateUp";
+    }
+    {
+      key = "ctrl+w ctrl+k";
+      command = "workbench.action.navigateUp";
+    }
+    # Terminal.
+    {
+      key = "ctrl+j";
+      command = "workbench.action.togglePanel";
+      when =
+        "!suggestWidgetMultipleSuggestions || !suggestWidgetVisible || !textInputFocus || !inQuickOpen";
     }
     # Navigating suggestions & pickers.
     {
