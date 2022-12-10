@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.modules.hardware.keychron;
-in
-{
+let cfg = config.modules.hardware.keychron;
+in {
   options.modules.hardware.keychron.enable = mkEnableOption "keychron";
 
   config = mkIf cfg.enable {

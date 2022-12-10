@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.modules.theme;
-in
-{
+let cfg = config.modules.theme;
+in {
   options.modules.theme.enable = mkEnableOption "theme";
 
   config = mkIf cfg.enable {

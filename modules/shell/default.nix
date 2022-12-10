@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.modules.shell;
-in
-{
+let cfg = config.modules.shell;
+in {
   options.modules.shell.enable = mkEnableOption "shell";
 
   config = mkIf cfg.enable {
@@ -49,9 +47,7 @@ in
 
         kitty = {
           enable = true;
-          font = {
-            name = "FiraCode Nerd Font";
-          };
+          font = { name = "FiraCode Nerd Font"; };
           settings = {
             background_opacity = "0.9";
             confirm_os_window_close = "0";

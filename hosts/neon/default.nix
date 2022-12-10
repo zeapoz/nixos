@@ -2,8 +2,7 @@
 let
   mainDesktop = "hyprland";
   mainEditor = "codium";
-in
-{
+in {
   imports = [ ./hardware-configuration.nix ];
 
   modules = {
@@ -15,7 +14,8 @@ in
       waybar = {
         mainDesktop = "${mainDesktop}";
         enableBatteryModule = true;
-        temperaturePath = "/sys/module/k10temp/drivers/pci:k10temp/0000:00:18.3/hwmon/hwmon3/temp1_input";
+        temperaturePath =
+          "/sys/module/k10temp/drivers/pci:k10temp/0000:00:18.3/hwmon/hwmon3/temp1_input";
       };
       applications = {
         browsers.enable = true;

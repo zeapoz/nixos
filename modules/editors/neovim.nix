@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.modules.editors.neovim;
-in
-{
+let cfg = config.modules.editors.neovim;
+in {
   options.modules.editors.neovim = {
     enable = mkEnableOption "neovim";
     disableGui = mkBoolOpt false;
@@ -11,10 +9,7 @@ in
 
   config = mkIf cfg.enable {
     hm = {
-      packages = with pkgs; [
-        neovim-nightly
-        (mkIf (!cfg.disableGui) neovide)
-      ];
+      packages = with pkgs; [ neovim-nightly (mkIf (!cfg.disableGui) neovide) ];
 
       programs.neovim = {
         enable = true;
@@ -43,13 +38,14 @@ in
           nvim-cmp
           nvim-lspconfig
           nvim-surround
-          (nvim-treesitter.withPlugins (plugins: with plugins; [
-            tree-sitter-nix
-            tree-sitter-lua
-            tree-sitter-rust
-            tree-sitter-zig
-            tree-sitter-godot-resource
-          ]))
+          (nvim-treesitter.withPlugins (plugins:
+            with plugins; [
+              tree-sitter-nix
+              tree-sitter-lua
+              tree-sitter-rust
+              tree-sitter-zig
+              tree-sitter-godot-resource
+            ]))
           nvim-web-devicons
           plenary-nvim
           project-nvim

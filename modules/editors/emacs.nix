@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.modules.editors.emacs;
-in
-{
+let cfg = config.modules.editors.emacs;
+in {
   options.modules.editors.emacs = {
     enable = mkEnableOption "emacs";
     server.enable = mkBoolOpt true;
@@ -26,8 +24,9 @@ in
 
       services.emacs = mkIf cfg.server.enable {
         enable = true;
-        package = with pkgs; ((emacsPackagesFor emacsPgtk).emacsWithPackages
-          (epkgs: [ epkgs.vterm ]));
+        package = with pkgs;
+          ((emacsPackagesFor emacsPgtk).emacsWithPackages
+            (epkgs: [ epkgs.vterm ]));
       };
 
       user.home = {
@@ -44,9 +43,7 @@ in
       };
     };
 
-    fonts.fonts = with pkgs; [
-      emacs-all-the-icons-fonts
-    ];
+    fonts.fonts = with pkgs; [ emacs-all-the-icons-fonts ];
   };
 }
 

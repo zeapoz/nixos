@@ -1,6 +1,5 @@
 { options, config, lib, pkgs, ... }:
-with lib;
-{
+with lib; {
   # Aliases for a better typing experience.
   # home-manager.users.${config.user.name}                -> hm.user
   # home-manager.users.${config.user.name}.xdg.configFile -> hm.configFile

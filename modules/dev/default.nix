@@ -1,12 +1,8 @@
 { config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.modules.dev;
-in
-{
-  options.modules.dev = {
-    enable = mkEnableOption "development";
-  };
+let cfg = config.modules.dev;
+in {
+  options.modules.dev = { enable = mkEnableOption "development"; };
 
   config = mkIf cfg.enable {
     hm = {
@@ -26,9 +22,7 @@ in
           enable = true;
           userEmail = "zeapo@pm.me";
           userName = "zeapoz";
-          extraConfig = {
-            credential.helper = "store";
-          };
+          extraConfig = { credential.helper = "store"; };
           aliases = {
             a = "add";
             b = "branch";

@@ -1,8 +1,4 @@
 { config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.user;
-in
-{
+with lib; {
   options.user.name = mkStrOpt "jonathan";
 }

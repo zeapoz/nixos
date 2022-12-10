@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ./river
-    ./hyprland
-    ./applications
-  ];
+  imports = [ ./river ./hyprland ./applications ];
 
   hm.packages = with pkgs; [
     anki

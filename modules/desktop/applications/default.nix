@@ -1,9 +1,5 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ./browsers.nix
-    ./gaming.nix
-    ./media.nix
-  ];
+  imports = [ ./browsers.nix ./gaming.nix ./media.nix ];
 }

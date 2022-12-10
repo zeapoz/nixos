@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.modules.desktop.applications.media;
-in
-{
+let cfg = config.modules.desktop.applications.media;
+in {
   options.modules.desktop.applications.media = {
     enable = mkEnableOption "media";
   };
