@@ -1,10 +1,8 @@
 { config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.modules.desktop.river;
-in
-{
-  imports = [ ../waybar.nix ];
+let cfg = config.modules.desktop.river;
+in {
+  imports = [ ../waybar.nix ../wofi.nix ];
 
   options.modules.desktop.river = {
     enable = mkEnableOption "river";
@@ -12,33 +10,18 @@ in
   };
 
   config = mkIf cfg.enable {
-    modules.desktop.waybar.enable = true;
+    modules.desktop = {
+      waybar.enable = true;
+      wofi.enable = true;
+    };
 
     hm = {
-      packages = with pkgs; [
-        grim
-        river
-        rivercarro
-        slurp
-        swaybg
-        wl-clipboard
-        wofi
-      ];
+      packages = with pkgs; [ grim river rivercarro slurp swaybg wl-clipboard ];
 
       configFile = {
         "river" = {
           source = ../../../config/river;
           recursive = true;
-        };
-
-        "wofi/style.css" = {
-          source = ../../../config/wofi/style.css;
-        };
-
-        # Power menu script.
-        "wofi/power-menu.sh" = {
-          source = ../../../config/wofi/power-menu.sh;
-          executable = true;
         };
 
         # Autostart river from tty1.

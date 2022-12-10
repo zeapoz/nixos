@@ -15,7 +15,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.desktop.waybar.enable = true;
+    modules.desktop = {
+      waybar.enable = true;
+      wofi.enable = true;
+    };
 
     hm = {
       user = {
@@ -26,19 +29,11 @@ in {
         };
       };
 
-      packages = with pkgs; [ grim slurp swaybg wofi wl-clipboard ];
+      packages = with pkgs; [ grim slurp swaybg wl-clipboard ];
 
       configFile = {
         "hypr/autostart.sh" = {
           text = autostartConfig;
-          executable = true;
-        };
-
-        "wofi/style.css" = { source = ../../../config/wofi/style.css; };
-
-        # Power menu script.
-        "wofi/power-menu.sh" = {
-          source = ../../../config/wofi/power-menu.sh;
           executable = true;
         };
 
