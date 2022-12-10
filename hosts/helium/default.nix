@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   mainDesktop = "hyprland";
+  mainEditor = "codium";
 in
 {
   imports = [ ./hardware-configuration.nix ];
@@ -24,10 +25,7 @@ in
     };
 
     editors = {
-      emacs = {
-        enable = true;
-        doom.enable = true;
-      };
+      inherit mainEditor;
       neovim.enable = true;
       vscode.enable = true;
     };

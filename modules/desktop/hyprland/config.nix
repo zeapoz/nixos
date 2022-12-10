@@ -85,7 +85,7 @@ in {
     bind=SUPER,RETURN,exec,kitty
     bind=SUPER,D,exec,wofi --show drun -I
     bind=SUPER,X,exec,~/.config/wofi/power-menu.sh
-    bind=SUPER,N,exec,kitty nvim
+    bind=SUPER,N,exec,${config.modules.editors.mainEditor}
     bind=SUPER,B,exec,librewolf
     bind=SUPER,E,exec,kitty fish -c ranger
     bind=SUPER,S,exec,kitty spt
