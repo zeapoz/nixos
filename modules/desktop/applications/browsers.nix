@@ -7,6 +7,8 @@ in {
 
   config = mkIf cfg.enable {
     hm = {
+      packages = with pkgs; [ brave ];
+
       programs.librewolf = {
         enable = true;
         package = pkgs.librewolf-wayland;

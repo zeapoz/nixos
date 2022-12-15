@@ -10,6 +10,7 @@ in {
     hm = {
       packages = with pkgs; [
         ardour
+        calibre
         freetube
         gimp
         guitarix

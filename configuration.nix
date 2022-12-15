@@ -66,11 +66,13 @@
   users.users.${config.user.name} = {
     isNormalUser = true;
     description = "${config.user.name}";
-    extraGroups = [ "networkmanager" "wheel" "input" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "audio" "adbusers" ];
   };
 
   # Enable automatic login for the user.
   services.getty.autologinUser = "${config.user.name}";
+
+  programs.adb.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
