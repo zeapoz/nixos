@@ -4,21 +4,14 @@ let cfg = config.modules.desktop.applications.media;
 in {
   options.modules.desktop.applications.media = {
     enable = mkEnableOption "media";
+    daw.enable = mkEnableOption "daw";
   };
 
   config = mkIf cfg.enable {
     hm = {
-      packages = with pkgs; [
-        ardour
-        calibre
-        freetube
-        gimp
-        guitarix
-        musescore
-        spotify
-        spotify-tui
-        sunvox
-      ];
+      packages = with pkgs;
+        [ calibre freetube gimp musescore spotify spotify-tui ]
+        ++ (if cfg.daw.enable then [ ardour guitarix sunvox synthv1 ] else [ ]);
 
       services.spotifyd = {
         enable = true;

@@ -20,7 +20,10 @@ in {
       applications = {
         browsers.enable = true;
         gaming.enable = true;
-        media.enable = true;
+        media = {
+          enable = true;
+          daw.enable = true;
+        };
       };
     };
 
