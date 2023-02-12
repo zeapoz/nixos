@@ -25,8 +25,8 @@ in {
           package = pkgs.gnome.adwaita-icon-theme;
         };
         theme = {
-          name = "Pop-dark";
-          package = pkgs.pop-gtk-theme;
+          name = "adw-gtk3";
+          package = pkgs.adw-gtk3;
         };
       };
     };

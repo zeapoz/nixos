@@ -9,13 +9,13 @@ with lib; {
 
     workbench = {
       iconTheme = "material-icon-theme";
-      colorTheme = "Ayu Mirage";
+      colorTheme = "Default Light+ Experimental";
     };
 
     editor = {
       fontFamily = "Fira Code";
       fontLigatures = true;
-      cursorSmoothCaretAnimation = true;
+      cursorSmoothCaretAnimation = "on";
     };
 
     keyboard.dispatch = mkIf (config.networking.hostName == "neon") "keyCode";
@@ -29,7 +29,7 @@ with lib; {
     nix.formatterPath = "nixfmt";
 
     vim = {
-      enableNeovim = true;
+      enableNeovim = config.modules.editors.neovim.enable;
       useSystemClipboard = true;
       foldfix = true;
       leader = " ";

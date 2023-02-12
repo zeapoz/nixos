@@ -36,7 +36,7 @@ in {
       border_size=3
 
       col.active_border=rgb(bdae93)
-      col.inactive_border=rgb(504945)
+      col.inactive_border=rgba(50494580)
 
       layout=dwindle
     }

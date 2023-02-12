@@ -23,7 +23,7 @@
 
 window#waybar {
   color: @fg;
-  background: rgba(29, 32, 33, 0.9);
+  background: rgba(29, 32, 33, 0.5);
 }
 
 #workspaces,
