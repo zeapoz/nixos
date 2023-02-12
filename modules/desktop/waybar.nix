@@ -28,6 +28,7 @@ in {
             "custom/kernel"
             "network"
             "pulseaudio"
+            (mkIf (cfg.mainDesktop == "hyprland") "hyprland/language")
             (mkIf cfg.enableBatteryModule "battery")
             "tray"
           ];
@@ -102,6 +103,10 @@ in {
             on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
             on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
             on-click-middle = "pavucontrol";
+          };
+          "hyprland/language" = mkIf (cfg.mainDesktop == "hyprland") {
+            "format-en" = " en";
+            "format-sv" = " sv";
           };
           "battery" = mkIf cfg.enableBatteryModule {
             interval = 60;
