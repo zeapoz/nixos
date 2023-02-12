@@ -15,7 +15,7 @@ in {
         mainDesktop = "${mainDesktop}";
         enableBatteryModule = true;
         temperaturePath =
-          "/sys/module/k10temp/drivers/pci:k10temp/0000:00:18.3/hwmon/hwmon3/temp1_input";
+          "/sys/module/k10temp/drivers/pci:k10temp/0000:00:18.3/hwmon/hwmon2/temp1_input";
       };
       applications = {
         browsers.enable = true;
@@ -26,7 +26,7 @@ in {
 
     editors = {
       inherit mainEditor;
-      neovim.enable = true;
+      # neovim.enable = true;
       vscode.enable = true;
     };
 
