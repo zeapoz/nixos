@@ -66,20 +66,21 @@
   users.users.${config.user.name} = {
     isNormalUser = true;
     description = "${config.user.name}";
-    extraGroups = [ "networkmanager" "wheel" "input" "audio" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "audio" "adbusers" "libvirtd" ];
   };
 
   # Enable automatic login for the user.
   services.getty.autologinUser = "${config.user.name}";
 
   programs.adb.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ gcc git htop vim ];
+  environment.systemPackages = with pkgs; [ gcc git htop vim virt-manager ];
 
   fonts = {
     enableDefaultFonts = true;
