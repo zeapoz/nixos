@@ -24,7 +24,7 @@ in {
           enable = true;
           shellAliases = {
             g = "git";
-            v = "nvim";
+            v = if config.modules.editors.neovim.enable then "nvim" else "vim";
             cat = "bat";
 
             ls = "exa -1 --group-directories-first --icons";
@@ -40,8 +40,11 @@ in {
             "..." = "cd ../..";
           };
           shellInit = ''
-            set -gx EDITOR nvim
             set fish_greeting
+            ${if config.modules.editors.neovim.enable then
+              "set -gx EDITOR nvim"
+            else
+              "set -gx EDITOR vim"}
           '';
         };
 
