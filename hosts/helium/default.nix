@@ -29,7 +29,7 @@ in {
 
     editors = {
       inherit mainEditor;
-      # neovim.enable = true;
+      neovim.enable = true;
       vscode.enable = true;
     };
 
