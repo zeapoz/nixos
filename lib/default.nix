@@ -22,9 +22,9 @@ inputs.nixpkgs.lib.extend (final: prev: {
       specialArgs = { inherit inputs; };
 
       modules = [
+        ../configuration.nix
         ../modules
         ../home.nix
-        ../configuration.nix
         inputs.home-manager.nixosModules.home-manager
         {
           imports = [ ../hosts/${hostName} ];

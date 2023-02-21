@@ -87,6 +87,7 @@ in {
     bind=SUPER,X,exec,~/.config/wofi/power-menu.sh
     bind=SUPER,N,exec,${config.modules.editors.mainEditor}
     bind=SUPER,B,exec,librewolf
+    bind=SUPERSHIFT,B,exec,brave
     bind=SUPER,E,exec,kitty fish -c ranger
     bind=SUPER,S,exec,kitty spt
     bind=SUPER,Y,exec,freetube

@@ -10,7 +10,14 @@ in {
   config = mkIf cfg.enable {
     hm = {
       packages = with pkgs;
-        [ calibre freetube gimp musescore spotify spotify-tui ]
+        [
+          calibre
+          freetube
+          gimp
+          musescore
+          spotify
+          spotify-tui
+        ]
         ++ (if cfg.daw.enable then [ ardour guitarix sunvox synthv1 ] else [ ]);
 
       services.spotifyd = {
