@@ -18,8 +18,9 @@ in {
         jnoortheen.nix-ide
         matklad.rust-analyzer
         pkief.material-icon-theme
+        serayuzgur.crates
+        tamasfe.even-better-toml
         vscodevim.vim
-        jdinhlife.gruvbox
       ];
     };
   };

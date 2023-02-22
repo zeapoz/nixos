@@ -17,6 +17,9 @@ with lib; {
       fontLigatures = true;
       cursorSmoothCaretAnimation = "on";
     };
+    
+    # Send ctrl+f to fish shell.
+    terminal.integrated.commandsToSkipShell = [ "-workbench.action.terminal.focusFind" ];
 
     keyboard.dispatch = mkIf (config.networking.hostName == "neon") "keyCode";
 
@@ -24,6 +27,7 @@ with lib; {
     git = {
       autofetch = true;
       autoStash = true;
+      closeDiffOnOperation = true;
     };
 
     nix.formatterPath = "nixfmt";

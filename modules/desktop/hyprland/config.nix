@@ -37,6 +37,8 @@ in {
 
       col.active_border=rgb(bdae93)
       col.inactive_border=rgba(50494580)
+      col.group_border_active=rgb(bdae93)
+      col.group_border=rgb(504945)
 
       layout=dwindle
     }
@@ -69,8 +71,6 @@ in {
 
     dwindle {
       preserve_split=true
-      col.group_border_active=rgb(bdae93)
-      col.group_border=rgb(504945)
     }
 
     master {
@@ -86,10 +86,10 @@ in {
     bind=SUPER,D,exec,wofi --show drun -I
     bind=SUPER,X,exec,~/.config/wofi/power-menu.sh
     bind=SUPER,N,exec,${config.modules.editors.mainEditor}
-    bind=SUPER,B,exec,librewolf
+    bind=SUPER,B,exec,firefox
     bind=SUPERSHIFT,B,exec,brave
     bind=SUPER,E,exec,kitty fish -c ranger
-    bind=SUPER,S,exec,kitty spt
+    bind=SUPER,S,exec,spotify
     bind=SUPER,Y,exec,freetube
 
     bind=SUPER,W,killactive,
