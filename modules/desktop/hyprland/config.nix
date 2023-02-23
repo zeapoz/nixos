@@ -2,6 +2,8 @@
 with lib;
 let
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
+
+  layout = "master";
 in {
   hyprlandConfig = ''
     monitor=,preferred,auto,1
@@ -40,7 +42,8 @@ in {
       col.group_border_active=rgb(bdae93)
       col.group_border=rgb(504945)
 
-      layout=dwindle
+      layout=${layout}
+      resize_on_border=true
     }
 
     decoration {
@@ -49,6 +52,9 @@ in {
       blur=true
       blur_size=3
       blur_new_optimizations=1
+
+      shadow_range=10
+      shadow_render_power=2
     }
 
     animations {
@@ -69,13 +75,60 @@ in {
       workspace_back_and_forth=true
     }
 
-    dwindle {
-      preserve_split=true
-    }
+    ${if (layout == "dwindle") then ''
+      dwindle {
+              preserve_split=true
+            }
 
-    master {
-      new_is_master=false
-    }
+            bind=SUPER,H,movefocus,l
+            bind=SUPER,J,movefocus,d
+            bind=SUPER,K,movefocus,u
+            bind=SUPER,L,movefocus,r
+
+            bind=SUPERSHIFT,H,movewindow,l
+            bind=SUPERSHIFT,J,movewindow,d
+            bind=SUPERSHIFT,K,movewindow,u
+            bind=SUPERSHIFT,L,movewindow,r
+
+            # Resize submap.
+            bind=SUPER,R,submap,resize
+            submap=resize
+
+            binde=,h,resizeactive,-100 0
+            binde=,j,resizeactive,0 100
+            binde=,k,resizeactive,0 -100
+            binde=,l,resizeactive,100 0
+
+            bind=,escape,submap,reset
+            bind=,RETURN,submap,reset
+            bind=SUPER,R,submap,reset
+            submap=reset'' else
+      ""}
+
+    ${if (layout == "master") then ''
+      master {
+              new_is_master=false
+              new_on_top=true
+              orientation=right
+            }
+
+            bind=SUPER,J,layoutmsg,cyclenext
+            bind=SUPER,K,layoutmsg,cycleprev
+
+            bind=SUPER,h,resizeactive,-100 0
+            bind=SUPER,l,resizeactive,100 0
+            bind=SUPERSHIFT,l,layoutmsg,removemaster
+            bind=SUPERSHIFT,h,layoutmsg,addmaster
+
+            bind=SUPERSHIFT,J,layoutmsg,swapnext
+            bind=SUPERSHIFT,K,layoutmsg,swapprev
+            bind=SUPERSHIFT,RETURN,layoutmsg,swapwithmaster
+
+            bind=SUPER,left,layoutmsg,orientationleft
+            bind=SUPER,right,layoutmsg,orientationright
+            bind=SUPER,down,layoutmsg,orientationbottom
+            bind=SUPER,up,layoutmsg,orientationtop'' else
+      ""}
 
     # some nice mouse binds
     bindm=SUPER,mouse:272,movewindow
@@ -108,35 +161,12 @@ in {
     bind=ALTSHIFT,COMMA,movecurrentworkspacetomonitor,l
     bind=ALTSHIFT,PERIOD,movecurrentworkspacetomonitor,r
 
-    # Layouts.
-    bind=SUPER,H,movefocus,l
-    bind=SUPER,J,movefocus,d
-    bind=SUPER,K,movefocus,u
-    bind=SUPER,L,movefocus,r
-
-    bind=ALTSHIFT,H,movewindow,l
-    bind=ALTSHIFT,J,movewindow,d
-    bind=ALTSHIFT,K,movewindow,u
-    bind=ALTSHIFT,L,movewindow,r
-
-    bind=SUPERSHIFT,RETURN,layoutmsg,swapwithmaster
+    # Groups.
     bind=SUPER,SLASH,togglegroup
+    bind=SUPER,PERIOD,lockgroups,lock
+    bind=SUPERSHIFT,PERIOD,lockgroups,unlock
     bind=SUPER,SEMICOLON,changegroupactive,b
     bind=SUPER,APOSTROPHE,changegroupactive,f
-
-    # Resize submap.
-    bind=SUPER,R,submap,resize
-    submap=resize
-
-    binde=,h,resizeactive,-100 0
-    binde=,j,resizeactive,0 100
-    binde=,k,resizeactive,0 -100
-    binde=,l,resizeactive,100 0
-
-    bind=,escape,submap,reset
-    bind=,RETURN,submap,reset
-    bind=SUPER,R,submap,reset
-    submap=reset
 
     # Workspaces.
     bind=SUPER,u,workspace,1

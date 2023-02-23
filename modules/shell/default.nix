@@ -25,7 +25,7 @@ in {
           shellAliases = {
             g = "git";
             v = if config.modules.editors.neovim.enable then "nvim" else "vim";
-            cat = "bat";
+            cat = "bat --theme ansi";
 
             ls = "exa -1 --group-directories-first --icons";
             la = "exa -1a --group-directories-first --icons";
