@@ -7,7 +7,7 @@ in {
   config = mkIf cfg.enable {
     hm.user = {
       home.pointerCursor = {
-        name = "Bibata-Original-Ice";
+        name = "Bibata-Original-Classic";
         package = pkgs.bibata-cursors;
         size = 24;
         gtk.enable = true;
@@ -25,7 +25,7 @@ in {
           package = pkgs.gnome.adwaita-icon-theme;
         };
         theme = {
-          name = "adw-gtk3";
+          name = "adw-gtk3-dark";
           package = pkgs.adw-gtk3;
         };
       };

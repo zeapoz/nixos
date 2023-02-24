@@ -14,6 +14,7 @@ in {
           calibre
           freetube
           gimp
+          helvum
           musescore
           spotify
           spotify-tui

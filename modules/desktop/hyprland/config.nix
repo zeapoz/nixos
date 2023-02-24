@@ -17,6 +17,9 @@ in {
       builtins.toString cursorCfg.size
     }
 
+    blurls=waybar
+    blurls=wofi
+
     input {
       kb_layout=us,se
       ${

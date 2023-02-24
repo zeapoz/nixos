@@ -9,7 +9,7 @@ with lib; {
 
     workbench = {
       iconTheme = "material-icon-theme";
-      colorTheme = "Default Light+ Experimental";
+      colorTheme = "Bluloco Dark";
     };
 
     editor = {

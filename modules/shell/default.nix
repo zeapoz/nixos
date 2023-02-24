@@ -51,8 +51,11 @@ in {
         kitty = {
           enable = true;
           font.name = "FiraCode Nerd Font";
-          settings.confirm_os_window_close = "0";
-          theme = "Doom One Light";
+          settings = {
+            background_opacity = "0.9";
+            confirm_os_window_close = "0";
+          };
+          theme = "Doom One";
         };
 
         starship = {

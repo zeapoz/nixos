@@ -2,7 +2,7 @@
 with lib;
 let cfg = config.modules.dev;
 in {
-  options.modules.dev = { enable = mkEnableOption "development"; };
+  options.modules.dev.enable = mkEnableOption "development";
 
   config = mkIf cfg.enable {
     hm = {
@@ -13,7 +13,7 @@ in {
         rnix-lsp
         rust-analyzer
         rustup
-        sumneko-lua-language-server
+        lua-language-server
         zig
       ];
 

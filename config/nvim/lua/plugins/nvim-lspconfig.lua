@@ -40,7 +40,7 @@ lsp['rnix'].setup {
   capabilities = capabilities,
 }
 
-lsp['sumneko_lua'].setup {
+lsp['lua_ls'].setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
