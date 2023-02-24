@@ -47,6 +47,7 @@ in {
 
       layout=${layout}
       resize_on_border=true
+      hover_icon_on_border=false
     }
 
     decoration {
