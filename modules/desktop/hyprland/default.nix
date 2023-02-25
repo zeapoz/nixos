@@ -3,9 +3,10 @@ with lib;
 let
   cfg = config.modules.desktop.hyprland;
 
-  configFile = import ./config.nix { inherit config lib; };
+  configFile = import ./config.nix { inherit config lib pkgs; };
   hyprlandConfig = configFile.hyprlandConfig;
   autostartConfig = configFile.autostart;
+  wrappedhl = configFile.wrappedhl;
 in {
   imports = [ ../waybar.nix ];
 
@@ -29,7 +30,7 @@ in {
         };
       };
 
-      packages = with pkgs; [ grim slurp swaybg wl-clipboard ];
+      packages = with pkgs; [ wrappedhl grim slurp swaybg wl-clipboard ];
 
       configFile = {
         "hypr/autostart.sh" = {

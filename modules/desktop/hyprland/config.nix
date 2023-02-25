@@ -1,4 +1,4 @@
-{ config, lib }:
+{ config, lib, pkgs }:
 with lib;
 let
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
@@ -113,7 +113,6 @@ in {
       master {
               new_is_master=false
               new_on_top=true
-              orientation=right
             }
 
             bind=SUPER,J,layoutmsg,cyclenext
@@ -225,5 +224,22 @@ in {
     # Start background applications.
     waybar &
     swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
+  '';
+
+  wrappedhl = pkgs.writeShellScriptBin "wrappedhl" ''
+    #!/bin/sh
+
+    cd ~
+
+    # Log WLR errors and logs to the hyprland log. Recommended
+    export HYPRLAND_LOG_WLR=1
+
+    # Tell XWayland to use a cursor theme
+    export XCURSOR_THEME=${cursorCfg.name}
+
+    # Set a cursor size
+    export XCURSOR_SIZE=${builtins.toString cursorCfg.size}
+
+    exec Hyprland
   '';
 }
