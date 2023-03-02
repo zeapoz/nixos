@@ -1,18 +1,4 @@
-@define-color bg #282828;
-@define-color bg1 #3c3836;
-@define-color fg #ebdbb2;
-@define-color red-normal #cc241d;
-@define-color red-accent #fb4934;
-@define-color green-normal #98971a;
-@define-color green-accent #b8bb26;
-@define-color yellow-normal #d79921;
-@define-color yellow-accent #fabd2f;
-@define-color blue-normal #458588;
-@define-color blue-accent #83a598;
-@define-color purple-normal #b16286;
-@define-color purple-accent #d3869b;
-@define-color orange-normal #d65d0e;
-@define-color orange-accent #fe8019;
+@import "colors.css";
 
 * {
   font-family: "FiraCode", "Font Awesome 6 Free";
