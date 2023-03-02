@@ -55,7 +55,6 @@ in {
             background_opacity = "0.9";
             confirm_os_window_close = "0";
           };
-          theme = "Doom One";
         };
 
         starship = {
