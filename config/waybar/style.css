@@ -38,7 +38,8 @@ window#waybar {
 #pulseaudio,
 #language,
 #battery,
-#tray {
+#tray,
+#custom-power {
   padding: 2px 10px;
   margin: 0 4px;
 }

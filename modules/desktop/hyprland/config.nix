@@ -140,7 +140,7 @@ in {
     # Useful applications.
     bind=SUPER,RETURN,exec,kitty
     bind=SUPER,D,exec,wofi --show drun -I
-    bind=SUPER,X,exec,~/.config/wofi/power-menu.sh
+    bind=SUPER,X,exec,wlogout
     bind=SUPER,N,exec,${config.modules.editors.mainEditor}
     bind=SUPER,B,exec,firefox
     bind=SUPERSHIFT,B,exec,brave

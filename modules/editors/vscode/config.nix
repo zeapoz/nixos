@@ -35,8 +35,6 @@ with lib; {
       terminalGitEditor = true;
     };
 
-    nix.formatterPath = "nixfmt";
-
     vim = {
       enableNeovim = config.modules.editors.neovim.enable;
       useSystemClipboard = true;

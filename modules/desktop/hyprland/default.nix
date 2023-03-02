@@ -7,8 +7,9 @@ let
   hyprlandConfig = configFile.hyprlandConfig;
   autostartConfig = configFile.autostart;
   wrappedhl = configFile.wrappedhl;
-in {
-  imports = [ ../waybar.nix ];
+in
+{
+  imports = [ ../waybar.nix ../wofi.nix ../wlogout.nix ];
 
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
@@ -19,6 +20,7 @@ in {
     modules.desktop = {
       waybar.enable = true;
       wofi.enable = true;
+      wlogout.enable = true;
     };
 
     hm = {
@@ -30,7 +32,13 @@ in {
         };
       };
 
-      packages = with pkgs; [ wrappedhl grim slurp swaybg wl-clipboard ];
+      packages = with pkgs; [
+        wrappedhl
+        grim
+        slurp
+        swaybg
+        wl-clipboard
+      ];
 
       configFile = {
         "hypr/autostart.sh" = {

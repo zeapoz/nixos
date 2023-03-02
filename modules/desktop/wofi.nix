@@ -2,7 +2,10 @@
 with lib;
 let cfg = config.modules.desktop.wofi;
 in {
-  options.modules.desktop.wofi.enable = mkEnableOption "wofi";
+  options.modules.desktop.wofi = {
+    enable = mkEnableOption "wofi";
+    power-menu.enable = mkBoolOpt false;
+  };
 
   config = mkIf cfg.enable {
     hm = {
@@ -12,7 +15,7 @@ in {
         "wofi/style.css" = { source = ../../config/wofi/style.css; };
 
         # Power menu script.
-        "wofi/power-menu.sh" = {
+        "wofi/power-menu.sh" = mkIf cfg.power-menu.enable {
           source = ../../config/wofi/power-menu.sh;
           executable = true;
         };

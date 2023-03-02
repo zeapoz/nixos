@@ -8,7 +8,7 @@ in {
     hm = {
       packages = with pkgs; [
         godot
-        nixfmt
+        nixpkgs-fmt
         python3
         rnix-lsp
         rust-analyzer

@@ -7,7 +7,7 @@
     packages = with pkgs; [
       anki
       discord
-      # helvum
+      helvum
       libreoffice
       pavucontrol
       playerctl

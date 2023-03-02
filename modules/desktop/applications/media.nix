@@ -19,7 +19,12 @@ in {
           spotify
           spotify-tui
         ]
-        ++ (if cfg.daw.enable then [ ardour guitarix sunvox synthv1 ] else [ ]);
+        ++ optionals cfg.daw.enable [
+          ardour
+          guitarix
+          sunvox
+          synthv1
+        ];
 
       services.spotifyd = {
         enable = true;

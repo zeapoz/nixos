@@ -31,6 +31,7 @@ in {
             (mkIf (cfg.mainDesktop == "hyprland") "hyprland/language")
             (mkIf cfg.enableBatteryModule "battery")
             "tray"
+            "custom/power"
           ];
 
           "wlr/workspaces" = mkIf (cfg.mainDesktop == "hyprland") {
@@ -120,6 +121,10 @@ in {
             format-alt = "{time} {icon}";
           };
           "tray" = { spacing = 10; };
+          "custom/power" = {
+            format = "";
+            on-click = "wlogout";
+          };
         };
       };
       style = ../../config/waybar/style.css;
