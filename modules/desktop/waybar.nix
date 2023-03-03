@@ -1,7 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
-let cfg = config.modules.desktop.waybar;
-in {
+let
+  cfg = config.modules.desktop.waybar;
+  configHome = config.home-manager.users.${config.user.name}.xdg.configHome;
+in
+{
   options.modules.desktop.waybar = {
     enable = mkEnableOption "waybar";
     mainDesktop = mkStrOpt "";
@@ -127,7 +130,110 @@ in {
           };
         };
       };
-      style = ../../config/waybar/style.css;
+
+      style = ''
+        @import "${configHome}/colors.css";
+
+        * {
+          font-family: "FiraCode", "Font Awesome 6 Free";
+          font-weight: bold;
+          font-size: 14px;
+          min-height: 0px;
+        }
+
+        window#waybar {
+          color: @fg;
+          background: alpha(@bg, 0.9);
+        }
+
+        #workspaces,
+        #cpu,
+        #memory,
+        #disk,
+        #clock,
+        #keyboard-state label.locked,
+        #temperature,
+        #custom-kernel,
+        #network,
+        #pulseaudio,
+        #language,
+        #battery,
+        #tray,
+        #custom-power {
+          padding: 2px 10px;
+          margin: 0 4px;
+        }
+
+        #workspaces button {
+          color: @fg;
+          margin-bottom: 3px;
+          padding: 2px 10px;
+        }
+
+        #workspaces button.active {
+          color: @yellow-normal;
+        }
+
+        #workspaces button.urgent {
+          color: @red-normal;
+        }
+
+        #cpu {
+          color: @red-accent;
+        }
+
+        #memory {
+          color: @green-accent;
+        }
+
+        #disk {
+          color: @purple-normal;
+        }
+
+        #clock {
+          color: @blue-accent;
+        }
+
+        #keyboard-state {
+          color: @red-accent;
+        }
+
+        #temperature {
+          color: @yellow-normal;
+        }
+
+        #temperature.critical {
+          color: @red-normal;
+        }
+
+        #custom-kernel {
+          color: @purple-normal;
+        }
+
+        #network {
+          color: @blue-accent;
+        }
+
+        #network.ethernet {
+          margin-bottom: 3px;
+        }
+
+        #pulseaudio {
+          color: @fg;
+        }
+
+        #battery {
+          color: @fg;
+        }
+
+        #battery.warning {
+          color: @yellow-normal;
+        }
+
+        #battery.critical {
+          color: @red-normal;
+        }
+      '';
     };
   };
 }

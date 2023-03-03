@@ -4,6 +4,7 @@ let
   cfg = config.modules.theme;
   nix-colors = inputs.nix-colors;
   colors = config.colorScheme.colors;
+  theme = "doom-one";
 in
 {
   imports = [ nix-colors.homeManagerModule ];
@@ -11,7 +12,7 @@ in
   options.modules.theme.enable = mkEnableOption "theme";
 
   config = mkIf cfg.enable {
-    colorScheme = import ./doom-one.nix;
+    colorScheme = import ./${theme}.nix;
 
     hm = {
       user = {
@@ -25,7 +26,7 @@ in
           color4 = "#${blue}";
           color5 = "#${purple}";
           color6 = "#${cyan}";
-          color7 = "#${white}";
+          color7 = "#${gray}";
           color8 = "#${lightBlack}";
           color9 = "#${lightRed}";
           color10 = "#${lightGreen}";
@@ -33,7 +34,7 @@ in
           color12 = "#${lightBlue}";
           color13 = "#${lightPurple}";
           color14 = "#${lightCyan}";
-          color15 = "#${gray}";
+          color15 = "#${white}";
         };
 
         home.pointerCursor = {
@@ -61,7 +62,7 @@ in
         };
       };
 
-      configFile."waybar/colors.css".text = with colors; ''
+      configFile."colors.css".text = with colors; ''
         @define-color bg #${bg};
         @define-color fg #${fg};
         @define-color red-normal #${red};
