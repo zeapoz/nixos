@@ -144,7 +144,7 @@ in {
     bind=SUPER,N,exec,${config.modules.editors.mainEditor}
     bind=SUPER,B,exec,firefox
     bind=SUPERSHIFT,B,exec,brave
-    bind=SUPER,E,exec,kitty fish -c ranger
+    bind=SUPER,E,exec,thunar
     bind=SUPER,S,exec,spotify
     bind=SUPER,Y,exec,freetube
 

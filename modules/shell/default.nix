@@ -14,9 +14,11 @@ in {
         killall
         neofetch
         ripgrep
+        xdotool
+        ranger
         unzip
         zip
-        xdotool
+        p7zip
       ];
 
       programs = {
