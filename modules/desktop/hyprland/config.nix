@@ -2,9 +2,11 @@
 with lib;
 let
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
+  colors = config.colorScheme.colors;
 
   layout = "master";
-in {
+in
+{
   hyprlandConfig = ''
     monitor=,preferred,auto,1
 
@@ -40,10 +42,10 @@ in {
       gaps_out=6
       border_size=3
 
-      col.active_border=rgb(bdae93)
-      col.inactive_border=rgba(50494580)
-      col.group_border_active=rgb(bdae93)
-      col.group_border=rgb(504945)
+      col.active_border=rgb(${colors.fg})
+      col.inactive_border=rgba(${colors.bg}E6)
+      col.group_border_active=rgb(${colors.fg})
+      col.group_border=rgb(${colors.bg})
 
       layout=${layout}
       resize_on_border=true
@@ -81,56 +83,56 @@ in {
 
     ${if (layout == "dwindle") then ''
       dwindle {
-              preserve_split=true
-            }
+        preserve_split=true
+      }
 
-            bind=SUPER,H,movefocus,l
-            bind=SUPER,J,movefocus,d
-            bind=SUPER,K,movefocus,u
-            bind=SUPER,L,movefocus,r
+      bind=SUPER,H,movefocus,l
+      bind=SUPER,J,movefocus,d
+      bind=SUPER,K,movefocus,u
+      bind=SUPER,L,movefocus,r
 
-            bind=SUPERSHIFT,H,movewindow,l
-            bind=SUPERSHIFT,J,movewindow,d
-            bind=SUPERSHIFT,K,movewindow,u
-            bind=SUPERSHIFT,L,movewindow,r
+      bind=SUPERSHIFT,H,movewindow,l
+      bind=SUPERSHIFT,J,movewindow,d
+      bind=SUPERSHIFT,K,movewindow,u
+      bind=SUPERSHIFT,L,movewindow,r
 
-            # Resize submap.
-            bind=SUPER,R,submap,resize
-            submap=resize
+      # Resize submap.
+      bind=SUPER,R,submap,resize
+      submap=resize
 
-            binde=,h,resizeactive,-100 0
-            binde=,j,resizeactive,0 100
-            binde=,k,resizeactive,0 -100
-            binde=,l,resizeactive,100 0
+      binde=,h,resizeactive,-100 0
+      binde=,j,resizeactive,0 100
+      binde=,k,resizeactive,0 -100
+      binde=,l,resizeactive,100 0
 
-            bind=,escape,submap,reset
-            bind=,RETURN,submap,reset
-            bind=SUPER,R,submap,reset
-            submap=reset'' else
+      bind=,escape,submap,reset
+      bind=,RETURN,submap,reset
+      bind=SUPER,R,submap,reset
+      submap=reset'' else
       ""}
 
     ${if (layout == "master") then ''
       master {
-              new_is_master=false
-              new_on_top=true
-            }
+        new_is_master=false
+        new_on_top=true
+      }
 
-            bind=SUPER,J,layoutmsg,cyclenext
-            bind=SUPER,K,layoutmsg,cycleprev
+      bind=SUPER,J,layoutmsg,cyclenext
+      bind=SUPER,K,layoutmsg,cycleprev
 
-            bind=SUPER,h,resizeactive,-100 0
-            bind=SUPER,l,resizeactive,100 0
-            bind=SUPERSHIFT,l,layoutmsg,removemaster
-            bind=SUPERSHIFT,h,layoutmsg,addmaster
+      bind=SUPER,h,resizeactive,-100 0
+      bind=SUPER,l,resizeactive,100 0
+      bind=SUPERSHIFT,l,layoutmsg,removemaster
+      bind=SUPERSHIFT,h,layoutmsg,addmaster
 
-            bind=SUPERSHIFT,J,layoutmsg,swapnext
-            bind=SUPERSHIFT,K,layoutmsg,swapprev
-            bind=SUPERSHIFT,RETURN,layoutmsg,swapwithmaster
+      bind=SUPERSHIFT,J,layoutmsg,swapnext
+      bind=SUPERSHIFT,K,layoutmsg,swapprev
+      bind=SUPERSHIFT,RETURN,layoutmsg,swapwithmaster
 
-            bind=SUPER,left,layoutmsg,orientationleft
-            bind=SUPER,right,layoutmsg,orientationright
-            bind=SUPER,down,layoutmsg,orientationbottom
-            bind=SUPER,up,layoutmsg,orientationtop'' else
+      bind=SUPER,left,layoutmsg,orientationleft
+      bind=SUPER,right,layoutmsg,orientationright
+      bind=SUPER,down,layoutmsg,orientationbottom
+      bind=SUPER,up,layoutmsg,orientationtop'' else
       ""}
 
     # some nice mouse binds

@@ -72,6 +72,12 @@ in
           };
         };
 
+        services.mako = with colors; {
+          backgroundColor = "#${bg}FF";
+          borderColor = "#${fg}FF";
+          textColor = "#${fg}FF";
+        };
+
         home.pointerCursor = {
           name = "Bibata-Original-Classic";
           package = pkgs.bibata-cursors;
