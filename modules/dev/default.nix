@@ -8,6 +8,7 @@ in {
     hm = {
       packages = with pkgs; [
         godot
+        nil
         nixpkgs-fmt
         python3
         rnix-lsp
