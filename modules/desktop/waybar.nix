@@ -20,7 +20,12 @@ in
         mainBar = {
           layer = "top";
           position = "top";
-          modules-left = [ "clock" "cpu" "memory" "disk" ];
+          modules-left = [
+            "clock"
+            "cpu"
+            "memory"
+            "disk"
+          ];
           modules-center = [
             (mkIf (cfg.mainDesktop == "hyprland") "wlr/workspaces")
             (mkIf (cfg.mainDesktop == "river") "river/tags")
@@ -219,7 +224,11 @@ in
         }
 
         #pulseaudio {
-          color: @fg;
+          color: @red-accent;
+        }
+
+        #language {
+          color: @green-accent;
         }
 
         #battery {
@@ -232,6 +241,10 @@ in
 
         #battery.critical {
           color: @red-normal;
+        }
+
+        #custom-power {
+          color: @purple-normal
         }
       '';
     };
