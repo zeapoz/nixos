@@ -22,11 +22,8 @@
       font-size = 24;
       indicator-idle-visible = true;
       show-keyboard-layout = true;
-      # disable-caps-lock-text = true;
-      # indicator-caps-lock = true;
       screenshots = true;
       clock = true;
-      # grace = 10;
       indicator-radius = 100;
       indicator-thickness = 7;
       fade-in = 0.2;
