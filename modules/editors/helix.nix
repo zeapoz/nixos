@@ -17,6 +17,13 @@ in {
           shell = [ "fish" "-c" ];
         };
       };
+      languages = [
+        {
+          name = "nix";
+          auto-format = true;
+          formatter.command = "nixpkgs-fmt";
+        }
+      ];
     };
   };
 }

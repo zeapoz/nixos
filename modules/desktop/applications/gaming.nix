@@ -7,6 +7,9 @@ in {
   config = mkIf cfg.enable {
     programs.steam.enable = true;
 
-    hm.packages = with pkgs; [ prismlauncher ];
+    hm.packages = with pkgs; [ 
+      prismlauncher
+      tetrio-desktop
+    ];
   };
 }

@@ -43,7 +43,9 @@ in {
           };
           shellInit = ''
             set fish_greeting
-            ${if config.modules.editors.neovim.enable then
+            ${if config.modules.editors.helix.enable then
+              "set -gx EDITOR hx"
+            else if config.modules.editors.neovim.enable then
               "set -gx EDITOR nvim"
             else
               "set -gx EDITOR vim"}

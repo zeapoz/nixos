@@ -21,6 +21,7 @@ in {
         ]
         ++ optionals cfg.daw.enable [
           ardour
+          drumgizmo
           guitarix
           sunvox
           synthv1
