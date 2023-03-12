@@ -53,7 +53,7 @@ in
     }
 
     decoration {
-      rounding=10
+      # rounding=10
 
       blur=true
       blur_size=3

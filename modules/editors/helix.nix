@@ -16,6 +16,7 @@ in {
           idle-timeout = 0;
           shell = [ "fish" "-c" ];
         };
+        keys.insert.esc = [ ":w" "normal_mode" ];
       };
       languages = [
         {
