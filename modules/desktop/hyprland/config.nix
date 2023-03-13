@@ -1,5 +1,4 @@
 { config, lib, pkgs }:
-with lib;
 let
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   colors = config.colorScheme.colors;
@@ -145,10 +144,13 @@ in
     bind=SUPER,X,exec,wlogout
     bind=SUPER,N,exec,${config.modules.editors.mainEditor}
     bind=SUPER,B,exec,firefox
-    bind=SUPERSHIFT,B,exec,brave
     bind=SUPER,E,exec,thunar
     bind=SUPER,S,exec,spotify
     bind=SUPER,Y,exec,freetube
+
+    # Second layer.
+    bind=SUPERSHIFT,B,exec,brave
+    bind=SUPERSHIFT,Q,exec,kitty hx ~/.config/NixOS
 
     bind=SUPER,W,killactive,
     bind=SUPERSHIFT,E,exit,

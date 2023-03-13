@@ -27,18 +27,24 @@ in {
           aliases = {
             a = "add";
             b = "branch";
+            bi = "bisect";
             c = "commit";
+            cl = "clone";
             co = "checkout";
+            cp = "cherry-pick";
             d = "diff";
             f = "fetch";
+            i = "init";
             l = "log";
+            m = "merge";
             p = "pull";
             pu = "push";
             r = "reset";
-            re = "rebase";
-            res = "restore";
+            rb = "rebase";
+            rs = "restore";
             s = "status";
             st = "stash";
+            sw = "switch";
           };
           delta.enable = true;
         };
