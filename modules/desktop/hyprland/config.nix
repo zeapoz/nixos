@@ -37,8 +37,8 @@ in
     }
 
     general {
-      gaps_in=3
-      gaps_out=6
+      gaps_in=5
+      gaps_out=10
       border_size=3
 
       col.active_border=rgb(${colors.fg})
@@ -58,7 +58,7 @@ in
       blur_size=3
       blur_new_optimizations=1
 
-      shadow_range=10
+      shadow_range=15
       shadow_render_power=2
     }
 

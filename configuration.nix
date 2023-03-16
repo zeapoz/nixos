@@ -124,7 +124,7 @@
 
   networking = {
     # Enable networking.
-    networking.networkmanager.enable = true;
+    networkmanager.enable = true;
 
     # Setup wireguard for mullvad-vpn.
     firewall.checkReversePath = "loose";
