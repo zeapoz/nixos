@@ -18,6 +18,7 @@ in {
           musescore
           spotify
           spotify-tui
+          stremio
         ]
         ++ optionals cfg.daw.enable [
           ardour

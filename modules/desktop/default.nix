@@ -9,6 +9,7 @@
       discord
       helvum
       libreoffice
+      mullvad-vpn
       pavucontrol
       playerctl
       pulseaudio
