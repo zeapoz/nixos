@@ -11,6 +11,7 @@ in {
       packages = with pkgs; [
         bat
         fd
+        fzf
         killall
         neofetch
         ripgrep
@@ -26,6 +27,12 @@ in {
           enable = true;
           shellAliases = {
             g = "git";
+            gc = "git commit";
+            gs = "git status";
+            gpu = "git push";
+            gp = "git pull";
+            gf = "git fetch";
+
             v = if config.modules.editors.neovim.enable then "nvim" else "vim";
             cat = "bat --theme ansi";
 
@@ -50,6 +57,24 @@ in {
             else
               "set -gx EDITOR vim"}
           '';
+          plugins = with pkgs.fishPlugins; [
+            {
+              name = "tide";
+              src = tide.src;
+            }
+            {
+              name = "forgit";
+              src = forgit.src;
+            }
+            {
+              name = "pisces";
+              src = pisces.src;
+            }
+            {
+              name = "fzf-fish";
+              src = fzf-fish.src;
+            }
+          ];
         };
 
         kitty = {
@@ -59,11 +84,6 @@ in {
             background_opacity = "0.9";
             confirm_os_window_close = "0";
           };
-        };
-
-        starship = {
-          enable = true;
-          settings.add_newline = true;
         };
 
         zoxide.enable = true;
