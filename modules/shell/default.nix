@@ -41,10 +41,10 @@ in {
             ll = "exa -la --group-directories-first --icons";
             lt = "exa -T --group-directories-first --icons";
 
-            nix-rebuild = " sudo nixos-rebuild switch --flake ~/.config/NixOS";
-            nix-fetch = "sudo nix flake update ~/.config/NixOS";
-            nix-up = "nix-fetch && nix-rebuild";
-            nix-gc = "sudo nix-collect-garbage -d";
+            nr = " sudo nixos-rebuild switch --flake ~/.config/NixOS";
+            nf = "cd ~/.config/NixOS && git pull";
+            nup = "nf && nr";
+            ngc = "sudo nix-collect-garbage -d";
 
             "..." = "cd ../..";
           };
