@@ -212,22 +212,19 @@ in
 
     # Reload configuration.
     bind=SUPER,C,exec,hyprctl reload
+    bind=SUPERSHIFT,C,exec,killall -SIGUSR2 .waybar-wrapped
 
     # Change background.
     bind=SUPERSHIFT,N,exec,killall -q swaybg -9; swaybg -i "$(find ~/Pictures/Wallpapers -type f | shuf -n 1)" -m fill
 
     # Start some applications in the background.
-    exec=~/.config/hypr/autostart.sh
+    exec-once=~/.config/hypr/autostart.sh
   '';
 
   autostart = ''
-    # Kill applications.
-    killall -q .waybar-wrapped -9
-    killall -q swaybg -9
-
-    # Start background applications.
     waybar &
     swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
+    mullvad-gui &
   '';
 
   wrappedhl = pkgs.writeShellScriptBin "wrappedhl" ''
