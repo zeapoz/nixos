@@ -52,23 +52,31 @@ in
     }
 
     decoration {
-      # rounding=10
+      rounding=8
+      multisample_edges=true
 
       blur=true
       blur_size=3
-      blur_new_optimizations=1
+      blur_passes = 3
+      blur_new_optimizations=true
 
+      drop_shadow=true
+      shadow_ignore_window=true
+      shadow_offset=2 2
       shadow_range=15
       shadow_render_power=2
     }
 
     animations {
-      enabled=1
-      animation=windows,1,2,default
-      animation=windows,1,2,default,popin 80%
+      enabled=true
+
+      animation=windows,1,1,default,slide
+      animation=windowsOut,1,2,default,slide
+      animation=windowsMove,1,2,default
       animation=border,1,3,default
       animation=fade,1,2,default
-      animation=workspaces,1,2,default,fade
+      animation=fadeDim,1,2,default
+      animation=workspaces,1,3,default
     }
 
     misc {
