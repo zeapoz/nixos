@@ -20,6 +20,7 @@ in
         mainBar = {
           layer = "top";
           position = "top";
+          margin = "10 10 0 10";
           modules-left = [
             "clock"
             "cpu"
@@ -32,12 +33,12 @@ in
             (mkIf (cfg.mainDesktop == "hyprland") "hyprland/window")
           ];
           modules-right = [
-            "keyboard-state"
             "temperature"
             "custom/kernel"
             "network"
             "pulseaudio"
             (mkIf (cfg.mainDesktop == "hyprland") "hyprland/language")
+            "keyboard-state"
             (mkIf cfg.enableBatteryModule "battery")
             "tray"
             "custom/power"
@@ -159,7 +160,7 @@ in
 
         window#waybar {
           color: @fg;
-          background: alpha(@bg, 0.9);
+          background: transparent;
         }
 
         tooltip {
@@ -185,8 +186,26 @@ in
         #battery,
         #tray,
         #custom-power {
-          padding: 2px 10px;
-          margin: 0 4px;
+          background: @bg;
+          padding: 2px 12px;
+          margin: 0 0;
+        }
+
+        #clock {
+          border-radius: 10px 0 0 10px;
+        }
+
+        #disk {
+          border-radius: 0 10px 10px 0;
+        }
+
+        #workspaces {
+          border-radius: 10px;
+          margin-left: 10px;
+        }
+
+        #window {
+          border-radius: 10px;
         }
 
         #workspaces button {
@@ -225,6 +244,7 @@ in
 
         #temperature {
           color: @yellow-normal;
+          border-radius: 10px 0 0 10px;
         }
 
         #temperature.critical {
@@ -240,7 +260,7 @@ in
         }
 
         #network.ethernet {
-          margin-bottom: 3px;
+          padding-bottom: 5px;
         }
 
         #pulseaudio {
@@ -264,7 +284,8 @@ in
         }
 
         #custom-power {
-          color: @purple-normal
+          color: @purple-normal;
+          border-radius: 0 10px 10px 0;
         }
       '';
     };

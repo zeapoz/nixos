@@ -18,7 +18,6 @@ in
       builtins.toString cursorCfg.size
     }
 
-    blurls=waybar
     blurls=wofi
 
     input {
