@@ -148,10 +148,10 @@ in
     # Useful applications.
     bind=SUPER,RETURN,exec,kitty
     bind=SUPER,D,exec,wofi --show drun -I
-    bind=SUPER,X,exec,wlogout
+    bind=SUPER,X,exec,wlogout -p layer-shell
     bind=SUPER,N,exec,${config.modules.editors.mainEditor}
     bind=SUPER,B,exec,firefox
-    bind=SUPER,E,exec,thunar
+    bind=SUPER,E,exec,kitty ranger
     bind=SUPER,S,exec,spotify
     bind=SUPER,Y,exec,freetube
 
@@ -187,16 +187,22 @@ in
     bind=SUPER,i,workspace,2
     bind=SUPER,o,workspace,3
     bind=SUPER,p,workspace,4
+    bind=SUPER,bracketleft,workspace,5
+    bind=SUPER,bracketright,workspace,6
 
     bind=ALT,u,movetoworkspace,1
     bind=ALT,i,movetoworkspace,2
     bind=ALT,o,movetoworkspace,3
     bind=ALT,p,movetoworkspace,4
+    bind=ALT,bracketleft,movetoworkspace,5
+    bind=ALT,bracketright,movetoworkspace,6
 
     bind=ALTSHIFT,u,movetoworkspacesilent,1
     bind=ALTSHIFT,i,movetoworkspacesilent,2
     bind=ALTSHIFT,o,movetoworkspacesilent,3
     bind=ALTSHIFT,p,movetoworkspacesilent,4
+    bind=ALTSHIFT,bracketleft,movetoworkspacesilent,5
+    bind=ALTSHIFT,bracketright,movetoworkspacesilent,6
 
     bind=SUPER,mouse_down,workspace,e+1
     bind=SUPER,mouse_up,workspace,e-1
@@ -229,7 +235,9 @@ in
   '';
 
   autostart = ''
-    waybar &
+    eww daemon &
+    eww open bar &
+    eww open bar2 &
     swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
     mullvad-gui &
   '';

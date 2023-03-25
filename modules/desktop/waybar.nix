@@ -141,7 +141,7 @@ in
           "tray" = { spacing = 10; };
           "custom/power" = {
             format = "";
-            on-click = "wlogout";
+            on-click = "wlogout -p layer-shell";
           };
         };
       };

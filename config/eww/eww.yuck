@@ -1,0 +1,137 @@
+(defpoll time :interval "1s" `date +'{"date": "%b %d", "hour": "%H", "minute": "%M", "day": "%a"}'`)
+(defwidget clock []
+  (box :space-evenly false :class "clock"
+    (label :text " ${time.day} ${time.date} ${time.hour}:${time.minute}")))
+
+(defwidget cpu []
+  (box :class "cpu" :space-evenly false
+    (label :text " ${round(EWW_CPU.avg, 0)}%")))
+
+(defwidget ram []
+  (box :class "ram" :space-evenly false
+    (label :text " ${round(EWW_RAM.used_mem_perc, 0)}%")))
+
+(defwidget disk []
+  (box :class "disk" :space-evenly false
+    (label :text " ${round(EWW_DISK["/"].used_perc, 0)}%")))
+
+;; (deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces.sh")
+;; (deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace.sh")
+;; (defwidget workspaces []
+;;   (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces module"
+;;     (box
+;;       (label :text "${workspaces}${current_workspace}" :visible false)
+;;       (for workspace in workspaces
+;;         (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+;;           (box :class "workspace ${workspace.id == current_workspace ? "current-workspace" : ""} ${workspace.windows > 0 ? "occupied-workspace" : "empty-workspace"}"
+;;           (label :text "")))))))
+
+(deflisten workspace "scripts/workspaces")          
+(defwidget workspaces []
+  (eventbox
+		:onscroll "echo {} | sed -e \"s/up/-1/g\" -e \"s/down/+1/g\" | xargs hyprctl dispatch workspace"
+		(box
+			:class "module workspaces"
+			:spacing 5
+		  (for ws in workspace
+		    (button
+					:onclick "hyprctl dispatch workspace ${ws.number}"
+					:class "workspace icon"
+					:style "color: ${ws.color};"
+					; :tooltip {ws.tooltip}
+					"")))))
+
+(deflisten window :initial "..." "bash ~/.config/eww/scripts/get-window-title.sh")
+(defwidget window_w []
+  (box
+    (label :text "${window}")))
+
+(deflisten kernel_val :inital "kernel" "uname -r")
+(defwidget kernel []
+  (box :class "kernel" :space-evenly false
+    (label :text " ${kernel_val}")))
+
+(deflisten net "scripts/net")
+(defwidget net []
+  (button :class "net"
+    :onclick "scripts/net toggle &"
+    {net.icon}))
+
+(deflisten volume_val "scripts/volume")
+(defwidget volume []
+  (box
+    :class "volume"
+    (eventbox
+      :onscroll "echo {} | sed -e 's/up/-/g' -e 's/down/+/g' | xargs -I% wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.005%"
+      :onclick "pavucontrol &"
+      :onrightclick "scripts/volume mute SINK"
+      (label
+        :class "vol-icon"
+        :text "${volume_val.icon} ${volume_val.percent}%"))))
+
+;; (defwidget battery []
+;;   (box :class "battery" :space-evenly false
+;;     (label :text "${EWW_BATTERY.BAT1.capacity}% ")))
+
+(defwidget power []
+  (eventbox :onclick "wlogout -p layer-shell &" :class "power module"
+    (label :text "")))
+
+(defwidget left []
+  (box :class "module"
+       :space-evenly false
+    (clock)
+  ))
+
+(defwidget left-box []
+  (box :space-evenly false
+       :halign "start"
+    (left)
+    (workspaces)
+  ))
+
+(defwidget center []
+  (box :class "module"
+       :space-evenly false
+       :halign "center"
+    (window_w)))
+
+(defwidget right []
+  (box :class "module"
+       :space-evenly false
+       :halign "end"
+    (kernel)
+    (cpu)
+    (ram)
+    (disk)
+    (net)
+    (volume)
+    (power)
+  ))
+;;    (battery)))
+
+(defwidget bar-box []
+  (centerbox
+    (left-box)
+    (center)
+    (right)))
+
+(defwindow bar
+  :monitor 0
+  :geometry (geometry 
+    :x "0%"
+    :width "100%"
+    :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  (bar-box))
+
+(defwindow bar2
+  :monitor 1
+  :geometry (geometry 
+    :x "0%"
+    :width "100%"
+    :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  (bar-box))

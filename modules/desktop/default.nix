@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ ./river ./hyprland ./applications ];
@@ -16,6 +16,7 @@
       signal-desktop
       slack
       swaylock-effects
+      eww-wayland
     ];
 
     programs.swaylock.settings = {

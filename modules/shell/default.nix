@@ -20,6 +20,10 @@ in {
         unzip
         zip
         p7zip
+        socat
+        jq
+        jaq
+        bc
       ];
 
       programs = {
@@ -34,6 +38,7 @@ in {
             gf = "git fetch";
 
             v = if config.modules.editors.neovim.enable then "nvim" else "vim";
+            r = "ranger";
             cat = "bat --theme ansi";
 
             ls = "exa -1 --group-directories-first --icons";
