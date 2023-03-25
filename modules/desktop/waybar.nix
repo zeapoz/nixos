@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 with lib;
 let
   cfg = config.modules.desktop.waybar;
@@ -25,10 +25,11 @@ in
             "cpu"
             "memory"
             "disk"
-          ];
-          modules-center = [
             (mkIf (cfg.mainDesktop == "hyprland") "wlr/workspaces")
             (mkIf (cfg.mainDesktop == "river") "river/tags")
+          ];
+          modules-center = [
+            (mkIf (cfg.mainDesktop == "hyprland") "hyprland/window")
           ];
           modules-right = [
             "keyboard-state"
@@ -43,18 +44,26 @@ in
           ];
 
           "wlr/workspaces" = mkIf (cfg.mainDesktop == "hyprland") {
-            format = "{icon}";
+            on-scroll-up = "hyprctl dispatch workspace e+1";
+            on-scroll-down = "hyprctl dispatch workspace e-1";
             all-outputs = true;
+            on-click = "activate";
+            format = "{icon}";
             format-icons = {
-              "1" = "";
-              "2" = "";
-              "3" = "";
-              "4" = "";
+              "active" = "";
+              "default" = "";
+              "urgent" = "";
             };
+            sort-by-number = true;
           };
           "river/tags" = mkIf (cfg.mainDesktop == "river") {
             num-tags = 4;
             tag-labels = [ "" "" "" "" ];
+          };
+          "hyprland/window" = {
+            format = "{}";
+            separate-outputs = true;
+            max-length = 25;
           };
           "cpu" = {
             interval = 10;
@@ -140,6 +149,8 @@ in
         @import "${configHome}/colors.css";
 
         * {
+          border: none;
+          border-radius: 0;
           font-family: "FiraCode", "Font Awesome 6 Free";
           font-weight: bold;
           font-size: 14px;
@@ -151,7 +162,16 @@ in
           background: alpha(@bg, 0.9);
         }
 
+        tooltip {
+          background: @bg;
+          border-radius: 10px;
+          border-color: @fg;
+          border-width: 2px;
+          color: @fg;
+        }
+
         #workspaces,
+        #window,
         #cpu,
         #memory,
         #disk,
@@ -170,7 +190,7 @@ in
         }
 
         #workspaces button {
-          color: @fg;
+          color: alpha(@fg, 0.2);
           margin-bottom: 3px;
           padding: 2px 10px;
         }
