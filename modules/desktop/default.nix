@@ -17,8 +17,13 @@
       signal-desktop
       slack
       swaylock-effects
-      eww-wayland
     ];
+
+    programs.eww = {
+      enable = true;
+      package = pkgs.eww-wayland;
+      configDir = ../../config/eww;
+    };
 
     programs.swaylock.settings = {
       font = "Fira Sans";

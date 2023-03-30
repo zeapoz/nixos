@@ -47,7 +47,7 @@ in {
             ll = "exa -la --group-directories-first --icons";
             lt = "exa -T --group-directories-first --icons";
 
-            nr = " sudo nixos-rebuild switch --flake ~/.config/NixOS";
+            nr = "sudo nixos-rebuild switch --flake ~/.config/NixOS";
             nf = "cd ~/.config/NixOS && git pull";
             nup = "nf && nr";
             ngc = "sudo nix-collect-garbage -d";
