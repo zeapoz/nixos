@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 with lib;
 let
   cfg = config.modules.desktop.waybar;
@@ -20,41 +20,51 @@ in
         mainBar = {
           layer = "top";
           position = "top";
+          margin = "10 10 0 10";
           modules-left = [
             "clock"
             "cpu"
             "memory"
             "disk"
-          ];
-          modules-center = [
             (mkIf (cfg.mainDesktop == "hyprland") "wlr/workspaces")
             (mkIf (cfg.mainDesktop == "river") "river/tags")
           ];
+          modules-center = [
+            (mkIf (cfg.mainDesktop == "hyprland") "hyprland/window")
+          ];
           modules-right = [
-            "keyboard-state"
             "temperature"
             "custom/kernel"
             "network"
             "pulseaudio"
             (mkIf (cfg.mainDesktop == "hyprland") "hyprland/language")
+            "keyboard-state"
             (mkIf cfg.enableBatteryModule "battery")
             "tray"
             "custom/power"
           ];
 
           "wlr/workspaces" = mkIf (cfg.mainDesktop == "hyprland") {
-            format = "{icon}";
+            on-scroll-up = "hyprctl dispatch workspace e+1";
+            on-scroll-down = "hyprctl dispatch workspace e-1";
             all-outputs = true;
+            on-click = "activate";
+            format = "{icon}";
             format-icons = {
-              "1" = "";
-              "2" = "";
-              "3" = "";
-              "4" = "";
+              "active" = "";
+              "default" = "";
+              "urgent" = "";
             };
+            sort-by-number = true;
           };
           "river/tags" = mkIf (cfg.mainDesktop == "river") {
             num-tags = 4;
             tag-labels = [ "" "" "" "" ];
+          };
+          "hyprland/window" = {
+            format = "{}";
+            separate-outputs = true;
+            max-length = 25;
           };
           "cpu" = {
             interval = 10;
@@ -131,7 +141,7 @@ in
           "tray" = { spacing = 10; };
           "custom/power" = {
             format = "";
-            on-click = "wlogout";
+            on-click = "wlogout -p layer-shell";
           };
         };
       };
@@ -140,6 +150,8 @@ in
         @import "${configHome}/colors.css";
 
         * {
+          border: none;
+          border-radius: 0;
           font-family: "FiraCode", "Font Awesome 6 Free";
           font-weight: bold;
           font-size: 14px;
@@ -148,10 +160,19 @@ in
 
         window#waybar {
           color: @fg;
-          background: alpha(@bg, 0.9);
+          background: transparent;
+        }
+
+        tooltip {
+          background: @bg;
+          border-radius: 10px;
+          border-color: @fg;
+          border-width: 2px;
+          color: @fg;
         }
 
         #workspaces,
+        #window,
         #cpu,
         #memory,
         #disk,
@@ -165,12 +186,30 @@ in
         #battery,
         #tray,
         #custom-power {
-          padding: 2px 10px;
-          margin: 0 4px;
+          background: @bg;
+          padding: 2px 12px;
+          margin: 0 0;
+        }
+
+        #clock {
+          border-radius: 10px 0 0 10px;
+        }
+
+        #disk {
+          border-radius: 0 10px 10px 0;
+        }
+
+        #workspaces {
+          border-radius: 10px;
+          margin-left: 10px;
+        }
+
+        #window {
+          border-radius: 10px;
         }
 
         #workspaces button {
-          color: @fg;
+          color: alpha(@fg, 0.2);
           margin-bottom: 3px;
           padding: 2px 10px;
         }
@@ -205,6 +244,7 @@ in
 
         #temperature {
           color: @yellow-normal;
+          border-radius: 10px 0 0 10px;
         }
 
         #temperature.critical {
@@ -220,7 +260,7 @@ in
         }
 
         #network.ethernet {
-          margin-bottom: 3px;
+          padding-bottom: 5px;
         }
 
         #pulseaudio {
@@ -244,7 +284,8 @@ in
         }
 
         #custom-power {
-          color: @purple-normal
+          color: @purple-normal;
+          border-radius: 0 10px 10px 0;
         }
       '';
     };

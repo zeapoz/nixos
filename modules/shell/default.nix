@@ -20,6 +20,11 @@ in {
         unzip
         zip
         p7zip
+        socat
+        jq
+        jaq
+        bc
+        wget
       ];
 
       programs = {
@@ -34,6 +39,7 @@ in {
             gf = "git fetch";
 
             v = if config.modules.editors.neovim.enable then "nvim" else "vim";
+            r = "ranger";
             cat = "bat --theme ansi";
 
             ls = "exa -1 --group-directories-first --icons";
@@ -41,10 +47,11 @@ in {
             ll = "exa -la --group-directories-first --icons";
             lt = "exa -T --group-directories-first --icons";
 
-            nr = " sudo nixos-rebuild switch --flake ~/.config/NixOS";
+            nr = "sudo nixos-rebuild switch --flake ~/.config/NixOS";
             nf = "cd ~/.config/NixOS && git pull";
             nup = "nf && nr";
             ngc = "sudo nix-collect-garbage -d";
+            nd = "nix develop -c fish";
 
             "..." = "cd ../..";
           };

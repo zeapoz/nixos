@@ -1,0 +1,127 @@
+$fg: #bbc2cf;
+$bg: #282c34;
+$black: #2a2e38;
+$red: #ff6655;
+$green: #99bb66;
+$yellow: #ECBE7B;
+$blue: #51afef;
+$purple: #c678dd;
+$cyan: #46D9FF;
+$white: #DFDFDF;
+$lightBlack: #3f444a;
+$lightRed: #ff6c6b;
+$lightGreen: #98be65;
+$lightYellow: #ECBE7B;
+$lightBlue: #51afef;
+$lightPurple: #c678dd;
+$lightCyan: #46D9FF;
+$gray: #bbc2cf;
+
+@mixin margin-right {
+  margin-right: 20px;
+}
+
+@mixin workspace ($color) {
+  &.workspace-focused {
+    color: $color;
+  }
+
+  &.workspace-unfocused {
+    color: transparentize($color, 0.5);
+  }
+}
+
+* {
+  all: unset;
+  font-family: "FiraCode", "Font Awesome 6 Free";
+  font-weight: bold;
+  font-size: 14px;
+  transition: 200ms ease;
+}
+
+.module {
+  color: $fg;
+  background-color: $bg;
+  border-radius: 10px;
+  padding: 4px 12px;
+  margin: 10px 10px 2px 10px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+.revealer {
+  background-color: $bg;
+}
+
+.clock {
+  color: $blue;
+}
+
+.cpu {
+  color: $lightRed;
+  @include margin-right;
+}
+
+.ram {
+  color: $green;
+  @include margin-right;
+}
+
+.disk {
+  color: $purple;
+  @include margin-right;
+}
+
+.workspaces {
+  margin-left: -2px;
+}
+
+.workspace {
+  color: transparentize($fg, 0.8);
+  padding: 4px 8px;
+}
+
+.monitor-0 {
+  @include workspace ($lightRed);
+}
+.monitor-1 {
+  @include workspace ($yellow);
+}
+.monitor-2 {
+  @include workspace ($blue);
+}
+.monitor-3 {
+  @include workspace ($green);
+}
+
+.kernel {
+  color: $purple;
+  margin-left: 20px;
+}
+
+.net {
+  color: $blue;
+  margin: 0 20px 4px 0;
+}
+
+.volume {
+  color: $lightRed;
+  @include margin-right;
+}
+
+.keyboard {
+  color: $green;
+  @include margin-right;
+}
+
+.battery-low {
+  color: $yellow;
+}
+
+.battery-critical {
+  color: $lightRed;
+}
+
+.power {
+  color: $purple;
+  margin-left: -2px;
+}

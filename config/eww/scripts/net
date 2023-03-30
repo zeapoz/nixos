@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+while true; do
+  status=$(nmcli -f state g| tail -1)
+  icon=""
+
+  if [ "$status" = "disconnected " ]; then
+    icon=""
+  fi
+
+  echo '{ "essid": "'"$essid"'", "icon": "'"$icon"'" }'
+
+  sleep 3
+done

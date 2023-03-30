@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ ./river ./hyprland ./applications ];
@@ -6,6 +6,7 @@
   hm = {
     packages = with pkgs; [
       anki
+      bitwarden
       discord
       helvum
       libreoffice
@@ -17,6 +18,12 @@
       slack
       swaylock-effects
     ];
+
+    programs.eww = {
+      enable = true;
+      package = pkgs.eww-wayland;
+      configDir = ../../config/eww;
+    };
 
     programs.swaylock.settings = {
       font = "Fira Sans";

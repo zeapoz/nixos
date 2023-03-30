@@ -16,6 +16,7 @@ in {
         rustup
         lua-language-server
         zig
+        nodePackages.bash-language-server
       ];
 
       programs = {

@@ -1,0 +1,141 @@
+(defpoll time :interval "1s" `date +'{"date": "%b %d", "hour": "%H", "minute": "%M", "day": "%a"}'`)
+(defwidget clock []
+  (box :space-evenly false :class "clock"
+    (label :text " ${time.day} ${time.date} ${time.hour}:${time.minute}")))
+
+(defwidget cpu []
+  (box :class "cpu" :space-evenly false
+    (label :text " ${round(EWW_CPU.avg, 0)}%")))
+
+(defwidget ram []
+  (box :class "ram" :space-evenly false
+    (label :text " ${round(EWW_RAM.used_mem_perc, 0)}%")))
+
+(defwidget disk []
+  (box :class "disk" :space-evenly false
+    (label :text " ${round(EWW_DISK["/"].used_perc, 0)}%")))
+
+(deflisten workspace "scripts/workspaces")          
+(defwidget workspaces []
+  (eventbox
+		:onscroll "echo {} | sed -e \"s/up/-1/g\" -e \"s/down/+1/g\" | xargs hyprctl dispatch workspace"
+		(box
+			:class "module workspaces"
+			:spacing 5
+		  (for ws in workspace
+		    (button
+					:onclick "hyprctl dispatch workspace ${ws.number}"
+					:class "workspace icon ${ws.class}"
+					; :tooltip {ws.tooltip}
+					"")))))
+
+(deflisten window :initial "::" "scripts/get-window-title")
+(defwidget window_w []
+  (box 
+    :space-evenly false
+    :class "window"
+    (label :text "${window}")))
+
+(defpoll kernel :interval "24h" "uname -r")
+(defwidget kernel []
+  (box :class "kernel" :space-evenly false
+    (label :text " ${kernel}")))
+
+(deflisten net "scripts/net")
+(defwidget net []
+  (button :class "net"
+    :onclick "scripts/net toggle &"
+    {net.icon}))
+
+(deflisten volume "scripts/volume")
+(defwidget volume []
+  (box
+    :class "volume"
+    (eventbox
+      :onscroll "echo {} | sed -e 's/up/+/g' -e 's/down/-/g' | xargs -I% wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.005%"
+      :onclick "pavucontrol &"
+      :onrightclick "scripts/volume mute SINK"
+      (label
+        :class "vol-icon"
+        :text "${volume.icon} ${volume.percent}%"))))
+
+(deflisten battery "scripts/battery")
+(defwidget battery []
+  (box :class "battery ${battery.class}"
+    (label 
+      :text "${battery.percent}% ${battery.icon}")))
+
+(deflisten keyboard_lang "scripts/keyboard")
+(defwidget keyboard []
+  (box :class "keyboard" :space-evenly false
+    (label :text "${keyboard_lang}")))
+
+(defwidget power []
+  (eventbox :onclick "wlogout -p layer-shell &"
+    (box :class "power module"
+      (label :text ""))))
+
+(defwidget left []
+  (box :class "module"
+       :space-evenly false
+    (clock)
+    (kernel)
+  ))
+
+(defwidget left-box []
+  (box :space-evenly false
+       :halign "start"
+    (left)
+    (workspaces)
+  ))
+
+(defwidget center []
+  (box :class "module"
+       :space-evenly false
+       :halign "center"
+    (window_w)))
+
+(defwidget right []
+  (box :class "module"
+       :space-evenly false
+    (cpu)
+    (ram)
+    (disk)
+    (net)
+    (volume)
+    (keyboard)
+    (battery)
+    ))
+
+(defwidget right-box []
+  (box :space-evenly false
+       :halign "end"
+    (right)
+    (power)
+  ))
+
+(defwidget bar-box []
+  (centerbox
+    (left-box)
+    (center)
+    (right-box)))
+
+(defwindow bar
+  :monitor 0
+  :geometry (geometry 
+    :x "0%"
+    :width "100%"
+    :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  (bar-box))
+
+;; (defwindow bar2
+;;   :monitor 1
+;;   :geometry (geometry 
+;;     :x "0%"
+;;     :width "100%"
+;;     :anchor "top center")
+;;   :stacking "fg"
+;;   :exclusive true
+;;   (bar-box))

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 with lib;
 let cfg = config.modules.editors.helix;
 in {
@@ -22,7 +22,6 @@ in {
           file-picker.hidden = false;
           indent-guides.render = true;
         };
-        keys.insert.esc = [ ":w" "normal_mode" ];
       };
       languages = [
         {
