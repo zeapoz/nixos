@@ -24,6 +24,7 @@ in {
         jq
         jaq
         bc
+        wget
       ];
 
       programs = {
@@ -50,6 +51,7 @@ in {
             nf = "cd ~/.config/NixOS && git pull";
             nup = "nf && nr";
             ngc = "sudo nix-collect-garbage -d";
+            nd = "nix develop -c fish";
 
             "..." = "cd ../..";
           };

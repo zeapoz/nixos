@@ -6,6 +6,7 @@
   hm = {
     packages = with pkgs; [
       anki
+      bitwarden
       discord
       helvum
       libreoffice

@@ -3,6 +3,7 @@ let
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   colors = config.colorScheme.colors;
 
+  terminalCmd = "kitty -1";
   layout = "master";
 in
 {
@@ -19,6 +20,7 @@ in
     }
 
     blurls=wofi
+    # blurls=gtk-layer-shell
 
     input {
       kb_layout=us,se
@@ -146,18 +148,19 @@ in
     bindm=SUPER,mouse:273,resizewindow
 
     # Useful applications.
-    bind=SUPER,RETURN,exec,kitty
+    
+    bind=SUPER,RETURN,exec,${terminalCmd}
     bind=SUPER,D,exec,wofi --show drun -I
     bind=SUPER,X,exec,wlogout -p layer-shell
     bind=SUPER,N,exec,${config.modules.editors.mainEditor}
     bind=SUPER,B,exec,firefox
-    bind=SUPER,E,exec,kitty ranger
+    bind=SUPER,E,exec,${terminalCmd} -1 ranger
     bind=SUPER,S,exec,spotify
     bind=SUPER,Y,exec,freetube
 
     # Second layer.
     bind=SUPERSHIFT,B,exec,brave
-    bind=SUPERSHIFT,Q,exec,kitty hx ~/.config/NixOS
+    bind=SUPERSHIFT,Q,exec,${terminalCmd} -1 hx ~/.config/NixOS
 
     bind=SUPER,W,killactive,
     bind=SUPERSHIFT,E,exit,
@@ -237,7 +240,7 @@ in
   autostart = ''
     eww daemon &
     eww open bar &
-    eww open bar2 &
+    ${if (config.networking.hostName == "helium") then "eww open bar2 &" else ""}
     swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
     mullvad-gui &
   '';
