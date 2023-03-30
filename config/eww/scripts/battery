@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-
-icons=("" "" "" "" "")
+#    %     10  20  30  40  50  60  70  80  90
+icons=("" "" "" "" "" "" "" "" "" "")
 num_icons=$(bc <<< "100 / ${#icons[@]}")
 
-
 geticon() {
-  level=$(awk -v n="$CAPACITY" -v c="$num_icons" 'BEGIN{print int(n/c-1)}')
+  level=$(awk -v n="$CAPACITY" -v c="$num_icons" 'BEGIN{print int((n-1)/c)}')
 	if [[ "$level" -lt 0 ]]; then
 		level=0
 	fi
@@ -28,11 +27,11 @@ status() {
 	fi
 }
 
-color() {
-	if [ "$CAPACITY" -le 20 ]; then
-		echo '#f38ba8'
-	else
-		echo '#a6e3a1'
+class() {
+	if [ "$CAPACITY" -le 10 ]; then
+		echo 'battery-critical'
+	elif [ "$CAPACITY" -le 20 ]; then
+		echo 'battery-low'
 	fi
 }
 
@@ -42,8 +41,8 @@ wattage() {
 }
 
 gettime() {
-	FULL=$(cat /sys/class/power_supply/BAT0/energy_full)
-	NOW=$(cat /sys/class/power_supply/BAT0/energy_now)
+	FULL=$(cat /sys/class/power_supply/BAT1/energy_full)
+	NOW=$(cat /sys/class/power_supply/BAT1/energy_now)
 
 	if [ "$RATE" -gt 0 ]; then
 		if [ "$STATE" = "Discharging" ]; then
@@ -56,10 +55,10 @@ gettime() {
 }
 
 while true; do
-	RATE=$(cat /sys/class/power_supply/BAT0/power_now)
-	CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
-	STATE=$(cat /sys/class/power_supply/BAT0/status)
+	RATE=$(cat /sys/class/power_supply/BAT1/power_now)
+	CAPACITY=$(cat /sys/class/power_supply/BAT1/capacity)
+	STATE=$(cat /sys/class/power_supply/BAT1/status)
 
-	echo '{ "icon": "'"$(geticon)"'", "percent": '"$CAPACITY"', "wattage": "'"$(wattage)"'", "status": "'"$(status)"'", "color": "'"$(color)"'" }'
+	echo '{ "icon": "'"$(geticon)"'", "percent": "'"$CAPACITY"'", "wattage": "'"$(wattage)"'", "status": "'"$(status)"'", "class": "'"$(class)"'" }'
 	sleep 3
 done

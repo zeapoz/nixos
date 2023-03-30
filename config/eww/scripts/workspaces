@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-# define colors
-#        red       peach     green     blue
-colors=("#f38ba8" "#fab387" "#a6e3a1" "#89b4fa")
-#        pink      yellow    teal      lavender
-dimmed=("#f5c2e7" "#f9e2af" "#94e2d5" "#b4befe")
-empty="#313244"
-
 # get initial focused workspace
 focusedws=$(hyprctl -j monitors | jaq -r '.[] | select(.focused == true) | .activeWorkspace.id')
 
@@ -20,12 +13,12 @@ status() {
     mon=${monitormap[${workspaces[$1]}]}
 
     if [ "$focusedws" -eq "$1" ]; then
-      echo -n "${colors[$mon]}"
+      echo -n "workspace-focused monitor-${mon}"
     else
-      echo -n "${dimmed[$mon]}"
+      echo -n "workspace-unfocused monitor-${mon}"
     fi
   else
-    echo -n "$empty"
+    echo -n "empty"
   fi
 }
 
@@ -52,7 +45,7 @@ generate() {
   echo -n '['
 
   for i in {1..6}; do
-    echo -n ''"$([ "$i" -eq 1 ] || echo ,)" '{ "number": "'"$i"'", "color": "'"$(status "$i")"'" }' #, "tooltip": "'$(applist "$i")'" }'
+    echo -n ''"$([ "$i" -eq 1 ] || echo ,)" '{ "number": "'"$i"'", "class": "'"$(status "$i")"'" }' #, "tooltip": "'$(applist "$i")'" }'
   done
 
   echo ']'

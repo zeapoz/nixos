@@ -15,17 +15,6 @@
   (box :class "disk" :space-evenly false
     (label :text " ${round(EWW_DISK["/"].used_perc, 0)}%")))
 
-;; (deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces.sh")
-;; (deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace.sh")
-;; (defwidget workspaces []
-;;   (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces module"
-;;     (box
-;;       (label :text "${workspaces}${current_workspace}" :visible false)
-;;       (for workspace in workspaces
-;;         (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
-;;           (box :class "workspace ${workspace.id == current_workspace ? "current-workspace" : ""} ${workspace.windows > 0 ? "occupied-workspace" : "empty-workspace"}"
-;;           (label :text "")))))))
-
 (deflisten workspace "scripts/workspaces")          
 (defwidget workspaces []
   (eventbox
@@ -36,20 +25,21 @@
 		  (for ws in workspace
 		    (button
 					:onclick "hyprctl dispatch workspace ${ws.number}"
-					:class "workspace icon"
-					:style "color: ${ws.color};"
+					:class "workspace icon ${ws.class}"
 					; :tooltip {ws.tooltip}
 					"")))))
 
-(deflisten window :initial "..." "bash ~/.config/eww/scripts/get-window-title.sh")
+(deflisten window :initial "::" "scripts/get-window-title")
 (defwidget window_w []
-  (box
+  (box 
+    :space-evenly false
+    :class "window"
     (label :text "${window}")))
 
-(deflisten kernel_val :inital "kernel" "uname -r")
+(defpoll kernel :interval "24h" "uname -r")
 (defwidget kernel []
   (box :class "kernel" :space-evenly false
-    (label :text " ${kernel_val}")))
+    (label :text " ${kernel}")))
 
 (deflisten net "scripts/net")
 (defwidget net []
@@ -57,30 +47,39 @@
     :onclick "scripts/net toggle &"
     {net.icon}))
 
-(deflisten volume_val "scripts/volume")
+(deflisten volume "scripts/volume")
 (defwidget volume []
   (box
     :class "volume"
     (eventbox
-      :onscroll "echo {} | sed -e 's/up/-/g' -e 's/down/+/g' | xargs -I% wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.005%"
+      :onscroll "echo {} | sed -e 's/up/+/g' -e 's/down/-/g' | xargs -I% wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.005%"
       :onclick "pavucontrol &"
       :onrightclick "scripts/volume mute SINK"
       (label
         :class "vol-icon"
-        :text "${volume_val.icon} ${volume_val.percent}%"))))
+        :text "${volume.icon} ${volume.percent}%"))))
 
-;; (defwidget battery []
-;;   (box :class "battery" :space-evenly false
-;;     (label :text "${EWW_BATTERY.BAT1.capacity}% ")))
+(deflisten battery "scripts/battery")
+(defwidget battery []
+  (box :class "battery ${battery.class}"
+    (label 
+      :text "${battery.percent}% ${battery.icon}")))
+
+(deflisten keyboard_lang "scripts/keyboard")
+(defwidget keyboard []
+  (box :class "keyboard" :space-evenly false
+    (label :text "${keyboard_lang}")))
 
 (defwidget power []
-  (eventbox :onclick "wlogout -p layer-shell &" :class "power module"
-    (label :text "")))
+  (eventbox :onclick "wlogout -p layer-shell &"
+    (box :class "power module"
+      (label :text ""))))
 
 (defwidget left []
   (box :class "module"
        :space-evenly false
     (clock)
+    (kernel)
   ))
 
 (defwidget left-box []
@@ -99,22 +98,27 @@
 (defwidget right []
   (box :class "module"
        :space-evenly false
-       :halign "end"
-    (kernel)
     (cpu)
     (ram)
     (disk)
     (net)
     (volume)
+    (keyboard)
+    (battery)
+    ))
+
+(defwidget right-box []
+  (box :space-evenly false
+       :halign "end"
+    (right)
     (power)
   ))
-;;    (battery)))
 
 (defwidget bar-box []
   (centerbox
     (left-box)
     (center)
-    (right)))
+    (right-box)))
 
 (defwindow bar
   :monitor 0
@@ -126,12 +130,12 @@
   :exclusive true
   (bar-box))
 
-(defwindow bar2
-  :monitor 1
-  :geometry (geometry 
-    :x "0%"
-    :width "100%"
-    :anchor "top center")
-  :stacking "fg"
-  :exclusive true
-  (bar-box))
+;; (defwindow bar2
+;;   :monitor 1
+;;   :geometry (geometry 
+;;     :x "0%"
+;;     :width "100%"
+;;     :anchor "top center")
+;;   :stacking "fg"
+;;   :exclusive true
+;;   (bar-box))

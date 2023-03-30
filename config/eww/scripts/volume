@@ -32,6 +32,8 @@ elif [ "$1" = "setvol" ]; then
   fi
   setvol "$2" "$3"
 else
+  echo '{ "icon": "", "percent": "50", "microphone": "50" }'
+  sleep 1
   # initial values
   lvl=$(awk -v n="$(vol "SINK")" 'BEGIN{print int(n/34)}')
   ismuted=$(ismuted "SINK")
