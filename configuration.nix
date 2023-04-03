@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   nix.settings = {
@@ -21,6 +21,9 @@
 
     # Kernel.
     kernelPackages = pkgs.linuxPackages_latest;
+    extraModulePackages = with config.boot.kernelPackages; [
+      v4l2loopback
+    ];
 
     # Plymouth WIP.
     plymouth.enable = true;
@@ -82,7 +85,13 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ gcc git htop vim virt-manager ];
+  environment.systemPackages = with pkgs; [
+    gcc
+    git
+    htop
+    vim
+    virt-manager
+  ];
 
   fonts = {
     enableDefaultFonts = true;

@@ -14,6 +14,8 @@ in
     exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     exec-once=systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
+    exec-once=${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+
     # Set mouse cursor.
     exec-once=hyprctl setcursor ${cursorCfg.name} ${
       builtins.toString cursorCfg.size

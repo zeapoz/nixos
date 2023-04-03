@@ -13,6 +13,7 @@
       mullvad-vpn
       pavucontrol
       playerctl
+      polkit_gnome
       pulseaudio
       signal-desktop
       slack

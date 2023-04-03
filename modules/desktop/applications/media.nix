@@ -16,6 +16,7 @@ in {
           gimp
           helvum
           musescore
+          obs-studio
           spotify
           spotify-tui
           stremio
