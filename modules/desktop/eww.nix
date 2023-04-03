@@ -111,21 +111,27 @@ in
                  :halign "center"
               (window_w)))
 
-          (defwidget right []
+          (defwidget system []
             (box :class "module"
                  :space-evenly false
               (cpu)
               (ram)
               (disk)
+            ))
+
+          (defwidget right []
+            (box :class "module right"
+                 :space-evenly false
               (net)
               (volume)
               (keyboard)
               ${if (config.hardware.hasBattery) then "(battery)" else ""}
-              ))
+            ))
 
           (defwidget right-box []
             (box :space-evenly false
                  :halign "end"
+              (system)
               (right)
               (power)
             ))
@@ -230,7 +236,6 @@ in
 
           .disk {
             color: $purple;
-            @include margin-right;
           }
 
           .workspaces {
@@ -281,6 +286,10 @@ in
 
           .battery-critical {
             color: $lightRed;
+          }
+
+          .right {
+            margin-left: -2px;
           }
 
           .power {
