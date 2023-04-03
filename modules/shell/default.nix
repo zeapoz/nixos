@@ -32,6 +32,8 @@ in {
           enable = true;
           shellAliases = {
             g = "git";
+            gl = "git log";
+            gap = "git add --patch";
             gc = "git commit";
             gs = "git status";
             gpu = "git push";
@@ -42,16 +44,12 @@ in {
             r = "ranger";
             cat = "bat --theme ansi";
 
-            ls = "exa -1 --group-directories-first --icons";
-            la = "exa -1a --group-directories-first --icons";
-            ll = "exa -la --group-directories-first --icons";
-            lt = "exa -T --group-directories-first --icons";
-
             nr = "sudo nixos-rebuild switch --flake ~/.config/NixOS";
             nf = "cd ~/.config/NixOS && git pull";
             nup = "nf && nr";
             ngc = "sudo nix-collect-garbage -d";
             nd = "nix develop -c fish";
+            ndp = "nix develop --pure-eval -c fish";
 
             "..." = "cd ../..";
           };
@@ -94,6 +92,14 @@ in {
         };
 
         zoxide.enable = true;
+
+        exa = {
+          enable = true;
+          enableAliases = true;
+          extraOptions = [ "--group-directories-first" ];
+          git = true;
+          icons = true;
+        };
       };
     };
   };

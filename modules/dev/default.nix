@@ -49,8 +49,6 @@ in {
           };
           delta.enable = true;
         };
-
-        exa.enable = true;
       };
     };
   };
