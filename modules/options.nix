@@ -1,4 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 with lib; {
-  options.user.name = mkStrOpt "jonathan";
+  options = {
+    user.name = mkStrOpt "jonathan";
+    hardware.hasBattery = mkBoolOpt false;
+  };
 }

@@ -9,7 +9,7 @@ let
   wrappedhl = configFile.wrappedhl;
 in
 {
-  imports = [ ../waybar.nix ../wofi.nix ../wlogout.nix ];
+  imports = [ ../eww.nix ../waybar.nix ../wofi.nix ../wlogout.nix ];
 
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
@@ -18,7 +18,7 @@ in
 
   config = mkIf cfg.enable {
     modules.desktop = {
-      # waybar.enable = true;
+      eww.enable = true;
       wofi.enable = true;
       wlogout.enable = true;
     };

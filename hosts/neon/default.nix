@@ -1,8 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   mainDesktop = "hyprland";
   mainEditor = "codium";
-in {
+in
+{
   imports = [ ./hardware-configuration.nix ];
 
   modules = {
@@ -13,7 +14,6 @@ in {
       };
       waybar = {
         mainDesktop = "${mainDesktop}";
-        enableBatteryModule = true;
         temperaturePath =
           "/sys/module/k10temp/drivers/pci:k10temp/0000:00:18.3/hwmon/hwmon3/temp1_input";
       };
@@ -38,11 +38,14 @@ in {
   };
 
   # General settings.
-  services.tlp.enable =  true;
+  services.tlp.enable = true;
 
   # Home-manager settings.
   hm = {
     packages = with pkgs; [ brightnessctl ];
     programs.kitty.font.size = 14;
   };
+
+  # Custom defined options.
+  hardware.hasBattery = true;
 }

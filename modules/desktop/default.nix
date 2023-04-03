@@ -20,12 +20,6 @@
       swaylock-effects
     ];
 
-    programs.eww = {
-      enable = true;
-      package = pkgs.eww-wayland;
-      configDir = ../../config/eww;
-    };
-
     programs.swaylock.settings = {
       font = "Fira Sans";
       font-size = 24;

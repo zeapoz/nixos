@@ -1,4 +1,5 @@
 { config, lib, pkgs }:
+with lib;
 let
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   colors = config.colorScheme.colors;
@@ -118,10 +119,9 @@ in
       bind=,escape,submap,reset
       bind=,RETURN,submap,reset
       bind=SUPER,R,submap,reset
-      submap=reset'' else
-      ""}
-
-    ${if (layout == "master") then ''
+      submap=reset
+      ''
+    else if (layout == "master") then ''
       master {
         new_is_master=false
         new_on_top=true
@@ -142,8 +142,9 @@ in
       bind=SUPER,left,layoutmsg,orientationleft
       bind=SUPER,right,layoutmsg,orientationright
       bind=SUPER,down,layoutmsg,orientationbottom
-      bind=SUPER,up,layoutmsg,orientationtop'' else
-      ""}
+      bind=SUPER,up,layoutmsg,orientationtop
+      ''
+      else ""}
 
     # some nice mouse binds
     bindm=SUPER,mouse:272,movewindow
@@ -242,7 +243,7 @@ in
   autostart = ''
     eww daemon &
     eww open bar &
-    ${if (config.networking.hostName == "helium") then "eww open bar2 &" else ""}
+    ${optionals (config.networking.hostName == "helium") "eww open bar2 &"}
     swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
     mullvad-gui &
   '';

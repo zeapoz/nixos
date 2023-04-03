@@ -8,7 +8,6 @@ in
   options.modules.desktop.waybar = {
     enable = mkEnableOption "waybar";
     mainDesktop = mkStrOpt "";
-    enableBatteryModule = mkBoolOpt false;
     temperaturePath = mkStrOpt "";
     keyboardPath = mkStrOpt "";
   };
@@ -39,7 +38,7 @@ in
             "pulseaudio"
             (mkIf (cfg.mainDesktop == "hyprland") "hyprland/language")
             "keyboard-state"
-            (mkIf cfg.enableBatteryModule "battery")
+            (mkIf cfg.options.hardware.hasBattery "battery")
             "tray"
             "custom/power"
           ];
