@@ -151,7 +151,7 @@ in
             :stacking "fg"
             :exclusive true
             (bar-box))
-          ${optionals (config.networking.hostName == "helium") ''
+          ${if (config.networking.hostName == "helium") then ''
 
           (defwindow bar2
             :monitor 1
@@ -161,8 +161,9 @@ in
               :anchor "top center")
             :stacking "fg"
             :exclusive true
-            (bar-box))''
-          }
+            (bar-box))
+            ''
+          else ""}
         '';
 
         "eww/eww.scss".text = ''
@@ -301,3 +302,14 @@ in
     };
   };
 }
+
+
+
+
+
+
+
+
+
+
+

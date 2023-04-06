@@ -243,7 +243,7 @@ in
   autostart = ''
     eww daemon &
     eww open bar &
-    ${optionals (config.networking.hostName == "helium") "eww open bar2 &"}
+    ${if (config.networking.hostName == "helium") then "eww open bar2 &" else ""}
     swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
     mullvad-gui &
   '';
