@@ -1,14 +1,16 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, ... }:
 with lib; {
   # Aliases for a better typing experience.
   # home-manager.users.${config.user.name}                -> hm.user
   # home-manager.users.${config.user.name}.xdg.configFile -> hm.configFile
   # home-manager.users.${config.user.name}.home.packages  -> hm.packages
+  # home-manager.users.${config.user.name}.home.file      -> hm.file
   # home-manager.users.${config.user.name}.programs       -> hm.programs
   # home-manager.users.${config.user.name}.services       -> hm.services
   options = with types; {
     hm = {
       user = mkOpt attrs { };
+      file = mkOpt attrs { };
       configFile = mkOpt attrs { };
       packages = mkOpt attrs { };
       programs = mkOpt attrs { };
@@ -40,6 +42,7 @@ with lib; {
         stateVersion = "22.05";
 
         packages = mkAliasDefinitions options.hm.packages;
+        file = mkAliasDefinitions options.hm.file;
       };
 
       xdg.configFile = mkAliasDefinitions options.hm.configFile;
