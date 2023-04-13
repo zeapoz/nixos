@@ -18,4 +18,5 @@
 
   inputs.emacs-overlay.overlay
   inputs.neovim-nightly-overlay.overlay
+  inputs.kmonad.overlays.default
 ]

@@ -25,6 +25,7 @@ inputs.nixpkgs.lib.extend (final: prev: {
         ../configuration.nix
         ../modules
         ../home.nix
+        inputs.kmonad.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
         {
           imports = [ ../hosts/${hostName} ];

@@ -1,5 +1,4 @@
 { config, lib, pkgs }:
-with lib;
 let
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   colors = config.colorScheme.colors;
@@ -26,13 +25,9 @@ in
     # blurls=gtk-layer-shell
 
     input {
-      kb_layout=us,se
-      ${
-        if (config.networking.hostName == "neon") then
-          "kb_options=grp:shift_toggle,caps:swapescape"
-        else
-          "kb_options=grp:shift_toggle"
-      }
+      kb_layout=us,us,se
+      kb_variant=,colemak,
+      kb_options=grp:shift_toggle
 
       repeat_rate=50
       repeat_delay=225
@@ -156,13 +151,13 @@ in
     bind=SUPER,D,exec,wofi --show drun -I
     bind=SUPER,X,exec,wlogout -p layer-shell
     bind=SUPER,N,exec,${config.modules.editors.mainEditor}
-    bind=SUPER,B,exec,firefox
+    bind=SUPER,B,exec,brave
     bind=SUPER,E,exec,${terminalCmd} -1 ranger
     bind=SUPER,S,exec,spotify
     bind=SUPER,Y,exec,freetube
 
     # Second layer.
-    bind=SUPERSHIFT,B,exec,brave
+    bind=SUPERSHIFT,B,exec,firefox
     bind=SUPERSHIFT,Q,exec,${terminalCmd} -1 hx ~/.config/NixOS
 
     bind=SUPER,W,killactive,

@@ -38,7 +38,21 @@ in
   };
 
   # General settings.
-  services.tlp.enable = true;
+  services = {
+    tlp.enable = true;
+
+    kmonad = {
+      enable = true;
+      keyboards.default = {
+        device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
+        defcfg = {
+          enable = true;
+          fallthrough = true;
+        };
+        config = builtins.readFile ../../config/kmonad/config.kbd;
+      };
+    };
+  };
 
   # Home-manager settings.
   hm = {

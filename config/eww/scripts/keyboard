@@ -5,6 +5,8 @@ socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | s
   while read -r language; do
     if [ "$language" = "English (US)" ]; then
       echo "$icon en";
+    elif [ "$language" = "English (Colemak)" ]; then
+      echo "$icon cm";
     elif [ "$language" = "Swedish" ]; then
       echo "$icon sv";
     fi

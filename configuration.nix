@@ -70,8 +70,15 @@
   users.users.${config.user.name} = {
     isNormalUser = true;
     description = "${config.user.name}";
-    extraGroups =
-      [ "networkmanager" "wheel" "input" "audio" "adbusers" "libvirtd" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "input"
+      "uinput"
+      "audio"
+      "adbusers"
+      "libvirtd"
+    ];
   };
 
   # Enable automatic login for the user.
