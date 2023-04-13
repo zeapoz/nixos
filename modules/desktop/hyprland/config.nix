@@ -157,7 +157,7 @@ in
     bind=SUPER,Y,exec,freetube
 
     # Second layer.
-    bind=SUPERSHIFT,B,exec,firefox
+    bind=SUPERSHIFT,B,exec,librewolf
     bind=SUPERSHIFT,Q,exec,${terminalCmd} -1 hx ~/.config/NixOS
 
     bind=SUPER,W,killactive,
