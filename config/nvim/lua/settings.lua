@@ -2,7 +2,7 @@ local o = vim.o
 
 -- Theme.
 o.termguicolors = true
-vim.cmd [[ colorscheme gruvbox-material ]]
+vim.cmd [[ colorscheme onedark ]]
 
 -- General settings.
 o.number = true
@@ -12,6 +12,7 @@ o.cursorline = true
 o.hlsearch = false
 o.cmdheight = 0
 o.mouse = 'a'
+o.timeoutlen = 0
 
 -- Tab settings.
 o.tabstop = 4
@@ -28,10 +29,14 @@ vim.api.nvim_set_var('neovide_transparency', 0.9)
 -- Use system clipboard.
 o.clipboard = 'unnamed,unnamedplus'
 
--- Per file type indentation.
+-- Autocommands.
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Per file type indentation.
 autocmd('Filetype', {
   pattern = { 'nix', 'lua', 'json', 'yaml' },
   command = 'setlocal tabstop=2 shiftwidth=2',
 })
+
+-- Format on save.
+vim.cmd [[ autocmd BufWritePre * lua vim.lsp.buf.format() ]]

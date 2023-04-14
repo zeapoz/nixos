@@ -18,5 +18,5 @@ map('n', '<space>n', '<Plug>(cokeline-switch-next)', { silent = true })
 
 for i = 1, 9 do
   map('n', ('<F%s>'):format(i), ('<Plug>(cokeline-focus-%s)'):format(i), { silent = true })
-  map('n', ('<leader>%s'):format(i), ('<Plug>(cokeline-switch-%s)'):format(i), { silent = true })
+  map('n', ('<space>%s'):format(i), ('<Plug>(cokeline-switch-%s)'):format(i), { silent = true })
 end

@@ -19,5 +19,9 @@ require('project_nvim').setup {
   show_hidden = true,
 }
 require('gitsigns').setup()
-require('Comment').setup()
+require('Comment').setup {
+  toggler = {
+    line = '<C-c>',
+  }
+}
 require('neogit').setup()

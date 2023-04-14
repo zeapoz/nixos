@@ -21,6 +21,7 @@ cmp.setup {
       ellipsis_char = '...',
     }),
   },
+
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -45,7 +46,6 @@ cmp.setup {
         fallback()
       end
     end, { "i", "s" }),
-
     ["<S-Tab>"] = cmp.mapping(function()
       if luasnip.jumpable(-1) then
         luasnip.jump(-1)
@@ -53,13 +53,11 @@ cmp.setup {
         cmp.select_prev_item()
       end
     end, { "i", "s" }),
-
     ["<C-j>"] = cmp.mapping(function()
       if cmp.visible() then
         cmp.select_next_item()
       end
     end, { "i", "s" }),
-
     ["<C-k>"] = cmp.mapping(function()
       if cmp.visible() then
         cmp.select_prev_item()

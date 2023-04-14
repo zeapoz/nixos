@@ -47,6 +47,7 @@ in {
               tree-sitter-godot-resource
             ]))
           nvim-web-devicons
+          onedark-nvim
           plenary-nvim
           project-nvim
           telescope-nvim

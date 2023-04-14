@@ -14,19 +14,16 @@ local components = {
     text = ' ',
     truncation = { priority = 1 }
   },
-
   two_spaces = {
     text = '  ',
     truncation = { priority = 1 },
   },
-
   separator = {
     text = function(buffer)
       return buffer.index ~= 1 and '▏' or ''
     end,
     truncation = { priority = 1 }
   },
-
   devicon = {
     text = function(buffer)
       return (mappings.is_picking_focus() or mappings.is_picking_close())
@@ -45,7 +42,6 @@ local components = {
     end,
     truncation = { priority = 1 }
   },
-
   unique_prefix = {
     text = function(buffer)
       return buffer.unique_prefix
@@ -57,7 +53,6 @@ local components = {
       direction = 'left',
     },
   },
-
   filename = {
     text = function(buffer)
       return buffer.filename
@@ -74,7 +69,6 @@ local components = {
       direction = 'left',
     },
   },
-
   diagnostics = {
     text = function(buffer)
       return (buffer.diagnostics.errors ~= 0 and '  ' .. buffer.diagnostics.errors)
@@ -88,7 +82,6 @@ local components = {
     end,
     truncation = { priority = 1 },
   },
-
   close_or_unsaved = {
     text = function(buffer)
       return buffer.is_modified and '●' or ''
@@ -103,15 +96,12 @@ local components = {
 
 require('cokeline').setup({
   show_if_buffers_are_at_least = 2,
-
   buffers = {
     new_buffers_position = 'next',
   },
-
   rendering = {
     max_buffer_width = 30,
   },
-
   default_hl = {
     fg = function(buffer)
       return buffer.is_focused
@@ -120,7 +110,6 @@ require('cokeline').setup({
     end,
     bg = get_hex('NONE'),
   },
-
   sidebar = {
     filetype = 'neo-tree',
     components = {
@@ -132,7 +121,6 @@ require('cokeline').setup({
       },
     }
   },
-
   components = {
     components.space,
     components.separator,
