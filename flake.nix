@@ -7,9 +7,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    hyprland.url = "github:hyprwm/Hyprland";
     kmonad.url = "github:kmonad/kmonad?dir=nix";
     nix-colors.url = "github:misterio77/nix-colors";
   };
