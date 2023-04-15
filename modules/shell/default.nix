@@ -100,6 +100,20 @@ in {
           git = true;
           icons = true;
         };
+
+        wezterm = {
+          enable = true;
+          extraConfig = ''
+            return {
+              font = wezterm.font("FiraCode Nerd Font"),
+              font_size = 14.0,
+              color_scheme = "OneDark (base16)",
+              window_background_opacity = 0.9,
+              hide_tab_bar_if_only_one_tab = true,
+              window_close_confirmation = "NeverPrompt", 
+            }
+          '';
+        };
       };
     };
   };

@@ -3,7 +3,7 @@ let
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   colors = config.colorScheme.colors;
 
-  terminalCmd = "kitty -1";
+  terminalCmd = "wezterm";
   layout = "master";
 in
 {
@@ -154,13 +154,13 @@ in
     bind=SUPER,X,exec,wlogout -p layer-shell
     bind=SUPER,N,exec,${config.modules.editors.mainEditor}
     bind=SUPER,B,exec,brave
-    bind=SUPER,E,exec,${terminalCmd} -1 ranger
+    bind=SUPER,E,exec,${terminalCmd} -e ranger
     bind=SUPER,S,exec,spotify
     bind=SUPER,Y,exec,freetube
 
     # Second layer.
     bind=SUPERSHIFT,B,exec,librewolf
-    bind=SUPERSHIFT,Q,exec,${terminalCmd} -1 hx ~/.config/NixOS
+    bind=SUPERSHIFT,Q,exec,${terminalCmd} -e hx ~/.config/NixOS
 
     bind=SUPER,W,killactive,
     bind=SUPERSHIFT,E,exit,
