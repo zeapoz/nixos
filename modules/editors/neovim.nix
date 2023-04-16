@@ -9,7 +9,7 @@ in {
 
   config = mkIf cfg.enable {
     hm = {
-      packages = with pkgs; [ neovim-nightly (mkIf (!cfg.disableGui) neovide) ];
+      packages = [ (mkIf (!cfg.disableGui) pkgs.neovide) ];
 
       programs.neovim = {
         enable = true;
@@ -40,11 +40,10 @@ in {
           nvim-surround
           (nvim-treesitter.withPlugins (plugins:
             with plugins; [
-              tree-sitter-nix
-              tree-sitter-lua
-              tree-sitter-rust
-              tree-sitter-zig
-              tree-sitter-godot-resource
+              nix
+              lua
+              rust
+              zig
             ]))
           nvim-web-devicons
           onedark-nvim

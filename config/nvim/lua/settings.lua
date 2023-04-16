@@ -4,6 +4,16 @@ local o = vim.o
 o.termguicolors = true
 vim.cmd [[ colorscheme onedark ]]
 
+-- Set transparent backgrounds.
+vim.cmd [[ hi Normal guibg=none ctermbg=none ]]
+vim.cmd [[ hi LineNr guibg=none ctermbg=none ]]
+vim.cmd [[ hi Folded guibg=none ctermbg=none ]]
+vim.cmd [[ hi NonText guibg=none ctermbg=none ]]
+vim.cmd [[ hi SpecialKey guibg=none ctermbg=none ]]
+vim.cmd [[ hi VertSplit guibg=none ctermbg=none ]]
+vim.cmd [[ hi SignColumn guibg=none ctermbg=none ]]
+vim.cmd [[ hi EndOfBuffer guibg=none ctermbg=none ]]
+
 -- General settings.
 o.number = true
 o.relativenumber = true

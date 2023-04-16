@@ -34,7 +34,7 @@ in
       repeat_rate=50
       repeat_delay=225
 
-      follow_mouse=1
+      follow_mouse=true
     }
 
     general {

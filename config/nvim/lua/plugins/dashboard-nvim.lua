@@ -20,5 +20,6 @@ require('dashboard').setup {
         key = 'p',
       },
     },
+    packages = { enable = false },
   },
 }
