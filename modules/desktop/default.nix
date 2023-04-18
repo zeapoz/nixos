@@ -17,20 +17,22 @@
       pulseaudio
       signal-desktop
       slack
-      swaylock-effects
     ];
 
-    programs.swaylock.settings = {
-      font = "Fira Sans";
-      font-size = 24;
-      indicator-idle-visible = true;
-      show-keyboard-layout = true;
-      screenshots = true;
-      clock = true;
-      indicator-radius = 100;
-      indicator-thickness = 7;
-      fade-in = 0.2;
-      effect-blur = "7x5";
+    programs.swaylock = {
+      package = pkgs.swaylock-effects;
+      settings = {
+        font = "Fira Sans";
+        font-size = 24;
+        indicator-idle-visible = true;
+        show-keyboard-layout = true;
+        screenshots = true;
+        clock = true;
+        indicator-radius = 100;
+        indicator-thickness = 7;
+        fade-in = 0.2;
+        effect-blur = "7x5";
+      };
     };
 
     services = {
