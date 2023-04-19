@@ -10,8 +10,9 @@ in {
         godot
         nil
         nixpkgs-fmt
+        deadnix
+        statix
         python3
-        rnix-lsp
         rust-analyzer
         rustup
         lua-language-server
