@@ -4,8 +4,8 @@ let
   cfg = config.modules.editors.vscode;
 
   configFile = import ./config.nix { inherit config lib; };
-  userSettings = configFile.userSettings;
-  keybindings = configFile.keybindings;
+  inherit (configFile) userSettings;
+  inherit (configFile) keybindings;
 in {
   options.modules.editors.vscode.enable = mkEnableOption "vscode";
 

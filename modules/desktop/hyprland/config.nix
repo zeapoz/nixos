@@ -1,7 +1,7 @@
 { config, pkgs }:
 let
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
-  colors = config.colorScheme.colors;
+  inherit (config.colorScheme) colors;
 
   terminalCmd = "wezterm";
   layout = "master";

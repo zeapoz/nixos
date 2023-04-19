@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.modules.desktop.waybar;
-  configHome = config.home-manager.users.${config.user.name}.xdg.configHome;
+  inherit (config.home-manager.users.${config.user.name}.xdg) configHome;
 in
 {
   options.modules.desktop.waybar = {

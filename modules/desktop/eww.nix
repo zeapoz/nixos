@@ -125,7 +125,7 @@ in
               (net)
               (volume)
               (keyboard)
-              ${if (config.hardware.hasBattery) then "(battery)" else ""}
+              ${if config.hardware.hasBattery then "(battery)" else ""}
             ))
 
           (defwidget right-box []
@@ -278,7 +278,7 @@ in
 
           .keyboard {
             color: $green;
-            ${if (config.hardware.hasBattery) then "@include margin-right;" else ""}
+            ${if config.hardware.hasBattery then "@include margin-right;" else ""}
           }
 
           .battery-low {

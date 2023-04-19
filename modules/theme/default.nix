@@ -1,9 +1,9 @@
 { inputs, config, lib, pkgs, ... }:
 with lib;
 let
+  inherit (inputs) nix-colors;
+  inherit (config.colorScheme) colors;
   cfg = config.modules.theme;
-  nix-colors = inputs.nix-colors;
-  colors = config.colorScheme.colors;
   theme = "doom-one";
 in
 {

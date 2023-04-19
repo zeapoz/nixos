@@ -4,9 +4,9 @@ let
   cfg = config.modules.desktop.hyprland;
 
   configFile = import ./config.nix { inherit config pkgs; };
-  hyprlandConfig = configFile.hyprlandConfig;
+  inherit (configFile) hyprlandConfig;
   autostartConfig = configFile.autostart;
-  wrappedhl = configFile.wrappedhl;
+  inherit (configFile) wrappedhl;
 in
 {
   imports = [ ../eww.nix ../waybar.nix ../wofi.nix ../wlogout.nix ];

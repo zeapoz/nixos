@@ -66,19 +66,19 @@ in {
           plugins = with pkgs.fishPlugins; [
             {
               name = "tide";
-              src = tide.src;
+              inherit (tide) src;
             }
             {
               name = "forgit";
-              src = forgit.src;
+              inherit (forgit) src;
             }
             {
               name = "pisces";
-              src = pisces.src;
+              inherit (pisces) src;
             }
             {
               name = "fzf-fish";
-              src = fzf-fish.src;
+              inherit (fzf-fish) src;
             }
           ];
         };
