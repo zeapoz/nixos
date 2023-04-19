@@ -1,18 +1,19 @@
 local o = vim.o
+local onedark = require('onedark')
 
 -- Theme.
 o.termguicolors = true
-vim.cmd [[ colorscheme onedark ]]
-
--- Set transparent backgrounds.
-vim.cmd [[ hi Normal guibg=none ctermbg=none ]]
-vim.cmd [[ hi LineNr guibg=none ctermbg=none ]]
-vim.cmd [[ hi Folded guibg=none ctermbg=none ]]
-vim.cmd [[ hi NonText guibg=none ctermbg=none ]]
-vim.cmd [[ hi SpecialKey guibg=none ctermbg=none ]]
-vim.cmd [[ hi VertSplit guibg=none ctermbg=none ]]
-vim.cmd [[ hi SignColumn guibg=none ctermbg=none ]]
-vim.cmd [[ hi EndOfBuffer guibg=none ctermbg=none ]]
+onedark.setup {
+  transparent = true,
+  ending_tildes = true,
+  code_style = {
+    comments = 'none',
+  },
+  lua_line = {
+    transparent = true,
+  },
+}
+onedark.load()
 
 -- General settings.
 o.number = true
@@ -23,14 +24,20 @@ o.hlsearch = false
 o.cmdheight = 0
 o.mouse = 'a'
 o.timeoutlen = 0
+o.scrolloff = 8
 
--- Tab settings.
+o.ignorecase = true
+o.smartcase = true
+
+-- Indent settings.
 o.tabstop = 4
 o.shiftwidth = 4
 o.softtabstop = 0
 o.expandtab = true
 o.autoindent = true
 o.smartindent = true
+o.breakindent = true
+o.showbreak = '󱞩 '
 
 -- Gui settings.
 o.guifont = 'FiraCode Nerd Font:h14'
@@ -46,6 +53,15 @@ local autocmd = vim.api.nvim_create_autocmd
 autocmd('Filetype', {
   pattern = { 'nix', 'lua', 'json', 'yaml' },
   command = 'setlocal tabstop=2 shiftwidth=2',
+})
+
+-- Highlight on yank
+autocmd('TextYankPost', {
+  group = vim.api.nvim_create_augroup('highlight_yank', {}),
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 200 }
+  end,
 })
 
 -- Format on save.

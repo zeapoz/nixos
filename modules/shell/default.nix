@@ -13,6 +13,7 @@ in {
         fd
         fzf
         killall
+        lazygit
         neofetch
         ripgrep
         xdotool
