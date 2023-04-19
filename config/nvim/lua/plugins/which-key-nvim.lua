@@ -51,6 +51,10 @@ wk.register({
     name = 'Rename',
     n = 'LSP Rename',
   },
+  t = {
+    name = 'Toggle',
+    w = { 'Toggle Word Wrap' },
+  },
   w = {
     name = 'Workspaces',
     a = { 'Add Workspace Folder' },
