@@ -1,6 +1,6 @@
 { inputs, ... }:
 
-inputs.nixpkgs.lib.extend (final: prev: {
+inputs.nixpkgs.lib.extend (_final: prev: {
   mkOpt = type: default: prev.mkOption { inherit type default; };
 
   mkBoolOpt = default:

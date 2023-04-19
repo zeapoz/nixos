@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ ... }:
 let
   mainDesktop = "hyprland";
   mainEditor = "codium";

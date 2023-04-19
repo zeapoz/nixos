@@ -3,7 +3,7 @@ with lib;
 let
   cfg = config.modules.desktop.hyprland;
 
-  configFile = import ./config.nix { inherit config lib pkgs; };
+  configFile = import ./config.nix { inherit config pkgs; };
   hyprlandConfig = configFile.hyprlandConfig;
   autostartConfig = configFile.autostart;
   wrappedhl = configFile.wrappedhl;

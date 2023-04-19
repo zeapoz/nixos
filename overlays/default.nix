@@ -1,7 +1,7 @@
 { inputs }:
 
 [
-  (final: prev: {
+  (_final: prev: {
     spotifyd = prev.spotifyd.override { withMpris = true; };
 
     discord = prev.discord.override {

@@ -1,4 +1,4 @@
-{ config, lib, pkgs }:
+{ config, pkgs }:
 let
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   colors = config.colorScheme.colors;
