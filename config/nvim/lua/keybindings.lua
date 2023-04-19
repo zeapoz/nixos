@@ -1,12 +1,21 @@
 local map = vim.keymap.set
 
+-- Better up/down movement.
+map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+
 -- Move text up and down.
 map('n', '<A-j>', ":m .+1<CR>==")
 map('n', '<A-k>', ":m .-2<CR>==")
+map('i', '<A-j>', "<Esc>:m .+1<CR>==gi")
+map('i', '<A-k>', "<Esc>:m .-2<CR>==gi")
 map('v', '<A-j>', ":m '>+1<CR>gv=gv")
 map('v', '<A-k>', ":m '<-2<CR>gv=gv")
 
--- Stay in indent mode.
+-- Clear search with <Esc>
+map({ 'i', 'n' }, "<Esc>", "<Cmd>noh<CR><Esc>")
+
+-- Stay in visual mode when indenting.
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
