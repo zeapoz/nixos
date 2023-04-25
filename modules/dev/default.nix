@@ -11,14 +11,16 @@ in {
         nil
         nixpkgs-fmt
         deadnix
+        shfmt
         statix
+        stylua
         python3
         rust-analyzer
-        rustup
         lua-language-server
         zig
-        nodePackages.bash-language-server
-      ];
+      ] ++ (with nodePackages; [
+        bash-language-server
+      ]);
 
       programs = {
         direnv = {

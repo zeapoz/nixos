@@ -5,6 +5,7 @@ in {
   options.modules.editors.neovim = {
     enable = mkEnableOption "neovim";
     disableGui = mkBoolOpt false;
+    configRepo = mkStrOpt "https://github.com/zeapoz/nvim";
   };
 
   config = mkIf cfg.enable {
@@ -14,50 +15,30 @@ in {
       programs.neovim = {
         enable = true;
         package = pkgs.neovim-nightly;
-        plugins = with pkgs.vimPlugins; [
-          auto-pairs
-          bufferline-nvim
-          cmp-buffer
-          cmp-cmdline
-          cmp-nvim-lsp
-          cmp-nvim-lsp-signature-help
-          cmp-path
-          cmp_luasnip
-          comment-nvim
-          dashboard-nvim
-          friendly-snippets
-          gitsigns-nvim
-          gruvbox-material
-          indent-blankline-nvim
-          lspkind-nvim
-          lualine-nvim
-          luasnip
-          neogit
-          neo-tree-nvim
-          nvim-cokeline
-          nvim-cmp
-          nvim-lspconfig
-          nvim-surround
-          (nvim-treesitter.withPlugins (plugins:
-            with plugins; [
-              nix
-              lua
-              rust
-              zig
-            ]))
-          nvim-web-devicons
-          onedark-nvim
-          plenary-nvim
-          project-nvim
-          telescope-nvim
-          toggleterm-nvim
-          which-key-nvim
-        ];
+        # withNodeJs = true;
+        # plugins = with pkgs.vimPlugins; [
+        #   (nvim-treesitter.withPlugins (plugins:
+        #     with plugins; [
+        #       nix
+        #       lua
+        #       rust
+        #       zig
+        #       markdown
+        #       markdown-inline
+        #       yaml
+        #       toml
+        #       json
+        #       bash
+        #     ]))
+        # ];
       };
 
-      configFile."nvim" = {
-        source = ../../config/nvim;
-        recursive = true;
+      user.home.activation = {
+        installNvimConfig = ''
+          if [ ! -d "$HOME/.config/nvim" ]; then
+             git clone "${cfg.configRepo}" "$HOME/.config/nvim"
+          fi
+        '';
       };
     };
   };

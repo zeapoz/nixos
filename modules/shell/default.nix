@@ -41,6 +41,8 @@ in {
             gp = "git pull";
             gf = "git fetch";
 
+            lg = "lazygit";
+
             v = if config.modules.editors.neovim.enable then "nvim" else "vim";
             r = "ranger";
             cat = "bat --theme ansi";
@@ -56,10 +58,10 @@ in {
           };
           shellInit = ''
             set fish_greeting
-            ${if config.modules.editors.helix.enable then
-              "set -gx EDITOR hx"
-            else if config.modules.editors.neovim.enable then
+            ${if config.modules.editors.neovim.enable then
               "set -gx EDITOR nvim"
+            else if config.modules.editors.helix.enable then
+              "set -gx EDITOR hx"
             else
               "set -gx EDITOR vim"}
           '';
@@ -107,7 +109,7 @@ in {
           extraConfig = ''
             return {
               font = wezterm.font("FiraCode Nerd Font"),
-              font_size = 14.0,
+              font_size = ${if (config.networking.hostName == "neon") then "14.0" else "12.0"},
               color_scheme = "OneDark (base16)",
               window_background_opacity = 0.9,
               hide_tab_bar_if_only_one_tab = true,
