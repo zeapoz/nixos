@@ -31,19 +31,19 @@ in
             (box :class "disk" :space-evenly false
               (label :text " ''${round(EWW_DISK["/"].used_perc, 0)}%")))
 
-          (deflisten workspace "scripts/workspaces")          
+          (deflisten workspace "scripts/workspaces")
           (defwidget workspaces []
             (eventbox
-          		:onscroll "echo {} | sed -e \"s/up/-1/g\" -e \"s/down/+1/g\" | xargs hyprctl dispatch workspace"
-          		(box
-          			:class "module workspaces"
-          			:spacing 5
-          		  (for ws in workspace
-          		    (button
-          					:onclick "hyprctl dispatch workspace ''${ws.number}"
-          					:class "workspace icon ''${ws.class}"
-          					; :tooltip {ws.tooltip}
-          					"")))))
+              :onscroll "echo {} | sed -e \"s/up/-1/g\" -e \"s/down/+1/g\" | xargs hyprctl dispatch workspace"
+              (box
+                :class "workspaces"
+                :spacing 5
+                (for ws in workspace
+                  (button
+                    :onclick "hyprctl dispatch workspace ''${ws.number}"
+                    :class "workspace icon ''${ws.class}"
+                    ; :tooltip {ws.tooltip}
+                    "")))))
 
           (deflisten window :initial "::" "scripts/get-window-title")
           (defwidget window_w []
@@ -88,12 +88,11 @@ in
 
           (defwidget power []
             (eventbox :onclick "wlogout -p layer-shell &"
-              (box :class "power module"
+              (box :class "power"
                 (label :text ""))))
 
           (defwidget left []
-            (box :class "module"
-                 :space-evenly false
+            (box :space-evenly false
               (clock)
               (kernel)
             ))
@@ -106,21 +105,19 @@ in
             ))
 
           (defwidget center []
-            (box :class "module"
-                 :space-evenly false
+            (box :space-evenly false
                  :halign "center"
               (window_w)))
 
           (defwidget system []
-            (box :class "module"
-                 :space-evenly false
+            (box :space-evenly false
               (cpu)
               (ram)
               (disk)
             ))
 
           (defwidget right []
-            (box :class "module right"
+            (box :class "right"
                  :space-evenly false
               (net)
               (volume)
@@ -137,7 +134,7 @@ in
             ))
 
           (defwidget bar-box []
-            (centerbox
+            (centerbox :class "bar"
               (left-box)
               (center)
               (right-box)))
@@ -147,6 +144,7 @@ in
             :geometry (geometry 
               :x "0%"
               :width "100%"
+              :height "3%";
               :anchor "top center")
             :stacking "fg"
             :exclusive true
@@ -158,6 +156,7 @@ in
             :geometry (geometry 
               :x "0%"
               :width "100%"
+              :height "3%";
               :anchor "top center")
             :stacking "fg"
             :exclusive true
@@ -190,6 +189,10 @@ in
             margin-right: 20px;
           }
 
+          @mixin margin-left {
+            margin-left: 20px;
+          }
+
           @mixin workspace ($color) {
             &.workspace-focused {
               color: $color;
@@ -208,12 +211,9 @@ in
             transition: 200ms ease;
           }
 
-          .module {
+          .bar {
             color: $fg;
-            background-color: $bg;
-            border-radius: 10px;
-            padding: 4px 12px;
-            margin: 10px 10px 2px 10px;
+            background-color: transparentize($bg, 0.6);
             box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
           }
 
@@ -223,6 +223,7 @@ in
 
           .clock {
             color: $blue;
+            @include margin-left;
           }
 
           .cpu {
@@ -237,10 +238,7 @@ in
 
           .disk {
             color: $purple;
-          }
-
-          .workspaces {
-            margin-left: -2px;
+            @include margin-right;
           }
 
           .workspace {
@@ -248,27 +246,21 @@ in
             padding: 4px 8px;
           }
 
-          .monitor-0 {
-            @include workspace ($lightRed);
-          }
-          .monitor-1 {
-            @include workspace ($yellow);
-          }
-          .monitor-2 {
-            @include workspace ($blue);
-          }
-          .monitor-3 {
-            @include workspace ($green);
-          }
+          .monitor-0 { @include workspace ($lightRed); }
+          .monitor-1 { @include workspace ($yellow); }
+          .monitor-2 { @include workspace ($blue); }
+          .monitor-3 { @include workspace ($green); }
 
           .kernel {
             color: $purple;
-            margin-left: 20px;
+            margin-right: 16px;
+            @include margin-left;
           }
 
           .net {
             color: $blue;
-            margin: 0 20px 4px 0;
+            @include margin-right;
+            margin-bottom: 2px;
           }
 
           .volume {
@@ -278,7 +270,12 @@ in
 
           .keyboard {
             color: $green;
-            ${if config.hardware.hasBattery then "@include margin-right;" else ""}
+            @include margin-right;
+          }
+
+          .battery {
+            @include margin-right;
+            padding-top: 4px;
           }
 
           .battery-low {
@@ -289,27 +286,12 @@ in
             color: $lightRed;
           }
 
-          .right {
-            margin-left: -2px;
-          }
-
           .power {
             color: $purple;
-            margin-left: -2px;
+            @include margin-right;
           }
         '';
       };
     };
   };
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -22,7 +22,7 @@ in
     }
 
     blurls=wofi
-    # blurls=gtk-layer-shell
+    blurls=gtk-layer-shell
 
     ${if (config.networking.hostName == "helium") then "workspace=HDMI-A-2,6" else ""}
 
@@ -120,6 +120,7 @@ in
       ''
     else if (layout == "master") then ''
       master {
+        mfact=0.6
         new_is_master=false
         new_on_top=true
       }
