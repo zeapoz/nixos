@@ -2,9 +2,12 @@
 with lib;
 let cfg = config.modules.shell;
 in {
+  imports = [ ./tmux.nix ];
+
   options.modules.shell.enable = mkEnableOption "shell";
 
   config = mkIf cfg.enable {
+    modules.shell.tmux.enable = true;
     programs.fish.enable = true;
 
     hm = {
@@ -87,33 +90,6 @@ in {
             {
               name = "fzf-fish";
               inherit (fzf-fish) src;
-            }
-          ];
-        };
-
-        tmux = {
-          enable = true;
-          baseIndex = 1;
-          clock24 = true;
-          disableConfirmationPrompt = true;
-          escapeTime = 0;
-          mouse = true;
-          prefix = "C-a";
-          extraConfig = ''
-            # Use correct colors.
-            set-option -sa terminal-overrides ",xterm*:Tc"
-
-            # Open panes in current directory.
-            bind '"' split-window -v -c "#{pane_current_path}"
-            bind % split-window -h -c "#{pane_current_path}"
-            bind c new-window -c "#{pane_current_path}"
-          '';
-          plugins = with pkgs.tmuxPlugins; [
-            {
-              plugin = onedark-theme;
-            }
-            {
-              plugin = sensible;
             }
           ];
         };
