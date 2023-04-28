@@ -1,13 +1,65 @@
 #!/usr/bin/env bash
-while true; do
-  status=$(nmcli -f state g| tail -1)
-  icon=""
 
-  if [ "$status" = "disconnected " ]; then
+# Script to listen for networkmanager updates and return an appriopriate icon and tooltip.
+# This script runs until it's manually terminated.
+
+# Requires: NetworkManager, gawk
+# Usage: networkmanager
+
+# get initialize network device info and states
+nm="$(nmcli d | jc --nmcli | jaq -r '.[] | select(.type | test("^(wifi|ethernet)$", "ix"))')"
+
+function toggle() {
+  status=$(rfkill -J | jaq -r '.rfkilldevices[] | select(.type == "wlan") | .soft' | head -1)
+
+  if [ "$status" = "unblocked" ]; then
+    rfkill block wlan
+  else
+    rfkill unblock wlan
+  fi
+}
+
+function gen_wifi() {
+  icon=""
+  color="#cba6f7"
+  class="net-connected"
+  name=$(echo "$nm" | jaq -r 'select(.type == "wifi") .connection')
+}
+
+function gen_ethernet() {
+  icon=""
+  class="net-connected"
+  color="#cba6f7"
+  name=$(echo "$nm" | jaq -r 'select(.type == "ethernet") .connection')
+}
+
+function make_content() {
+  local ethernet wifi
+  ethernet=$(echo "$nm" | jaq -r 'select(.type == "ethernet") .state')
+  wifi=$(echo "$nm" | jaq -r 'select(.type == "wifi") .state')
+
+  # test ethernet first
+  if [[ $ethernet == "connected" ]]; then
+    gen_ethernet
+  elif [[ $wifi == "connected" ]]; then
+    gen_wifi
+  else
     icon=""
+    color="#988ba2"
+    class="net-disconnected"
+    name="Disconnected"
   fi
 
-  echo '{ "essid": "'"$essid"'", "icon": "'"$icon"'" }'
+  jaq --null-input -r -c \
+    --arg icon "$icon" \
+    --arg name "$name" \
+    --arg color "$color" \
+    --arg class "$class" \
+    '{"icon": $icon, "name": $name, "color": $color, "class": $class}'
+}
 
-  sleep 3
+# first run
+make_content
+nmcli monitor | while read -r _; do
+  make_content
 done

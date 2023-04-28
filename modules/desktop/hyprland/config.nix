@@ -130,8 +130,8 @@ in
 
       bind=SUPER,h,resizeactive,-100 0
       bind=SUPER,l,resizeactive,100 0
-      bind=SUPERSHIFT,l,layoutmsg,removemaster
       bind=SUPERSHIFT,h,layoutmsg,addmaster
+      bind=SUPERSHIFT,l,layoutmsg,removemaster
 
       bind=SUPERSHIFT,J,layoutmsg,swapnext
       bind=SUPERSHIFT,K,layoutmsg,swapprev

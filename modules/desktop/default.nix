@@ -17,6 +17,7 @@
       pulseaudio
       signal-desktop
       slack
+      xdg-utils
     ];
 
     programs.swaylock = {
@@ -66,7 +67,10 @@
     file-roller.enable = true;
   };
 
-  xdg.portal.wlr.enable = true;
+  xdg.portal = {
+    wlr.enable = true;
+    xdgOpenUsePortal = true;
+  };
 
   # https://github.com/nix-community/home-manager/issues/1288
   security.pam.services.swaylock = { };

@@ -8,7 +8,10 @@ in
 
   config = mkIf cfg.enable {
     hm = {
-      packages = with pkgs; [ eww-wayland ];
+      packages = with pkgs; [
+        eww-wayland
+        jc
+      ];
 
       configFile = {
         "eww/scripts".source = ../../config/eww/scripts;

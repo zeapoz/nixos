@@ -15,22 +15,7 @@ in {
       programs.neovim = {
         enable = true;
         package = pkgs.neovim-nightly;
-        # withNodeJs = true;
-        # plugins = with pkgs.vimPlugins; [
-        #   (nvim-treesitter.withPlugins (plugins:
-        #     with plugins; [
-        #       nix
-        #       lua
-        #       rust
-        #       zig
-        #       markdown
-        #       markdown-inline
-        #       yaml
-        #       toml
-        #       json
-        #       bash
-        #     ]))
-        # ];
+        withNodeJs = true;
       };
 
       user.home.activation = {
