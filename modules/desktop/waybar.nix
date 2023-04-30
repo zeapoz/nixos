@@ -38,7 +38,7 @@ in
             "pulseaudio"
             (mkIf (cfg.mainDesktop == "hyprland") "hyprland/language")
             "keyboard-state"
-            (mkIf cfg.options.hardware.hasBattery "battery")
+            (mkIf config.hardware.hasBattery "battery")
             "tray"
             "custom/power"
           ];
@@ -46,7 +46,6 @@ in
           "wlr/workspaces" = mkIf (cfg.mainDesktop == "hyprland") {
             on-scroll-up = "hyprctl dispatch workspace e+1";
             on-scroll-down = "hyprctl dispatch workspace e-1";
-            all-outputs = true;
             on-click = "activate";
             format = "{icon}";
             format-icons = {
@@ -55,6 +54,14 @@ in
               "urgent" = "";
             };
             sort-by-number = true;
+            persistent_workspaces = {
+              "1" = [ ];
+              "2" = [ ];
+              "3" = [ ];
+              "4" = [ ];
+              "5" = [ ];
+              "6" = [ ];
+            };
           };
           "river/tags" = mkIf (cfg.mainDesktop == "river") {
             num-tags = 4;
@@ -126,7 +133,7 @@ in
             "format-en" = " en";
             "format-sv" = " sv";
           };
-          "battery" = mkIf cfg.enableBatteryModule {
+          "battery" = mkIf config.hardware.hasBattery {
             interval = 60;
             states = {
               warning = 20;

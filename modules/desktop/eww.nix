@@ -45,7 +45,6 @@ in
                   (button
                     :onclick "hyprctl dispatch workspace ''${ws.number}"
                     :class "workspace icon ''${ws.class}"
-                    ; :tooltip {ws.tooltip}
                     "")))))
 
           (deflisten window :initial "::" "scripts/get-window-title")
@@ -104,13 +103,13 @@ in
             (box :space-evenly false
                  :halign "start"
               (left)
-              (workspaces)
+              (window_w)
             ))
 
           (defwidget center []
             (box :space-evenly false
                  :halign "center"
-              (window_w)))
+              (workspaces)))
 
           (defwidget system []
             (box :space-evenly false
@@ -211,7 +210,6 @@ in
             font-family: "FiraCode", "Font Awesome 6 Free";
             font-weight: bold;
             font-size: 14px;
-            transition: 200ms ease;
           }
 
           .bar {
