@@ -130,6 +130,21 @@ in
 
       bind=SUPER,h,resizeactive,-100 0
       bind=SUPER,l,resizeactive,100 0
+
+      # Resize submap.
+      bind=SUPER,R,submap,resize
+      submap=resize
+
+      binde=,h,resizeactive,-100 0
+      binde=,j,resizeactive,0 100
+      binde=,k,resizeactive,0 -100
+      binde=,l,resizeactive,100 0
+
+      bind=,escape,submap,reset
+      bind=,RETURN,submap,reset
+      bind=SUPER,R,submap,reset
+      submap=reset
+
       bind=SUPERSHIFT,h,layoutmsg,addmaster
       bind=SUPERSHIFT,l,layoutmsg,removemaster
 
@@ -247,8 +262,6 @@ in
   '';
 
   wrappedhl = pkgs.writeShellScriptBin "wrappedhl" ''
-    #!/bin/sh
-
     cd ~
 
     # Log WLR errors and logs to the hyprland log. Recommended
