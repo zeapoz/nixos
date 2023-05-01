@@ -2,25 +2,17 @@
 with lib;
 let cfg = config.modules.dev;
 in {
+  imports = [ ./rust.nix ./nix.nix ./shell.nix ./web.nix ];
+
   options.modules.dev.enable = mkEnableOption "development";
 
   config = mkIf cfg.enable {
     hm = {
       packages = with pkgs; [
         godot
-        nil
-        nixpkgs-fmt
-        deadnix
-        shfmt
-        statix
-        stylua
         python3
-        rust-analyzer
-        lua-language-server
         zig
-      ] ++ (with nodePackages; [
-        bash-language-server
-      ]);
+      ];
 
       programs = {
         direnv = {
