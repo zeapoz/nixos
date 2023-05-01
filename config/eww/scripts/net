@@ -9,13 +9,11 @@
 # get initialize network device info and states
 nm="$(nmcli d | jc --nmcli | jaq -r '.[] | select(.type | test("^(wifi|ethernet)$", "ix"))')"
 
-function toggle() {
-  status=$(rfkill -J | jaq -r '.rfkilldevices[] | select(.type == "wlan") | .soft' | head -1)
-
-  if [ "$status" = "unblocked" ]; then
-    rfkill block wlan
+function get_vpn() {
+  if nmcli con show --active | rg -q "wg-mullvad"; then
+    vpn=""
   else
-    rfkill unblock wlan
+    vpn=""
   fi
 }
 
@@ -49,13 +47,16 @@ function make_content() {
     class="net-disconnected"
     name="Disconnected"
   fi
+  # check if connected to vpn
+  get_vpn
 
   jaq --null-input -r -c \
     --arg icon "$icon" \
     --arg name "$name" \
     --arg color "$color" \
     --arg class "$class" \
-    '{"icon": $icon, "name": $name, "color": $color, "class": $class}'
+    --arg vpn "$vpn" \
+    '{"icon": $icon, "name": $name, "color": $color, "class": $class, "vpn": $vpn}'
 }
 
 # first run

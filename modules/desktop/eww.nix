@@ -7,14 +7,15 @@ in
   options.modules.desktop.eww.enable = mkEnableOption "eww";
 
   config = mkIf cfg.enable {
-    hm = {
+    hm = { config, ... }: {
       packages = with pkgs; [
         eww-wayland
+        jaq
         jc
       ];
 
       configFile = {
-        "eww/scripts".source = ../../config/eww/scripts;
+        "eww/scripts".source = config.lib.file.mkOutOfStoreSymlink ../../config/eww/scripts;
 
         "eww/eww.yuck".text = ''
           (defpoll time :interval "1s" `date +'{"date": "%b %d", "hour": "%H", "minute": "%M", "day": "%a"}'`)
@@ -62,8 +63,9 @@ in
           (deflisten net "scripts/net")
           (defwidget net []
             (button :class "net"
-              :onclick "scripts/net toggle &"
-              {net.icon}))
+              :onclick "mullvad-gui"
+              :timeout "2s"
+              "''${net.icon} ''${net.vpn}"))
 
           (deflisten volume "scripts/volume")
           (defwidget volume []
