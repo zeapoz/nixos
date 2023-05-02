@@ -140,6 +140,11 @@ in
       binde=,k,resizeactive,0 -100
       binde=,l,resizeactive,100 0
 
+      binde=,left,moveactive,-100 0
+      binde=,down,moveactive,0 100
+      binde=,up,moveactive,0 -100
+      binde=,right,moveactive,100 0
+
       bind=,escape,submap,reset
       bind=,RETURN,submap,reset
       bind=SUPER,R,submap,reset

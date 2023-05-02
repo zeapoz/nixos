@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+
+volicons=("" "" "")
+
+function vol() {
+  wpctl get-volume @DEFAULT_"$1"@ | awk '{print int($2*100)}'
+}
+
+function is_muted() {
+  wpctl get-volume @DEFAULT_"$1"@ | rg -qi muted
+}
+
+function set_vol() {
+  wpctl set-volume @DEFAULT_"$1"@ "$(awk -v n="$2" 'BEGIN{print (n / 100)}')"
+}
+
+function set_mute() {
+  wpctl set-mute @DEFAULT_"$1"@ toggle
+}
+
+function get_sink() {
+  sink_vol=$(vol "SINK")
+  if is_muted "SINK"; then
+    sink_icon=""
+  else
+    lvl=$(awk -v n="$sink_vol" 'BEGIN{print int(n/34)}')
+    sink_icon="${volicons[$lvl]}"
+  fi
+}
+
+function get_source() {
+  source_vol=$(vol "SOURCE")
+  if is_muted "SOURCE"; then
+    source_icon=""
+  else
+    source_icon=""
+  fi
+}
+
+function gen_output() {
+  if [[ "$event" == *source* ]]; then
+    get_source
+  else
+    get_sink
+  fi
+  jaq --null-input -r -c \
+    --arg sink_icon "$sink_icon" \
+    --arg sink_vol "$sink_vol" \
+    --arg source_icon "$source_icon" \
+    --arg source_vol "$source_vol" \
+    '{"sink_icon": $sink_icon, "sink_vol": $sink_vol, "source_icon": $source_icon, "source_vol": $source_vol}'
+}
+
+case "$1" in
+"mute")
+  if [ "$2" != "SOURCE" ] && [ "$2" != "SINK" ]; then
+    echo "Can only mute SINK or SOURCE"
+    exit 1
+  fi
+  set_mute "$2"
+  ;;
+
+"set_vol")
+  if [ "$2" != "SOURCE" ] && [ "$2" != "SINK" ]; then
+    echo "Can only set volume for SINK or SOURCE"
+    exit 1
+  elif [ "$3" -lt 0 ] || [ "$3" -gt 100 ]; then
+    echo "Volume must be between 0 and 100"
+    exit 1
+  fi
+  set_vol "$2" "$3"
+  ;;
+
+"")
+  # initial values
+  get_sink
+  get_source
+  gen_output
+
+  # event loop
+  pactl subscribe | rg --line-buffered ".*(source|sink).*" | while read -r event; do
+    gen_output
+  done
+  ;;
+
+*)
+  echo "wrong usage"
+  ;;
+esac

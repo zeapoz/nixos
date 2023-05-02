@@ -1,0 +1,6 @@
+(deflisten window :initial "::" "scripts/get-window-title")
+(defwidget window_w []
+  (box
+    :space-evenly false
+    :class "window"
+    (label :text "${window}")))

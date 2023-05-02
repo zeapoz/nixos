@@ -9,6 +9,16 @@
 # get initialize network device info and states
 nm="$(nmcli d | jc --nmcli | jaq -r '.[] | select(.type | test("^(wifi|ethernet)$", "ix"))')"
 
+function toggle() {
+  status=$(rfkill -J | jaq -r '.rfkilldevices[] | select(.type == "wlan") | .soft' | head -1)
+
+  if [ "$status" = "unblocked" ]; then
+    rfkill block wlan
+  else
+    rfkill unblock wlan
+  fi
+}
+
 function get_vpn() {
   if nmcli con show --active | rg -q "wg-mullvad"; then
     vpn=""
@@ -33,13 +43,14 @@ function gen_ethernet() {
 
 function make_content() {
   local ethernet wifi
+  nm="$(nmcli d | jc --nmcli | jaq -r '.[] | select(.type | test("^(wifi|ethernet)$", "ix"))')"
   ethernet=$(echo "$nm" | jaq -r 'select(.type == "ethernet") .state')
   wifi=$(echo "$nm" | jaq -r 'select(.type == "wifi") .state')
 
   # test ethernet first
-  if [[ $ethernet == "connected" ]]; then
+  if [[ "$ethernet" == "connected" ]]; then
     gen_ethernet
-  elif [[ $wifi == "connected" ]]; then
+  elif [[ "$wifi" == "connected" ]]; then
     gen_wifi
   else
     icon=""
@@ -59,8 +70,19 @@ function make_content() {
     '{"icon": $icon, "name": $name, "color": $color, "class": $class, "vpn": $vpn}'
 }
 
-# first run
-make_content
-nmcli monitor | while read -r _; do
+case "$1" in
+"toggle")
+  toggle
+  ;;
+
+"")
   make_content
-done
+  nmcli monitor | while read -r _; do
+    make_content
+  done
+  ;;
+
+*)
+  echo "wrong usage"
+  ;;
+esac

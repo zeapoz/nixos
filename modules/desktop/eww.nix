@@ -16,8 +16,14 @@ in
 
       configFile = {
         "eww/scripts".source = ../../config/eww/scripts;
+        "eww/modules".source = ../../config/eww/modules;
 
         "eww/eww.yuck".text = ''
+          (include "./modules/window.yuck")
+          (include "./modules/workspaces.yuck")
+          (include "./modules/net.yuck")
+          (include "./modules/audio.yuck")
+
           (defpoll time :interval "1s" `date +'{"date": "%b %d", "hour": "%H", "minute": "%M", "day": "%a"}'`)
           (defwidget clock []
             (box :space-evenly false :class "clock"
@@ -35,55 +41,17 @@ in
             (box :class "disk" :space-evenly false
               (label :text " ''${round(EWW_DISK["/"].used_perc, 0)}%")))
 
-          (deflisten workspace "scripts/workspaces")
-          (defwidget workspaces []
-            (eventbox
-              :onscroll "echo {} | sed -e \"s/up/-1/g\" -e \"s/down/+1/g\" | xargs hyprctl dispatch workspace"
-              (box
-                :class "workspaces"
-                :spacing 5
-                (for ws in workspace
-                  (button
-                    :onclick "hyprctl dispatch workspace ''${ws.number}"
-                    :class "workspace icon ''${ws.class}"
-                    "")))))
-
-          (deflisten window :initial "::" "scripts/get-window-title")
-          (defwidget window_w []
-            (box 
-              :space-evenly false
-              :class "window"
-              (label :text "''${window}")))
-
           (defpoll kernel :interval "24h" "uname -r")
           (defwidget kernel []
             (box :class "kernel" :space-evenly false
               (label :text " ''${kernel}")))
 
-          (deflisten net "scripts/net")
-          (defwidget net []
-            (button :class "net"
-              :onclick "mullvad-gui"
-              :timeout "2s"
-              "''${net.icon} ''${net.vpn}"))
-
-          (deflisten volume "scripts/volume")
-          (defwidget volume []
-            (box
-              :class "volume"
-              (eventbox
-                :onscroll "echo {} | sed -e 's/up/+/g' -e 's/down/-/g' | xargs -I% wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.005%"
-                :onclick "pavucontrol &"
-                :onrightclick "scripts/volume mute SINK"
-                (label
-                  :class "vol-icon"
-                  :text "''${volume.icon} ''${volume.percent}%"))))
-
+          ${if config.hardware.hasBattery then ''
           (deflisten battery "scripts/battery")
           (defwidget battery []
             (box :class "battery ''${battery.class}"
               (label 
-                :text "''${battery.percent}% ''${battery.icon}")))
+                :text "''${battery.percent}% ''${battery.icon}")))'' else ""}
 
           (deflisten keyboard_lang "scripts/keyboard")
           (defwidget keyboard []
@@ -124,7 +92,7 @@ in
             (box :class "right"
                  :space-evenly false
               (net)
-              (volume)
+              (audio)
               (keyboard)
               ${if config.hardware.hasBattery then "(battery)" else ""}
             ))
@@ -266,7 +234,7 @@ in
             margin-bottom: 2px;
           }
 
-          .volume {
+          .audio {
             color: $lightRed;
             @include margin-right;
           }
@@ -278,7 +246,7 @@ in
 
           .battery {
             @include margin-right;
-            padding-top: 4px;
+            padding-top: 2px;
           }
 
           .battery-low {
