@@ -7,7 +7,7 @@ in
   options.modules.desktop.eww.enable = mkEnableOption "eww";
 
   config = mkIf cfg.enable {
-    hm = { config, ... }: {
+    hm = {
       packages = with pkgs; [
         eww-wayland
         jaq
@@ -15,7 +15,7 @@ in
       ];
 
       configFile = {
-        "eww/scripts".source = config.lib.file.mkOutOfStoreSymlink ../../config/eww/scripts;
+        "eww/scripts".source = ../../config/eww/scripts;
 
         "eww/eww.yuck".text = ''
           (defpoll time :interval "1s" `date +'{"date": "%b %d", "hour": "%H", "minute": "%M", "day": "%a"}'`)
