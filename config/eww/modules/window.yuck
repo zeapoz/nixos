@@ -1,4 +1,4 @@
-(deflisten window :initial "::" "scripts/get-window-title")
+(deflisten window "scripts/get-window-title")
 (defwidget window_w []
   (box
     :space-evenly false

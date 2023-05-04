@@ -184,7 +184,7 @@ in
 
           .bar {
             color: $fg;
-            background-color: transparentize($bg, 0.6);
+            background-color: transparent;
             box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
           }
 
