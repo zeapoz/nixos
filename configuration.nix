@@ -24,11 +24,6 @@
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
     ];
-
-    # Plymouth WIP.
-    plymouth.enable = true;
-    initrd.systemd.enable = true;
-    kernelParams = [ "quiet" ];
   };
 
   # Hardware.
