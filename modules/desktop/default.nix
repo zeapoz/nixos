@@ -40,11 +40,12 @@
       swayidle = {
         enable = true;
         extraArgs = [ "-w" ];
+        systemdTarget = "hyprland-session.target";
         events = [
-          { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f"; }
+          { event = "before-sleep"; command = "${pkgs.swaylock-effects}/bin/swaylock -f"; }
           { event = "lock"; command = "lock"; }
         ];
-        timeouts = [{ timeout = 600; command = "${pkgs.swaylock}/bin/swaylock -f"; }];
+        timeouts = [{ timeout = 600; command = "${pkgs.swaylock-effects}/bin/swaylock -f"; }];
       };
 
       mako = {
@@ -68,7 +69,8 @@
   };
 
   xdg.portal = {
-    wlr.enable = true;
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     xdgOpenUsePortal = true;
   };
 

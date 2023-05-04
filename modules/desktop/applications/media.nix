@@ -18,7 +18,7 @@ in {
           musescore
           obs-studio
           spotify
-          spotify-tui
+          spotify-player
           stremio
         ]
         ++ optionals cfg.daw.enable [
