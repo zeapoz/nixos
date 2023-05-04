@@ -10,10 +10,6 @@ in
   hyprlandConfig = ''
     monitor=,preferred,auto,1
 
-    # https://wiki.hyprland.org/FAQ/#some-of-my-apps-take-a-really-long-time-to-open
-    exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-    exec-once=systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-
     exec-once=${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
 
     # Set mouse cursor.
@@ -263,7 +259,7 @@ in
     eww open bar &
     ${if (config.networking.hostName == "helium") then "eww open bar2 &" else ""}
     swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
-    mullvad-gui &
+    kanata --cfg ~/.config/NixOS/config/kanata/config.kbd &
   '';
 
   wrappedhl = pkgs.writeShellScriptBin "wrappedhl" ''
