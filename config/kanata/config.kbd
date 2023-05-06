@@ -1,4 +1,6 @@
 (defalias nav (layer-toggle navigation)
+  clmk (layer-switch colemakdh)
+  dflt (layer-switch default)
   lpar S-9
   rpar S-0
   { S-[
@@ -15,12 +17,21 @@
   _     _     _               _                   _    _    _    _          _    _    _    _    _
 )
 
+(deflayer colemakdh
+  caps  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  kp*  kp-
+  tab  q    w    f    p    b    j    l    u    y    ;    [    ]    ret   del  end  pgdn  kp7  kp8  kp9  kp+
+  @nav a    r    s    t    g    m    n    e    i    o    '    \                          kp4  kp5  kp6
+  lsft 102d z    x    c    d    v    k    h    ,    .    /    rsft            up         kp1  kp2  kp3  kprt
+  lctl lmet lalt           spc                 ralt rmet cmp  rctl       left down rght  kp0  kp.
+)
+
 (deflayer navigation
   _     _     _    _    _    _    _    _    _    _     _    _    _          _    _    _
   _     _     _    _    _    _    _    _    _    _     _    _    _    _     _    _    _    _    _    _    _
-  _     _     _    _    _    _    _    [   @{   @lpar  _    _    _    _     _    _    _    _    _    _    _
-  _     @ca   _    _    esc  _    left down up   rght  esc  _    _                         _    _    _
-  _     _     _    _    _    _    _    ]   @}   @rpar  _    _    _               _         _    _    _    _
+  _     @dflt _    _    _    _    _    [   @{   @lpar  _    _    _    _     _    _    _    _    _    _    _
+  XX    @ca   _    _    esc  _    left down up   rght  esc  _    _                         _    _    _
+  _     _     _    _    @clmk _    _    ]   @}   @rpar  _    _    _               _         _    _    _    _
   _     _     _              _                   _     _    _    _          _    _    _    _    _
 )
 
