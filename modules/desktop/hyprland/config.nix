@@ -73,7 +73,7 @@ in
       animation=border,1,3,default
       animation=fade,1,2,default
       animation=fadeDim,1,2,default
-      animation=workspaces,1,3,default
+      animation=workspaces,1,3,default,slidevert
     }
 
     misc {
@@ -255,9 +255,8 @@ in
   '';
 
   autostart = ''
-    eww daemon &
-    eww open bar &
-    ${if (config.networking.hostName == "helium") then "eww open bar2 &" else ""}
+    eww -c ~/.config/NixOS/config/eww/ open bar &
+    ${if (config.networking.hostName == "helium") then "eww -c ~/.config/NixOS/config/eww/ open bar2 &" else ""}
     swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
     kanata --cfg ~/.config/NixOS/config/kanata/config.kbd &
   '';

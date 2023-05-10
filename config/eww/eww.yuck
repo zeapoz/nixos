@@ -1,0 +1,97 @@
+(include "./modules/window.yuck")
+(include "./modules/workspaces.yuck")
+(include "./modules/net.yuck")
+(include "./modules/audio.yuck")
+(include "./modules/battery.yuck")
+(include "./modules/bar2.yuck")
+
+(defpoll time :interval "1s" `date +'{"date": "%b %d", "hour": "%H", "minute": "%M", "day": "%a"}'`)
+(defwidget clock []
+  (box :space-evenly false :class "clock"
+    (label :text " ${time.day} ${time.date} ${time.hour}:${time.minute}")))
+
+(defwidget cpu []
+  (box :class "cpu" :space-evenly false
+    (label :text " ${round(EWW_CPU.avg, 0)}%")))
+
+(defwidget ram []
+  (box :class "ram" :space-evenly false
+    (label :text " ${round(EWW_RAM.used_mem_perc, 0)}%")))
+
+(defwidget disk []
+  (box :class "disk" :space-evenly false
+    (label :text " ${round(EWW_DISK["/"].used_perc, 0)}%")))
+
+(defpoll kernel :interval "24h" "uname -r")
+(defwidget kernel []
+  (box :class "kernel" :space-evenly false
+    (label :text " ${kernel}")))
+
+(deflisten keyboard_lang "scripts/keyboard")
+(defwidget keyboard []
+  (box :class "keyboard" :space-evenly false
+    (label :text "${keyboard_lang}")))
+
+(defwidget power []
+  (eventbox :onclick "wlogout -p layer-shell &"
+    (box :class "power"
+      (label :text ""))))
+
+(defwidget left []
+  (box :space-evenly false
+    (clock)
+    (kernel)
+  ))
+
+(defwidget left-box []
+  (box :space-evenly false
+        :halign "start"
+    (left)
+    (window_w)
+  ))
+
+(defwidget center []
+  (box :space-evenly false
+        :halign "center"
+    (workspaces)))
+
+(defwidget system []
+  (box :space-evenly false
+    (cpu)
+    (ram)
+    (disk)
+  ))
+
+(defwidget right []
+  (box :class "right"
+        :space-evenly false
+    (net)
+    (audio)
+    (keyboard)
+    (battery)
+  ))
+
+(defwidget right-box []
+  (box :space-evenly false
+        :halign "end"
+    (system)
+    (right)
+    (power)
+  ))
+
+(defwidget bar-box []
+  (centerbox :class "bar"
+    (left-box)
+    (center)
+    (right-box)))
+
+(defwindow bar
+  :monitor 0
+  :geometry (geometry 
+    :x "0%"
+    :width "100%"
+    :height "3%";
+    :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  (bar-box))
