@@ -3,8 +3,8 @@
   (eventbox
     :onscroll "echo {} | sed -e \"s/up/-1/g\" -e \"s/down/+1/g\" | xargs hyprctl dispatch workspace"
     (box
-      :class "workspaces"
-      :spacing 5
+      :class "module workspaces"
+      :orientation "v"
       (for ws in workspace
         (button
           :onclick "hyprctl dispatch workspace ${ws.number}"

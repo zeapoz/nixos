@@ -1,9 +1,6 @@
 (deflisten net "scripts/net")
 (defwidget net []
-  (box :class "net"
-    (button
-      :onclick "scripts/net toggle"
-      "${net.icon} ")
-    (button
-      :onclick "mullvad-gui &"
-      "${net.vpn}")))
+  (box :class "module net"
+       :orientation "v"
+    (button :class "icon" :onclick "scripts/net toggle" "${net.icon}")
+    (button :class "icon" :onclick "mullvad-gui &" "${net.vpn}")))

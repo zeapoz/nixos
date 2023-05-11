@@ -18,7 +18,7 @@ in
     }
 
     blurls=wofi
-    # blurls=gtk-layer-shell
+    blurls=gtk-layer-shell
 
     ${if (config.networking.hostName == "helium") then "workspace=HDMI-A-2,6" else ""}
 
@@ -39,7 +39,7 @@ in
       border_size=3
 
       col.active_border=rgb(${colors.fg})
-      col.inactive_border=rgba(${colors.bg}E6)
+      col.inactive_border=rgba(${colors.bg}00)
       col.group_border_active=rgb(${colors.fg})
       col.group_border=rgb(${colors.bg})
 
@@ -57,7 +57,7 @@ in
       blur_passes = 3
       blur_new_optimizations=true
 
-      drop_shadow=true
+      drop_shadow=false
       shadow_ignore_window=true
       shadow_offset=2 2
       shadow_range=15
@@ -256,7 +256,6 @@ in
 
   autostart = ''
     eww -c ~/.config/NixOS/config/eww/ open bar &
-    ${if (config.networking.hostName == "helium") then "eww -c ~/.config/NixOS/config/eww/ open bar2 &" else ""}
     swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
     kanata --cfg ~/.config/NixOS/config/kanata/config.kbd &
   '';

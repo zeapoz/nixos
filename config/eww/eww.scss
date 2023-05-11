@@ -17,14 +17,6 @@ $lightPurple: #c678dd;
 $lightCyan: #46D9FF;
 $gray: #bbc2cf;
 
-@mixin margin-right {
-  margin-right: 20px;
-}
-
-@mixin margin-left {
-  margin-left: 20px;
-}
-
 @mixin workspace ($color) {
   &.workspace-focused {
     color: $color;
@@ -44,80 +36,28 @@ $gray: #bbc2cf;
 
 .bar {
   color: $fg;
-  background-color: transparent;
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
+  background-color: transparentize($bg, 0.7);
 }
 
-.revealer {
-  background-color: $bg;
-}
+.module { padding: 1em 0; }
+.icon { padding: 0.3em 0; }
 
-.clock {
-  color: $blue;
-  @include margin-left;
-}
-
-.cpu {
-  color: $lightRed;
-  @include margin-right;
-}
-
-.ram {
-  color: $green;
-  @include margin-right;
-}
-
-.disk {
-  color: $purple;
-  @include margin-right;
-}
-
-.workspace {
-  color: transparentize($fg, 0.8);
-  padding: 4px 8px;
-}
+.workspace { color: transparentize($fg, 0.8); }
 
 .monitor-0 { @include workspace ($lightRed); }
 .monitor-1 { @include workspace ($yellow); }
 .monitor-2 { @include workspace ($blue); }
 .monitor-3 { @include workspace ($green); }
 
-.kernel {
-  color: $purple;
-  margin-right: 16px;
-  @include margin-left;
-}
+.clock { color: $blue; }
+.cpu { color: $lightRed; }
+.ram { color: $green; }
+.disk { color: $purple; }
+.kernel { color: $purple; }
+.net { color: $blue; }
+.audio { color: $lightRed; }
+.keyboard { color: $green; }
+.power { color: $purple; }
 
-.net {
-  color: $blue;
-  @include margin-right;
-  margin-bottom: 2px;
-}
-
-.audio {
-  color: $lightRed;
-  @include margin-right;
-}
-
-.keyboard {
-  color: $green;
-  @include margin-right;
-}
-
-.battery {
-  @include margin-right;
-  padding-top: 2px;
-}
-
-.battery-low {
-  color: $yellow;
-}
-
-.battery-critical {
-  color: $lightRed;
-}
-
-.power {
-  color: $purple;
-  @include margin-right;
-}
+.battery-low { color: $yellow; }
+.battery-critical { color: $lightRed; }

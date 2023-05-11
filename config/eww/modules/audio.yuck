@@ -1,11 +1,10 @@
 (deflisten audio "scripts/audio")
 (defwidget audio []
-  (box
-    :class "audio"
-    (eventbox
-      :onscroll "echo {} | sed -e 's/up/+/g' -e 's/down/-/g' | xargs -I% wpctl set-audio @DEFAULT_SINK@ 0.005%"
-      :onclick "pavucontrol &"
-      :onrightclick "scripts/audio mute SINK"
-      (label
-        :class "vol-icon"
-        :text "${audio.sink_icon} ${audio.sink_vol}% ${audio.source_icon}"))))
+  (eventbox
+    :onscroll "echo {} | sed -e 's/up/+/g' -e 's/down/-/g' | xargs -I% wpctl set-audio @DEFAULT_SINK@ 0.005%"
+    :onclick "pavucontrol &"
+    :onrightclick "scripts/audio mute SOURCE"
+    (box :class "module audio"
+         :orientation "v"
+      (label :class "icon" :text "${audio.sink_icon}")
+      (label :class "icon" :text "${audio.source_icon}"))))
