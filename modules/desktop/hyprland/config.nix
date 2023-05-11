@@ -256,6 +256,7 @@ in
 
   autostart = ''
     eww -c ~/.config/NixOS/config/eww/ open bar &
+    ${if (config.networking.hostName == "helium") then "eww -c ~/.config/NixOS/config/eww/ open bar2 &" else ""}
     swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
     kanata --cfg ~/.config/NixOS/config/kanata/config.kbd &
   '';

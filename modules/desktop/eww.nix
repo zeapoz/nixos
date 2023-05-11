@@ -19,9 +19,9 @@ in
           if config.hardware.hasBattery then ''
             (deflisten battery "scripts/battery")
             (defwidget battery []
-              (box :class "battery ''${battery.class}"
-                (label 
-                  :text "''${battery.percent}% ''${battery.icon}")))''
+              (box :class "module battery ''${battery.class}"
+                   :orientation "v"
+                (label :class "icon" :text "''$''${battery.icon}")))''
           else ''
             (defwidget battery []
               (box :visible false))'';
@@ -31,10 +31,11 @@ in
             (defwindow bar2
               :monitor 1
               :geometry (geometry 
-                :x "0%"
-                :width "100%"
-                :height "3%";
-                :anchor "top center")
+                :x "0"
+                :x "0"
+                :width "2%"
+                :height "100%";
+                :anchor "center right")
               :stacking "fg"
               :exclusive true
               (bar-box))''

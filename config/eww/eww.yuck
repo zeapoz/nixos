@@ -5,6 +5,7 @@
 (include "./modules/audio.yuck")
 (include "./modules/keyboard.yuck")
 (include "./modules/battery.yuck")
+(include "./modules/bar2.yuck")
 
 (defwidget power []
   (eventbox :onclick "wlogout -p layer-shell &"
