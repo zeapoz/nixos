@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 
-import time, socket, json
+import json
+import socket
+import time
 
-HOST = "127.0.0.1" # Standard loopback interface address (localhost)
-PORT = 36413 # Port to listen on (non-privileged ports are > 1023)
+HOST = "127.0.0.1"  # Standard loopback interface address (localhost)
+PORT = 36413  # Port to listen on (non-privileged ports are > 1023)
 
-print("en", flush=True)
+print("qw", flush=True)
 time.sleep(2)
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
@@ -14,7 +16,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         output = json.loads(data)["LayerChange"]["new"]
         match output:
             case "default":
-                output = "en"
+                output = "qw"
             case "navigation":
                 output = "nv"
             case "colemakdh":

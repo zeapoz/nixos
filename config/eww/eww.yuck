@@ -27,13 +27,6 @@
     (workspaces)
   ))
 
-(defwidget system []
-  (box :space-evenly false
-    (cpu)
-    (ram)
-    (disk)
-  ))
-
 (defwidget bottom []
   (box :class "right"
        :orientation "v"
