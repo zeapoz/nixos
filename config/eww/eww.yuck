@@ -1,97 +1,61 @@
 (include "./modules/window.yuck")
 (include "./modules/workspaces.yuck")
 (include "./modules/net.yuck")
+(include "./modules/clock.yuck")
 (include "./modules/audio.yuck")
+(include "./modules/keyboard.yuck")
 (include "./modules/battery.yuck")
 (include "./modules/bar2.yuck")
 
-(defpoll time :interval "1s" `date +'{"date": "%b %d", "hour": "%H", "minute": "%M", "day": "%a"}'`)
-(defwidget clock []
-  (box :space-evenly false :class "clock"
-    (label :text " ${time.day} ${time.date} ${time.hour}:${time.minute}")))
-
-(defwidget cpu []
-  (box :class "cpu" :space-evenly false
-    (label :text " ${round(EWW_CPU.avg, 0)}%")))
-
-(defwidget ram []
-  (box :class "ram" :space-evenly false
-    (label :text " ${round(EWW_RAM.used_mem_perc, 0)}%")))
-
-(defwidget disk []
-  (box :class "disk" :space-evenly false
-    (label :text " ${round(EWW_DISK["/"].used_perc, 0)}%")))
-
-(defpoll kernel :interval "24h" "uname -r")
-(defwidget kernel []
-  (box :class "kernel" :space-evenly false
-    (label :text " ${kernel}")))
-
-(deflisten keyboard_lang "scripts/keyboard")
-(defwidget keyboard []
-  (box :class "keyboard" :space-evenly false
-    (label :text "${keyboard_lang}")))
-
 (defwidget power []
   (eventbox :onclick "wlogout -p layer-shell &"
-    (box :class "power"
-      (label :text ""))))
+    (box :class "module power"
+      (label :class "icon" :text ""))))
 
-(defwidget left []
+(defwidget top []
   (box :space-evenly false
+       :orientation "v"
+       :halign "center"
+       :valign "start"
     (clock)
-    (kernel)
-  ))
-
-(defwidget left-box []
-  (box :space-evenly false
-        :halign "start"
-    (left)
-    (window_w)
   ))
 
 (defwidget center []
   (box :space-evenly false
-        :halign "center"
-    (workspaces)))
-
-(defwidget system []
-  (box :space-evenly false
-    (cpu)
-    (ram)
-    (disk)
+       :halign "center"
+       :valign "center"
+    (workspaces)
   ))
 
-(defwidget right []
+(defwidget bottom []
   (box :class "right"
-        :space-evenly false
+       :orientation "v"
+       :space-evenly false
+       :halign "center"
+       :valign "end"
     (net)
     (audio)
     (keyboard)
     (battery)
-  ))
-
-(defwidget right-box []
-  (box :space-evenly false
-        :halign "end"
-    (system)
-    (right)
     (power)
   ))
 
 (defwidget bar-box []
   (centerbox :class "bar"
-    (left-box)
+             :orientation "v"
+    (top)
     (center)
-    (right-box)))
+    (bottom)
+  ))
 
 (defwindow bar
   :monitor 0
   :geometry (geometry 
-    :x "0%"
-    :width "100%"
-    :height "3%";
-    :anchor "top center")
+    :x "0"
+    :y "0"
+    :width "2%"
+    :height "100%";
+    :anchor "center left")
   :stacking "fg"
   :exclusive true
   (bar-box))
