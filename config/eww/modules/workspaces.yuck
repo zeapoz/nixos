@@ -9,4 +9,4 @@
         (button
           :onclick "hyprctl dispatch workspace ${ws.number}"
           :class "workspace icon ${ws.class}"
-          "")))))
+          "")))))

@@ -50,6 +50,7 @@ $gray: #bbc2cf;
 .monitor-3 { @include workspace ($green); }
 
 .clock { color: $blue; }
+.date { color: $purple; }
 .cpu { color: $lightRed; }
 .ram { color: $green; }
 .disk { color: $purple; }

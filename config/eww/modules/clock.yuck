@@ -1,8 +1,7 @@
-(defpoll time :interval "1s" `date +'{"date": "%b %d", "hour": "%H", "minute": "%M", "day": "%a"}'`)
+(defpoll time :interval "1s" `date +'{"date": "%d", "hour": "%H", "minute": "%M", "day": "%a", "month": "%b"}'`)
 (defwidget clock []
-  (eventbox
-    :onhover "${EWW_CMD} update date_reveal=true"
-    :onhoverlost "${EWW_CMD} update date_reveal=false"
+  (box :space-evenly false
+       :orientation "v"
     (box :space-evenly false
          :class "module clock"
          :orientation "v"
@@ -11,4 +10,14 @@
         (box :space-evenly false
              :orientation "v"
           (label :text "${time.hour}")
-          (label :text "${time.minute}")))))
+          (label :text "${time.minute}")))
+    (box :space-evenly false
+         :class "module date"
+         :orientation "v"
+      (label :class "icon"
+             :text "")
+        (box :space-evenly false
+             :orientation "v"
+          (label :text "${time.day}")
+          (label :text "${time.month}")
+          (label :text "${time.date}")))))
