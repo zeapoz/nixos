@@ -21,7 +21,7 @@ in
             (defwidget battery []
               (box :class "module battery ''${battery.class}"
                    :orientation "v"
-                (label :class "icon" :text "''$''${battery.icon}")))''
+                (label :class "icon" :text "''${battery.icon}")))''
           else ''
             (defwidget battery []
               (box :visible false))'';
