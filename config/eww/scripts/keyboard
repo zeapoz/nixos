@@ -1,13 +1,24 @@
-#!/usr/bin/env bash
-echo "en"
-socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | stdbuf -o0 grep '^activelayout>>' | stdbuf -o0 awk -F '>>|,' '{print $3}' | {
-  while read -r language; do
-    if [ "$language" = "English (US)" ]; then
-      echo "en"
-    elif [ "$language" = "English (Colemak)" ]; then
-      echo "cm"
-    elif [ "$language" = "Swedish" ]; then
-      echo "sv"
-    fi
-  done
-}
+#!/usr/bin/env python3
+
+import time, socket, json
+
+HOST = "127.0.0.1" # Standard loopback interface address (localhost)
+PORT = 36413 # Port to listen on (non-privileged ports are > 1023)
+
+print("en", flush=True)
+time.sleep(2)
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.connect((HOST, PORT))
+    while True:
+        data = s.recv(1024)
+        output = json.loads(data)["LayerChange"]["new"]
+        match output:
+            case "default":
+                output = "en"
+            case "navigation":
+                output = "nv"
+            case "colemakdh":
+                output = "cm"
+            case _:
+                output = "?"
+        print(output, flush=True)

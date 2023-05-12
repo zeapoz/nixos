@@ -23,10 +23,6 @@ in
     ${if (config.networking.hostName == "helium") then "workspace=HDMI-A-2,6" else ""}
 
     input {
-      kb_layout=us,us,se
-      kb_variant=,colemak,
-      kb_options=grp:shift_toggle
-
       repeat_rate=50
       repeat_delay=225
 
@@ -255,10 +251,10 @@ in
   '';
 
   autostart = ''
+    kanata --cfg ~/.config/NixOS/config/kanata/config.kbd --port 36413 &
+    swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
     eww -c ~/.config/NixOS/config/eww/ open bar &
     ${if (config.networking.hostName == "helium") then "eww -c ~/.config/NixOS/config/eww/ open bar2 &" else ""}
-    swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
-    kanata --cfg ~/.config/NixOS/config/kanata/config.kbd &
   '';
 
   wrappedhl = pkgs.writeShellScriptBin "wrappedhl" ''
