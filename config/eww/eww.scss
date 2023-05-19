@@ -28,7 +28,6 @@ $gray: #bbc2cf;
 }
 
 * {
-  all: unset;
   font-family: "FiraCode", "Font Awesome 6 Free";
   font-weight: bold;
   font-size: 14px;
@@ -39,10 +38,26 @@ $gray: #bbc2cf;
   background-color: transparentize($bg, 0.7);
 }
 
-.module { padding: 1em 0; }
-.icon { padding: 0.3em 0; }
+.bar2 {
+  color: $fg;
+  background-color: transparentize($bg, 0.7);
+}
 
-.workspace { color: transparentize($fg, 0.8); }
+.module { padding: 0.8em 0; }
+.icon {
+  padding: 0.2em 0;
+  background-color: transparent;
+}
+
+.button {
+  min-width: 0;
+  min-height: 0;
+}
+
+.workspace {
+  color: transparentize($fg, 0.8);
+  background-color: transparent;
+}
 
 .monitor-0 { @include workspace ($lightRed); }
 .monitor-1 { @include workspace ($yellow); }
@@ -55,7 +70,7 @@ $gray: #bbc2cf;
 .ram { color: $green; }
 .disk { color: $purple; }
 .kernel { color: $purple; }
-.net { color: $blue; }
+.net label { color: $blue; }
 .audio { color: $lightRed; }
 .keyboard { color: $green; }
 .power { color: $purple; }

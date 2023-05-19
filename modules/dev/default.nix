@@ -2,7 +2,7 @@
 with lib;
 let cfg = config.modules.dev;
 in {
-  imports = [ ./rust.nix ./nix.nix ./shell.nix ./web.nix ./python.nix ];
+  imports = [ ./lua.nix ./rust.nix ./nix.nix ./shell.nix ./web.nix ./python.nix ];
 
   options.modules.dev.enable = mkEnableOption "development";
 

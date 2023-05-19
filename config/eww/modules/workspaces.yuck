@@ -3,10 +3,10 @@
   (eventbox
     :onscroll "echo {} | sed -e \"s/up/-1/g\" -e \"s/down/+1/g\" | xargs hyprctl dispatch workspace"
     (box
-      :class "module workspaces"
+      :class "module"
       :orientation "v"
       (for ws in workspace
         (button
           :onclick "hyprctl dispatch workspace ${ws.number}"
-          :class "workspace icon ${ws.class}"
-          "")))))
+          :class "button icon workspace ${ws.class}"
+          "")))))

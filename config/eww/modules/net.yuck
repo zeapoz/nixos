@@ -2,5 +2,6 @@
 (defwidget net []
   (box :class "module net"
        :orientation "v"
-    (button :class "icon" :onclick "scripts/net toggle" "${net.icon}")
-    (button :class "icon" :onclick "mullvad-gui &" "${net.vpn}")))
+       :space-evenly false
+    (button :class "button icon" :onclick "scripts/net toggle" "${net.icon}")
+    (button :class "button icon" :onclick "mullvad-gui &" "${net.vpn}")))
