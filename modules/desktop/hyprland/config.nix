@@ -86,24 +86,24 @@ in
         preserve_split=true
       }
 
-      bind=SUPER,H,movefocus,l
-      bind=SUPER,J,movefocus,d
-      bind=SUPER,K,movefocus,u
-      bind=SUPER,L,movefocus,r
+      bind=SUPER,m,movefocus,l
+      bind=SUPER,n,movefocus,d
+      bind=SUPER,e,movefocus,u
+      bind=SUPER,i,movefocus,r
 
-      bind=SUPERSHIFT,H,movewindow,l
-      bind=SUPERSHIFT,J,movewindow,d
-      bind=SUPERSHIFT,K,movewindow,u
-      bind=SUPERSHIFT,L,movewindow,r
+      bind=SUPERSHIFT,m,movewindow,l
+      bind=SUPERSHIFT,n,movewindow,d
+      bind=SUPERSHIFT,e,movewindow,u
+      bind=SUPERSHIFT,i,movewindow,r
 
       # Resize submap.
       bind=SUPER,R,submap,resize
       submap=resize
 
-      binde=,h,resizeactive,-100 0
-      binde=,j,resizeactive,0 100
-      binde=,k,resizeactive,0 -100
-      binde=,l,resizeactive,100 0
+      binde=,m,resizeactive,-100 0
+      binde=,n,resizeactive,0 100
+      binde=,e,resizeactive,0 -100
+      binde=,i,resizeactive,100 0
 
       bind=,escape,submap,reset
       bind=,RETURN,submap,reset
@@ -117,20 +117,20 @@ in
         new_on_top=true
       }
 
-      bind=SUPER,J,layoutmsg,cyclenext
-      bind=SUPER,K,layoutmsg,cycleprev
+      bind=SUPER,n,layoutmsg,cyclenext
+      bind=SUPER,e,layoutmsg,cycleprev
 
-      bind=SUPER,h,resizeactive,-100 0
-      bind=SUPER,l,resizeactive,100 0
+      bind=SUPER,m,resizeactive,-100 0
+      bind=SUPER,i,resizeactive,100 0
 
       # Resize submap.
       bind=SUPER,R,submap,resize
       submap=resize
 
-      binde=,h,resizeactive,-100 0
-      binde=,j,resizeactive,0 100
-      binde=,k,resizeactive,0 -100
-      binde=,l,resizeactive,100 0
+      binde=,m,resizeactive,-100 0
+      binde=,n,resizeactive,0 100
+      binde=,e,resizeactive,0 -100
+      binde=,i,resizeactive,100 0
 
       binde=,left,moveactive,-100 0
       binde=,down,moveactive,0 100
@@ -142,11 +142,11 @@ in
       bind=SUPER,R,submap,reset
       submap=reset
 
-      bind=SUPERSHIFT,h,layoutmsg,addmaster
-      bind=SUPERSHIFT,l,layoutmsg,removemaster
+      bind=SUPERSHIFT,m,layoutmsg,addmaster
+      bind=SUPERSHIFT,i,layoutmsg,removemaster
 
-      bind=SUPERSHIFT,J,layoutmsg,swapnext
-      bind=SUPERSHIFT,K,layoutmsg,swapprev
+      bind=SUPERSHIFT,n,layoutmsg,swapnext
+      bind=SUPERSHIFT,e,layoutmsg,swapprev
       bind=SUPERSHIFT,RETURN,layoutmsg,swapwithmaster
 
       bind=SUPER,left,layoutmsg,orientationleft
@@ -165,18 +165,13 @@ in
     bind=SUPER,RETURN,exec,${terminalCmd}
     bind=SUPER,D,exec,wofi --show drun -I
     bind=SUPER,X,exec,wlogout -p layer-shell
-    bind=SUPER,N,exec,${config.modules.editors.mainEditor}
     bind=SUPER,B,exec,brave
-    bind=SUPER,E,exec,${terminalCmd} -e ranger
+    bind=SUPER,P,exec,${terminalCmd} -e ranger
     bind=SUPER,S,exec,spotify
-    bind=SUPER,Y,exec,freetube
-
-    # Second layer.
     bind=SUPERSHIFT,B,exec,librewolf
-    bind=SUPERSHIFT,Q,exec,${terminalCmd} -e hx ~/.config/NixOS
 
     bind=SUPER,W,killactive,
-    bind=SUPERSHIFT,E,exit,
+    bind=SUPERSHIFT,Q,exit,
 
     bind=SUPER,F,fullscreen,0
     bind=SUPER,SPACE,togglefloating,
@@ -191,32 +186,25 @@ in
     bind=ALTSHIFT,COMMA,movecurrentworkspacetomonitor,l
     bind=ALTSHIFT,PERIOD,movecurrentworkspacetomonitor,r
 
-    # Groups.
-    bind=SUPER,SLASH,togglegroup
-    bind=SUPER,PERIOD,lockgroups,lock
-    bind=SUPERSHIFT,PERIOD,lockgroups,unlock
-    bind=SUPER,SEMICOLON,changegroupactive,b
-    bind=SUPER,APOSTROPHE,changegroupactive,f
-
     # Workspaces.
-    bind=SUPER,u,workspace,1
-    bind=SUPER,i,workspace,2
-    bind=SUPER,o,workspace,3
-    bind=SUPER,p,workspace,4
+    bind=SUPER,l,workspace,1
+    bind=SUPER,u,workspace,2
+    bind=SUPER,y,workspace,3
+    bind=SUPER,semicolon,workspace,4
     bind=SUPER,bracketleft,workspace,5
     bind=SUPER,bracketright,workspace,6
 
-    bind=ALT,u,movetoworkspace,1
-    bind=ALT,i,movetoworkspace,2
-    bind=ALT,o,movetoworkspace,3
-    bind=ALT,p,movetoworkspace,4
+    bind=ALT,l,movetoworkspace,1
+    bind=ALT,u,movetoworkspace,2
+    bind=ALT,y,movetoworkspace,3
+    bind=ALT,semicolon,movetoworkspace,4
     bind=ALT,bracketleft,movetoworkspace,5
     bind=ALT,bracketright,movetoworkspace,6
 
-    bind=ALTSHIFT,u,movetoworkspacesilent,1
-    bind=ALTSHIFT,i,movetoworkspacesilent,2
-    bind=ALTSHIFT,o,movetoworkspacesilent,3
-    bind=ALTSHIFT,p,movetoworkspacesilent,4
+    bind=ALTSHIFT,l,movetoworkspacesilent,1
+    bind=ALTSHIFT,u,movetoworkspacesilent,2
+    bind=ALTSHIFT,y,movetoworkspacesilent,3
+    bind=ALTSHIFT,semicolon,movetoworkspacesilent,4
     bind=ALTSHIFT,bracketleft,movetoworkspacesilent,5
     bind=ALTSHIFT,bracketright,movetoworkspacesilent,6
 
@@ -244,7 +232,7 @@ in
     bind=SUPERSHIFT,C,exec,killall -SIGUSR2 .waybar-wrapped
 
     # Change background.
-    bind=SUPERSHIFT,N,exec,killall -q swaybg -9; swaybg -i "$(find ~/Pictures/Wallpapers -type f | shuf -n 1)" -m fill
+    bind=SUPERSHIFT,K,exec,killall -q swaybg -9; swaybg -i "$(find ~/Pictures/Wallpapers -type f | shuf -n 1)" -m fill
 
     # Start some applications in the background.
     exec-once=~/.config/hypr/autostart.sh

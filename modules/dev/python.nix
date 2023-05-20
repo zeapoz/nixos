@@ -9,6 +9,7 @@ in {
       black
       ruff
       isort
+      python3
     ] ++ (with nodePackages; [
       nodePackages.pyright
     ]);

@@ -6,7 +6,7 @@ in {
 
   config = mkIf cfg.enable {
     hm.packages = with pkgs; [
-      rustup
+      # rustup
       rust-analyzer
     ];
   };

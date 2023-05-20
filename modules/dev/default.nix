@@ -10,8 +10,8 @@ in {
     hm = {
       packages = with pkgs; [
         godot
-        python3
         zig
+        zls
       ];
 
       programs = {
