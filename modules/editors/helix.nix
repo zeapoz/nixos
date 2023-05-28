@@ -23,25 +23,26 @@ in {
           indent-guides.render = true;
         };
       };
-      languages = [
-        {
-          name = "rust";
-          auto-pairs = {
-            "(" = ")";
-            "{" = "}";
-            "[" = "]";
-            "\"" = "\"";
-            "`" = "`";
-            "<" = ">";
-          };
-        }
-        {
-          name = "nix";
-          auto-format = true;
-          formatter.command = "nixpkgs-fmt";
-        }
-      ];
+      languages = {
+        language = [
+          {
+            name = "rust";
+            auto-pairs = {
+              "(" = ")";
+              "{" = "}";
+              "[" = "]";
+              "\"" = "\"";
+              "`" = "`";
+              "<" = ">";
+            };
+          }
+          {
+            name = "nix";
+            auto-format = true;
+            formatter.command = "nixpkgs-fmt";
+          }
+        ];
+      };
     };
   };
 }
-

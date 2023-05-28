@@ -103,6 +103,7 @@
       fira-code-symbols
       font-awesome
       material-symbols
+      noto-fonts-cjk-sans
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];
   };

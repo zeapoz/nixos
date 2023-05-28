@@ -50,7 +50,7 @@ in
 
       blur=true
       blur_size=3
-      blur_passes = 3
+      blur_passes=4
       blur_new_optimizations=true
 
       drop_shadow=false
