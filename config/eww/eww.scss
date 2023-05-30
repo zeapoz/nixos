@@ -17,33 +17,25 @@ $lightPurple: #c678dd;
 $lightCyan: #46D9FF;
 $gray: #bbc2cf;
 
-@mixin workspace ($color) {
-  &.workspace-focused {
-    color: $color;
-  }
-
-  &.workspace-unfocused {
-    color: transparentize($color, 0.5);
-  }
-}
-
 * {
   font-family: "FiraCode", "Font Awesome 6 Free";
   font-weight: bold;
   font-size: 14px;
 }
 
-.bar {
-  color: $fg;
-  background-color: transparentize($bg, 0.7);
-}
-
+.bar,
 .bar2 {
   color: $fg;
-  background-color: transparentize($bg, 0.7);
+  background-color: transparentize($bg, 0.5);
 }
 
-.module { padding: 0.8em 0; }
+.module {
+  padding: 0.4em 0.2em;
+  margin: 0.3em 0.5em;
+  background-color: transparentize($fg, 0.9);
+  border-radius: 10px;
+  min-width: 2em;
+}
 .icon {
   padding: 0.2em 0;
   background-color: transparent;
@@ -57,6 +49,16 @@ $gray: #bbc2cf;
 .workspace {
   color: transparentize($fg, 0.8);
   background-color: transparent;
+}
+
+@mixin workspace ($color) {
+  &.workspace-focused {
+    color: $color;
+  }
+
+  &.workspace-unfocused {
+    color: transparentize($color, 0.5);
+  }
 }
 
 .monitor-0 { @include workspace ($lightRed); }

@@ -18,6 +18,7 @@
        :halign "center"
        :valign "start"
     (clock)
+    (date)
   ))
 
 (defwidget center []
