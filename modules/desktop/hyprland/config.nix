@@ -30,8 +30,8 @@ in
     }
 
     general {
-      gaps_in=5
-      gaps_out=10
+      gaps_in=2
+      gaps_out=4
       border_size=3
 
       col.active_border=rgb(${colors.fg})
@@ -45,7 +45,7 @@ in
     }
 
     decoration {
-      rounding=8
+      rounding=10
       multisample_edges=true
 
       blur=true
@@ -161,7 +161,6 @@ in
     bindm=SUPER,mouse:273,resizewindow
 
     # Useful applications.
-    
     bind=SUPER,RETURN,exec,${terminalCmd}
     bind=SUPER,D,exec,wofi --show drun -I
     bind=SUPER,X,exec,wlogout -p layer-shell
