@@ -32,10 +32,10 @@ in
     general {
       gaps_in=2
       gaps_out=4
-      border_size=3
+      border_size=2
 
       col.active_border=rgb(${colors.fg})
-      col.inactive_border=rgba(${colors.bg}00)
+      col.inactive_border=rgba(${colors.fg}19)
       col.group_border_active=rgb(${colors.fg})
       col.group_border=rgb(${colors.bg})
 
@@ -112,9 +112,11 @@ in
       ''
     else if (layout == "master") then ''
       master {
+        allow_small_split=true
         mfact=0.6
         new_is_master=false
         new_on_top=true
+        no_gaps_when_only=true
       }
 
       bind=SUPER,n,layoutmsg,cyclenext
