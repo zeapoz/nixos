@@ -96,8 +96,8 @@
   ];
 
   fonts = {
-    enableDefaultFonts = true;
-    fonts = with pkgs; [
+    enableDefaultPackages = true;
+    packages = with pkgs; [
       fira
       fira-code
       fira-code-symbols
