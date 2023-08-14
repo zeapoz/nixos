@@ -48,10 +48,11 @@ in
       rounding=10
       multisample_edges=true
 
-      blur=true
-      blur_size=3
-      blur_passes=4
-      blur_new_optimizations=true
+      blur {
+        enabled=true
+        size=3
+        passes=4
+      }
 
       drop_shadow=false
       shadow_ignore_window=true
