@@ -35,7 +35,7 @@ in
       border_size=2
 
       col.active_border=rgb(${colors.fg})
-      col.inactive_border=rgba(${colors.fg}19)
+      col.inactive_border=rgba(00000000)
       col.group_border_active=rgb(${colors.fg})
       col.group_border=rgb(${colors.bg})
 
@@ -212,6 +212,25 @@ in
 
     bind=SUPER,mouse_down,workspace,e+1
     bind=SUPER,mouse_up,workspace,e-1
+
+    # Groups submap.
+    bind=SUPER,SLASH,submap,group
+    submap=group
+
+    binde=,t,togglegroup
+    binde=,l,lockactivegroup,toggle
+
+    binde=,m,moveintogroup,l
+    binde=,n,moveintogroup,d
+    binde=,e,moveintogroup,u
+    binde=,i,moveintogroup,r
+
+    binde=SHIFT,m,moveoutofgroup
+
+    bind=,escape,submap,reset
+    bind=,RETURN,submap,reset
+    bind=SUPER,SLASH,submap,reset
+    submap=reset
 
     # Volume keys.
     bind=,XF86AudioMute,exec,pactl set-sink-mute @DEFAULT_SINK@ toggle
