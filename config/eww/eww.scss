@@ -47,6 +47,10 @@ $gray: #bbc2cf;
   min-height: 0;
 }
 
+.submap .button { transition: none; }
+.submap .gp { color: $green; }
+.submap .rs { color: $red; }
+
 .workspace {
   color: transparentize($fg, 0.8);
   background-color: transparent;

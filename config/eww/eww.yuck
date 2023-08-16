@@ -1,5 +1,5 @@
 (include "./modules/window.yuck")
-(include "./modules/workspaces.yuck")
+(include "./modules/hyprland.yuck")
 (include "./modules/net.yuck")
 (include "./modules/clock.yuck")
 (include "./modules/audio.yuck")
@@ -19,6 +19,7 @@
        :valign "start"
     (clock)
     (date)
+    (submap)
   ))
 
 (defwidget center []

@@ -42,13 +42,13 @@ applist() {
 
 # generate the json for eww
 generate() {
-  echo -n '['
+  echo -n '{ "submap": "'"$submap"'", "workspaces": ['
 
   for i in {1..6}; do
     echo -n ''"$([ "$i" -eq 1 ] || echo ,)" '{ "number": "'"$i"'", "class": "'"$(status "$i")"'" }' #, "tooltip": "'$(applist "$i")'" }'
   done
 
-  echo ']'
+  echo '] }'
 }
 
 # setup
@@ -67,8 +67,21 @@ done
 generate
 
 # main loop
-socat -u UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | rg --line-buffered "workspace|mon(itor)?" | while read -r line; do
+socat -u UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | rg --line-buffered "submap|workspace|mon(itor)?" | while read -r line; do
   case ${line%>>*} in
+  "submap")
+    case ${line#*>>} in
+    "resize")
+      submap="rs"
+      ;;
+    "group")
+      submap="gp"
+      ;;
+    *)
+      submap=${line#*>>}
+      ;;
+    esac
+    ;;
   "workspace")
     focusedws=${line#*>>}
     ;;

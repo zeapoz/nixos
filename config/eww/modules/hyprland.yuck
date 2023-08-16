@@ -1,0 +1,26 @@
+(deflisten hyprland "scripts/hyprland")
+(defwidget workspaces []
+  (eventbox
+    :onscroll "echo {} | sed -e \"s/up/-1/g\" -e \"s/down/+1/g\" | xargs hyprctl dispatch workspace"
+    (box
+      :class "module"
+      :orientation "v"
+      (for ws in {hyprland.workspaces}
+        (button
+          :onclick "hyprctl dispatch workspace ${ws.number}"
+          :class "button icon workspace ${ws.class}"
+          "")))))
+
+(defwidget submap []
+  (eventbox
+    :onclick "hyprctl dispatch submap reset"
+    (box
+      :class "module submap"
+      :orientation "v"
+      :visible {hyprland.submap != ""}
+      (label
+        :class "icon ${hyprland.submap}"
+        :text "")
+      (label
+        :class "button icon ${hyprland.submap}"
+        :text "${hyprland.submap}"))))
