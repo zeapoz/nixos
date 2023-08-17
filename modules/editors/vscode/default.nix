@@ -6,7 +6,8 @@ let
   configFile = import ./config.nix { inherit config lib; };
   inherit (configFile) userSettings;
   inherit (configFile) keybindings;
-in {
+in
+{
   options.modules.editors.vscode.enable = mkEnableOption "vscode";
 
   config = mkIf cfg.enable {
@@ -21,6 +22,7 @@ in {
         serayuzgur.crates
         tamasfe.even-better-toml
         vscodevim.vim
+        asvetliakov.vscode-neovim
       ];
     };
   };

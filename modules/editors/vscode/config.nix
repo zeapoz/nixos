@@ -16,6 +16,11 @@ with lib; {
       fontFamily = "Fira Code";
       fontLigatures = true;
       cursorSmoothCaretAnimation = "on";
+      stickyScroll.enabled = true;
+      tabCompletion = "on";
+      cursorSurroundingLines = 10;
+      formatOnSave = true;
+      minimap.autohide = true;
     };
 
     # Send ctrl+f to fish shell.
@@ -23,6 +28,11 @@ with lib; {
       [ "-workbench.action.terminal.focusFind" ];
 
     keyboard.dispatch = mkIf (config.networking.hostName == "neon") "keyCode";
+
+    files = {
+      insertFinalNewline = true;
+      autoSave = "onFocusChange";
+    };
 
     # Plugins.
     git = {
@@ -40,6 +50,7 @@ with lib; {
       useSystemClipboard = true;
       foldfix = true;
       leader = " ";
+      smartRelativeLine = true;
 
       # Vim keybindings.
       normalModeKeyBindings = [
@@ -52,8 +63,16 @@ with lib; {
           commands = [ "workbench.action.quickOpen" ];
         }
         {
+          before = [ "<leader>" "a" ];
+          commands = [ "editor.action.quickFix" ];
+        }
+        {
           before = [ "K" ];
           commands = [ "editor.action.showHover" ];
+        }
+        {
+          before = [ "<leader>" "s" ];
+          commands = [ "workbench.action.files.save" ];
         }
         # Tabs.
         {
@@ -82,6 +101,14 @@ with lib; {
           before = [ "space" "o" "p" ];
           commands = [ "workbench.action.toggleSidebarVisibility" ];
         }
+        {
+          before = [ "<leader>" "r" "r" ];
+          commands = [ "editor.action.startFindReplaceAction" ];
+        }
+        {
+          before = [ "<leader>" "r" "f" ];
+          commands = [ "workbench.action.replaceInFiles" ];
+        }
         # Folding code.
         {
           before = [ "<Tab>" ];
@@ -90,6 +117,15 @@ with lib; {
         {
           before = [ "<S-Tab>" ];
           commands = [ "editor.unfoldAll" ];
+        }
+        # Center screen after scroll.
+        {
+          before = [ "<C-U>" ];
+          after = [ "<C-U>" "z" "z" ];
+        }
+        {
+          before = [ "<C-D>" ];
+          after = [ "<C-D>" "z" "z" ];
         }
       ];
 

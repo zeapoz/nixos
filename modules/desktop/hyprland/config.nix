@@ -167,6 +167,7 @@ in
     bind=SUPER,RETURN,exec,${terminalCmd}
     bind=SUPER,D,exec,wofi --show drun -I
     bind=SUPER,X,exec,wlogout -p layer-shell
+    bind=SUPER,H,exec,codium --enable-features=UseOzonePlatform --ozone-platform=wayland
     bind=SUPER,B,exec,brave
     bind=SUPER,P,exec,${terminalCmd} -e ranger
     bind=SUPER,S,exec,spotify
