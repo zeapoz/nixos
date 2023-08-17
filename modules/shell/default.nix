@@ -46,7 +46,6 @@ in {
 
             lg = "lazygit";
 
-            v = if config.modules.editors.neovim.enable then "nvim" else "vim";
             r = "ranger";
             cat = "bat --theme ansi";
 

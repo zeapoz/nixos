@@ -12,10 +12,14 @@ in {
     hm = {
       packages = [ (mkIf (!cfg.disableGui) pkgs.neovide) ];
 
-      programs.neovim = {
-        enable = true;
-        package = pkgs.neovim-nightly;
-        withNodeJs = true;
+      programs = {
+        neovim = {
+          enable = true;
+          package = pkgs.neovim-nightly;
+          withNodeJs = true;
+        };
+
+        fish.shellAliases.v = if cfg.disableGui then "nvim" else "neovide";
       };
 
       user.home.activation = {
