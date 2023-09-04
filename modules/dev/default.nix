@@ -9,7 +9,7 @@ in {
   config = mkIf cfg.enable {
     hm = {
       packages = with pkgs; [
-        godot
+        godot_4
         zig
         zls
       ];
