@@ -6,6 +6,7 @@
 (include "./modules/keyboard.yuck")
 (include "./modules/battery.yuck")
 (include "./modules/bar2.yuck")
+(include "./modules/player.yuck")
 
 (defwidget power []
   (eventbox :onclick "wlogout -p layer-shell &"
@@ -20,6 +21,7 @@
     (clock)
     (date)
     (submap)
+    (player)
   ))
 
 (defwidget center []

@@ -1,0 +1,9 @@
+(deflisten player_status "playerctl -F status")
+(deflisten player_metadata "playerctl -F metadata --format \"{{title}} - {{artist}}\"")
+(defwidget player []
+  (eventbox :onclick "playerctl play-pause"
+            :onrightclick "playerctl next"
+            :visible {player_status == "Stopped" ? "false" : "true"}
+            :tooltip {player_metadata}
+    (box :class "module player"
+      (label :class "icon" :text ""))))
