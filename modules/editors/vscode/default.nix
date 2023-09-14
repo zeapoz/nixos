@@ -6,18 +6,15 @@
 }:
 with lib; let
   cfg = config.modules.editors.vscode;
-
-  configDir = "../../../../config/VSCodium";
-  configFile = import ./config.nix {inherit config lib;};
-  inherit (configFile) userSettings;
-  inherit (configFile) keybindings;
 in {
-  options.modules.editors.vscode.enable = mkEnableOption "vscode";
+  options.modules.editors.vscode = {
+    enable = mkEnableOption "vscode";
+    configRepo = mkStrOpt "https://github.com/zeapoz/vscode";
+  };
 
   config = mkIf cfg.enable {
     hm = {
       programs.vscode = {
-        # inherit userSettings keybindings;
         enable = true;
         package = pkgs.vscodium;
         extensions = with pkgs.vscode-extensions; [
@@ -31,7 +28,13 @@ in {
         ];
       };
 
-      # TODO: link config to ~/.config/VSCodium.
+      user.home.activation = {
+        installConfig = ''
+          if [ ! -d "$HOME/.config/VSCodium/User" ]; then
+             git clone "${cfg.configRepo}" "$HOME/.config/VSCodium/User"
+          fi
+        '';
+      };
     };
   };
 }

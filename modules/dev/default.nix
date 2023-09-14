@@ -29,7 +29,10 @@ in {
           enable = true;
           userEmail = "zeapo@pm.me";
           userName = "zeapoz";
-          extraConfig = {credential.helper = "store";};
+          extraConfig = {
+            credential.helper = "store";
+            init.defaultBranch = "main";
+          };
           aliases = {
             a = "add";
             b = "branch";
