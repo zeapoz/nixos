@@ -1,11 +1,16 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let cfg = config.modules.editors.emacs;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.editors.emacs;
 in {
   options.modules.editors.emacs = {
     enable = mkEnableOption "emacs";
     server.enable = mkBoolOpt true;
-    doom = rec {
+    doom = {
       enable = mkEnableOption "doom";
       repo = mkStrOpt "https://github.com/doomemacs/doomemacs";
       configRepo = mkStrOpt "https://github.com/zeapoz/doom";
@@ -15,22 +20,21 @@ in {
   config = mkIf cfg.enable {
     hm = {
       packages = with pkgs; [
-        ((emacsPackagesFor emacsPgtk).emacsWithPackages
-          (epkgs: [ epkgs.vterm ]))
+        ((emacsPackagesFor emacs-pgtk).emacsWithPackages
+          (epkgs: [epkgs.vterm]))
         # Doom dependencies.
-        (ripgrep.override { withPCRE2 = true; })
+        (ripgrep.override {withPCRE2 = true;})
         fd
       ];
 
       services.emacs = mkIf cfg.server.enable {
         enable = true;
-        package = with pkgs;
-          ((emacsPackagesFor emacsPgtk).emacsWithPackages
-            (epkgs: [ epkgs.vterm ]));
+        package = with pkgs; ((emacsPackagesFor emacsPgtk).emacsWithPackages
+          (epkgs: [epkgs.vterm]));
       };
 
       user.home = {
-        sessionPath = mkIf cfg.doom.enable [ "$HOME/.emacs.d/bin" ];
+        sessionPath = mkIf cfg.doom.enable ["$HOME/.emacs.d/bin"];
 
         activation = mkIf cfg.doom.enable {
           installDoomEmacs = ''
@@ -43,7 +47,6 @@ in {
       };
     };
 
-    fonts.fonts = with pkgs; [ emacs-all-the-icons-fonts ];
+    fonts.packages = with pkgs; [emacs-all-the-icons-fonts];
   };
 }
-

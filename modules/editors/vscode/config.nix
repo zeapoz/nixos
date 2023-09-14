@@ -1,4 +1,7 @@
-{ config, lib }:
+{
+  config,
+  lib,
+}:
 with lib; {
   userSettings = {
     # General settings.
@@ -10,6 +13,7 @@ with lib; {
     workbench = {
       iconTheme = "material-icon-theme";
       colorTheme = "Bluloco Dark";
+      sideBar.location = "right";
     };
 
     editor = {
@@ -24,14 +28,14 @@ with lib; {
     };
 
     # Send ctrl+f to fish shell.
-    terminal.integrated.commandsToSkipShell =
-      [ "-workbench.action.terminal.focusFind" ];
+    terminal.integrated.commandsToSkipShell = ["-workbench.action.terminal.focusFind"];
 
     keyboard.dispatch = mkIf (config.networking.hostName == "neon") "keyCode";
 
     files = {
       insertFinalNewline = true;
-      autoSave = "onFocusChange";
+      autoSave = "onWindowChange";
+      simpleDialog.enable = true;
     };
 
     # Plugins.
@@ -55,94 +59,94 @@ with lib; {
       # Vim keybindings.
       normalModeKeyBindings = [
         {
-          before = [ ":" ];
-          commands = [ "workbench.action.showCommands" ];
+          before = [":"];
+          commands = ["workbench.action.showCommands"];
         }
         {
-          before = [ "<leader>" "f" ];
-          commands = [ "workbench.action.quickOpen" ];
+          before = ["<leader>" "f"];
+          commands = ["workbench.action.quickOpen"];
         }
         {
-          before = [ "<leader>" "a" ];
-          commands = [ "editor.action.quickFix" ];
+          before = ["<leader>" "a"];
+          commands = ["editor.action.quickFix"];
         }
         {
-          before = [ "K" ];
-          commands = [ "editor.action.showHover" ];
+          before = ["K"];
+          commands = ["editor.action.showHover"];
         }
         {
-          before = [ "<leader>" "s" ];
-          commands = [ "workbench.action.files.save" ];
+          before = ["<leader>" "s"];
+          commands = ["workbench.action.files.save"];
         }
         # Tabs.
         {
-          before = [ "<leader>" "b" "d" ];
-          commands = [ "workbench.action.closeActiveEditor" ];
+          before = ["<leader>" "b" "d"];
+          commands = ["workbench.action.closeActiveEditor"];
         }
         {
-          before = [ "<leader>" "b" "K" ];
-          commands = [ "workbench.action.closeAllEditors" ];
+          before = ["<leader>" "b" "K"];
+          commands = ["workbench.action.closeAllEditors"];
         }
         # Navigating tabs.
         {
-          before = [ "g" "l" ];
-          commands = [ "workbench.action.nextEditor" ];
+          before = ["g" "l"];
+          commands = ["workbench.action.nextEditor"];
         }
         {
-          before = [ "g" "h" ];
-          commands = [ "workbench.action.previousEditor" ];
+          before = ["g" "h"];
+          commands = ["workbench.action.previousEditor"];
         }
         # Focusing areas.
         {
-          before = [ "space" "o" "e" ];
-          commands = [ "workbench.files.action.focusOpenEditorsView" ];
+          before = ["space" "o" "e"];
+          commands = ["workbench.files.action.focusOpenEditorsView"];
         }
         {
-          before = [ "space" "o" "p" ];
-          commands = [ "workbench.action.toggleSidebarVisibility" ];
+          before = ["space" "o" "p"];
+          commands = ["workbench.action.toggleSidebarVisibility"];
         }
         {
-          before = [ "<leader>" "r" "r" ];
-          commands = [ "editor.action.startFindReplaceAction" ];
+          before = ["<leader>" "r" "r"];
+          commands = ["editor.action.startFindReplaceAction"];
         }
         {
-          before = [ "<leader>" "r" "f" ];
-          commands = [ "workbench.action.replaceInFiles" ];
+          before = ["<leader>" "r" "f"];
+          commands = ["workbench.action.replaceInFiles"];
         }
         # Folding code.
         {
-          before = [ "<Tab>" ];
-          commands = [ "editor.toggleFold" ];
+          before = ["<Tab>"];
+          commands = ["editor.toggleFold"];
         }
         {
-          before = [ "<S-Tab>" ];
-          commands = [ "editor.unfoldAll" ];
+          before = ["<S-Tab>"];
+          commands = ["editor.unfoldAll"];
         }
         # Center screen after scroll.
         {
-          before = [ "<C-U>" ];
-          after = [ "<C-U>" "z" "z" ];
+          before = ["<C-U>"];
+          after = ["<C-U>" "z" "z"];
         }
         {
-          before = [ "<C-D>" ];
-          after = [ "<C-D>" "z" "z" ];
+          before = ["<C-D>"];
+          after = ["<C-D>" "z" "z"];
         }
       ];
 
       visualModeKeyBindings = [
         # Stay in visual mode after indenting.
         {
-          before = [ ">" ];
-          after = [ ">" "g" "v" ];
+          before = [">"];
+          after = [">" "g" "v"];
         }
         {
-          before = [ "<" ];
-          after = [ "<" "g" "v" ];
+          before = ["<"];
+          after = ["<" "g" "v"];
         }
         # Folding from selection.
         {
-          before = [ "<Tab>" ];
-          commands = [ "editor.createFoldingRangeFromSelection" ];
+          before = ["<Tab>"];
+          commands = ["editor.createFoldingRangeFromSelection"];
         }
       ];
     };
@@ -196,21 +200,18 @@ with lib; {
     {
       key = "ctrl+j";
       command = "workbench.action.togglePanel";
-      when =
-        "!suggestWidgetMultipleSuggestions || !suggestWidgetVisible || !textInputFocus || !inQuickOpen";
+      when = "!suggestWidgetMultipleSuggestions || !suggestWidgetVisible || !textInputFocus || !inQuickOpen";
     }
     # Navigating suggestions & pickers.
     {
       key = "ctrl+j";
       command = "selectNextSuggestion";
-      when =
-        "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
+      when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
     }
     {
       key = "ctrl+k";
       command = "selectPrevSuggestion";
-      when =
-        "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
+      when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
     }
     {
       key = "ctrl+j";

@@ -1,8 +1,13 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let cfg = config.modules.dev;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.dev;
 in {
-  imports = [ ./lua.nix ./rust.nix ./nix.nix ./shell.nix ./web.nix ./python.nix ];
+  imports = [./lua.nix ./rust.nix ./nix.nix ./shell.nix ./web.nix ./python.nix];
 
   options.modules.dev.enable = mkEnableOption "development";
 
@@ -24,7 +29,7 @@ in {
           enable = true;
           userEmail = "zeapo@pm.me";
           userName = "zeapoz";
-          extraConfig = { credential.helper = "store"; };
+          extraConfig = {credential.helper = "store";};
           aliases = {
             a = "add";
             b = "branch";

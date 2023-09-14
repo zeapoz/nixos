@@ -1,15 +1,19 @@
-{ config, lib, pkgs, inputs, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+with lib; let
   cfg = config.modules.desktop.hyprland;
 
-  configFile = import ./config.nix { inherit config pkgs; };
+  configFile = import ./config.nix {inherit config pkgs;};
   inherit (configFile) hyprlandConfig;
   autostartConfig = configFile.autostart;
   inherit (configFile) wrappedhl;
-in
-{
-  imports = [ ../eww.nix ../waybar.nix ../wofi.nix ../wlogout.nix ];
+in {
+  imports = [../eww.nix ../waybar.nix ../wofi.nix ../wlogout.nix];
 
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
@@ -25,7 +29,7 @@ in
 
     hm = {
       user = {
-        imports = [ inputs.hyprland.homeManagerModules.default ];
+        imports = [inputs.hyprland.homeManagerModules.default];
         wayland.windowManager.hyprland = {
           enable = true;
           extraConfig = hyprlandConfig;

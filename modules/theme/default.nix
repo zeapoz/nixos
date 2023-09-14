@@ -1,13 +1,17 @@
-{ inputs, config, lib, pkgs, ... }:
-with lib;
-let
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   inherit (inputs) nix-colors;
   inherit (config.colorScheme) colors;
   cfg = config.modules.theme;
   theme = "doom-one";
-in
-{
-  imports = [ nix-colors.homeManagerModule ];
+in {
+  imports = [nix-colors.homeManagerModule];
 
   options.modules.theme.enable = mkEnableOption "theme";
 
@@ -120,4 +124,3 @@ in
     };
   };
 }
-

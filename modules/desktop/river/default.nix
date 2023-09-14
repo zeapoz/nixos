@@ -1,8 +1,13 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let cfg = config.modules.desktop.river;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.desktop.river;
 in {
-  imports = [ ../waybar.nix ../wofi.nix ];
+  imports = [../waybar.nix ../wofi.nix];
 
   options.modules.desktop.river = {
     enable = mkEnableOption "river";
@@ -16,7 +21,7 @@ in {
     };
 
     hm = {
-      packages = with pkgs; [ grim river rivercarro slurp swaybg wl-clipboard ];
+      packages = with pkgs; [grim river rivercarro slurp swaybg wl-clipboard];
 
       configFile = {
         "river" = {

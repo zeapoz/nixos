@@ -1,8 +1,6 @@
-{ inputs }:
-
-[
+{inputs}: [
   (_final: prev: {
-    spotifyd = prev.spotifyd.override { withMpris = true; };
+    spotifyd = prev.spotifyd.override {withMpris = true;};
 
     discord = prev.discord.override {
       nss = prev.nss_latest;
@@ -18,8 +16,8 @@
         sha256 = "LFZ7Kzj9//vKtdOyDCjuT/VvANcnY009uooQwAd0sAQ=";
       };
 
-      mesonFlags = old.mesonFlags ++ [ "-Dexperimental=true" "-Dcava=disabled" ];
-      patches = [ ./hyprctl.patch ];
+      mesonFlags = old.mesonFlags ++ ["-Dexperimental=true" "-Dcava=disabled"];
+      patches = [./hyprctl.patch];
     });
   })
 

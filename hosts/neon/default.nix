@@ -1,10 +1,8 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   mainDesktop = "hyprland";
   mainEditor = "codium";
-in
-{
-  imports = [ ./hardware-configuration.nix ];
+in {
+  imports = [./hardware-configuration.nix];
 
   modules = {
     desktop = {
@@ -14,8 +12,7 @@ in
       };
       waybar = {
         mainDesktop = "${mainDesktop}";
-        temperaturePath =
-          "/sys/module/k10temp/drivers/pci:k10temp/0000:00:18.3/hwmon/hwmon3/temp1_input";
+        temperaturePath = "/sys/module/k10temp/drivers/pci:k10temp/0000:00:18.3/hwmon/hwmon3/temp1_input";
       };
       applications = {
         browsers.enable = true;
@@ -26,9 +23,9 @@ in
 
     editors = {
       inherit mainEditor;
-      helix.enable = true;
       neovim.enable = true;
       vscode.enable = true;
+      emacs.enable = true;
     };
 
     dev.enable = true;
@@ -42,7 +39,7 @@ in
 
   # Home-manager settings.
   hm = {
-    packages = with pkgs; [ brightnessctl ];
+    packages = with pkgs; [brightnessctl];
     programs.kitty.font.size = 14;
   };
 

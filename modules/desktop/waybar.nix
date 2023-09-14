@@ -1,10 +1,12 @@
-{ config, lib, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.modules.desktop.waybar;
   inherit (config.home-manager.users.${config.user.name}.xdg) configHome;
-in
-{
+in {
   options.modules.desktop.waybar = {
     enable = mkEnableOption "waybar";
     mainDesktop = mkStrOpt "";
@@ -55,17 +57,17 @@ in
             };
             sort-by-number = true;
             persistent_workspaces = {
-              "1" = [ ];
-              "2" = [ ];
-              "3" = [ ];
-              "4" = [ ];
-              "5" = [ ];
-              "6" = [ ];
+              "1" = [];
+              "2" = [];
+              "3" = [];
+              "4" = [];
+              "5" = [];
+              "6" = [];
             };
           };
           "river/tags" = mkIf (cfg.mainDesktop == "river") {
             num-tags = 4;
-            tag-labels = [ "" "" "" "" ];
+            tag-labels = ["" "" "" ""];
           };
           "hyprland/window" = {
             format = "{}";
@@ -122,7 +124,7 @@ in
             format-muted = " {format_source}";
             format-source = "";
             format-source-muted = "";
-            format-icons = { "default" = [ "" "" "" ]; };
+            format-icons = {"default" = ["" "" ""];};
             scroll-step = 1;
             tooltip-format = "{desc}; {volume}%";
             on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
@@ -141,10 +143,10 @@ in
             };
             format = "{capacity}% {icon}";
             format-charging = "{capacity}% ";
-            format-icons = [ "" "" "" "" ];
+            format-icons = ["" "" "" ""];
             format-alt = "{time} {icon}";
           };
-          "tray" = { spacing = 10; };
+          "tray" = {spacing = 10;};
           "custom/power" = {
             format = "";
             on-click = "wlogout -p layer-shell";

@@ -1,6 +1,10 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.modules.desktop.wlogout;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.desktop.wlogout;
 in {
   options.modules.desktop.wlogout.enable = mkEnableOption "wlogout";
 

@@ -1,29 +1,37 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.modules.editors.vscode;
 
-  configFile = import ./config.nix { inherit config lib; };
+  configDir = "../../../../config/VSCodium";
+  configFile = import ./config.nix {inherit config lib;};
   inherit (configFile) userSettings;
   inherit (configFile) keybindings;
-in
-{
+in {
   options.modules.editors.vscode.enable = mkEnableOption "vscode";
 
   config = mkIf cfg.enable {
-    hm.programs.vscode = {
-      inherit userSettings keybindings;
-      enable = true;
-      package = pkgs.vscodium;
-      extensions = with pkgs.vscode-extensions; [
-        jnoortheen.nix-ide
-        matklad.rust-analyzer
-        pkief.material-icon-theme
-        serayuzgur.crates
-        tamasfe.even-better-toml
-        vscodevim.vim
-        asvetliakov.vscode-neovim
-      ];
+    hm = {
+      programs.vscode = {
+        # inherit userSettings keybindings;
+        enable = true;
+        package = pkgs.vscodium;
+        extensions = with pkgs.vscode-extensions; [
+          jnoortheen.nix-ide
+          matklad.rust-analyzer
+          pkief.material-icon-theme
+          serayuzgur.crates
+          tamasfe.even-better-toml
+          vscodevim.vim
+          asvetliakov.vscode-neovim
+        ];
+      };
+
+      # TODO: link config to ~/.config/VSCodium.
     };
   };
 }

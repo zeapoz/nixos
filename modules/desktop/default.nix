@@ -1,7 +1,5 @@
-{ pkgs, ... }:
-
-{
-  imports = [ ./river ./hyprland ./applications ];
+{pkgs, ...}: {
+  imports = [./river ./hyprland ./applications];
 
   hm = {
     packages = with pkgs; [
@@ -36,33 +34,20 @@
       };
     };
 
-    services = {
-      swayidle = {
-        enable = true;
-        extraArgs = [ "-w" ];
-        systemdTarget = "hyprland-session.target";
-        events = [
-          { event = "before-sleep"; command = "${pkgs.swaylock-effects}/bin/swaylock -f"; }
-          { event = "lock"; command = "lock"; }
-        ];
-        timeouts = [{ timeout = 600; command = "${pkgs.swaylock-effects}/bin/swaylock -f"; }];
-      };
-
-      mako = {
-        enable = true;
-        anchor = "top-left";
-        borderRadius = 10;
-        borderSize = 3;
-        defaultTimeout = 5000;
-        font = "Fira Sans";
-      };
+    services.mako = {
+      enable = true;
+      anchor = "top-left";
+      borderRadius = 10;
+      borderSize = 3;
+      defaultTimeout = 5000;
+      font = "Fira Sans";
     };
   };
 
   programs = {
     thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [ thunar-archive-plugin ];
+      plugins = with pkgs.xfce; [thunar-archive-plugin];
     };
 
     file-roller.enable = true;
@@ -70,10 +55,10 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
     xdgOpenUsePortal = true;
   };
 
   # https://github.com/nix-community/home-manager/issues/1288
-  security.pam.services.swaylock = { };
+  security.pam.services.swaylock = {};
 }

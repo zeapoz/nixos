@@ -1,6 +1,10 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.modules.editors.helix;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.editors.helix;
 in {
   options.modules.editors.helix.enable = mkEnableOption "helix";
 
@@ -16,7 +20,7 @@ in {
           idle-timeout = 0;
           auto-save = true;
           color-modes = true;
-          shell = [ "fish" "-c" ];
+          shell = ["fish" "-c"];
           bufferline = "multiple";
           lsp.display-messages = true;
           file-picker.hidden = false;

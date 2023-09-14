@@ -1,9 +1,7 @@
-{ pkgs, ... }:
+{pkgs, ...}: {
+  imports = [./bluetooth.nix ./keychron.nix];
 
-{
-  imports = [ ./bluetooth.nix ./keychron.nix ];
-
-  hm.packages = with pkgs; [ kanata ];
+  hm.packages = with pkgs; [kanata];
 
   # Fix disable while typing when using kanata.
   environment.etc."libinput/local-overrides.quirks".text = ''

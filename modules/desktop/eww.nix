@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.modules.desktop.eww;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.desktop.eww;
+in {
   options.modules.desktop.eww.enable = mkEnableOption "eww";
 
   config = mkIf cfg.enable {
@@ -16,7 +19,8 @@ in
 
       configFile = {
         "NixOS/config/eww/modules/battery.yuck".text =
-          if config.hardware.hasBattery then ''
+          if config.hardware.hasBattery
+          then ''
             (deflisten battery "scripts/battery")
             (defwidget battery []
               (box :class "module battery ''${battery.class}"
@@ -28,7 +32,8 @@ in
               (box :visible false))'';
 
         "NixOS/config/eww/modules/bar2.yuck".text =
-          if (config.networking.hostName == "helium") then ''
+          if (config.networking.hostName == "helium")
+          then ''
             (defwindow bar2
               :monitor 1
               :geometry (geometry 

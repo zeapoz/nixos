@@ -1,7 +1,6 @@
-{ inputs, ... }:
-
+{inputs, ...}:
 inputs.nixpkgs.lib.extend (_final: prev: {
-  mkOpt = type: default: prev.mkOption { inherit type default; };
+  mkOpt = type: default: prev.mkOption {inherit type default;};
 
   mkBoolOpt = default:
     prev.mkOption {
@@ -15,11 +14,17 @@ inputs.nixpkgs.lib.extend (_final: prev: {
       type = prev.types.str;
     };
 
-  mkHost = { hostName, system, pkgs, lib, ... }:
+  mkHost = {
+    hostName,
+    system,
+    pkgs,
+    lib,
+    ...
+  }:
     prev.nixosSystem {
       inherit system pkgs lib;
 
-      specialArgs = { inherit inputs; };
+      specialArgs = {inherit inputs;};
 
       modules = [
         ../configuration.nix
@@ -27,7 +32,7 @@ inputs.nixpkgs.lib.extend (_final: prev: {
         ../home.nix
         inputs.home-manager.nixosModules.home-manager
         {
-          imports = [ ../hosts/${hostName} ];
+          imports = [../hosts/${hostName}];
 
           networking.hostName = "${hostName}";
         }

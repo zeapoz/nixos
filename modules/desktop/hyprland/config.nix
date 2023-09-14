@@ -1,12 +1,13 @@
-{ config, pkgs }:
-let
+{
+  config,
+  pkgs,
+}: let
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   inherit (config.colorScheme) colors;
 
   terminalCmd = "wezterm";
   layout = "master";
-in
-{
+in {
   hyprlandConfig = ''
     monitor=,preferred,auto,1
 
@@ -20,7 +21,11 @@ in
     blurls=wofi
     blurls=gtk-layer-shell
 
-    ${if (config.networking.hostName == "helium") then "workspace=HDMI-A-2,6" else ""}
+    ${
+      if (config.networking.hostName == "helium")
+      then "workspace=HDMI-A-2,6"
+      else ""
+    }
 
     input {
       repeat_rate=50
@@ -82,82 +87,86 @@ in
       workspace_back_and_forth=true
     }
 
-    ${if (layout == "dwindle") then ''
-      dwindle {
-        preserve_split=true
-      }
+    ${
+      if (layout == "dwindle")
+      then ''
+        dwindle {
+          preserve_split=true
+        }
 
-      bind=SUPER,m,movefocus,l
-      bind=SUPER,n,movefocus,d
-      bind=SUPER,e,movefocus,u
-      bind=SUPER,i,movefocus,r
+        bind=SUPER,m,movefocus,l
+        bind=SUPER,n,movefocus,d
+        bind=SUPER,e,movefocus,u
+        bind=SUPER,i,movefocus,r
 
-      bind=SUPERSHIFT,m,movewindow,l
-      bind=SUPERSHIFT,n,movewindow,d
-      bind=SUPERSHIFT,e,movewindow,u
-      bind=SUPERSHIFT,i,movewindow,r
+        bind=SUPERSHIFT,m,movewindow,l
+        bind=SUPERSHIFT,n,movewindow,d
+        bind=SUPERSHIFT,e,movewindow,u
+        bind=SUPERSHIFT,i,movewindow,r
 
-      # Resize submap.
-      bind=SUPER,R,submap,resize
-      submap=resize
+        # Resize submap.
+        bind=SUPER,R,submap,resize
+        submap=resize
 
-      binde=,m,resizeactive,-100 0
-      binde=,n,resizeactive,0 100
-      binde=,e,resizeactive,0 -100
-      binde=,i,resizeactive,100 0
+        binde=,m,resizeactive,-100 0
+        binde=,n,resizeactive,0 100
+        binde=,e,resizeactive,0 -100
+        binde=,i,resizeactive,100 0
 
-      bind=,escape,submap,reset
-      bind=,RETURN,submap,reset
-      bind=SUPER,R,submap,reset
-      submap=reset
+        bind=,escape,submap,reset
+        bind=,RETURN,submap,reset
+        bind=SUPER,R,submap,reset
+        submap=reset
       ''
-    else if (layout == "master") then ''
-      master {
-        allow_small_split=true
-        mfact=0.6
-        new_is_master=false
-        new_on_top=true
-        no_gaps_when_only=true
-      }
+      else if (layout == "master")
+      then ''
+        master {
+          allow_small_split=true
+          mfact=0.6
+          new_is_master=false
+          new_on_top=true
+          no_gaps_when_only=true
+        }
 
-      bind=SUPER,n,layoutmsg,cyclenext
-      bind=SUPER,e,layoutmsg,cycleprev
+        bind=SUPER,n,layoutmsg,cyclenext
+        bind=SUPER,e,layoutmsg,cycleprev
 
-      bind=SUPER,m,resizeactive,-100 0
-      bind=SUPER,i,resizeactive,100 0
+        bind=SUPER,m,resizeactive,-100 0
+        bind=SUPER,i,resizeactive,100 0
 
-      # Resize submap.
-      bind=SUPER,R,submap,resize
-      submap=resize
+        # Resize submap.
+        bind=SUPER,R,submap,resize
+        submap=resize
 
-      binde=,m,resizeactive,-100 0
-      binde=,n,resizeactive,0 100
-      binde=,e,resizeactive,0 -100
-      binde=,i,resizeactive,100 0
+        binde=,m,resizeactive,-100 0
+        binde=,n,resizeactive,0 100
+        binde=,e,resizeactive,0 -100
+        binde=,i,resizeactive,100 0
 
-      binde=,left,moveactive,-100 0
-      binde=,down,moveactive,0 100
-      binde=,up,moveactive,0 -100
-      binde=,right,moveactive,100 0
+        binde=,left,moveactive,-100 0
+        binde=,down,moveactive,0 100
+        binde=,up,moveactive,0 -100
+        binde=,right,moveactive,100 0
 
-      bind=,escape,submap,reset
-      bind=,RETURN,submap,reset
-      bind=SUPER,R,submap,reset
-      submap=reset
+        bind=,escape,submap,reset
+        bind=,RETURN,submap,reset
+        bind=SUPER,R,submap,reset
+        submap=reset
 
-      bind=SUPERSHIFT,m,layoutmsg,addmaster
-      bind=SUPERSHIFT,i,layoutmsg,removemaster
+        bind=SUPERSHIFT,m,layoutmsg,addmaster
+        bind=SUPERSHIFT,i,layoutmsg,removemaster
 
-      bind=SUPERSHIFT,n,layoutmsg,swapnext
-      bind=SUPERSHIFT,e,layoutmsg,swapprev
-      bind=SUPERSHIFT,RETURN,layoutmsg,swapwithmaster
+        bind=SUPERSHIFT,n,layoutmsg,swapnext
+        bind=SUPERSHIFT,e,layoutmsg,swapprev
+        bind=SUPERSHIFT,RETURN,layoutmsg,swapwithmaster
 
-      bind=SUPER,left,layoutmsg,orientationleft
-      bind=SUPER,right,layoutmsg,orientationright
-      bind=SUPER,down,layoutmsg,orientationbottom
-      bind=SUPER,up,layoutmsg,orientationtop
+        bind=SUPER,left,layoutmsg,orientationleft
+        bind=SUPER,right,layoutmsg,orientationright
+        bind=SUPER,down,layoutmsg,orientationbottom
+        bind=SUPER,up,layoutmsg,orientationtop
       ''
-      else ""}
+      else ""
+    }
 
     # some nice mouse binds
     bindm=SUPER,mouse:272,movewindow
@@ -235,8 +244,8 @@ in
 
     # Volume keys.
     bind=,XF86AudioMute,exec,pactl set-sink-mute @DEFAULT_SINK@ toggle
-    bind=,XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -5%
-    bind=,XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +5%
+    binde=,XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -2%
+    binde=,XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +2%
     bind=,XF86AudioMicMute,exec,pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
     # Player controls.
@@ -246,8 +255,8 @@ in
     bind=,XF86AudioPrev,exec,playerctl previous
 
     # Screen backlight.
-    bind=,XF86MonBrightnessUp,exec,brightnessctl set 5%+
-    bind=,XF86MonBrightnessDown,exec,brightnessctl set 5%-
+    bind=,XF86MonBrightnessUp,exec,brightnessctl set 2%+
+    bind=,XF86MonBrightnessDown,exec,brightnessctl set 2%-
 
     # Reload configuration.
     bind=SUPER,C,exec,hyprctl reload
@@ -264,7 +273,11 @@ in
     kanata --cfg ~/.config/NixOS/config/kanata/config.kbd --port 36413 &
     swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
     eww -c ~/.config/NixOS/config/eww/ open bar &
-    ${if (config.networking.hostName == "helium") then "eww -c ~/.config/NixOS/config/eww/ open bar2 &" else ""}
+    ${
+      if (config.networking.hostName == "helium")
+      then "eww -c ~/.config/NixOS/config/eww/ open bar2 &"
+      else ""
+    }
   '';
 
   wrappedhl = pkgs.writeShellScriptBin "wrappedhl" ''
@@ -279,6 +292,6 @@ in
     # Set a cursor size
     export XCURSOR_SIZE=${builtins.toString cursorCfg.size}
 
-    exec Hyprland
+    dbus-run-session Hyprland
   '';
 }

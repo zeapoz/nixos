@@ -1,6 +1,11 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let cfg = config.modules.dev.lua;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.dev.lua;
 in {
   options.modules.dev.lua.enable = mkBoolOpt true;
 

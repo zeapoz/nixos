@@ -1,6 +1,11 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let cfg = config.modules.editors.neovim;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.editors.neovim;
 in {
   options.modules.editors.neovim = {
     enable = mkEnableOption "neovim";
@@ -10,7 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     hm = {
-      packages = [ (mkIf (!cfg.disableGui) pkgs.neovide) ];
+      packages = [(mkIf (!cfg.disableGui) pkgs.neovide)];
 
       programs = {
         neovim = {
@@ -19,7 +24,10 @@ in {
           withNodeJs = true;
         };
 
-        fish.shellAliases.v = if cfg.disableGui then "nvim" else "neovide";
+        fish.shellAliases.v =
+          if cfg.disableGui
+          then "nvim"
+          else "neovide";
       };
 
       user.home.activation = {

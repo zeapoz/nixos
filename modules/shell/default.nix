@@ -1,8 +1,13 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let cfg = config.modules.shell;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.shell;
 in {
-  imports = [ ./tmux.nix ];
+  imports = [./tmux.nix];
 
   options.modules.shell.enable = mkEnableOption "shell";
 
@@ -66,12 +71,13 @@ in {
           shellInit = ''
             set fish_greeting
             set -gx DIRENV_LOG_FORMAT ""
-            ${if config.modules.editors.neovim.enable then
-              "set -gx EDITOR nvim"
-            else if config.modules.editors.helix.enable then
-              "set -gx EDITOR hx"
-            else
-              "set -gx EDITOR vim"}
+            ${
+              if config.modules.editors.neovim.enable
+              then "set -gx EDITOR nvim"
+              else if config.modules.editors.helix.enable
+              then "set -gx EDITOR hx"
+              else "set -gx EDITOR vim"
+            }
           '';
           plugins = with pkgs.fishPlugins; [
             {
@@ -107,7 +113,7 @@ in {
         eza = {
           enable = true;
           enableAliases = true;
-          extraOptions = [ "--group-directories-first" ];
+          extraOptions = ["--group-directories-first"];
           git = true;
           icons = true;
         };
@@ -117,11 +123,15 @@ in {
           extraConfig = ''
             return {
               font = wezterm.font("FiraCode Nerd Font"),
-              font_size = ${if (config.networking.hostName == "neon") then "14.0" else "12.0"},
+              font_size = ${
+              if (config.networking.hostName == "neon")
+              then "14.0"
+              else "12.0"
+            },
               color_scheme = "OneDark (base16)",
               window_background_opacity = 0.7,
               hide_tab_bar_if_only_one_tab = true,
-              window_close_confirmation = "NeverPrompt", 
+              window_close_confirmation = "NeverPrompt",
             }
           '';
         };

@@ -1,4 +1,9 @@
-{ options, config, lib, ... }:
+{
+  options,
+  config,
+  lib,
+  ...
+}:
 with lib; {
   # Aliases for a better typing experience.
   # home-manager.users.${config.user.name}                -> hm.user
@@ -9,12 +14,12 @@ with lib; {
   # home-manager.users.${config.user.name}.services       -> hm.services
   options = with types; {
     hm = {
-      user = mkOpt attrs { };
-      file = mkOpt attrs { };
-      configFile = mkOpt attrs { };
-      packages = mkOpt attrs { };
-      programs = mkOpt attrs { };
-      services = mkOpt attrs { };
+      user = mkOpt attrs {};
+      file = mkOpt attrs {};
+      configFile = mkOpt attrs {};
+      packages = mkOpt attrs {};
+      programs = mkOpt attrs {};
+      services = mkOpt attrs {};
     };
   };
 

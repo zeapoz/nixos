@@ -1,11 +1,16 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let cfg = config.modules.hardware.keychron;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.hardware.keychron;
 in {
   options.modules.hardware.keychron.enable = mkEnableOption "keychron";
 
   config = mkIf cfg.enable {
-    hm.packages = with pkgs; [ vial ];
+    hm.packages = with pkgs; [vial];
 
     services.udev.packages = [
       (pkgs.writeTextFile {
