@@ -18,13 +18,15 @@ in {
         enable = true;
         package = pkgs.vscodium;
         extensions = with pkgs.vscode-extensions; [
-          jnoortheen.nix-ide
-          matklad.rust-analyzer
-          pkief.material-icon-theme
           serayuzgur.crates
+          mkhl.direnv
+          usernamehw.errorlens
           tamasfe.even-better-toml
+          pkief.material-icon-theme
+          jnoortheen.nix-ide
+          rust-lang.rust-analyzer
+          gruntfuggly.todo-tree
           vscodevim.vim
-          asvetliakov.vscode-neovim
         ];
       };
 
