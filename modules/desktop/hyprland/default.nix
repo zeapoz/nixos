@@ -13,7 +13,7 @@ with lib; let
   autostartConfig = configFile.autostart;
   inherit (configFile) wrappedhl;
 in {
-  imports = [../eww.nix ../waybar.nix ../wofi.nix ../wlogout.nix];
+  imports = [../eww.nix ../waybar.nix ../wlogout.nix];
 
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
@@ -23,7 +23,6 @@ in {
   config = mkIf cfg.enable {
     modules.desktop = {
       eww.enable = true;
-      wofi.enable = true;
       wlogout.enable = true;
     };
 

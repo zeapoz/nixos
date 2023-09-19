@@ -18,6 +18,7 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     kmonad.url = "github:kmonad/kmonad?dir=nix";
     nix-colors.url = "github:misterio77/nix-colors";
+    anyrun.url = "github:Kirottu/anyrun";
   };
 
   outputs = inputs @ {nixpkgs, ...}: let

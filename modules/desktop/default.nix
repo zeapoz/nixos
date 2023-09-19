@@ -1,7 +1,13 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [./river ./hyprland ./applications];
 
   hm = {
+    user.imports = [inputs.anyrun.homeManagerModules.default];
+
     packages = with pkgs; [
       anki
       bitwarden
@@ -18,7 +24,25 @@
       xdg-utils
     ];
 
-    programs.swaylock = {
+    programs = {
+      anyrun = {
+        enable = true;
+        config = {
+          plugins = with inputs.anyrun.packages.${pkgs.system}; [
+            applications
+            symbols
+            rink
+            shell
+          ];
+        };
+        extraCss = ''
+          .window {
+            background-color: none;
+          }
+        '';
+      };
+
+      swaylock = {
       package = pkgs.swaylock-effects;
       settings = {
         font = "Fira Sans";
@@ -33,6 +57,7 @@
         effect-blur = "7x5";
       };
     };
+    };
 
     services.mako = {
       enable = true;
@@ -40,6 +65,7 @@
       borderRadius = 10;
       borderSize = 3;
       defaultTimeout = 5000;
+      layer = "overlay";
       font = "Fira Sans";
     };
   };

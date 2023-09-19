@@ -18,7 +18,7 @@ in {
       builtins.toString cursorCfg.size
     }
 
-    blurls=wofi
+    blurls=anyrun
     blurls=gtk-layer-shell
 
     ${
@@ -174,7 +174,7 @@ in {
 
     # Useful applications.
     bind=SUPER,RETURN,exec,${terminalCmd}
-    bind=SUPER,D,exec,wofi --show drun -I
+    bind=SUPER,D,exec,anyrun
     bind=SUPER,X,exec,wlogout -p layer-shell
     bind=SUPER,H,exec,codium --enable-features=UseOzonePlatform --ozone-platform=wayland
     bind=SUPER,B,exec,brave
