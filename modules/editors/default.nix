@@ -7,5 +7,6 @@ with lib; {
     ./vscode
   ];
 
+  # TODO: deprecate, or find a use.
   options.modules.editors.mainEditor = mkStrOpt "";
 }

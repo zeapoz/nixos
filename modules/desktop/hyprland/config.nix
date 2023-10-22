@@ -21,6 +21,8 @@ in {
     blurls=anyrun
     blurls=gtk-layer-shell
 
+    # TODO: Investigate new options.
+
     ${
       if (config.networking.hostName == "helium")
       then "workspace=HDMI-A-2,6"
@@ -41,8 +43,6 @@ in {
 
       col.active_border=rgb(${colors.fg})
       col.inactive_border=rgba(00000000)
-      col.group_border_active=rgb(${colors.fg})
-      col.group_border=rgb(${colors.bg})
 
       layout=${layout}
       resize_on_border=true
@@ -51,7 +51,6 @@ in {
 
     decoration {
       rounding=10
-      multisample_edges=true
 
       blur {
         enabled=true
@@ -76,6 +75,11 @@ in {
       animation=fade,1,2,default
       animation=fadeDim,1,2,default
       animation=workspaces,1,3,default,slidevert
+    }
+
+    group {
+      col.border_active=rgb(${colors.fg})
+      col.border_inactive=rgb(${colors.bg})
     }
 
     misc {
@@ -176,11 +180,12 @@ in {
     bind=SUPER,RETURN,exec,${terminalCmd}
     bind=SUPER,D,exec,anyrun
     bind=SUPER,X,exec,wlogout -p layer-shell
-    bind=SUPER,H,exec,codium --enable-features=UseOzonePlatform --ozone-platform=wayland
+    bind=SUPER,H,exec,neovide
+    bind=SUPERSHIFT,H,exec,codium --enable-features=UseOzonePlatform --ozone-platform=wayland
     bind=SUPER,B,exec,brave
+    bind=SUPERSHIFT,B,exec,librewolf
     bind=SUPER,P,exec,${terminalCmd} -e ranger
     bind=SUPER,S,exec,spotify
-    bind=SUPERSHIFT,B,exec,librewolf
 
     bind=SUPER,W,killactive,
     bind=SUPERSHIFT,Q,exit,

@@ -12,7 +12,7 @@ in {
     hm.programs.helix = {
       enable = true;
       settings = {
-        theme = "onedark";
+        theme = "onedark-transparent";
         editor = {
           cursorline = true;
           cursor-shape.insert = "bar";
@@ -30,22 +30,17 @@ in {
       languages = {
         language = [
           {
-            name = "rust";
-            auto-pairs = {
-              "(" = ")";
-              "{" = "}";
-              "[" = "]";
-              "\"" = "\"";
-              "`" = "`";
-              "<" = ">";
-            };
-          }
-          {
             name = "nix";
             auto-format = true;
-            formatter.command = "nixpkgs-fmt";
+            formatter.command = "alejandra";
           }
         ];
+      };
+      themes = {
+        onedark-transparent = {
+          "inherits" = "onedark";
+          "ui.background" = { "fg" = "foreground"; };
+        };
       };
     };
   };

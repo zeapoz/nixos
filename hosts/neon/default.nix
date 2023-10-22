@@ -25,7 +25,6 @@ in {
       inherit mainEditor;
       neovim.enable = true;
       vscode.enable = true;
-      emacs.enable = true;
     };
 
     dev.enable = true;

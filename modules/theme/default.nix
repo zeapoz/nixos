@@ -9,7 +9,7 @@ with lib; let
   inherit (inputs) nix-colors;
   inherit (config.colorScheme) colors;
   cfg = config.modules.theme;
-  theme = "doom-one";
+  theme = "kanagawa";
 in {
   imports = [nix-colors.homeManagerModule];
 
@@ -120,6 +120,27 @@ in {
         @define-color blue-accent #${lightBlue};
         @define-color purple-normal #${purple};
         @define-color purple-accent #${lightPurple};
+      '';
+
+      configFile."colors.scss".text = with colors; ''
+        $fg: #${fg};
+        $bg: #${bg};
+        $black: #${black};
+        $red: #${red};
+        $green: #${green};
+        $yellow: #${yellow};
+        $blue: #${blue};
+        $purple: #${purple};
+        $cyan: #${cyan};
+        $white: #${white};
+        $lightBlack: #${lightBlack};
+        $lightRed: #${lightRed};
+        $lightGreen: #${lightGreen};
+        $lightYellow: #${lightYellow};
+        $lightBlue: #${lightBlue};
+        $lightPurple: #${lightPurple};
+        $lightCyan: #${lightCyan};
+        $gray: #${gray};
       '';
     };
   };
