@@ -9,17 +9,16 @@
 .bar,
 .bar2 {
   color: $fg;
-  background-color: transparentize($bg, 0.66);
-  border-right: 1px solid transparentize($fg, 0.9);
+  background-color: $bg;
 }
 
 .module {
   padding: 0.4em 0.2em;
   margin: 0.3em 0.5em;
-  background-color: transparentize($fg, 0.9);
   border-radius: 10px;
   min-width: 2em;
 }
+
 .icon {
   padding: 0.2em 0;
   background-color: transparent;

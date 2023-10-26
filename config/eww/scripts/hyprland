@@ -9,46 +9,51 @@ declare -A workspaces
 
 # set color for each workspace
 status() {
-  if [ "${o[$1]}" -eq 1 ]; then
-    mon=${monitormap[${workspaces[$1]}]}
+	if [ "${o[$1]}" -eq 1 ]; then
+		mon=${monitormap[${workspaces[$1]}]}
 
-    if [ "$focusedws" -eq "$1" ]; then
-      echo -n "workspace-focused monitor-${mon}"
-    else
-      echo -n "workspace-unfocused monitor-${mon}"
-    fi
-  else
-    echo -n "empty"
-  fi
+		if [ "$focusedws" -eq "$1" ]; then
+			echo -n "workspace-focused monitor-${mon}"
+		else
+			echo -n "workspace-unfocused monitor-${mon}"
+		fi
+	else
+		echo -n "empty"
+	fi
+}
+
+icon() {
+	icons=("一" "二" "三" "四" "五" "六")
+	echo -n "${icons[$1 - 1]}"
 }
 
 # handle workspace create/destroy
 workspace_event() {
-  o[$1]=$2
-  while read -r k v; do workspaces[$k]="$v"; done < <(hyprctl -j workspaces | jq -r '.[]|"\(.id) \(.monitor)"')
+	o[$1]=$2
+	while read -r k v; do workspaces[$k]="$v"; done < <(hyprctl -j workspaces | jq -r '.[]|"\(.id) \(.monitor)"')
 }
 # handle monitor (dis)connects
 monitor_event() {
-  while read -r k v; do monitormap["$k"]=$v; done < <(hyprctl -j monitors | jq -r '.[]|"\(.name) \(.id) "')
+	while read -r k v; do monitormap["$k"]=$v; done < <(hyprctl -j monitors | jq -r '.[]|"\(.name) \(.id) "')
 }
 
 # get all apps titles in a workspace
 applist() {
-  ws="$1"
+	ws="$1"
 
-  apps=$(hyprctl -j clients | jaq -jr '.[] | select(.workspace.id == '"$ws"') | .title + "\\n"')
-  echo -En "${apps%"\n"}"
+	apps=$(hyprctl -j clients | jaq -jr '.[] | select(.workspace.id == '"$ws"') | .title + "\\n"')
+	echo -En "${apps%"\n"}"
 }
 
 # generate the json for eww
 generate() {
-  echo -n '{ "submap": "'"$submap"'", "workspaces": ['
+	echo -n '{ "submap": "'"$submap"'", "workspaces": ['
 
-  for i in {1..6}; do
-    echo -n ''"$([ "$i" -eq 1 ] || echo ,)" '{ "number": "'"$i"'", "class": "'"$(status "$i")"'" }' #, "tooltip": "'$(applist "$i")'" }'
-  done
+	for i in {1..6}; do
+		echo -n ''"$([ "$i" -eq 1 ] || echo ,)" '{ "number": "'"$i"'", "icon": "'"$(icon "$i")"'", "class": "'"$(status "$i")"'" }' #, "tooltip": "'$(applist "$i")'" }'
+	done
 
-  echo '] }'
+	echo '] }'
 }
 
 # setup
@@ -61,42 +66,42 @@ while read -r k v; do workspaces[$k]="$v"; done < <(hyprctl -j workspaces | jq -
 
 # check occupied workspaces
 for num in "${!workspaces[@]}"; do
-  o[$num]=1
+	o[$num]=1
 done
 # generate initial widget
 generate
 
 # main loop
 socat -u UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | rg --line-buffered "submap|workspace|mon(itor)?" | while read -r line; do
-  case ${line%>>*} in
-  "submap")
-    case ${line#*>>} in
-    "resize")
-      submap="rs"
-      ;;
-    "group")
-      submap="gp"
-      ;;
-    *)
-      submap=${line#*>>}
-      ;;
-    esac
-    ;;
-  "workspace")
-    focusedws=${line#*>>}
-    ;;
-  "focusedmon")
-    focusedws=${line#*,}
-    ;;
-  "createworkspace")
-    workspace_event "${line#*>>}" 1
-    ;;
-  "destroyworkspace")
-    workspace_event "${line#*>>}" 0
-    ;;
-  "monitor"*)
-    monitor_event
-    ;;
-  esac
-  generate
+	case ${line%>>*} in
+	"submap")
+		case ${line#*>>} in
+		"resize")
+			submap="rs"
+			;;
+		"group")
+			submap="gp"
+			;;
+		*)
+			submap=${line#*>>}
+			;;
+		esac
+		;;
+	"workspace")
+		focusedws=${line#*>>}
+		;;
+	"focusedmon")
+		focusedws=${line#*,}
+		;;
+	"createworkspace")
+		workspace_event "${line#*>>}" 1
+		;;
+	"destroyworkspace")
+		workspace_event "${line#*>>}" 0
+		;;
+	"monitor"*)
+		monitor_event
+		;;
+	esac
+	generate
 done

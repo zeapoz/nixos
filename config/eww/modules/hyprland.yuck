@@ -9,7 +9,7 @@
         (button
           :onclick "hyprctl dispatch workspace ${ws.number}"
           :class "button icon workspace ${ws.class}"
-          "")))))
+          "${ws.icon}")))))
 
 (defwidget submap []
   (eventbox

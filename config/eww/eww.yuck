@@ -18,6 +18,7 @@
        :orientation "v"
        :halign "center"
        :valign "start"
+       :class "top"
     (clock)
     (date)
     (submap)
@@ -28,6 +29,7 @@
   (box :space-evenly false
        :halign "center"
        :valign "center"
+       :class "center"
     (workspaces)
   ))
 
@@ -37,6 +39,7 @@
        :space-evenly false
        :halign "center"
        :valign "end"
+       :class "bottom"
     (net)
     (audio)
     (keyboard)
