@@ -61,7 +61,7 @@
 
     services.mako = {
       enable = true;
-      anchor = "top-left";
+      anchor = "top-right";
       borderRadius = 10;
       borderSize = 3;
       defaultTimeout = 5000;

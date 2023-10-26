@@ -97,6 +97,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     gcc
+    gnumake
     git
     htop
     vim

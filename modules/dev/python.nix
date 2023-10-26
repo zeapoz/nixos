@@ -14,6 +14,7 @@ in {
       [
         black
         ruff
+        ruff-lsp
         isort
         python3
       ]

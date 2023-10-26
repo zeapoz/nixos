@@ -20,108 +20,48 @@ in {
       settings = {
         mainBar = {
           layer = "top";
-          position = "top";
-          margin = "10 10 0 10";
-          modules-left = [
-            "clock"
-            "cpu"
-            "memory"
-            "disk"
-            (mkIf (cfg.mainDesktop == "hyprland") "wlr/workspaces")
+          position = "left";
+          modules-left = ["clock"];
+          modules-center = [
+            (mkIf (cfg.mainDesktop == "hyprland") "hyprland/workspaces")
             (mkIf (cfg.mainDesktop == "river") "river/tags")
           ];
-          modules-center = [
-            (mkIf (cfg.mainDesktop == "hyprland") "hyprland/window")
-          ];
           modules-right = [
-            "temperature"
-            "custom/kernel"
             "network"
             "pulseaudio"
-            (mkIf (cfg.mainDesktop == "hyprland") "hyprland/language")
-            "keyboard-state"
             (mkIf config.hardware.hasBattery "battery")
             "tray"
             "custom/power"
           ];
 
-          "wlr/workspaces" = mkIf (cfg.mainDesktop == "hyprland") {
-            on-scroll-up = "hyprctl dispatch workspace e+1";
-            on-scroll-down = "hyprctl dispatch workspace e-1";
-            on-click = "activate";
+          "hyprland/workspaces" = mkIf (cfg.mainDesktop == "hyprland") {
             format = "{icon}";
             format-icons = {
-              "active" = "";
-              "default" = "";
-              "urgent" = "";
+              "1" = "一";
+              "2" = "二";
+              "3" = "三";
+              "4" = "四";
+              "5" = "五";
+              "6" = "六";
             };
-            sort-by-number = true;
             persistent_workspaces = {
-              "1" = [];
-              "2" = [];
-              "3" = [];
-              "4" = [];
-              "5" = [];
-              "6" = [];
+              "*" = 6;
             };
-          };
-          "river/tags" = mkIf (cfg.mainDesktop == "river") {
-            num-tags = 4;
-            tag-labels = ["" "" "" ""];
-          };
-          "hyprland/window" = {
-            format = "{}";
-            separate-outputs = true;
-            max-length = 25;
-          };
-          "cpu" = {
-            interval = 10;
-            format = " {usage}%";
-            tooltip = false;
-          };
-          "memory" = {
-            interval = 10;
-            format = " {}%";
-          };
-          "disk" = {
-            interval = 600;
-            format = " {percentage_used}%";
-            path = "/";
           };
           "clock" = {
             interval = 60;
-            format = "{: %a %b %e %H:%M}";
-          };
-          "keyboard-state" = {
-            capslock = true;
-            format = "{icon}";
-            format-icons = {
-              locked = "CAPS";
-              unlocked = "";
-            };
-            device-path = mkIf (cfg.keyboardPath != "") cfg.keyboardPath;
-          };
-          "temperature" = {
-            interval = 5;
-            critical-threshold = 60;
-            format = " {temperatureC}°C";
-            hwmon-path = mkIf (cfg.temperaturePath != "") cfg.temperaturePath;
-          };
-          "custom/kernel" = {
-            interval = "once";
-            format = " {}";
-            exec = "uname -r";
+            format = "   {:\n %H \n %M }";
           };
           "network" = {
-            format-wifi = " {signalStrength}%";
+            format-wifi = "\n{signalStrength}";
             format-ethernet = "";
             tooltip-format = "{ifname} via {gwaddr}";
             format-linked = "{ifname} (No IP)";
             format-disconnected = "";
           };
           "pulseaudio" = {
-            format = "{icon} {volume}% {format_source}";
-            format-muted = " {format_source}";
+            format = "{icon}\n{volume}\n{format_source}";
+            format-muted = "\n{volume}\n{format_source}";
             format-source = "";
             format-source-muted = "";
             format-icons = {"default" = ["" "" ""];};
@@ -131,18 +71,14 @@ in {
             on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
             on-click-middle = "pavucontrol";
           };
-          "hyprland/language" = mkIf (cfg.mainDesktop == "hyprland") {
-            "format-en" = " en";
-            "format-sv" = " sv";
-          };
           "battery" = mkIf config.hardware.hasBattery {
             interval = 60;
             states = {
               warning = 20;
               critical = 10;
             };
-            format = "{capacity}% {icon}";
-            format-charging = "{capacity}% ";
+            format = "{icon}\n{capacity}";
+            format-charging = "{capacity}";
             format-icons = ["" "" "" ""];
             format-alt = "{time} {icon}";
           };
@@ -163,12 +99,11 @@ in {
           font-family: "FiraCode", "Font Awesome 6 Free";
           font-weight: bold;
           font-size: 14px;
-          min-height: 0px;
         }
 
         window#waybar {
           color: @fg;
-          background: transparent;
+          background: @bg;
         }
 
         tooltip {
@@ -179,15 +114,8 @@ in {
           color: @fg;
         }
 
-        #workspaces,
-        #window,
-        #cpu,
-        #memory,
-        #disk,
         #clock,
-        #keyboard-state label.locked,
-        #temperature,
-        #custom-kernel,
+        #workspaces,
         #network,
         #pulseaudio,
         #language,
@@ -195,76 +123,37 @@ in {
         #tray,
         #custom-power {
           background: @bg;
-          padding: 2px 12px;
+          padding: 12px 2px;
           margin: 0 0;
-        }
-
-        #clock {
-          border-radius: 10px 0 0 10px;
-        }
-
-        #disk {
-          border-radius: 0 10px 10px 0;
-        }
-
-        #workspaces {
-          border-radius: 10px;
-          margin-left: 10px;
-        }
-
-        #window {
-          border-radius: 10px;
         }
 
         #workspaces button {
           color: alpha(@fg, 0.2);
-          margin-bottom: 3px;
-          padding: 2px 10px;
+          padding: 2px 2px;
+        }
+
+        #workspaces button.persistent {
+          color: alpha(@fg, 0.2);
+        }
+
+        #workspaces button.default {
+          color: alpha(@red-normal, 0.5);
         }
 
         #workspaces button.active {
-          color: @yellow-normal;
-        }
-
-        #workspaces button.urgent {
           color: @red-normal;
-        }
-
-        #cpu {
-          color: @red-accent;
-        }
-
-        #memory {
-          color: @green-accent;
-        }
-
-        #disk {
-          color: @purple-normal;
         }
 
         #clock {
-          color: @blue-accent;
+          color: @blue-normal;
         }
 
-        #keyboard-state {
-          color: @red-accent;
-        }
-
-        #temperature {
-          color: @yellow-normal;
-          border-radius: 10px 0 0 10px;
-        }
-
-        #temperature.critical {
-          color: @red-normal;
-        }
-
-        #custom-kernel {
+        #custom-date {
           color: @purple-normal;
         }
 
         #network {
-          color: @blue-accent;
+          color: @blue-normal;
         }
 
         #network.ethernet {
@@ -272,11 +161,7 @@ in {
         }
 
         #pulseaudio {
-          color: @red-accent;
-        }
-
-        #language {
-          color: @green-accent;
+          color: @red-normal;
         }
 
         #battery {
@@ -293,7 +178,6 @@ in {
 
         #custom-power {
           color: @purple-normal;
-          border-radius: 0 10px 10px 0;
         }
       '';
     };

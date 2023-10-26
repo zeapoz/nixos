@@ -24,10 +24,7 @@ in {
           withNodeJs = true;
         };
 
-        fish.shellAliases.v =
-          if cfg.disableGui
-          then "nvim"
-          else "neovide";
+        fish.shellAliases.v = "nvim";
       };
 
       user.home.activation = {
