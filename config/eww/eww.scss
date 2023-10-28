@@ -13,7 +13,7 @@
 }
 
 .module {
-  padding: 0.4em 0.2em;
+  padding: 0.2em 0.2em;
   margin: 0.3em 0.5em;
   border-radius: 10px;
   min-width: 2em;
@@ -24,14 +24,18 @@
   background-color: transparent;
 }
 
-.button {
+button {
   min-width: 0;
   min-height: 0;
 }
 
+button:hover {
+  background-color: transparentize($fg, 0.9);
+}
+
 .submap .button { transition: none; }
-.submap .gp { color: $green; }
-.submap .rs { color: $red; }
+.submap .group { color: $green; }
+.submap .resize { color: $red; }
 
 .workspace {
   color: transparentize($fg, 0.8);
@@ -39,12 +43,17 @@
 }
 
 @mixin workspace ($color) {
-  &.workspace-focused {
+  &.focused {
     color: $color;
   }
 
-  &.workspace-unfocused {
+  &.unfocused {
     color: transparentize($color, 0.5);
+  }
+
+  &.urgent {
+    color: $bg;
+    background-color: transparentize($color, 0.5);
   }
 }
 
@@ -53,15 +62,16 @@
 .monitor-2 { @include workspace ($blue); }
 .monitor-3 { @include workspace ($green); }
 
-.clock { color: $blue; }
-.date { color: $purple; }
-.player { color: $green; }
+.clock { color: $cyan; }
+.date { color: $blue; }
+.month { color: $purple; }
+.player button { color: $green; }
 .cpu { color: $red; }
 .ram { color: $green; }
 .disk { color: $purple; }
 .kernel { color: $purple; }
-.net label { color: $blue; }
-.audio { color: $red; }
+.net button { color: $blue; }
+.audio button { color: $red; }
 .keyboard { color: $green; }
 .power { color: $purple; }
 

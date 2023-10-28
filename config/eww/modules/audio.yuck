@@ -6,5 +6,5 @@
     :onrightclick "scripts/audio mute SOURCE"
     (box :class "module audio"
          :orientation "v"
-      (label :class "icon" :text "${audio.sink_icon}")
-      (label :class "icon" :text "${audio.source_icon}"))))
+      (button :class "icon" "${audio.sink_icon}")
+      (button :class "icon" "${audio.source_icon}"))))

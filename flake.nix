@@ -19,6 +19,7 @@
     kmonad.url = "github:kmonad/kmonad?dir=nix";
     nix-colors.url = "github:misterio77/nix-colors";
     anyrun.url = "github:Kirottu/anyrun";
+    eww-scripts.url = "github:zeapoz/eww-scripts";
   };
 
   outputs = inputs @ {nixpkgs, ...}: let

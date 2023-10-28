@@ -35,7 +35,14 @@ in {
           ];
 
           "hyprland/workspaces" = mkIf (cfg.mainDesktop == "hyprland") {
-            format = "{icon}";
+            format = "<sub>{icon}</sub>\n{windows}";
+            format-window-separator = "\n";
+            window-rewrite-default = "?";
+            window-rewrite = {
+              "firefox" = "󰇧";
+              "wezterm" = "";
+              "nvim" = "";
+            };
             format-icons = {
               "1" = "一";
               "2" = "二";

@@ -61,6 +61,7 @@ in {
 
             nr = "sudo nixos-rebuild switch --flake ~/.config/NixOS";
             nf = "cd ~/.config/NixOS && git pull";
+            nfu = "cd ~/.config/NixOS && nix flake update";
             nup = "nf && nr";
             ngc = "sudo nix-collect-garbage -d";
             nd = "nix develop -c fish";
@@ -118,54 +119,7 @@ in {
           icons = true;
         };
 
-        wezterm = {
-          enable = true;
-          extraConfig = ''
-            return {
-              font = wezterm.font("FiraCode Nerd Font"),
-              font_size = ${
-              if (config.networking.hostName == "neon")
-              then "14.0"
-              else "12.0"
-            },
-              force_reverse_video_cursor = true,
-              colors = {
-                foreground = "#dcd7ba",
-                background = "#1f1f28",
-
-                cursor_bg = "#c8c093",
-                cursor_fg = "#c8c093",
-                cursor_border = "#c8c093",
-
-                selection_fg = "#c8c093",
-                selection_bg = "#2d4f67",
-
-                scrollbar_thumb = "#16161d",
-                split = "#16161d",
-
-                ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" },
-                brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
-                indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
-              },
-              window_background_opacity = 0.7,
-              hide_tab_bar_if_only_one_tab = true,
-              window_close_confirmation = "NeverPrompt",
-              window_padding = {
-                left = 0,
-                right = 0,
-                top = 0,
-                bottom = 0,
-              },
-              keys = {
-                {
-                  key = 'Enter',
-                  mods = 'ALT',
-                  action = wezterm.action.DisableDefaultAssignment,
-                },
-              },
-            }
-          '';
-        };
+        wezterm.enable = true;
       };
     };
   };

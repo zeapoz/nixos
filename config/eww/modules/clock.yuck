@@ -1,4 +1,6 @@
-(defpoll time :interval "1s" `date +'{"date": "%d", "hour": "%H", "minute": "%M", "day": "%a", "month": "%b"}'`)
+(defpoll time :interval "1s" `date +'{"date": "%d", "hour": "%H", "minute": "%M", "day": "%u", "month": "%b"}'`)
+(defvar days `["月", "火", "水", "木", "金", "土", "日"]`)
+
 (defwidget clock []
   (box :space-evenly false
        :class "module clock"
@@ -12,12 +14,18 @@
 
 (defwidget date []
   (box :space-evenly false
-       :class "module date"
        :orientation "v"
-    (label :class "icon"
-           :text "")
     (box :space-evenly false
+         :class "module date"
          :orientation "v"
-      (label :text "${time.day}")
-      (label :text "${time.month}")
-      (label :text "${time.date}"))))
+      (label :class "icon"
+             :text "日")
+      (label :text "${time.date}")
+      (label :class "icon"
+             :text "${days[time.day - 1]}"))
+  (box :space-evenly false
+       :class "module month"
+       :orientation "v"
+      (label :class "icon"
+           :text "月")
+      (label :text "${time.month}"))))

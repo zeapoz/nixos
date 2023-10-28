@@ -9,9 +9,8 @@
 (include "./modules/player.yuck")
 
 (defwidget power []
-  (eventbox :onclick "wlogout -p layer-shell &"
-    (box :class "module power"
-      (label :class "icon" :text ""))))
+  (box :class "module"
+    (button :class "button icon power" :onclick "wlogout -p layer-shell &" "")))
 
 (defwidget top []
   (box :space-evenly false

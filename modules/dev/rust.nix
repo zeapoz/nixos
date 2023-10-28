@@ -10,11 +10,15 @@ in {
   options.modules.dev.rust.enable = mkBoolOpt true;
 
   config = mkIf cfg.enable {
-    hm.packages = with pkgs; [
-      rustup
-      # rust-analyzer
-      cargo-fuzz
-      taplo
-    ];
+    hm = {
+      packages = with pkgs; [
+        rustup
+        # rust-analyzer
+        cargo-fuzz
+        taplo
+      ];
+
+      user.home.sessionPath = ["$HOME/.cargo/bin"];
+    };
   };
 }

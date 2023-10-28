@@ -17,7 +17,6 @@ in {
       packages = with pkgs;
         [
           calibre
-          freetube
           gimp
           helvum
           musescore

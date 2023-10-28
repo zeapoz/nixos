@@ -2,10 +2,12 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }:
 with lib; let
   cfg = config.modules.desktop.eww;
+  eww-scripts = inputs.eww-scripts.packages.${pkgs.system}.default;
 in {
   options.modules.desktop.eww.enable = mkEnableOption "eww";
 
@@ -15,6 +17,7 @@ in {
         eww-wayland
         jaq
         jc
+        eww-scripts
       ];
 
       configFile = {
