@@ -1,4 +1,4 @@
-(defpoll time :interval "1s" `date +'{"date": "%d", "hour": "%H", "minute": "%M", "day": "%u", "month": "%b"}'`)
+(defpoll time :interval "1s" `date +'{"date": "%-d", "hour": "%H", "minute": "%M", "day": "%u", "month": "%b"}'`)
 (defvar days `["月", "火", "水", "木", "金", "土", "日"]`)
 
 (defwidget clock []

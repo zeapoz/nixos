@@ -82,10 +82,6 @@ in {
           '';
           plugins = with pkgs.fishPlugins; [
             {
-              name = "tide";
-              inherit (tide) src;
-            }
-            {
               name = "forgit";
               inherit (forgit) src;
             }
@@ -99,6 +95,8 @@ in {
             }
           ];
         };
+
+        starship.enable = true;
 
         kitty = {
           enable = true;
