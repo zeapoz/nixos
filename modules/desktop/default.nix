@@ -63,7 +63,11 @@
       enable = true;
       anchor = "top-right";
       borderRadius = 10;
-      borderSize = 3;
+      borderSize = 2;
+      margin = "4";
+      padding = "8";
+      width = 400;
+      height = 150;
       defaultTimeout = 5000;
       layer = "overlay";
       font = "Fira Sans";
