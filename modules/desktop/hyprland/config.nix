@@ -5,7 +5,9 @@
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   inherit (config.colorScheme) colors;
 
-  terminalCmd = "wezterm --config-file ~/.config/NixOS/config/wezterm/wezterm.lua";
+  # https://github.com/wez/wezterm/issues/4483
+  # terminalCmd = "wezterm --config-file ~/.config/NixOS/config/wezterm/wezterm.lua";
+  terminalCmd = "kitty --single-instance";
   layout = "master";
 in {
   hyprlandConfig = ''
@@ -283,20 +285,5 @@ in {
       then "eww -c ~/.config/NixOS/config/eww/ open bar2 &"
       else ""
     }
-  '';
-
-  wrappedhl = pkgs.writeShellScriptBin "wrappedhl" ''
-    cd ~
-
-    # Log WLR errors and logs to the hyprland log. Recommended
-    export HYPRLAND_LOG_WLR=1
-
-    # Tell XWayland to use a cursor theme
-    export XCURSOR_THEME=${cursorCfg.name}
-
-    # Set a cursor size
-    export XCURSOR_SIZE=${builtins.toString cursorCfg.size}
-
-    dbus-run-session Hyprland
   '';
 }

@@ -83,11 +83,12 @@
     file-roller.enable = true;
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    xdgOpenUsePortal = true;
-  };
+  # Hyprland enables its own portal.
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  #   xdgOpenUsePortal = true;
+  # };
 
   # https://github.com/nix-community/home-manager/issues/1288
   security.pam.services.swaylock = {};

@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 with lib; let
@@ -11,7 +10,6 @@ with lib; let
   configFile = import ./config.nix {inherit config pkgs;};
   inherit (configFile) hyprlandConfig;
   autostartConfig = configFile.autostart;
-  inherit (configFile) wrappedhl;
 in {
   imports = [../eww.nix ../waybar.nix ../wlogout.nix];
 
@@ -27,17 +25,10 @@ in {
       wlogout.enable = true;
     };
 
-    hm = {
-      user = {
-        imports = [inputs.hyprland.homeManagerModules.default];
-        wayland.windowManager.hyprland = {
-          enable = true;
-          extraConfig = hyprlandConfig;
-        };
-      };
+    programs.hyprland.enable = true;
 
+    hm = {
       packages = with pkgs; [
-        wrappedhl
         grim
         slurp
         swaybg
@@ -45,6 +36,8 @@ in {
       ];
 
       configFile = {
+        "hypr/hyprland.conf".text = hyprlandConfig;
+
         "hypr/autostart.sh" = {
           text = autostartConfig;
           executable = true;
