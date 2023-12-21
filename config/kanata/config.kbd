@@ -6,8 +6,16 @@
   { S-[
   } S-]
   : S-;
+  _ S--
+  + S-=
+  ! S-1
+  @ S-2
+  # S-3
+  $ S-4
+  % S-5
+  ^ S-6
   & S-7
-  ca C-a
+  * S-8
 )
 
 (deflayer colemakdh
@@ -29,12 +37,12 @@
 )
 
 (deflayer navigation
-  _     _     _    _    _    _    _    _    _    _     _    _    _          _    _    _
-  _     _     _    _    _    _    _    _    _    _     _    _    _    _     _    _    _    _    _    _    _
-  _     @qwrt @rpar @}   ]   _    _    [    @{   @lpar  _    _    _    _     _    _    _    _    _    _    _
-  XX    @ca   _    _    esc  _    left down up   rght  esc  bspc  _                         _    _    _
-  _     _     _    _    @clmk @}  @&   =    -    @:  ;  _    _               _         _    _    _    _
-  _     _     _              _                   _     _    _    _          _    _    _    _    _
+  _     _     _    _    _    _    _    _    _    _      _    _    _          _    _    _
+  _     _     _    _    _    _    _    _    _    _      _    _    _    _     _    _    _    _    _    _    _
+  _     @qwrt @rpar @}  ]    @#   @@   [    @{   @lpar  @^    @$    _    _     _    _    _    _    _    _    _
+  XX    @*    @&    @_  esc  \    left down up   rght   bspc  esc  _                         _    _    _
+  _     _     @clmk @!  @%   @}   @&   -    @+     @:  ;  del    _               _         _    _    _    _
+  _     _     _              _                   _      _    _    _          _    _    _    _    _
 )
 
 (defsrc
