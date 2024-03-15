@@ -5,9 +5,7 @@
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   inherit (config.colorScheme) colors;
 
-  # https://github.com/wez/wezterm/issues/4483
-  # terminalCmd = "wezterm --config-file ~/.config/NixOS/config/wezterm/wezterm.lua";
-  terminalCmd = "kitty --single-instance";
+  terminalCmd = "wezterm --config-file ~/.config/NixOS/config/wezterm/wezterm.lua";
   layout = "master";
 in {
   hyprlandConfig = ''
@@ -186,7 +184,7 @@ in {
     bind=SUPERSHIFT,H,exec,codium --enable-features=UseOzonePlatform --ozone-platform=wayland
     bind=SUPER,B,exec,brave
     bind=SUPERSHIFT,B,exec,librewolf
-    bind=SUPER,P,exec,${terminalCmd} -e ranger
+    bind=SUPER,P,exec,${terminalCmd} -e fish -c ranger
     bind=SUPER,S,exec,spotify
 
     bind=SUPER,W,killactive,
