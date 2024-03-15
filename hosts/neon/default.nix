@@ -24,6 +24,7 @@ in {
     editors = {
       inherit mainEditor;
       neovim.enable = true;
+      helix.enable = true;
       vscode.enable = true;
     };
 
