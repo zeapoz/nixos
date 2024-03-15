@@ -14,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     hm = {
       packages = with pkgs; [
-        eww-wayland
+        eww
         jaq
         jc
         eww-scripts
