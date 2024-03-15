@@ -38,10 +38,10 @@
 
 (deflayer navigation
   _     _     _    _    _    _    _    _    _    _      _    _    _          _    _    _
-  _     _     _    _    _    _    _    _    _    _      _    _    _    _     _    _    _    _    _    _    _
-  _     @qwrt @rpar @}  ]    @#   @@   [    @{   @lpar  @^    @$    _    _     _    _    _    _    _    _    _
-  XX    @*    @&    @_  esc  \    left down up   rght   bspc  esc  _                         _    _    _
-  _     _     @clmk @!  @%   @}   @&   -    @+     @:  ;  del    _               _         _    _    _    _
+  _     @clmk @qwrt _    _    _    _    _    _    _      _    _    _    _     _    _    _    _    _    _    _
+  _     _     @rpar @}  ]    @&   @@   [    @{   @lpar  @^    @$    _    _     _    _    _    _    _    _    _
+  XX    @*    =     @_  esc  \    left down up   rght   bspc  esc  _                         _    _    _
+  _     _     _  @%  @!   @}   @&   -    @+     @:  ;  del    _               _         _    _    _    _
   _     _     _              _                   _      _    _    _          _    _    _    _    _
 )
 
