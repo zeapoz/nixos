@@ -270,6 +270,9 @@ in {
     # Change background.
     bind=SUPERSHIFT,K,exec,killall -q swaybg -9; swaybg -i "$(find ~/Pictures/Wallpapers -type f | shuf -n 1)" -m fill
 
+    # Japanese IME.
+    exec-once=fcitx5
+
     # Start some applications in the background.
     exec-once=~/.config/hypr/autostart.sh
   '';

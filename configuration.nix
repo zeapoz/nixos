@@ -55,6 +55,13 @@
     LC_TIME = "en_US.utf8";
   };
 
+  # Japanese IME.
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.waylandFrontend = true;
+    fcitx5.addons = with pkgs; [fcitx5-mozc fcitx5-gtk];
+  };
+
   # Enable sound with pipewire.
   security.rtkit.enable = true;
   services.pipewire = {
