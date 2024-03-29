@@ -34,7 +34,7 @@ in {
         ];
 
       services.spotifyd = {
-        enable = true;
+        # enable = true;
         settings = {
           global = {
             username_cmd = "/home/${config.user.name}/secrets/spotifyd.user";

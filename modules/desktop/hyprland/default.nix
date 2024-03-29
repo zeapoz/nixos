@@ -21,7 +21,7 @@ in {
   config = mkIf cfg.enable {
     modules.desktop = {
       eww.enable = true;
-      waybar.enable = true;
+      waybar.enable = false;
       wlogout.enable = true;
     };
 

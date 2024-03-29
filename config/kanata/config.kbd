@@ -1,4 +1,5 @@
-(defalias nav (layer-toggle navigation)
+(defalias
+  nav (layer-toggle navigation)
   clmk (layer-switch colemakdh)
   qwrt (layer-switch qwerty)
   lpar S-9
@@ -16,6 +17,9 @@
   ^ S-6
   & S-7
   * S-8
+  å (unicode å)
+  ä (unicode ä)
+  ö (unicode ö)
 )
 
 (deflayer colemakdh
@@ -37,8 +41,8 @@
 )
 
 (deflayer navigation
-  _     _     _    _    _    _    _    _    _    _      _    _    _          _    _    _
-  _     @clmk @qwrt _    _    _    _    _    _    _      _    _    _    _     _    _    _    _    _    _    _
+  _     _     _    _    _    _    _   _  _   _     _    _    _          _    _    _
+  _     @clmk @qwrt _    _    _    _    @å    @ä    @ö      _    _    _    _     _    _    _    _    _    _    _
   _     _     @rpar @}  ]    @&   @@   [    @{   @lpar  @^    @$    _    _     _    _    _    _    _    _    _
   XX    @*    =     @_  esc  \    left down up   rght   bspc  esc  _                         _    _    _
   _     _     _  @%  @!   @}   @&   -    @+     @:  ;  del    _               _         _    _    _    _

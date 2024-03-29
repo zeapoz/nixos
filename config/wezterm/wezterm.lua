@@ -46,7 +46,7 @@ return {
     "FiraCode Nerd Font",
     "Font Awesome 6 Free Solid",
   }),
-  font_size = 14.0,
+  font_size = 11.0,
   force_reverse_video_cursor = true,
   colors = {
     foreground = "#dcd7ba",
@@ -79,4 +79,6 @@ return {
     { key = "Enter", mods = "ALT", action = wezterm.action.DisableDefaultAssignment },
     { key = "O", mods = "CTRL", action = wezterm.action.EmitEvent("toggle-opacity") },
   },
+  -- FIXME: Temporary fix since wayland support is currently broken.
+  enable_wayland = false,
 }
