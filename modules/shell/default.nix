@@ -111,7 +111,7 @@ in {
 
         eza = {
           enable = true;
-          enableAliases = true;
+          enableFishIntegration = true;
           extraOptions = ["--group-directories-first"];
           git = true;
           icons = true;

@@ -1,7 +1,7 @@
 {
   name = "Gruvbox Dark";
   author = "Pavel Pertsev (https://github.com/morhetz)";
-  colors = {
+  palette = {
     fg = "#ebdbb2";
     bg = "#282828";
     black = "#1d2021";

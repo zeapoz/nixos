@@ -3,7 +3,7 @@
   pkgs,
 }: let
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
-  inherit (config.colorScheme) colors;
+  inherit (config.colorScheme) palette;
 
   terminalCmd = "wezterm --config-file ~/.config/NixOS/config/wezterm/wezterm.lua";
   layout = "master";
@@ -41,7 +41,7 @@ in {
       gaps_out=4
       border_size=2
 
-      col.active_border=rgb(${colors.fg})
+      col.active_border=rgb(${palette.fg})
       col.inactive_border=rgba(00000000)
 
       layout=${layout}
@@ -78,8 +78,8 @@ in {
     }
 
     group {
-      col.border_active=rgb(${colors.fg})
-      col.border_inactive=rgb(${colors.bg})
+      col.border_active=rgb(${palette.fg})
+      col.border_inactive=rgb(${palette.bg})
     }
 
     misc {

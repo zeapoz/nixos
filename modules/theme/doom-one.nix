@@ -1,7 +1,7 @@
 {
   name = "Doom One";
   author = "Henrik Lissner (https://github.com/hlissner)";
-  colors = {
+  palette = {
     fg = "#bbc2cf";
     bg = "#282c34";
     black = "#2a2e38";

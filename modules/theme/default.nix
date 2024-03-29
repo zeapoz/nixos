@@ -7,7 +7,7 @@
 }:
 with lib; let
   inherit (inputs) nix-colors;
-  inherit (config.colorScheme) colors;
+  inherit (config.colorScheme) palette;
   cfg = config.modules.theme;
   theme = "kanagawa";
 in {
@@ -21,7 +21,7 @@ in {
     hm = {
       user = {
         programs = {
-          kitty.settings = with colors; {
+          kitty.settings = with palette; {
             foreground = "#${fg}";
             background = "#${bg}";
             color0 = "#${black}";
@@ -42,7 +42,7 @@ in {
             color15 = "#${white}";
           };
 
-          swaylock.settings = with colors; {
+          swaylock.settings = with palette; {
             key-hl-color = "#${purple}";
             bs-hl-color = "#${red}";
 
@@ -76,7 +76,7 @@ in {
           };
         };
 
-        services.mako = with colors; {
+        services.mako = with palette; {
           backgroundColor = "#${bg}FF";
           borderColor = "#${fg}FF";
           textColor = "#${fg}FF";
@@ -107,7 +107,7 @@ in {
         };
       };
 
-      configFile."colors.css".text = with colors; ''
+      configFile."colors.css".text = with palette; ''
         @define-color bg #${bg};
         @define-color fg #${fg};
         @define-color red-normal #${red};
@@ -122,7 +122,7 @@ in {
         @define-color purple-accent #${lightPurple};
       '';
 
-      configFile."colors.scss".text = with colors; ''
+      configFile."colors.scss".text = with palette; ''
         $fg: #${fg};
         $bg: #${bg};
         $black: #${black};

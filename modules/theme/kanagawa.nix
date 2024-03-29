@@ -1,7 +1,7 @@
 {
   name = "Kanagawa";
   author = "Tommaso Laurenzi (https://github.com/rebelot)";
-  colors = {
+  palette = {
     fg = "#dcd7ba";
     bg = "#1f1f28";
     black = "#090618";
