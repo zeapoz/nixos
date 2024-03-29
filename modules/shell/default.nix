@@ -7,7 +7,7 @@
 with lib; let
   cfg = config.modules.shell;
 in {
-  imports = [./tmux.nix];
+  imports = [./tmux.nix ./ranger.nix];
 
   options.modules.shell.enable = mkEnableOption "shell";
 
@@ -25,7 +25,6 @@ in {
         neofetch
         ripgrep
         xdotool
-        ranger
         unzip
         zip
         p7zip
@@ -51,7 +50,6 @@ in {
 
             lg = "lazygit";
 
-            r = "ranger";
             cat = "bat --theme ansi";
 
             t = "tmux";
