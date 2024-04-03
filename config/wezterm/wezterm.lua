@@ -18,11 +18,11 @@ local function set_padding(window, value)
   window:set_config_overrides(overrides)
 end
 
-local default_opacity = 0.7
+local default_opacity = 1
 local function toggle_opacity(window)
   local overrides = window:get_config_overrides() or {}
   if not overrides.window_background_opacity then
-    overrides.window_background_opacity = 1.0
+    overrides.window_background_opacity = 0.7
   else
     overrides.window_background_opacity = nil
   end
@@ -46,7 +46,7 @@ return {
     "FiraCode Nerd Font",
     "Font Awesome 6 Free Solid",
   }),
-  font_size = 11.0,
+  font_size = 12.0,
   force_reverse_video_cursor = true,
   colors = {
     foreground = "#dcd7ba",

@@ -50,7 +50,7 @@ in {
     }
 
     decoration {
-      rounding=10
+      rounding=0
 
       blur {
         enabled=true
@@ -66,7 +66,7 @@ in {
     }
 
     animations {
-      enabled=true
+      enabled=false
 
       animation=windows,1,1,default,slide
       animation=windowsOut,1,2,default,slide
@@ -129,7 +129,8 @@ in {
           mfact=0.6
           new_is_master=false
           new_on_top=true
-          no_gaps_when_only=true
+          no_gaps_when_only=2
+          orientation=right
         }
 
         bind=SUPER,n,layoutmsg,cyclenext
