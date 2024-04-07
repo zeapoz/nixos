@@ -83,7 +83,7 @@ in {
         };
 
         home.pointerCursor = {
-          name = "Bibata-Original-Classic";
+          name = "Bibata-Original-Ice";
           package = pkgs.bibata-cursors;
           size = 24;
           gtk.enable = true;

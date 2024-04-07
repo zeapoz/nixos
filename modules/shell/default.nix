@@ -116,6 +116,8 @@ in {
         };
 
         wezterm.enable = true;
+
+        alacritty.enable = true;
       };
     };
   };
