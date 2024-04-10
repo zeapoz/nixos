@@ -5,8 +5,7 @@
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   inherit (config.colorScheme) palette;
 
-  # terminalCmd = "wezterm --config-file ~/.config/NixOS/config/wezterm/wezterm.lua";
-  terminalCmd = "alacritty";
+  terminalCmd = "alacritty --config-file $HOME/.config/NixOS/config/alacritty/alacritty.toml";
   layout = "master";
 in {
   hyprlandConfig = ''
