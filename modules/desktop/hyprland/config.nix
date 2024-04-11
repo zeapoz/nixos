@@ -21,7 +21,7 @@ in {
     blurls=anyrun
     blurls=gtk-layer-shell
 
-    # TODO: Investigate new options.
+    windowrulev2=opaque,class:^(Alacritty|neovide)$
 
     ${
       if (config.networking.hostName == "helium")
@@ -51,6 +51,9 @@ in {
 
     decoration {
       rounding=0
+
+      inactive_opacity=0.9
+      active_opacity=0.9
 
       blur {
         enabled=true

@@ -5,7 +5,7 @@ size = 11
 [window]
 padding = { x = 20, y = 20 }
 dynamic_padding = true
-opacity = 0.95
+opacity = 0.8
 
 [colors]
 transparent_background_colors = true
