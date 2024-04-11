@@ -10,7 +10,7 @@
 
     packages = with pkgs; [
       anki
-      bitwarden
+      # bitwarden
       discord
       helvum
       libreoffice
