@@ -18,7 +18,7 @@ local function set_padding(window, value)
   window:set_config_overrides(overrides)
 end
 
-local default_opacity = 0.7
+local default_opacity = 0.8
 local function toggle_opacity(window)
   local overrides = window:get_config_overrides() or {}
   if not overrides.window_background_opacity then
@@ -41,7 +41,17 @@ wezterm.on("user-var-changed", function(window, _, name, value)
   end
 end)
 
+local function is_vim(pane)
+  local process_info = pane:get_foreground_process_info()
+  local process_name = process_info and process_info.name
+  return process_name == "nvim" or process_name == "vim"
+end
+
+local toggle_term_pane = nil
+local vim_pane = nil
 return {
+  -- FIXME: Temporary fix since wayland support is currently broken.
+  enable_wayland = false,
   font = wezterm.font_with_fallback({
     "FiraCode Nerd Font",
     "Font Awesome 6 Free Solid",
@@ -67,6 +77,7 @@ return {
     indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
   },
   window_background_opacity = default_opacity,
+  text_background_opacity = default_opacity,
   hide_tab_bar_if_only_one_tab = true,
   window_close_confirmation = "NeverPrompt",
   window_padding = {
@@ -78,7 +89,35 @@ return {
   keys = {
     { key = "Enter", mods = "ALT", action = wezterm.action.DisableDefaultAssignment },
     { key = "O", mods = "CTRL", action = wezterm.action.EmitEvent("toggle-opacity") },
+    { key = "LeftArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Left") },
+    { key = "RightArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Right") },
+    { key = "UpArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Up") },
+    { key = "DownArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Down") },
+    { key = "S", mods = "CTRL", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+    { key = "V", mods = "CTRL", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+    { key = "C", mods = "CTRL", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
+    { key = "v", mods = "CTRL", action = wezterm.action.PasteFrom("Clipboard") },
+    { key = "c", mods = "CTRL", action = wezterm.action.CopyTo("Clipboard") },
+    {
+      key = "/",
+      mods = "CTRL",
+      action = wezterm.action_callback(function(window, pane)
+        local tab = window:active_tab()
+        if is_vim(pane) then
+          vim_pane = pane
+          if toggle_term_pane == nil or #tab:panes() == 1 then
+            toggle_term_pane = pane:split({ direction = "Right" })
+          else
+            tab:set_zoomed(false)
+            toggle_term_pane:activate()
+          end
+        else
+          if vim_pane ~= nil then
+            vim_pane:activate()
+            tab:set_zoomed(true)
+          end
+        end
+      end),
+    },
   },
-  -- FIXME: Temporary fix since wayland support is currently broken.
-  enable_wayland = false,
 }
