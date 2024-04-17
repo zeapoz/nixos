@@ -5,7 +5,7 @@
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   inherit (config.colorScheme) palette;
 
-  terminalCmd = "alacritty --config-file $HOME/.config/NixOS/config/alacritty/alacritty.toml";
+  terminalCmd = "wezterm --config-file $HOME/.config/NixOS/config/wezterm/wezterm.lua";
   layout = "master";
 in {
   hyprlandConfig = ''
@@ -20,8 +20,6 @@ in {
 
     blurls=anyrun
     blurls=gtk-layer-shell
-
-    windowrulev2=opaque,class:^(Alacritty|neovide)$
 
     ${
       if (config.networking.hostName == "helium")
@@ -42,7 +40,7 @@ in {
       border_size=2
 
       col.active_border=rgb(${palette.fg})
-      col.inactive_border=rgba(00000000)
+      col.inactive_border=rgb(${palette.bg})
 
       layout=${layout}
       resize_on_border=true
@@ -51,9 +49,6 @@ in {
 
     decoration {
       rounding=0
-
-      inactive_opacity=0.9
-      active_opacity=0.9
 
       blur {
         enabled=true
@@ -69,15 +64,12 @@ in {
     }
 
     animations {
-      enabled=false
+      enabled=true
 
-      animation=windows,1,1,default,slide
-      animation=windowsOut,1,2,default,slide
-      animation=windowsMove,1,2,default
-      animation=border,1,3,default
-      animation=fade,1,2,default
-      animation=fadeDim,1,2,default
-      animation=workspaces,1,3,default,slidevert
+      animation=windows,1,1,default,popin 95%
+      animation=border,1,1,default
+      animation=fade,0,1,default
+      animation=workspaces,1,1,default,slidevert
     }
 
     group {
