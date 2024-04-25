@@ -24,7 +24,7 @@ in {
     ${
       if (config.networking.hostName == "helium")
       then "workspace=HDMI-A-2,6"
-      else ""
+      else "monitor=HDMI-A-1,preferred,auto,1,mirror,eDP-1"
     }
 
     input {

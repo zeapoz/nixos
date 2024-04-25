@@ -50,5 +50,7 @@ in {
         };
       };
     };
+
+    environment.variables.WLR_NO_HARDWARE_CURSORS = "1";
   };
 }
