@@ -57,14 +57,6 @@ in {
             ts = "tmux list-sessions";
             tk = "tmux kill-session";
 
-            nr = "sudo nixos-rebuild switch --flake ~/.config/NixOS";
-            nf = "cd ~/.config/NixOS && git pull";
-            nfu = "cd ~/.config/NixOS && nix flake update";
-            nup = "nf && nr";
-            ngc = "sudo nix-collect-garbage -d";
-            nd = "nix develop -c fish";
-            ndp = "nix develop --pure-eval -c fish";
-
             "..." = "cd ../..";
           };
           shellInit = ''
