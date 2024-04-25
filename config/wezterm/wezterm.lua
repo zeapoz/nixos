@@ -1,5 +1,6 @@
 -- Add config folder to watchlist for config reloads.
 local wezterm = require("wezterm")
+local config = wezterm.config_builder()
 wezterm.add_to_config_reload_watch_list(wezterm.config_dir)
 
 local function set_padding(window, value)
@@ -49,7 +50,7 @@ end
 
 local last_toggle_pane = nil
 local vim_pane = nil
-return {
+local options = {
   -- FIXME: Temporary fix since wayland support is currently broken.
   enable_wayland = false,
   font = wezterm.font_with_fallback({
@@ -126,3 +127,22 @@ return {
     },
   },
 }
+
+for k, v in pairs(options) do
+  config[k] = v
+end
+
+local list = wezterm.plugin.list()
+wezterm.log_error(list)
+
+-- TODO: use upstream when merged.
+local smart_splits = wezterm.plugin.require("https://github.com/zeapoz/smart-splits.nvim")
+smart_splits.apply_to_config(config, {
+  direction_keys = { "LeftArrow", "DownArrow", "UpArrow", "RightArrow" },
+  modifiers = {
+    move = "ALT",
+    resize = "CTRL",
+  },
+})
+
+return config
