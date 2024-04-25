@@ -47,7 +47,7 @@ local function is_vim(pane)
   return process_name == "nvim" or process_name == "vim"
 end
 
-local toggle_term_pane = nil
+local last_toggle_pane = nil
 local vim_pane = nil
 return {
   -- FIXME: Temporary fix since wayland support is currently broken.
@@ -79,6 +79,7 @@ return {
   window_background_opacity = default_opacity,
   text_background_opacity = default_opacity,
   hide_tab_bar_if_only_one_tab = true,
+  use_fancy_tab_bar = false,
   window_close_confirmation = "NeverPrompt",
   window_padding = {
     left = 20,
@@ -103,14 +104,20 @@ return {
         local tab = window:active_tab()
         if is_vim(pane) then
           vim_pane = pane
-          if toggle_term_pane == nil or #tab:panes() == 1 then
-            toggle_term_pane = pane:split({ direction = "Right" })
+          if last_toggle_pane == nil or #tab:panes() == 1 then
+            last_toggle_pane = pane:split({ direction = "Right" })
           else
-            tab:set_zoomed(false)
-            toggle_term_pane:activate()
+            local active_pane = tab:panes_with_info()[vim_pane:pane_id() + 1]
+            if active_pane.is_zoomed then
+              tab:set_zoomed(false)
+              last_toggle_pane:activate()
+            else
+              tab:set_zoomed(true)
+            end
           end
         else
           if vim_pane ~= nil then
+            last_toggle_pane = pane
             vim_pane:activate()
             tab:set_zoomed(true)
           end
