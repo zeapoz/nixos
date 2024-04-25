@@ -96,8 +96,6 @@ return {
     { key = "S", mods = "CTRL", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
     { key = "V", mods = "CTRL", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
     { key = "C", mods = "CTRL", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
-    { key = "v", mods = "CTRL", action = wezterm.action.PasteFrom("Clipboard") },
-    { key = "c", mods = "CTRL", action = wezterm.action.CopyTo("Clipboard") },
     {
       key = "/",
       mods = "CTRL",
