@@ -6,6 +6,8 @@
   inherit (config.colorScheme) palette;
 
   terminalCmd = "wezterm --config-file $HOME/.config/NixOS/config/wezterm/wezterm.lua";
+  browser = "brave";
+  musicApp = "${browser} https://music.youtube.com";
   layout = "master";
 in {
   hyprlandConfig = ''
@@ -23,7 +25,7 @@ in {
 
     ${
       if (config.networking.hostName == "helium")
-      then "workspace=HDMI-A-2,6"
+      then "workspace=6,monitor:HDMI-A-2,default:true"
       else "monitor=HDMI-A-1,preferred,auto,1,mirror,eDP-1"
     }
 
@@ -178,10 +180,10 @@ in {
     bind=SUPER,X,exec,wlogout -p layer-shell
     bind=SUPER,H,exec,neovide
     bind=SUPERSHIFT,H,exec,codium --enable-features=UseOzonePlatform --ozone-platform=wayland
-    bind=SUPER,B,exec,brave
+    bind=SUPER,B,exec,${browser}
     bind=SUPERSHIFT,B,exec,librewolf
     bind=SUPER,P,exec,${terminalCmd} -e fish -c ranger
-    bind=SUPER,S,exec,spotify
+    bind=SUPER,S,exec,${musicApp}
 
     bind=SUPER,W,killactive,
     bind=SUPERSHIFT,Q,exit,
