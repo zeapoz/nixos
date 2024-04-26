@@ -135,8 +135,7 @@ end
 local list = wezterm.plugin.list()
 wezterm.log_error(list)
 
--- TODO: use upstream when merged.
-local smart_splits = wezterm.plugin.require("https://github.com/zeapoz/smart-splits.nvim")
+local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 smart_splits.apply_to_config(config, {
   direction_keys = { "LeftArrow", "DownArrow", "UpArrow", "RightArrow" },
   modifiers = {
