@@ -12,7 +12,7 @@ in {
   options.modules.shell.enable = mkEnableOption "shell";
 
   config = mkIf cfg.enable {
-    modules.shell.tmux.enable = true;
+    modules.shell.tmux.enable = false;
     programs.fish.enable = true;
 
     hm = {
@@ -51,11 +51,6 @@ in {
             lg = "lazygit";
 
             cat = "bat --theme ansi";
-
-            t = "tmux";
-            ta = "tmux attach";
-            ts = "tmux list-sessions";
-            tk = "tmux kill-session";
 
             "..." = "cd ../..";
           };
