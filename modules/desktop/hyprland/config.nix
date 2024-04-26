@@ -6,7 +6,7 @@
   inherit (config.colorScheme) palette;
 
   terminalCmd = "wezterm --config-file $HOME/.config/NixOS/config/wezterm/wezterm.lua";
-  browser = "brave";
+  browser = "qutebrowser";
   musicApp = "${browser} https://music.youtube.com";
   layout = "master";
 in {

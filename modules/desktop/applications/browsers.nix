@@ -12,7 +12,10 @@ in {
 
   config = mkIf cfg.enable {
     hm = {
-      packages = with pkgs; [brave];
+      packages = with pkgs; [
+        brave
+        qutebrowser
+      ];
 
       programs.librewolf = {
         enable = true;
