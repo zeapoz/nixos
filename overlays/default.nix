@@ -22,4 +22,5 @@
 
   inputs.emacs-overlay.overlay
   inputs.neovim-nightly-overlay.overlay
+  inputs.eww.overlays.default
 ]

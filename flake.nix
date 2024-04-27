@@ -14,6 +14,7 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     nix-colors.url = "github:misterio77/nix-colors";
     anyrun.url = "github:Kirottu/anyrun";
+    eww.url = "github:elkowar/eww";
     eww-scripts.url = "github:zeapoz/eww-scripts";
   };
 
