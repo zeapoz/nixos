@@ -181,7 +181,7 @@ in {
     bind=SUPER,H,exec,neovide
     bind=SUPERSHIFT,H,exec,codium --enable-features=UseOzonePlatform --ozone-platform=wayland
     bind=SUPER,B,exec,${browser}
-    bind=SUPERSHIFT,B,exec,librewolf
+    bind=SUPERSHIFT,B,exec,brave --enable-features=UseOzonePlatform --ozone-platform=wayland
     bind=SUPER,P,exec,${terminalCmd} -e fish -c ranger
     bind=SUPER,S,exec,${musicApp}
 
