@@ -21,9 +21,11 @@ function toggle() {
 
 function get_vpn() {
 	if nmcli con show --active | rg -q "mullvad"; then
-		vpn=""
+		vpn=true
+		vpn_icon=""
 	else
-		vpn=""
+		vpn=false
+		vpn_icon=""
 	fi
 }
 
@@ -67,7 +69,8 @@ function make_content() {
 		--arg color "$color" \
 		--arg class "$class" \
 		--arg vpn "$vpn" \
-		'{"icon": $icon, "name": $name, "color": $color, "class": $class, "vpn": $vpn}'
+		--arg vpn_icon "$vpn_icon" \
+		'{"icon": $icon, "name": $name, "color": $color, "class": $class, "vpn": $vpn, "vpn_icon": $vpn_icon}'
 }
 
 case "$1" in

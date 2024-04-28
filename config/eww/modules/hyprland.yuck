@@ -10,6 +10,7 @@
       (for ws in {hyprland.workspaces}
         (button
           :onclick "hyprctl dispatch workspace ${ws.id}"
+          :onrightclick "hyprctl dispatch movetoworkspace ${ws.id}"
           :class "icon workspace ${ws.id == hyprland.focused ? "focused" : "unfocused"} monitor-${ws.monitor} ${ws.urgent ? "urgent" : ""}"
           "${icons[ws.id - 1]}")))))
 

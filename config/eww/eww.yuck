@@ -21,18 +21,15 @@
        :class "top"
     (clock)
     (date)
-    (submap)
     (player)
-    (systray-box)
-  ))
+    (systray-box)))
 
 (defwidget center []
   (box :space-evenly false
        :halign "center"
        :valign "center"
        :class "center"
-    (workspaces)
-  ))
+    (workspaces)))
 
 (defwidget bottom []
   (box :class "right"
@@ -43,18 +40,17 @@
        :class "bottom"
     (net)
     (audio)
+    (submap)
     (keyboard)
     (battery)
-    (power)
-  ))
+    (power)))
 
 (defwidget bar-box []
   (centerbox :class "bar"
              :orientation "v"
     (top)
     (center)
-    (bottom)
-  ))
+    (bottom)))
 
 (defwindow bar
   :monitor 0

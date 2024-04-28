@@ -4,4 +4,7 @@
        :orientation "v"
        :space-evenly false
     (button :class "icon" :onclick "scripts/net toggle" "${net.icon}")
-    (button :class "icon" :onclick "mullvad-gui &" "${net.vpn}")))
+    (button :class "icon"
+            :onclick {net.vpn ? "mullvad disconnect" : "mullvad connect"}
+            :onrightclick "mullvad-gui &"
+            "${net.vpn_icon}")))

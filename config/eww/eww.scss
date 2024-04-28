@@ -86,14 +86,26 @@ button {
 .clock { color: $cyan; }
 .date { color: $blue; }
 .month { color: $purple; }
-.player button { color: $green; }
+.player .icon { color: $green; }
 .cpu { color: $red; }
 .ram { color: $green; }
 .disk { color: $purple; }
 .kernel { color: $purple; }
-.net button { color: $blue; }
-.audio button { color: $red; }
-.keyboard { color: $green; }
+.net .icon { color: $blue; }
+.audio {
+  .icon { color: $red; }
+    // Without this the icon is not centered.
+  .input {
+    padding-left: 0.15em;
+  }
+}
+.keyboard {
+  color: $green;
+  // Without this the icon is not centered.
+  .icon {
+    padding: 0 0.5em;
+  }
+}
 .power { color: $purple; }
 
 .battery-low { color: $yellow; }
