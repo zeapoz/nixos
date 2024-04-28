@@ -3,7 +3,8 @@
     :space-evenly false
     :halign "center"
     :valign "center"
+    :class "systray"
     (systray :orientation "v"
-             :class "systray"
              :icon-size 18
-             :spacing 6)))
+             :spacing 6
+             :prepend-new false)))

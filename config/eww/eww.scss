@@ -24,18 +24,39 @@
   background-color: transparent;
 }
 
+.systray {
+  padding: 0.2em 0;
+}
+
 button {
   min-width: 0;
   min-height: 0;
+
+  &:hover {
+    background-color: transparentize($fg, 0.9);
+  }
 }
 
-button:hover {
-  background-color: transparentize($fg, 0.9);
+.systray * {
+  padding: 0.2em 0.2em;
+  border-radius: 10px;
+  min-width: 2em;
+
+  // Reset systray item menu checkboxes.
+  & menu * {
+    min-width: 1.25em;
+  }
+
+  &:hover {
+    background-color: transparentize($fg, 0.9);
+  }
 }
 
-.submap .button { transition: none; }
-.submap .group { color: $green; }
-.submap .resize { color: $red; }
+.submap {
+  .button { transition: none; }
+  .group { color: $green; }
+  .resize { color: $red; }
+}
 
 .workspace {
   color: transparentize($fg, 0.8);
