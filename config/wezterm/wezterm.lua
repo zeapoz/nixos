@@ -19,7 +19,7 @@ local function set_padding(window, value)
   window:set_config_overrides(overrides)
 end
 
-local default_opacity = 0.8
+local default_opacity = 0.7
 local function toggle_opacity(window)
   local overrides = window:get_config_overrides() or {}
   if not overrides.window_background_opacity then
