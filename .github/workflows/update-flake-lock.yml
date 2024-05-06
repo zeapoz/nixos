@@ -3,7 +3,7 @@ name: update-flake-lock
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 1,5' # 00:00 AM on Mondays and Fridays.
+    - cron: '0 0 * * 1' # 00:00 AM on Mondays.
 
 jobs:
   update-flake-lock:
