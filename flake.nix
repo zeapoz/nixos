@@ -14,8 +14,7 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     nix-colors.url = "github:misterio77/nix-colors";
     anyrun.url = "github:Kirottu/anyrun";
-    # FIXME: Once PR merged, revert to normal.
-    eww.url = "github:zeapoz/eww/systray/hover-attribute";
+    eww.url = "github:elkowar/eww";
     eww-scripts.url = "github:zeapoz/eww-scripts";
   };
 

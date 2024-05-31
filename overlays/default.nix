@@ -21,6 +21,6 @@
   })
 
   inputs.emacs-overlay.overlay
-  inputs.neovim-nightly-overlay.overlay
+  inputs.neovim-nightly-overlay.overlays.default
   inputs.eww.overlays.default
 ]
