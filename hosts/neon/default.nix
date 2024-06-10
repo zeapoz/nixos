@@ -23,7 +23,10 @@ in {
 
     editors = {
       inherit mainEditor;
-      neovim.enable = true;
+      neovim = {
+        enable = true;
+        disableGui = true;
+      };
       helix.enable = true;
       vscode.enable = true;
     };

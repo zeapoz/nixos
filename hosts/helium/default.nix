@@ -17,7 +17,10 @@ in {
       };
       applications = {
         browsers.enable = true;
-        gaming.enable = true;
+        gaming = {
+          enable = true;
+          enableStreaming = true;
+        };
         media = {
           enable = true;
           daw.enable = true;
@@ -27,7 +30,10 @@ in {
 
     editors = {
       inherit mainEditor;
-      neovim.enable = true;
+      neovim = {
+        enable = true;
+        disableGui = true;
+      };
       helix.enable = true;
       vscode.enable = true;
     };
