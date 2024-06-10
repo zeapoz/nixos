@@ -32,6 +32,7 @@ in {
         jq
         jaq
         bc
+        yazi
         wget
       ];
 

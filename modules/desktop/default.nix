@@ -20,6 +20,7 @@
       polkit_gnome
       pulseaudio
       signal-desktop
+      telegram-desktop
       slack
       xdg-utils
     ];
@@ -34,6 +35,9 @@
             rink
             shell
           ];
+          x = {fraction = 0.5;};
+          y = {fraction = 0.3;};
+          width = {fraction = 0.5;};
         };
         extraCss = ''
           .window {

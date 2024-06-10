@@ -6,7 +6,7 @@
   inherit (config.colorScheme) palette;
 
   terminalCmd = "wezterm --config-file $HOME/.config/NixOS/config/wezterm/wezterm.lua";
-  browser = "qutebrowser";
+  browser = "brave";
   musicApp = "${browser} https://music.youtube.com";
   layout = "master";
 in {
@@ -20,7 +20,7 @@ in {
       builtins.toString cursorCfg.size
     }
 
-    blurls=anyrun
+    # blurls=anyrun
     blurls=gtk-layer-shell
 
     ${
@@ -178,11 +178,11 @@ in {
     bind=SUPER,RETURN,exec,${terminalCmd}
     bind=SUPER,D,exec,anyrun
     bind=SUPER,X,exec,wlogout -p layer-shell
-    bind=SUPER,H,exec,neovide
-    bind=SUPERSHIFT,H,exec,codium --enable-features=UseOzonePlatform --ozone-platform=wayland
+    bind=SUPER,H,exec,code --enable-features=UseOzonePlatform --ozone-platform=wayland
+    bind=SUPERSHIFT,H,exec,neovide
     bind=SUPER,B,exec,${browser}
-    bind=SUPERSHIFT,B,exec,brave --enable-features=UseOzonePlatform --ozone-platform=wayland
-    bind=SUPER,P,exec,${terminalCmd} -e fish -c ranger
+    bind=SUPERSHIFT,B,exec,qutebrowser
+    bind=SUPER,P,exec,${terminalCmd} -e fish -c yazi
     bind=SUPER,S,exec,${musicApp}
 
     bind=SUPER,W,killactive,
