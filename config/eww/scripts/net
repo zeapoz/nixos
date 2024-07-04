@@ -22,22 +22,20 @@ function toggle() {
 function get_vpn() {
 	if nmcli con show --active | rg -q "mullvad"; then
 		vpn=true
-		vpn_icon=""
 	else
 		vpn=false
-		vpn_icon=""
 	fi
 }
 
 function gen_wifi() {
-	icon=""
+	is_eth=false
 	color="#cba6f7"
 	class="net-connected"
 	name=$(echo "$nm" | jaq -r 'select(.type == "wifi") .connection')
 }
 
 function gen_ethernet() {
-	icon=""
+	is_eth=true
 	class="net-connected"
 	color="#cba6f7"
 	name=$(echo "$nm" | jaq -r 'select(.type == "ethernet") .connection')
@@ -64,13 +62,12 @@ function make_content() {
 	get_vpn
 
 	jaq --null-input -r -c \
-		--arg icon "$icon" \
+		--arg is_eth "$is_eth" \
 		--arg name "$name" \
 		--arg color "$color" \
 		--arg class "$class" \
 		--arg vpn "$vpn" \
-		--arg vpn_icon "$vpn_icon" \
-		'{"icon": $icon, "name": $name, "color": $color, "class": $class, "vpn": $vpn, "vpn_icon": $vpn_icon}'
+		'{"is_eth": $is_eth, "name": $name, "color": $color, "class": $class, "vpn": $vpn}'
 }
 
 case "$1" in

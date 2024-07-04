@@ -1,4 +1,6 @@
 (deflisten audio "scripts/audio")
+(defvar sink_icons '["", "", "", ""]')
+(defvar source_icons '["", ""]')
 (defwidget audio []
   (eventbox
     :onrightclick "pavucontrol &"
@@ -6,7 +8,7 @@
          :orientation "v"
       (button :class "icon output"
               :onclick "scripts/audio mute SINK"
-              "${audio.sink_icon}")
+              "${sink_icons[round(audio.sink_vol / 25, 0)]}")
       (button :class "icon input"
               :onclick "scripts/audio mute SOURCE"
-              "${audio.source_icon}"))))
+              {audio.source_vol > 0 ? source_icons[1] : source_icons[0]}))))

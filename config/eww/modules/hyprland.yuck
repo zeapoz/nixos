@@ -22,8 +22,8 @@
       :orientation "v"
       :visible {hyprland.submap != "null"}
       (label
-        :class "icon ${hyprland.submap.name}"
+        :class "icon ${hyprland.submap?.name}"
         :text "")
       (label
-        :class "icon ${hyprland.submap.name}"
-        :text "${hyprland.submap.short}"))))
+        :class "icon ${hyprland.submap?.name}"
+        :text "${hyprland.submap?.short}"))))
