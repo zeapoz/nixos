@@ -124,7 +124,6 @@ in {
         master {
           allow_small_split=true
           mfact=0.6
-          new_is_master=false
           new_on_top=true
           no_gaps_when_only=2
           orientation=right
