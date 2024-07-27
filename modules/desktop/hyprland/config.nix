@@ -7,7 +7,7 @@
 
   terminalCmd = "wezterm --config-file $HOME/.config/NixOS/config/wezterm/wezterm.lua";
   browser = "brave";
-  musicApp = "${browser} https://music.youtube.com";
+  musicApp = "spotify";
   layout = "master";
 in {
   hyprlandConfig = ''

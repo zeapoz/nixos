@@ -10,6 +10,8 @@
 
     packages = with pkgs; [
       anki
+      aseprite
+      blender
       # bitwarden
       discord
       helvum
