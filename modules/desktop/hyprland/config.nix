@@ -6,7 +6,7 @@
   inherit (config.colorScheme) palette;
 
   terminalCmd = "wezterm --config-file $HOME/.config/NixOS/config/wezterm/wezterm.lua";
-  browser = "brave";
+  browser = "zen";
   musicApp = "spotify";
   layout = "master";
 in {
@@ -58,11 +58,12 @@ in {
         passes=4
       }
 
-      drop_shadow=false
-      shadow_ignore_window=true
-      shadow_offset=2 2
-      shadow_range=15
-      shadow_render_power=2
+      shadow {
+        ignore_window=true
+        offset=2 2
+        range=15
+        render_power=2
+      }
     }
 
     animations {
@@ -125,7 +126,6 @@ in {
           allow_small_split=true
           mfact=0.6
           new_on_top=true
-          no_gaps_when_only=2
           orientation=right
         }
 

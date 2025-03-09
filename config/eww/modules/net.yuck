@@ -1,5 +1,5 @@
 (deflisten net "scripts/net")
-(defvar net_icons '["", ""]')
+(defvar net_icons '["", "", ""]')
 (defvar vpn_icons '["", ""]')
 (defwidget net []
   (box :class "module net"
@@ -7,7 +7,7 @@
        :space-evenly false
     (button :class "icon"
             :onclick "scripts/net toggle"
-            {net.is_eth ? net_icons[1] : net_icons[0]})
+            {net.is_disconnected ? net_icons[2] : (net.is_eth ? net_icons[1] : net_icons[0])})
     (button :class "icon"
             :onclick {net.vpn ? "mullvad disconnect" : "mullvad connect"}
             :onrightclick "mullvad-gui &"

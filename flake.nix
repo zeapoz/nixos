@@ -16,6 +16,7 @@
     anyrun.url = "github:Kirottu/anyrun";
     eww.url = "github:elkowar/eww";
     eww-scripts.url = "github:zeapoz/eww-scripts";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs = inputs @ {nixpkgs, ...}: let

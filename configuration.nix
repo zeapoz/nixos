@@ -119,7 +119,7 @@
       font-awesome
       material-symbols
       noto-fonts-cjk-sans
-      (nerdfonts.override {fonts = ["FiraCode"];})
+      nerd-fonts.fira-code
     ];
   };
 

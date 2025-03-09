@@ -13,11 +13,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.steam.enable = true;
+    # programs.steam.enable = true;
 
     hm.packages = with pkgs; [
       prismlauncher
       tetrio-desktop
+      wineWowPackages.wayland
     ];
 
     services.sunshine.enable = cfg.enableStreaming;

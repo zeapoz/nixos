@@ -33,7 +33,6 @@ in {
         slurp
         swaybg
         wl-clipboard
-        xwaylandvideobridge
       ];
 
       configFile = {

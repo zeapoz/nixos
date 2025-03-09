@@ -100,7 +100,7 @@ in {
           enableFishIntegration = true;
           extraOptions = ["--group-directories-first"];
           git = true;
-          icons = true;
+          icons = "auto";
         };
 
         wezterm.enable = true;

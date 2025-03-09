@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib; let
@@ -15,6 +16,7 @@ in {
       packages = with pkgs; [
         brave
         qutebrowser
+        inputs.zen-browser.packages."${system}".twilight
       ];
     };
   };

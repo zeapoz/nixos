@@ -32,7 +32,10 @@ in {
             vscodevim.vim
           ];
         }
-        else {enable = true;};
+        else {
+          enable = true;
+          package = pkgs.vscode.fhsWithPackages (ps: with ps; [rustup zlib openssl.dev pkg-config]);
+        };
 
       user.home.activation = mkIf cfg.useCodium {
         installConfig = ''

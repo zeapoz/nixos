@@ -48,12 +48,13 @@ function make_content() {
 	wifi=$(echo "$nm" | jaq -r 'select(.type == "wifi") .state')
 
 	# test ethernet first
+	is_disconnected=false
 	if [[ "$ethernet" == "connected" ]]; then
 		gen_ethernet
 	elif [[ "$wifi" == "connected" ]]; then
 		gen_wifi
 	else
-		icon=""
+		is_disconnected=true
 		color="#988ba2"
 		class="net-disconnected"
 		name="Disconnected"
@@ -62,12 +63,13 @@ function make_content() {
 	get_vpn
 
 	jaq --null-input -r -c \
+		--arg is_disconnected "$is_disconnected" \
 		--arg is_eth "$is_eth" \
 		--arg name "$name" \
 		--arg color "$color" \
 		--arg class "$class" \
 		--arg vpn "$vpn" \
-		'{"is_eth": $is_eth, "name": $name, "color": $color, "class": $class, "vpn": $vpn}'
+		'{"is_disconnected": $is_disconnected, "is_eth": $is_eth, "name": $name, "color": $color, "class": $class, "vpn": $vpn}'
 }
 
 case "$1" in

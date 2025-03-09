@@ -13,7 +13,7 @@ in {
     hm.packages = with pkgs;
       [nodejs]
       ++ (with nodePackages; [
-        prettier_d_slim
+        prettier
         vscode-langservers-extracted
         typescript
         typescript-language-server
