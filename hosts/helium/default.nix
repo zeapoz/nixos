@@ -41,7 +41,10 @@ in {
     dev.enable = true;
     shell.enable = true;
     theme.enable = true;
-    hardware.keychron.enable = true;
+    hardware = {
+      keychron.enable = true;
+      bluetooth.enable = true;
+    };
   };
 
   # Home-manager settings.

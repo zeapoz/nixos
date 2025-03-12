@@ -24,6 +24,7 @@ in {
           spotify
           spotify-player
           stremio
+          qbittorrent
         ]
         ++ optionals cfg.daw.enable [
           ardour

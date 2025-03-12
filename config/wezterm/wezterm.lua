@@ -51,13 +51,12 @@ end
 local last_toggle_pane = nil
 local vim_pane = nil
 local options = {
-  -- FIXME: Temporary fix since wayland support is currently broken.
-  enable_wayland = false,
+  enable_wayland = true,
   font = wezterm.font_with_fallback({
     "FiraCode Nerd Font",
     "Font Awesome 6 Free Solid",
   }),
-  font_size = 12.0,
+  font_size = 9.0,
   force_reverse_video_cursor = true,
   colors = {
     foreground = "#dcd7ba",
