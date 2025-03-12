@@ -13,12 +13,6 @@ in {
       enable = true;
       layout = [
         {
-          label = "lock";
-          action = "sleep 1; swaylock -f";
-          text = "Lock";
-          keybind = "l";
-        }
-        {
           label = "shutdown";
           action = "systemctl poweroff";
           text = "Shutdown";
@@ -35,18 +29,6 @@ in {
           action = "systemctl suspend";
           text = "Suspend";
           keybind = "p";
-        }
-        {
-          label = "hibernate";
-          action = "systemctl hibernate";
-          text = "Hibernate";
-          keybind = "p";
-        }
-        {
-          label = "logout";
-          action = "hyprctl dispatch exit";
-          text = "Logout";
-          keybind = "o";
         }
       ];
     };

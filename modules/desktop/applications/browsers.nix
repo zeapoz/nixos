@@ -15,7 +15,6 @@ in {
     hm = {
       packages = with pkgs; [
         brave
-        qutebrowser
         inputs.zen-browser.packages."${system}".twilight
       ];
     };

@@ -1,18 +1,11 @@
-{pkgs, ...}: let
-  mainDesktop = "hyprland";
-  mainEditor = "codium";
-in {
+{pkgs, ...}: {
   imports = [./hardware-configuration.nix];
 
   modules = {
     desktop = {
-      ${mainDesktop} = {
+      hyprland = {
         enable = true;
         autostart = true;
-      };
-      waybar = {
-        mainDesktop = "${mainDesktop}";
-        temperaturePath = "/sys/module/k10temp/drivers/pci:k10temp/0000:00:18.3/hwmon/hwmon3/temp1_input";
       };
       applications = {
         browsers.enable = true;
@@ -22,13 +15,10 @@ in {
     };
 
     editors = {
-      inherit mainEditor;
       neovim = {
         enable = true;
         disableGui = true;
       };
-      helix.enable = true;
-      vscode.enable = true;
     };
 
     dev.enable = true;
@@ -41,10 +31,7 @@ in {
   services.tlp.enable = true;
 
   # Home-manager settings.
-  hm = {
-    packages = with pkgs; [brightnessctl];
-    programs.kitty.font.size = 14;
-  };
+  hm.packages = with pkgs; [brightnessctl];
 
   # Custom defined options.
   hardware.hasBattery = true;

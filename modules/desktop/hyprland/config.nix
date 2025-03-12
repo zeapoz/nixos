@@ -262,7 +262,6 @@ in {
 
     # Reload configuration.
     bind=SUPER,C,exec,hyprctl reload
-    bind=SUPERSHIFT,C,exec,killall -SIGUSR2 .waybar-wrapped
 
     # Change background.
     bind=SUPERSHIFT,K,exec,killall -q swaybg -9; swaybg -i "$(find ~/Pictures/Wallpapers -type f | shuf -n 1)" -m fill

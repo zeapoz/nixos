@@ -23,11 +23,10 @@ in {
     ];
 
     services.sunshine = mkIf cfg.enableStreaming {
-    enable = true;
+      enable = true;
       autoStart = true;
       capSysAdmin = true;
       openFirewall = true;
-
     };
   };
 }

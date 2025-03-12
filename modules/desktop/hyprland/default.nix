@@ -11,7 +11,7 @@ with lib; let
   inherit (configFile) hyprlandConfig;
   autostartConfig = configFile.autostart;
 in {
-  imports = [../eww.nix ../waybar.nix ../wlogout.nix];
+  imports = [../eww.nix ../wlogout.nix];
 
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
@@ -21,7 +21,6 @@ in {
   config = mkIf cfg.enable {
     modules.desktop = {
       eww.enable = true;
-      waybar.enable = false;
       wlogout.enable = true;
     };
 

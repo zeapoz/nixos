@@ -9,7 +9,6 @@ with lib; let
 in {
   options.modules.desktop.applications.media = {
     enable = mkEnableOption "media";
-    daw.enable = mkEnableOption "daw";
   };
 
   config = mkIf cfg.enable {
@@ -17,33 +16,11 @@ in {
       packages = with pkgs;
         [
           calibre
-          gimp
-          helvum
           musescore
-          obs-studio
           spotify
-          spotify-player
           stremio
           qbittorrent
-        ]
-        ++ optionals cfg.daw.enable [
-          ardour
-          drumgizmo
-          guitarix
-          sunvox
-          synthv1
         ];
-
-      services.spotifyd = {
-        # enable = true;
-        settings = {
-          global = {
-            username_cmd = "/home/${config.user.name}/secrets/spotifyd.user";
-            password_cmd = "/home/${config.user.name}/secrets/spotifyd.pass";
-            device_name = "${config.networking.hostName}";
-          };
-        };
-      };
     };
   };
 }

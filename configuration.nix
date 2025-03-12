@@ -77,6 +77,7 @@
 
   # Use fish as the default user shell
   users.defaultUserShell = pkgs.fish;
+  programs.fish.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${config.user.name} = {
