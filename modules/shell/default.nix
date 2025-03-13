@@ -74,5 +74,9 @@ in {
         wezterm.enable = true;
       };
     };
+
+    # Use fish as the default user shell
+    users.defaultUserShell = pkgs.fish;
+    programs.fish.enable = true;
   };
 }

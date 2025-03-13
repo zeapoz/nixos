@@ -27,7 +27,6 @@ inputs.nixpkgs.lib.extend (_final: prev: {
       specialArgs = {inherit inputs;};
 
       modules = [
-        ../configuration.nix
         ../modules
         ../home.nix
         inputs.home-manager.nixosModules.home-manager
