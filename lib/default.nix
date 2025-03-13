@@ -1,5 +1,5 @@
 {inputs, ...}:
-inputs.nixpkgs.lib.extend (_final: prev: {
+inputs.nixpkgs.lib.extend (final: prev: {
   mkOpt = type: default: prev.mkOption {inherit type default;};
 
   mkBoolOpt = default:
@@ -37,4 +37,14 @@ inputs.nixpkgs.lib.extend (_final: prev: {
         }
       ];
     };
+
+  mkHosts = { hosts
+  , system
+  , pkgs
+  , lib
+  }: prev.attrsets.genAttrs hosts (name: final.mkHost {
+    inherit system pkgs lib;
+
+    hostName = name;
+  });
 })

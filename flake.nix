@@ -11,7 +11,6 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
     nix-colors.url = "github:misterio77/nix-colors";
     anyrun.url = "github:Kirottu/anyrun";
     eww.url = "github:elkowar/eww";
@@ -30,17 +29,11 @@
     };
 
     lib = import ./lib {inherit inputs;};
-  in {
-    nixosConfigurations = with lib; {
-      helium = mkHost {
-        hostName = "helium";
-        inherit system pkgs lib;
-      };
 
-      neon = mkHost {
-        hostName = "neon";
-        inherit system pkgs lib;
-      };
+    hosts = [ "helium" "neon" ];
+  in {
+    nixosConfigurations = with lib; mkHosts {
+      inherit system pkgs lib hosts;
     };
   };
 }

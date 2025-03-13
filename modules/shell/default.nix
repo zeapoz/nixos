@@ -28,6 +28,7 @@ in {
         bc
         yazi
         wget
+        wezterm
       ];
 
       programs = {
@@ -70,8 +71,6 @@ in {
           git = true;
           icons = "auto";
         };
-
-        wezterm.enable = true;
       };
     };
 
