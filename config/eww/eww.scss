@@ -9,7 +9,7 @@
 .bar,
 .bar2 {
   color: $fg;
-  background-color: #16161D;
+  background-color: transparentize(#16161D, 0.4);
 }
 
 .module {
