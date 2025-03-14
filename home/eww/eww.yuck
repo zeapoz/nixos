@@ -5,7 +5,6 @@
 (include "./modules/audio.yuck")
 (include "./modules/keyboard.yuck")
 (include "./modules/battery.yuck")
-(include "./modules/bar2.yuck")
 (include "./modules/player.yuck")
 (include "./modules/systray.yuck")
 

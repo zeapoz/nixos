@@ -176,12 +176,12 @@ in {
     bind=SUPER,RETURN,exec,${terminalCmd}
     bind=SUPER,D,exec,anyrun
     bind=SUPER,X,exec,wlogout -p layer-shell
-    bind=SUPER,H,exec,code --enable-features=UseOzonePlatform --ozone-platform=wayland
-    bind=SUPERSHIFT,H,exec,neovide
     bind=SUPER,B,exec,${browser}
-    bind=SUPERSHIFT,B,exec,qutebrowser
     bind=SUPER,P,exec,${terminalCmd} -e fish -c yazi
     bind=SUPER,S,exec,${musicApp}
+
+    # Notification center.
+    bind=SUPER,H,exec,swaync-client --toggle-panel
 
     bind=SUPER,W,killactive,
     bind=SUPERSHIFT,Q,exit,

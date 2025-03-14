@@ -13,7 +13,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.steam.enable = true;
+    # programs.steam.enable = true;
 
     hm.packages = with pkgs; [
       prismlauncher

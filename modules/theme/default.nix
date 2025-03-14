@@ -20,12 +20,6 @@ in {
 
     hm = {
       user = {
-        services.mako = with palette; {
-          backgroundColor = "#${bg}FF";
-          borderColor = "#${fg}FF";
-          textColor = "#${fg}FF";
-        };
-
         home.pointerCursor = {
           name = "Bibata-Original-Ice";
           package = pkgs.bibata-cursors;

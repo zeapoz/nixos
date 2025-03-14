@@ -34,11 +34,14 @@ in {
         hyprsunset
       ];
 
-      services.hyprpaper = {
-        enable = true;
-        settings = {
-          preload = "${wallpaper}";
-          wallpaper = ",${wallpaper}";
+      services = {
+        swaync.enable = true;
+        hyprpaper = {
+          enable = true;
+          settings = {
+            preload = "${wallpaper}";
+            wallpaper = ",${wallpaper}";
+          };
         };
       };
 
