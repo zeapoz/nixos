@@ -5,7 +5,11 @@
   inputs,
   ...
 }:
-with lib; {
+with lib;
+let
+  # Recursively import all nix modules that are not this file.
+  imports = lib.filter (n: !lib.strings.hasInfix "home/default.nix" n && lib.strings.hasSuffix ".nix" n) (lib.filesystem.listFilesRecursive (builtins.toString ./.));
+in {
   # Aliases for a better typing experience.
   # home-manager.users.${config.user.name}                -> hm.user
   # home-manager.users.${config.user.name}.xdg.configFile -> hm.configFile
@@ -37,14 +41,7 @@ with lib; {
     };
 
     hm.user = {
-      imports = [
-        ./lib.nix
-        ./alacritty
-        ./helix
-        ./wezterm
-        ./eww
-        ./neovim
-      ];
+      inherit imports;
 
       home = {
         username = "${config.user.name}";
