@@ -2,6 +2,7 @@
   options,
   config,
   lib,
+  inputs,
   ...
 }:
 with lib; {
@@ -25,6 +26,10 @@ with lib; {
 
   config = {
     home-manager = {
+      extraSpecialArgs = {
+        inherit inputs;
+      };
+
       useGlobalPkgs = true;
       useUserPackages = true;
 
@@ -32,6 +37,14 @@ with lib; {
     };
 
     hm.user = {
+      imports = [
+        ./lib.nix
+        ./alacritty
+        ./helix
+        ./wezterm
+        ./eww
+      ];
+
       home = {
         username = "${config.user.name}";
         homeDirectory = "/home/${config.user.name}";

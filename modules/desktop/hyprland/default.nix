@@ -11,7 +11,7 @@ with lib; let
   inherit (configFile) hyprlandConfig;
   autostartConfig = configFile.autostart;
 in {
-  imports = [../eww.nix ../wlogout.nix];
+  imports = [../wlogout.nix];
 
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
@@ -20,7 +20,6 @@ in {
 
   config = mkIf cfg.enable {
     modules.desktop = {
-      eww.enable = true;
       wlogout.enable = true;
     };
 
@@ -44,7 +43,10 @@ in {
 
         # Autostart Hyprland from tty1.
         "fish/conf.d/hyprland.fish" = mkIf cfg.autostart {
-          source = ../../../config/fish/hyprland.fish;
+          text = ''
+            set TTY1 (tty)
+            [ "$TTY1" = /dev/tty1 ] && exec Hyprland
+          '';
           executable = true;
         };
       };

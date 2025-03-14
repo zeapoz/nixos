@@ -5,7 +5,7 @@
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   inherit (config.colorScheme) palette;
 
-  terminalCmd = "wezterm --config-file $HOME/.config/NixOS/config/wezterm/wezterm.lua";
+  terminalCmd = "alacritty";
   browser = "zen";
   musicApp = "spotify";
   layout = "master";
@@ -25,7 +25,8 @@ in {
 
     ${
       if (config.networking.hostName == "helium")
-      then "workspace=6,monitor:HDMI-A-2,default:true"
+      then ''workspace=6,monitor:HDMI-A-2,default:true
+             monitor=HDMI-A-2,preferred,-1920x0,1''
       else "monitor=HDMI-A-1,preferred,auto,1,mirror,eDP-1"
     }
 
@@ -274,7 +275,7 @@ in {
   '';
 
   autostart = ''
-    kanata --cfg ~/.config/NixOS/config/kanata/config.kbd --port 36413 &
+    # kanata --cfg ~/.config/NixOS/config/kanata/config.kbd --port 36413 &
     swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
     eww -c ~/.config/NixOS/config/eww/ open bar &
     ${

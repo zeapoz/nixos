@@ -28,7 +28,6 @@ in {
         bc
         yazi
         wget
-        wezterm
       ];
 
       programs = {
