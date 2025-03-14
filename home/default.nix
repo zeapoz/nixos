@@ -43,6 +43,7 @@ with lib; {
         ./helix
         ./wezterm
         ./eww
+        ./neovim
       ];
 
       home = {

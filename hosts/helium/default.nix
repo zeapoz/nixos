@@ -17,13 +17,6 @@
       };
     };
 
-    editors = {
-      neovim = {
-        enable = true;
-        disableGui = true;
-      };
-    };
-
     dev.enable = true;
     shell.enable = true;
     theme.enable = true;

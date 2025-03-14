@@ -1,0 +1,4 @@
+inherits = "kanagawa"
+
+"ui.gutter" = { bg = "default" }
+"ui.gutter.selected" = { bg = "sumiInk3" }

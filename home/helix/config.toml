@@ -1,8 +1,26 @@
-theme = "kanagawa"
+theme = "kanagawa-custom"
 
 [editor]
 line-number = "relative"
+cursorline = true
+gutters = ["diagnostics", "spacer", "line-numbers", "spacer", "diff", "spacer", "spacer"]
+completion-timeout = 5
+rulers = [120]
+bufferline = "multiple"
+color-modes = true
 
 [editor.cursor-shape]
 insert = "bar"
+normal = "block"
 select = "underline"
+
+[editor.lsp]
+display-progress-messages = true
+display-inlay-hints = true
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "file-name", "read-only-indicator", "file-modification-indicator"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
