@@ -13,8 +13,6 @@ in {
   hyprlandConfig = ''
     monitor=,preferred,auto,1
 
-    exec-once=${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-
     # Set mouse cursor.
     exec-once=hyprctl setcursor ${cursorCfg.name} ${
       builtins.toString cursorCfg.size
@@ -264,24 +262,10 @@ in {
     # Reload configuration.
     bind=SUPER,C,exec,hyprctl reload
 
-    # Change background.
-    bind=SUPERSHIFT,K,exec,killall -q swaybg -9; swaybg -i "$(find ~/Pictures/Wallpapers -type f | shuf -n 1)" -m fill
-
-    # Japanese IME.
-    exec-once=fcitx5
-
     # Start some applications in the background.
-    exec-once=~/.config/hypr/autostart.sh
-  '';
-
-  autostart = ''
-    # kanata --cfg ~/.config/NixOS/config/kanata/config.kbd --port 36413 &
-    swaybg -i $(find ~/Pictures/Wallpapers -type f | shuf -n 1) -m fill &
-    eww -c ~/.config/NixOS/config/eww/ open bar &
-    ${
-      if (config.networking.hostName == "helium")
-      then "eww -c ~/.config/NixOS/config/eww/ open bar2 &"
-      else ""
-    }
+    exec-once=dbus-update-activation-environment --systemd --all
+    exec-once=eww open bar
+    exec-once=hyprsunset
+    exec-once=fcitx5
   '';
 }

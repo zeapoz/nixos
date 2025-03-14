@@ -9,7 +9,8 @@ with lib; let
 
   configFile = import ./config.nix {inherit config pkgs;};
   inherit (configFile) hyprlandConfig;
-  autostartConfig = configFile.autostart;
+
+  wallpaper = ./wallpaper.jpg;
 in {
   imports = [../wlogout.nix];
 
@@ -29,17 +30,20 @@ in {
       packages = with pkgs; [
         grim
         slurp
-        swaybg
         wl-clipboard
+        hyprsunset
       ];
+
+      services.hyprpaper = {
+        enable = true;
+        settings = {
+          preload = "${wallpaper}";
+          wallpaper = ",${wallpaper}";
+        };
+      };
 
       configFile = {
         "hypr/hyprland.conf".text = hyprlandConfig;
-
-        "hypr/autostart.sh" = {
-          text = autostartConfig;
-          executable = true;
-        };
 
         # Autostart Hyprland from tty1.
         "fish/conf.d/hyprland.fish" = mkIf cfg.autostart {
@@ -53,5 +57,6 @@ in {
     };
 
     environment.variables.WLR_NO_HARDWARE_CURSORS = "1";
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
 }
