@@ -69,7 +69,7 @@
         }
 
         box#main {
-          background: rgba(0, 0, 0, 0.5);
+          background: rgba(0, 0, 0, 0.4);
           padding: 12px;
           border-radius: 10px;
         }

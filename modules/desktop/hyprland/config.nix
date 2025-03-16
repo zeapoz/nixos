@@ -5,7 +5,7 @@
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   inherit (config.colorScheme) palette;
 
-  terminalCmd = "alacritty";
+  terminalCmd = "wezterm";
   browser = "zen";
   musicApp = "spotify";
   layout = "master";
@@ -17,7 +17,9 @@ in {
     exec-once=hyprctl setcursor ${cursorCfg.name} ${
       builtins.toString cursorCfg.size
     }
-
+    
+    layerrule=blur,swaync-control-center
+    layerrule=ignorezero,swaync-control-center
     layerrule=blur,anyrun
     layerrule=ignorezero,anyrun
     layerrule=blur,eww-bar

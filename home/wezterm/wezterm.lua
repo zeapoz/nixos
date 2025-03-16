@@ -19,7 +19,7 @@ local function set_padding(window, value)
   window:set_config_overrides(overrides)
 end
 
-local default_opacity = 0.7
+local default_opacity = 0.5
 local function toggle_opacity(window)
   local overrides = window:get_config_overrides() or {}
   if not overrides.window_background_opacity then
@@ -89,14 +89,14 @@ local options = {
   },
   keys = {
     { key = "Enter", mods = "ALT", action = wezterm.action.DisableDefaultAssignment },
-    { key = "O", mods = "CTRL", action = wezterm.action.EmitEvent("toggle-opacity") },
+    { key = "O", mods = "ALT", action = wezterm.action.EmitEvent("toggle-opacity") },
     { key = "LeftArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Left") },
     { key = "RightArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Right") },
     { key = "UpArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Up") },
     { key = "DownArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Down") },
-    { key = "S", mods = "CTRL", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
-    { key = "V", mods = "CTRL", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-    { key = "C", mods = "CTRL", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
+    { key = "S", mods = "ALT", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+    { key = "V", mods = "ALT", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+    { key = "C", mods = "ALT", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
     {
       key = "/",
       mods = "CTRL",
@@ -105,7 +105,7 @@ local options = {
         if is_vim(pane) then
           vim_pane = pane
           if last_toggle_pane == nil or #tab:panes() == 1 then
-            last_toggle_pane = pane:split({ direction = "Right" })
+            last_toggle_pane = pane:split({ direction = "Right", size = 0.4 })
           else
             local active_pane = tab:panes_with_info()[vim_pane:pane_id() + 1]
             if active_pane.is_zoomed then
