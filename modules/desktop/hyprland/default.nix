@@ -31,11 +31,17 @@ in {
         grim
         slurp
         wl-clipboard
+        hyprpaper
         hyprsunset
       ];
 
       services = {
-        swaync.enable = true;
+        swaync = {
+          enable = true;
+          settings = {
+            widgets = [ "title" "dnd" "notifications" "mpris" ];
+          };
+        };
         hyprpaper = {
           enable = true;
           settings = {

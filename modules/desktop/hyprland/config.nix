@@ -18,8 +18,8 @@ in {
       builtins.toString cursorCfg.size
     }
 
-    # blurls=anyrun
-    blurls=gtk-layer-shell
+    layerrule=blur,eww-bar
+    layerrule=ignorezero,eww-bar
 
     ${
       if (config.networking.hostName == "helium")
@@ -123,7 +123,7 @@ in {
       then ''
         master {
           allow_small_split=true
-          mfact=0.6
+          mfact=0.7
           new_on_top=true
           orientation=right
         }
@@ -264,8 +264,10 @@ in {
 
     # Start some applications in the background.
     exec-once=dbus-update-activation-environment --systemd --all
-    exec-once=eww open bar
+    exec-once=hyprpaper
     exec-once=hyprsunset
+    exec-once=eww open bar --screen 0 --id primary
     exec-once=fcitx5
+    exec-once=swaync
   '';
 }

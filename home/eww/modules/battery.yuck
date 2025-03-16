@@ -2,5 +2,6 @@
   (defwidget battery []
     (box :class "module battery ${battery.class}"
          :orientation "v"
+         :visible {get_env("HOST_HAS_BATTERY")}
       (label :class "icon" :text "${battery.icon}")
       (label :text "${battery.percent}")))

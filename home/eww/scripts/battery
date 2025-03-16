@@ -54,7 +54,7 @@ gettime() {
   fi
 }
 
-while true; do
+while [ -d "/sys/class/power_supply/BAT1" ]; do
   RATE=$(cat /sys/class/power_supply/BAT1/power_now)
   CAPACITY=$(cat /sys/class/power_supply/BAT1/capacity)
   STATE=$(cat /sys/class/power_supply/BAT1/status)
