@@ -18,6 +18,8 @@ in {
       builtins.toString cursorCfg.size
     }
 
+    layerrule=blur,anyrun
+    layerrule=ignorezero,anyrun
     layerrule=blur,eww-bar
     layerrule=ignorezero,eww-bar
 

@@ -52,6 +52,7 @@
     (bottom)))
 
 (defwindow bar
+  :namespace "eww-bar"
   :geometry (geometry
     :x "0"
     :y "0"

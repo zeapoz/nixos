@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }: {
   imports = [
@@ -9,46 +8,20 @@
     ./media.nix
   ];
 
-  hm = {
-    user.imports = [inputs.anyrun.homeManagerModules.default];
-
-    packages = with pkgs; [
-      anki
-      aseprite
-      blender
-      bitwarden
-      discord
-      mullvad-vpn
-      pavucontrol
-      playerctl
-      pulseaudio
-      signal-desktop
-      telegram-desktop
-      slack
-    ];
-
-    programs = {
-      anyrun = {
-        enable = true;
-        config = {
-          plugins = with inputs.anyrun.packages.${pkgs.system}; [
-            applications
-            symbols
-            rink
-            shell
-          ];
-          x = {fraction = 0.5;};
-          y = {fraction = 0.3;};
-          width = {fraction = 0.5;};
-        };
-        extraCss = ''
-          .window {
-            background-color: none;
-          }
-        '';
-      };
-    };
-  };
+  hm.packages = with pkgs; [
+    anki
+    aseprite
+    blender
+    bitwarden
+    discord
+    mullvad-vpn
+    pavucontrol
+    playerctl
+    pulseaudio
+    signal-desktop
+    telegram-desktop
+    slack
+  ];
 
   programs = {
     thunar = {

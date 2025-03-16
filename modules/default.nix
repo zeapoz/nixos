@@ -68,6 +68,8 @@
     fcitx5.addons = with pkgs; [fcitx5-mozc fcitx5-gtk];
   };
 
+  security.sudo.wheelNeedsPassword = false;
+
   # Enable sound with pipewire.
   security.rtkit.enable = true;
   services.pipewire = {
