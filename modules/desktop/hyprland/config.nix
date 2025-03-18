@@ -18,6 +18,8 @@ in {
       builtins.toString cursorCfg.size
     }
     
+    layerrule=blur,swaync-notification-window
+    layerrule=ignorezero,swaync-notification-window
     layerrule=blur,swaync-control-center
     layerrule=ignorezero,swaync-control-center
     layerrule=blur,anyrun
