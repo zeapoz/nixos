@@ -13,7 +13,17 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.steam.enable = true;
+    programs = {
+      steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
+        gamescopeSession.enable = true;
+      };
+      gamescope = {
+        enable = true;
+        capSysNice = true;
+      };
+    };
 
     hm.packages = with pkgs; [
       prismlauncher

@@ -17,6 +17,7 @@ in {
       isort
       python3
       pyright
+      uv
     ];
   };
 }

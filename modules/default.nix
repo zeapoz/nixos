@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./desktop
     ./dev
@@ -41,7 +43,10 @@
   };
 
   # Hardware.
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
