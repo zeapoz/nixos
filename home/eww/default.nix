@@ -3,8 +3,7 @@
   config,
   inputs,
   ...
-}:
-let
+}: let
   eww-scripts = inputs.eww-scripts.packages.${pkgs.system}.default;
 in {
   home.packages = with pkgs; [
@@ -27,7 +26,7 @@ in {
     #   then ''
     #     (defwindow bar2
     #       :monitor 1
-    #       :geometry (geometry 
+    #       :geometry (geometry
     #         :x "0"
     #         :x "0"
     #         :width "2%"

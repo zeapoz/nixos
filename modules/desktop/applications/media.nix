@@ -13,14 +13,13 @@ in {
 
   config = mkIf cfg.enable {
     hm = {
-      packages = with pkgs;
-        [
-          calibre
-          musescore
-          spotify
-          stremio
-          qbittorrent
-        ];
+      packages = with pkgs; [
+        calibre
+        musescore
+        spotify
+        stremio
+        qbittorrent
+      ];
     };
   };
 }

@@ -1,10 +1,8 @@
-{ pkgs, ... }:
-
-{
-  environment.defaultPackages = [ pkgs.kanata ];
+{pkgs, ...}: {
+  environment.defaultPackages = [pkgs.kanata];
 
   # Enable the uinput module
-  boot.kernelModules = [ "uinput" ];
+  boot.kernelModules = ["uinput"];
 
   # Enable uinput
   hardware.uinput.enable = true;
@@ -15,7 +13,7 @@
   '';
 
   # Ensure the uinput group exists
-  users.groups.uinput = { };
+  users.groups.uinput = {};
 
   # Add the Kanata service user to necessary groups
   systemd.services.kanata-internalKeyboard.serviceConfig = {
@@ -41,5 +39,7 @@
         extraDefCfg = "process-unmapped-keys yes";
         port = 36413;
         config = builtins.readFile ./config.kbd;
-  };};};
+      };
+    };
+  };
 }

@@ -30,10 +30,11 @@
 
     lib = import ./lib {inherit inputs;};
 
-    hosts = [ "helium" "neon" ];
+    hosts = ["helium" "neon"];
   in {
-    nixosConfigurations = with lib; mkHosts {
-      inherit system pkgs lib hosts;
-    };
+    nixosConfigurations = with lib;
+      mkHosts {
+        inherit system pkgs lib hosts;
+      };
   };
 }

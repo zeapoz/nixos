@@ -5,8 +5,7 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   # Recursively import all nix modules that are not this file.
   imports = lib.filter (n: !lib.strings.hasInfix "home/default.nix" n && lib.strings.hasSuffix ".nix" n) (lib.filesystem.listFilesRecursive (builtins.toString ./.));
 in {

@@ -39,7 +39,7 @@ in {
         swaync = {
           enable = true;
           settings = {
-            widgets = [ "title" "dnd" "notifications" "mpris" ];
+            widgets = ["title" "dnd" "notifications" "mpris"];
           };
         };
         hyprpaper = {

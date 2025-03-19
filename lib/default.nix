@@ -31,17 +31,20 @@ inputs.nixpkgs.lib.extend (final: prev: {
         ../modules
         ../home
         inputs.home-manager.nixosModules.home-manager
-        { networking.hostName = "${hostName}"; }
+        {networking.hostName = "${hostName}";}
       ];
     };
 
-  mkHosts = { hosts
-  , system
-  , pkgs
-  , lib
-  }: prev.attrsets.genAttrs hosts (name: final.mkHost {
-    inherit system pkgs lib;
+  mkHosts = {
+    hosts,
+    system,
+    pkgs,
+    lib,
+  }:
+    prev.attrsets.genAttrs hosts (name:
+      final.mkHost {
+        inherit system pkgs lib;
 
-    hostName = name;
-  });
+        hostName = name;
+      });
 })

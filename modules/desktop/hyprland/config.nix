@@ -17,7 +17,7 @@ in {
     exec-once=hyprctl setcursor ${cursorCfg.name} ${
       builtins.toString cursorCfg.size
     }
-    
+
     layerrule=blur,swaync-notification-window
     layerrule=ignorezero,swaync-notification-window
     layerrule=blur,swaync-control-center
@@ -29,8 +29,8 @@ in {
 
     ${
       if (config.networking.hostName == "helium")
-      then ''workspace=6,monitor:HDMI-A-2,default:true
-             monitor=HDMI-A-2,preferred,-1920x0,1''
+      then ''        workspace=6,monitor:HDMI-A-2,default:true
+                     monitor=HDMI-A-2,preferred,-1920x0,1''
       else "monitor=HDMI-A-1,preferred,auto,1,mirror,eDP-1"
     }
 

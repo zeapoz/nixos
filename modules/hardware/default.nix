@@ -1,4 +1,9 @@
-{config, lib, ...}: with lib; {
+{
+  config,
+  lib,
+  ...
+}:
+with lib; {
   imports = [
     ./bluetooth.nix
     ./keychron.nix
