@@ -1,10 +1,31 @@
+(defvar systray-reveal false)
+(defvar systray-pinned true)
 (defwidget systray-box []
-  (box
-    :space-evenly false
-    :halign "center"
-    :valign "center"
-    :class "systray"
-    (systray :orientation "v"
-             :icon-size 18
-             :spacing 6
-             :prepend-new false)))
+  (eventbox
+    :class "eventbox"
+    :onmiddleclick "${EWW_CMD} update systray-pinned=${!systray-pinned}"
+    :onhover "${EWW_CMD} update systray-reveal=true"
+    :onhoverlost "${EWW_CMD} update systray-reveal=false"
+    (box
+      :space-evenly false
+      :halign "center"
+      :valign "center"
+      :class "systray module"
+      (revealer
+        :transition "slideleft"
+        :reveal {systray-reveal || systray-pinned}
+        (systray
+          :orientation "h"
+          :icon-size 16
+          :prepend-new true))
+      (revealer
+        :transition "slideleft"
+        :reveal {!systray-pinned}
+        (label
+          :class "icon"
+          :text {(systray-reveal || systray-pinned) ? "" : ""}
+        )
+      )
+    )
+  )
+)

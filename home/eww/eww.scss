@@ -1,55 +1,76 @@
 @import "/home/jonathan/.config/colors";
 
 * {
+  all: unset;
   font-family: "FiraCode", "Font Awesome 6 Free";
   font-weight: bold;
-  font-size: 13px;
+  font-size: 12px;
 }
 
-.bar,
-.bar2 {
+.bar {
   color: $fg;
-  // background-color: transparentize(#16161D, 0.4);
   background-color: rgba(0, 0, 0, 0.4);
-}
-
-.module {
-  padding: 0.2em 0.2em;
-  margin: 0.3em 0.5em;
-  border-radius: 10px;
-  min-width: 2em;
+  border-radius: 20px;
+  padding: 4px;
 }
 
 .icon {
-  padding: 0.2em 0;
+  min-width: 2em;
+  min-height: 2em;
+  border-radius: 50%;
   background-color: transparent;
 }
 
-.systray {
-  padding: 0.2em 0;
-}
-
-button {
-  min-width: 0;
-  min-height: 0;
-
-  &:hover {
-    background-color: transparentize($fg, 0.9);
-  }
+.eventbox:hover,
+button:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
 }
 
 .systray * {
-  padding: 0.2em 0.2em;
-  border-radius: 10px;
+  border-radius: 50%;
   min-width: 2em;
+  min-height: 2em;
 
-  // Reset systray item menu checkboxes.
-  & menu * {
-    min-width: 16px;
+  * menu {
+    padding: 4px;
+    background-color: rgba(0, 0, 0, 0.95);
+    border-radius: 10px;
+
+    menuitem {
+      border-radius: 10px;
+
+      radio {
+        background-image: radial-gradient(circle farthest-corner at center, transparent 55%, $fg 0);
+        margin: 0 4px;
+
+        &:checked {
+          background-image: radial-gradient(circle farthest-corner at center, transparent 35%, $fg 0);
+        }
+      }
+
+      box {
+        min-height: 10px;
+      }
+    }
   }
 
   &:hover {
-    background-color: transparentize($fg, 0.9);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.systray button {
+  padding: 0;
+}
+
+progressbar trough {
+  background-color: transparentize($red, 0.9);
+  border-radius: 50%;
+
+  progress {
+    background-color: $red;
+    border-radius: 50%;
   }
 }
 
@@ -62,6 +83,10 @@ button {
 .workspace {
   color: transparentize($fg, 0.8);
   background-color: transparent;
+
+  * {
+    margin: 0 4px;
+  }
 }
 
 @mixin workspace ($color) {
@@ -84,30 +109,19 @@ button {
 .monitor-2 { @include workspace ($blue); }
 .monitor-3 { @include workspace ($green); }
 
-.clock { color: $cyan; }
-.date { color: $blue; }
+.clock { color: $green; }
+.day { color: $cyan; }
+.weekday { color: $blue; }
 .month { color: $purple; }
 .player .icon { color: $green; }
 .cpu { color: $red; }
 .ram { color: $green; }
 .disk { color: $purple; }
 .kernel { color: $purple; }
+.notifications { color: $cyan; }
 .net .icon { color: $blue; }
-.audio {
-  .icon { color: $red; }
-    // Without this the icon is not centered.
-  .input {
-    padding-left: 0.15em;
-  }
-}
-.keyboard {
-  color: $green;
-  // Without this the icon is not centered.
-  .icon {
-    padding: 0 0.5em;
-  }
-}
+.audio .icon { color: $red; }
+.keyboard { color: $green; }
 .power { color: $purple; }
-
 .battery-low { color: $yellow; }
 .battery-critical { color: $red; }

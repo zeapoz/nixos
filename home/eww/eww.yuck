@@ -7,58 +7,68 @@
 (include "./modules/battery.yuck")
 (include "./modules/player.yuck")
 (include "./modules/systray.yuck")
+(include "./modules/vars.yuck")
+(include "./modules/power.yuck")
+(include "./modules/notifications.yuck")
 
-(defwidget power []
-  (box :class "module"
-    (button :class "button icon power" :onclick "wlogout -p layer-shell &" "")))
-
-(defwidget top []
-  (box :space-evenly false
-       :orientation "v"
-       :halign "center"
-       :valign "start"
-       :class "top"
+(defwidget left []
+  (box
+    :space-evenly false
+    :orientation "h"
+    :halign "start"
+    :valign "center"
+    :class "left"
+    :spacing 8
     (clock)
-    (date)
+    (day)
+    (weekday)
+    (month)
     (player)
-    (systray-box)))
+  )
+)
 
-(defwidget center []
+(defwidget middle []
   (box :space-evenly false
        :halign "center"
        :valign "center"
-       :class "center"
+       :class "middle"
     (workspaces)))
 
-(defwidget bottom []
-  (box :class "right"
-       :orientation "v"
-       :space-evenly false
-       :halign "center"
-       :valign "end"
-       :class "bottom"
+(defwidget right []
+  (box
+    :class "right"
+    :orientation "h"
+    :space-evenly false
+    :halign "end"
+    :valign "center"
+    :class "right"
+    :spacing 8
+    (systray-box)
+    (notifications)
     (net)
     (audio)
     (submap)
     (keyboard)
     (battery)
-    (power)))
+    (power)
+  )
+)
 
 (defwidget bar-box []
   (centerbox :class "bar"
-             :orientation "v"
-    (top)
-    (center)
-    (bottom)))
+             :orientation "h"
+    (left)
+    (middle)
+    (right)))
 
 (defwindow bar
   :namespace "eww-bar"
   :geometry (geometry
     :x "0"
-    :y "0"
-    :width "2%"
-    :height "100%";
-    :anchor "center left")
+    :y "4px"
+    :width "1912px"
+    :height "4px";
+    :anchor "bottom center")
   :stacking "fg"
   :exclusive true
   (bar-box))

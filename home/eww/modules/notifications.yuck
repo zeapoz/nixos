@@ -1,0 +1,13 @@
+(deflisten swaync "swaync-client -s")
+(defwidget notifications []
+  (eventbox :class "eventbox"
+    (box :class "module"
+      (button
+        :class "button icon notifications"
+        :onclick "swaync-client -t"
+        :onrightclick "swaync-client -d"
+        "${swaync.dnd ? "" : ""}${!swaync.dnd && swaync.count > 0 ? swaync.count : ""}"
+      )
+    )
+  )
+)

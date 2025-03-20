@@ -12,18 +12,12 @@ with lib; let
 
   wallpaper = ./wallpaper.jpg;
 in {
-  imports = [../wlogout.nix];
-
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
     autostart = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
-    modules.desktop = {
-      wlogout.enable = true;
-    };
-
     programs.hyprland.enable = true;
 
     hm = {

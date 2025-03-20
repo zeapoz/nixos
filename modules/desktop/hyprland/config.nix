@@ -26,7 +26,8 @@ in {
     layerrule=ignorezero,anyrun
     layerrule=blur,eww-bar
     layerrule=ignorezero,eww-bar
-
+    layerrule=blur,logout_dialog
+    layerrule=ignorezero,logout_dialog
     ${
       if (config.networking.hostName == "helium")
       then ''        workspace=6,monitor:HDMI-A-2,default:true
@@ -42,8 +43,8 @@ in {
     }
 
     general {
-      gaps_in=0
-      gaps_out=0
+      gaps_in=4
+      gaps_out=6
       border_size=2
 
       col.active_border=rgb(${palette.fg})
@@ -55,12 +56,14 @@ in {
     }
 
     decoration {
-      rounding=0
+      rounding=10
 
       blur {
         enabled=true
         size=3
         passes=4
+        popups=true
+        input_methods=true
       }
 
       shadow {
@@ -181,7 +184,6 @@ in {
     # Useful applications.
     bind=SUPER,RETURN,exec,${terminalCmd}
     bind=SUPER,D,exec,anyrun
-    bind=SUPER,X,exec,wlogout -p layer-shell
     bind=SUPER,B,exec,${browser}
     bind=SUPER,P,exec,${terminalCmd} -e fish -c yazi
     bind=SUPER,S,exec,${musicApp}
@@ -272,8 +274,8 @@ in {
     exec-once=dbus-update-activation-environment --systemd --all
     exec-once=hyprpaper
     exec-once=hyprsunset
-    exec-once=eww open bar --screen 0 --id primary
     exec-once=fcitx5
     exec-once=swaync
+    exec-once=eww open bar --screen 0 --id primary
   '';
 }

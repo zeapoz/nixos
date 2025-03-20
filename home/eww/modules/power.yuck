@@ -1,0 +1,22 @@
+(defvar power-reveal false)
+(defwidget power []
+  (eventbox
+    :class "eventbox"
+    :onhover "${EWW_CMD} update power-reveal=true"
+    :onhoverlost "${EWW_CMD} update power-reveal=false"
+    (box
+      :class "module power"
+      :space-evenly false
+      (revealer
+        :transition "slideleft"
+        :reveal power-reveal
+        (box
+          :space-evenly false
+          (button :class "icon" :onclick "systemctl suspend" "")
+          (button :class "icon" :onclick "systemctl reboot" "")
+        )
+      )
+      (button :hexpand true :class "icon" :onclick "systemctl poweroff" "")
+    )
+  )
+)

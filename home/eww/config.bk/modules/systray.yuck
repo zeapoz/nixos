@@ -1,0 +1,10 @@
+(defwidget systray-box []
+  (box
+    :space-evenly false
+    :halign "center"
+    :valign "center"
+    :class "systray"
+    (systray :orientation "v"
+             :icon-size 18
+             :spacing 6
+             :prepend-new false)))

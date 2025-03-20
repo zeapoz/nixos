@@ -1,31 +1,43 @@
-(defpoll time :interval "1s" `date +'{"date": "%-d", "hour": "%H", "minute": "%M", "day": "%u", "month": "%b"}'`)
-(defvar days `["月", "火", "水", "木", "金", "土", "日"]`)
-
+(defpoll time :interval "1s" `date +'{"date": "%-d", "now": "%R", "day": "%u", "month_name": "%B", "month_num": "%-m", "zone": "%Z"}'`)
+(defpoll tokyo_time :interval "1s" `TZ="Asia/Tokyo" date +'{"date": "%-d", "now": "%R", "day": "%u", "month_name": "%B", "month_num": "%-m", "zone": "%Z"}'`)
+(defvar hovering_clock false)
 (defwidget clock []
-  (box :space-evenly false
-       :class "module clock"
-       :orientation "v"
-    (label :class "icon"
-           :text "")
+  (eventbox :class "clock eventbox"
+    :onhover "${EWW_CMD} update hovering_clock=true"
+    :onhoverlost "${EWW_CMD} update hovering_clock=false"
     (box :space-evenly false
-         :orientation "v"
-      (label :text "${time.hour}")
-      (label :text "${time.minute}"))))
+         :orientation "h"
+         :class "module"
+      (label :class "icon"
+             :text "")
+      (stack
+        :selected {hovering_clock ? 1 : 0}
+        :transition "crossfade"
+        (label :text "${time.now} ${time.zone} ")
+        (label :text "${tokyo_time.now} ${tokyo_time.zone} ")
+      )
+    )
+  )
+)
 
-(defwidget date []
+(defwidget day []
   (box :space-evenly false
-       :orientation "v"
-    (box :space-evenly false
-         :class "module date"
-         :orientation "v"
-      (label :class "icon"
-             :text "日")
-      (label :text "${time.date}")
-      (label :class "icon"
-             :text "${days[time.day - 1]}"))
+        :class "module day"
+        :orientation "h"
+    (label :text "${time.date}日 ")))
+
+(defwidget weekday[]
+  (box :space-evenly false
+        :class "module weekday"
+        :orientation "h"
+    (label :class "icon"
+            :text "${days[time.day - 1]}曜日 "))
+  )
+
+(defwidget month []
   (box :space-evenly false
        :class "module month"
-       :orientation "v"
+       :orientation "h"
       (label :class "icon"
-           :text "月")
-      (label :text "${time.month}"))))
+           :text "${numbers[time.month_num - 1]}月")
+      (label :text "${time.month_name}")))

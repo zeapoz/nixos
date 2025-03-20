@@ -2,6 +2,11 @@ return {
   { "direnv/direnv.vim" },
 
   {
+    "elkowar/yuck.vim",
+    ft = { "yuck" },
+  },
+
+  {
     "willothy/wezterm.nvim",
     config = true,
     init = function()

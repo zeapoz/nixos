@@ -1,8 +1,28 @@
 (deflisten player_status "playerctl -F status")
 (deflisten player_metadata "playerctl -F metadata --format \"{{title}} - {{artist}}\"")
+(defvar player-reveal false)
+(defvar player-pinned true)
 (defwidget player []
-  (eventbox :onrightclick "playerctl next"
-            :visible {(player_status != "Playing" && player_status != "Paused") ? "false" : "true"}
-            :tooltip {player_metadata}
-    (box :class "module player"
-      (button :class "icon" :onclick "playerctl play-pause" ""))))
+  (eventbox
+    :class "player eventbox"
+    :onclick "playerctl play-pause"
+    :onrightclick "playerctl next"
+    :onmiddleclick "${EWW_CMD} update player-pinned=${!player-pinned}"
+    :onhover "${EWW_CMD} update player-reveal=true"
+    :onhoverlost "${EWW_CMD} update player-reveal=false"
+    :visible {(player_status != "Playing" && player_status != "Paused") ? "false" : "true"}
+    (box
+      :space-evenly false
+      :class "module"
+      (label
+        :class "icon"
+        :text {(player_status == "Playing") ? "" : ""}
+      )
+      (revealer
+        :transition "slideright"
+        :reveal {player-reveal || player-pinned}
+        (label :text "${player_metadata} ")
+      )
+    )
+  )
+)

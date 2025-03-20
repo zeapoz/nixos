@@ -13,7 +13,7 @@
     };
     nix-colors.url = "github:misterio77/nix-colors";
     anyrun.url = "github:Kirottu/anyrun";
-    eww.url = "github:elkowar/eww";
+    eww.url = "github:elkowar/eww/revert-hot-reload-regression";
     eww-scripts.url = "github:zeapoz/eww-scripts";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };

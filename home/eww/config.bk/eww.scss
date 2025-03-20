@@ -1,0 +1,113 @@
+@import "/home/jonathan/.config/colors";
+
+* {
+  font-family: "FiraCode", "Font Awesome 6 Free";
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.bar,
+.bar2 {
+  color: $fg;
+  // background-color: transparentize(#16161D, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.module {
+  padding: 0.2em 0.2em;
+  margin: 0.3em 0.5em;
+  border-radius: 10px;
+  min-width: 2em;
+}
+
+.icon {
+  padding: 0.2em 0;
+  background-color: transparent;
+}
+
+.systray {
+  padding: 0.2em 0;
+}
+
+button {
+  min-width: 0;
+  min-height: 0;
+
+  &:hover {
+    background-color: transparentize($fg, 0.9);
+  }
+}
+
+.systray * {
+  padding: 0.2em 0.2em;
+  border-radius: 10px;
+  min-width: 2em;
+
+  // Reset systray item menu checkboxes.
+  & menu * {
+    min-width: 16px;
+  }
+
+  &:hover {
+    background-color: transparentize($fg, 0.9);
+  }
+}
+
+.submap {
+  .button { transition: none; }
+  .group { color: $green; }
+  .resize { color: $red; }
+}
+
+.workspace {
+  color: transparentize($fg, 0.8);
+  background-color: transparent;
+}
+
+@mixin workspace ($color) {
+  &.focused {
+    color: $color;
+  }
+
+  &.unfocused {
+    color: transparentize($color, 0.5);
+  }
+
+  &.urgent {
+    color: $bg;
+    background-color: transparentize($color, 0.5);
+  }
+}
+
+.monitor-0 { @include workspace ($red); }
+.monitor-1 { @include workspace ($yellow); }
+.monitor-2 { @include workspace ($blue); }
+.monitor-3 { @include workspace ($green); }
+
+.clock { color: $cyan; }
+.date { color: $blue; }
+.month { color: $purple; }
+.player .icon { color: $green; }
+.cpu { color: $red; }
+.ram { color: $green; }
+.disk { color: $purple; }
+.kernel { color: $purple; }
+.net .icon { color: $blue; }
+.audio {
+  .icon { color: $red; }
+    // Without this the icon is not centered.
+  .input {
+    padding-left: 0.15em;
+  }
+}
+.keyboard {
+  color: $green;
+  // Without this the icon is not centered.
+  .icon {
+    padding: 0 0.5em;
+  }
+}
+.power { color: $purple; }
+
+.battery-low { color: $yellow; }
+.battery-critical { color: $red; }
