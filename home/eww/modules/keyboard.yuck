@@ -1,7 +1,9 @@
 (deflisten keyboard_lang "scripts/keyboard")
 (defwidget keyboard []
-  (box :class "module keyboard"
-       :orientation "h"
-       :space-evenly false
-    (label :class "icon" :text "")
-    (label :text "${keyboard_lang}")))
+  (eventbox :class "eventbox"
+    (box :class "module keyboard"
+        :orientation "h"
+        :space-evenly false
+        :tooltip {keyboard_lang.full}
+      (label :class "icon" :text "")
+      (label :class "text" :text "${keyboard_lang.shorthand}"))))

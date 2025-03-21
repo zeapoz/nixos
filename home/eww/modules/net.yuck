@@ -9,8 +9,10 @@
        :space-evenly false
     (button :class "icon"
             :onclick "scripts/net toggle"
+            :tooltip {net.name}
             {net.is_disconnected ? net_icons[2] : (net.is_eth ? net_icons[1] : net_icons[0])})
     (button :class "icon"
             :onclick {net.vpn ? "mullvad disconnect" : "mullvad connect"}
             :onrightclick "mullvad-gui &"
+            :tooltip {net.vpn_name}
             {net.vpn ? vpn_icons[0] : vpn_icons[1]}))))

@@ -20,8 +20,8 @@
     :class "left"
     :spacing 8
     (clock)
-    (day)
     (weekday)
+    (day)
     (month)
     (player)
   )

@@ -5,16 +5,24 @@
   (eventbox :class "clock eventbox"
     :onhover "${EWW_CMD} update hovering_clock=true"
     :onhoverlost "${EWW_CMD} update hovering_clock=false"
-    (box :space-evenly false
-         :orientation "h"
-         :class "module"
-      (label :class "icon"
-             :text "")
+    (box
+      :space-evenly false
+      :orientation "h"
+      :class "module"
+      (label
+        :class "icon"
+        :text "")
       (stack
         :selected {hovering_clock ? 1 : 0}
         :transition "crossfade"
-        (label :text "${time.now} ${time.zone} ")
-        (label :text "${tokyo_time.now} ${tokyo_time.zone} ")
+        (label
+          :text "${time.now} ${time.zone}"
+          :class "text"
+        )
+        (label
+          :text "${tokyo_time.now} ${tokyo_time.zone}"
+          :class "text"
+        )
       )
     )
   )
@@ -24,14 +32,14 @@
   (box :space-evenly false
         :class "module day"
         :orientation "h"
-    (label :text "${time.date}日 ")))
+    (label :class "icon" :text "${time.date}日")))
 
 (defwidget weekday[]
   (box :space-evenly false
         :class "module weekday"
         :orientation "h"
     (label :class "icon"
-            :text "${days[time.day - 1]}曜日 "))
+            :text "${days[time.day - 1]}曜日"))
   )
 
 (defwidget month []
@@ -39,5 +47,4 @@
        :class "module month"
        :orientation "h"
       (label :class "icon"
-           :text "${numbers[time.month_num - 1]}月")
-      (label :text "${time.month_name}")))
+             :text "${numbers[time.month_num - 1]}月")))

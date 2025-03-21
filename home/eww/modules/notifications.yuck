@@ -1,6 +1,7 @@
 (deflisten swaync "swaync-client -s")
 (defwidget notifications []
   (eventbox :class "eventbox"
+    :tooltip "${swaync.count} notification${(swaync.count > 1 || swaync.count == 0) ? "s" : ""}"
     (box :class "module"
       (button
         :class "button icon notifications"

@@ -12,11 +12,11 @@
         :reveal power-reveal
         (box
           :space-evenly false
-          (button :class "icon" :onclick "systemctl suspend" "")
-          (button :class "icon" :onclick "systemctl reboot" "")
+          (button :class "icon" :tooltip "Suspend" :onclick "systemctl suspend" "")
+          (button :class "icon" :tooltip "Reboot" :onclick "systemctl reboot" "")
         )
       )
-      (button :hexpand true :class "icon" :onclick "systemctl poweroff" "")
+      (button :class "icon" :tooltip "Poweroff" :onclick "systemctl poweroff" "")
     )
   )
 )

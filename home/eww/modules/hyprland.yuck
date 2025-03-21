@@ -11,6 +11,7 @@
           :onclick "hyprctl dispatch workspace ${ws.id}"
           :onrightclick "hyprctl dispatch movetoworkspace ${ws.id}"
           :class "icon workspace ${ws.id == hyprland.focused ? "focused" : "unfocused"} monitor-${ws.monitor} ${ws.urgent ? "urgent" : ""}"
+          :tooltip "Workspace ${ws.id}"
           "${numbers[ws.id - 1]}")))))
 
 (defwidget submap []
@@ -18,6 +19,7 @@
     :class "eventbox"
     :onclick "hyprctl dispatch submap reset"
     :visible {hyprland.submap != "null"}
+    :tooltip {hyprland.submap?.name}
     (box
       :class "module submap"
       :orientation "h"

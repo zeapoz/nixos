@@ -21,7 +21,7 @@
       (revealer
         :transition "slideright"
         :reveal {player-reveal || player-pinned}
-        (label :text "${player_metadata} ")
+        (label :class "text" :text "${player_metadata}")
       )
     )
   )

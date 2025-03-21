@@ -10,81 +10,85 @@
 nm="$(nmcli d | jc --nmcli | jaq -r '.[] | select(.type | test("^(wifi|ethernet)$", "ix"))')"
 
 function toggle() {
-	status=$(rfkill -J | jaq -r '.rfkilldevices[] | select(.type == "wlan") | .soft' | head -1)
+  status=$(rfkill -J | jaq -r '.rfkilldevices[] | select(.type == "wlan") | .soft' | head -1)
 
-	if [ "$status" = "unblocked" ]; then
-		rfkill block wlan
-	else
-		rfkill unblock wlan
-	fi
+  if [ "$status" = "unblocked" ]; then
+    rfkill block wlan
+  else
+    rfkill unblock wlan
+  fi
 }
 
 function get_vpn() {
-	if nmcli con show --active | rg -q "mullvad"; then
-		vpn=true
-	else
-		vpn=false
-	fi
+  if nmcli con show --active | rg -q "mullvad"; then
+    vpn=true
+    vpn_name=$(mullvad status)
+
+  else
+    vpn=false
+    vpn_name="Not connected"
+  fi
 }
 
 function gen_wifi() {
-	is_eth=false
-	color="#cba6f7"
-	class="net-connected"
-	name=$(echo "$nm" | jaq -r 'select(.type == "wifi") .connection')
+  is_eth=false
+  color="#cba6f7"
+  class="net-connected"
+  name=$(echo "$nm" | jaq -r 'select(.type == "wifi") .connection')
 }
 
 function gen_ethernet() {
-	is_eth=true
-	class="net-connected"
-	color="#cba6f7"
-	name=$(echo "$nm" | jaq -r 'select(.type == "ethernet") .connection')
+  is_eth=true
+  class="net-connected"
+  color="#cba6f7"
+  name=$(echo "$nm" | jaq -r 'select(.type == "ethernet") .connection')
 }
 
 function make_content() {
-	local ethernet wifi
-	nm="$(nmcli d | jc --nmcli | jaq -r '.[] | select(.type | test("^(wifi|ethernet)$", "ix"))')"
-	ethernet=$(echo "$nm" | jaq -r 'select(.type == "ethernet") .state')
-	wifi=$(echo "$nm" | jaq -r 'select(.type == "wifi") .state')
+  local ethernet wifi
+  nm="$(nmcli d | jc --nmcli | jaq -r '.[] | select(.type | test("^(wifi|ethernet)$", "ix"))')"
+  ethernet=$(echo "$nm" | jaq -r 'select(.type == "ethernet") .state')
+  wifi=$(echo "$nm" | jaq -r 'select(.type == "wifi") .state')
 
-	# test ethernet first
-	is_disconnected=false
-	if [[ "$ethernet" == "connected" ]]; then
-		gen_ethernet
-	elif [[ "$wifi" == "connected" ]]; then
-		gen_wifi
-	else
-		is_disconnected=true
-		color="#988ba2"
-		class="net-disconnected"
-		name="Disconnected"
-	fi
-	# check if connected to vpn
-	get_vpn
+  # test ethernet first
+  is_disconnected=false
+  if [[ "$ethernet" == "connected" ]]; then
+    gen_ethernet
+  elif [[ "$wifi" == "connected" ]]; then
+    gen_wifi
+  else
+    is_disconnected=true
+    color="#988ba2"
+    class="net-disconnected"
+    name="Disconnected"
+  fi
+  # check if connected to vpn
+  get_vpn
 
-	jaq --null-input -r -c \
-		--arg is_disconnected "$is_disconnected" \
-		--arg is_eth "$is_eth" \
-		--arg name "$name" \
-		--arg color "$color" \
-		--arg class "$class" \
-		--arg vpn "$vpn" \
-		'{"is_disconnected": $is_disconnected, "is_eth": $is_eth, "name": $name, "color": $color, "class": $class, "vpn": $vpn}'
+  jaq --null-input -r -c \
+    --arg is_disconnected "$is_disconnected" \
+    --arg is_eth "$is_eth" \
+    --arg name "$name" \
+    --arg color "$color" \
+    --arg class "$class" \
+    --arg vpn "$vpn" \
+    --arg vpn_name "$vpn_name" \
+    '{"is_disconnected": $is_disconnected, "is_eth": $is_eth, "name": $name, "color": $color, "class": $class, "vpn": $vpn, "vpn_name": $vpn_name}'
 }
 
 case "$1" in
 "toggle")
-	toggle
-	;;
+  toggle
+  ;;
 
 "")
-	make_content
-	nmcli monitor | while read -r _; do
-		make_content
-	done
-	;;
+  make_content
+  nmcli monitor | while read -r _; do
+    make_content
+  done
+  ;;
 
 *)
-	echo "wrong usage"
-	;;
+  echo "wrong usage"
+  ;;
 esac

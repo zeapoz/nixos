@@ -21,9 +21,19 @@
   background-color: transparent;
 }
 
+.text {
+  padding-right: 0.5em;
+}
+
 .eventbox:hover,
 button:hover {
   background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+tooltip {
+  padding: 4px;
+  background-color: rgba(0, 0, 0, 0.95);
   border-radius: 10px;
 }
 
@@ -110,8 +120,8 @@ progressbar trough {
 .monitor-3 { @include workspace ($green); }
 
 .clock { color: $green; }
-.day { color: $cyan; }
-.weekday { color: $blue; }
+.weekday { color: $cyan; }
+.day { color: $blue; }
 .month { color: $purple; }
 .player .icon { color: $green; }
 .cpu { color: $red; }
