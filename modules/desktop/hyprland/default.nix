@@ -7,10 +7,14 @@
 with lib; let
   cfg = config.modules.desktop.hyprland;
 
-  configFile = import ./config.nix {inherit config pkgs;};
+  configFile = import ./config.nix {inherit config pkgs blur_passes blur_size;};
+
   inherit (configFile) hyprlandConfig;
 
   wallpaper = ./wallpaper.jpg;
+
+  blur_passes = 4;
+  blur_size = 7;
 in {
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
@@ -28,6 +32,53 @@ in {
         hyprpaper
         hyprsunset
       ];
+
+      programs.hyprlock = {
+        enable = true;
+        settings = {
+          label = [
+            {
+              text = "$TIME";
+              color = "rgba(242, 243, 244, 0.75)";
+              font_size = 95;
+              font_family = "Fira Code";
+              position = "0, 300";
+              halign = "center";
+              valign = "center";
+            }
+            {
+              text = ''cmd[update:1000] echo $(date +"%A, %B %d")'';
+              color = "rgba(242, 243, 244, 0.75)";
+              font_size = 22;
+              font_family = "Fira Code";
+              position = "0, 200";
+              halign = "center";
+              valign = "center";
+            }
+          ];
+          background = [
+            {
+              inherit blur_passes blur_size;
+              path = "${wallpaper}";
+            }
+          ];
+          input-field = [
+            {
+              size = "300, 50";
+              position = "0, -80";
+              monitor = "";
+              dots_center = true;
+              fade_on_empty = false;
+              font_color = "rgb(202, 211, 245)";
+              inner_color = "rgb(91, 96, 120)";
+              outer_color = "rgb(24, 25, 38)";
+              outline_thickness = 5;
+              placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
+              shadow_passes = 2;
+            }
+          ];
+        };
+      };
 
       services = {
         swaync = {

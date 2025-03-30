@@ -12,7 +12,8 @@
         :reveal power-reveal
         (box
           :space-evenly false
-          (button :class "icon" :tooltip "Suspend" :onclick "systemctl suspend" "")
+          (button :class "icon" :tooltip "Lock" :onclick "hyprctl dispatch exec hyprlock" "")
+          (button :class "icon" :tooltip "Suspend" :onclick "hyprctl dispatch exec hyprlock; systemctl suspend" "")
           (button :class "icon" :tooltip "Reboot" :onclick "systemctl reboot" "")
         )
       )

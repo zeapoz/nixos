@@ -1,6 +1,8 @@
 {
   config,
   pkgs,
+  blur_size,
+  blur_passes,
 }: let
   cursorCfg = config.home-manager.users.${config.user.name}.home.pointerCursor;
   inherit (config.colorScheme) palette;
@@ -17,6 +19,9 @@ in {
     exec-once=hyprctl setcursor ${cursorCfg.name} ${
       builtins.toString cursorCfg.size
     }
+
+    # Start in locked mode.
+    exec-once=hyprlock
 
     layerrule=blur,swaync-notification-window
     layerrule=ignorezero,swaync-notification-window
@@ -60,8 +65,8 @@ in {
 
       blur {
         enabled=true
-        size=3
-        passes=4
+        size=${builtins.toString blur_size}
+        passes=${builtins.toString blur_passes}
         popups=true
         input_methods=true
       }
