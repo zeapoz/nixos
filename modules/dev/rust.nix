@@ -13,7 +13,6 @@ in {
     hm = {
       packages = with pkgs; [
         rustup
-        # rust-analyzer
         cargo-fuzz
         taplo
       ];
