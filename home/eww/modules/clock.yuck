@@ -20,7 +20,7 @@
           :class "text"
         )
         (label
-          :text "${tokyo_time.now} ${tokyo_time.zone}"
+          :text "${tokyo_time.now} ${tokyo_time.zone}${time.zone == "CEST" ? " " : ""}"
           :class "text"
         )
       )
