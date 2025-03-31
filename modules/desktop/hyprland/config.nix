@@ -23,6 +23,9 @@ in {
     # Start in locked mode.
     exec-once=hyprlock
 
+    # Never lock on fullscreen.
+    windowrulev2 = idleinhibit fullscreen, class:.*
+
     layerrule=blur,swaync-notification-window
     layerrule=ignorezero,swaync-notification-window
     layerrule=blur,swaync-control-center
@@ -279,6 +282,7 @@ in {
     exec-once=dbus-update-activation-environment --systemd --all
     exec-once=hyprpaper
     exec-once=hyprsunset
+    exec-once=hypridle
     exec-once=fcitx5
     exec-once=swaync
     exec-once=eww open bar --screen 0 --id primary

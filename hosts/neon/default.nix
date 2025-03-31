@@ -23,9 +23,6 @@
   # General settings.
   services.tlp.enable = true;
 
-  # Home-manager settings.
-  hm.packages = with pkgs; [brightnessctl];
-
   # Custom defined options.
   hardware.hasBattery = true;
 

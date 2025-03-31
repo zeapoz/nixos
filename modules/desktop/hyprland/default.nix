@@ -31,6 +31,8 @@ in {
         wl-clipboard
         hyprpaper
         hyprsunset
+        hypridle
+        brightnessctl
       ];
 
       programs.hyprlock = {
@@ -81,6 +83,34 @@ in {
       };
 
       services = {
+        hypridle = {
+          enable = true;
+          settings = {
+            general = {
+              lock_cmd = "hyprlock";
+            };
+            listener = [
+              {
+                timeout = 595;
+                on-timeout = "brightnessctl -s set 1";
+                on-resume = "brightnessctl -r";
+              }
+              {
+                timeout = 600;
+                on-timeout = "hyprlock";
+              }
+              {
+                timeout = 900;
+                on-timeout = "hyprctl dispatch dpms off";
+                on-resume = "hyprctl dispatch dpms on";
+              }
+              {
+                timeout = 1200;
+                on-timuout = "systemctl suspend";
+              }
+            ];
+          };
+        };
         swaync = {
           enable = true;
           settings = {
