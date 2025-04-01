@@ -2,25 +2,26 @@
 (defpoll tokyo_time :interval "1s" `TZ="Asia/Tokyo" date +'{"date": "%-d", "now": "%R", "day": "%u", "month_name": "%B", "month_num": "%-m", "zone": "%Z"}'`)
 (defvar hovering_clock false)
 (defwidget clock []
-  (eventbox :class "clock eventbox"
+  (eventbox :class "eventbox"
     :onhover "${EWW_CMD} update hovering_clock=true"
     :onhoverlost "${EWW_CMD} update hovering_clock=false"
     (box
       :space-evenly false
       :orientation "h"
-      :class "module"
+      :class "module clock"
       (label
         :class "icon"
         :text "")
       (stack
         :selected {hovering_clock ? 1 : 0}
-        :transition "crossfade"
+        :transition "slideright"
+        :same-size true
         (label
           :text "${time.now} ${time.zone}"
           :class "text"
         )
         (label
-          :text "${tokyo_time.now} ${tokyo_time.zone}${time.zone == "CEST" ? " " : ""}"
+          :text "${tokyo_time.now} ${tokyo_time.zone}"
           :class "text"
         )
       )

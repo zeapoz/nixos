@@ -145,7 +145,6 @@
       fira-code
       fira-code-symbols
       font-awesome
-      material-symbols
       noto-fonts-cjk-sans
       nerd-fonts.fira-code
     ];

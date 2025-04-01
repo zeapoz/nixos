@@ -259,21 +259,23 @@ in {
     bind=SUPER,SLASH,submap,reset
     submap=reset
 
-    # Volume keys.
-    bind=,XF86AudioMute,exec,pactl set-sink-mute @DEFAULT_SINK@ toggle
-    binde=,XF86AudioLowerVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ -2%
-    binde=,XF86AudioRaiseVolume,exec,pactl set-sink-volume @DEFAULT_SINK@ +2%
-    bind=,XF86AudioMicMute,exec,pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    bind=,Caps_Lock,exec,sleep 0.05; swayosd-client --caps-lock
 
-    # Player controls.
-    bind=,XF86AudioPlay,exec,playerctl play-pause
-    bind=,XF86AudioStop,exec,playerctl stop
-    bind=,XF86AudioNext,exec,playerctl next
-    bind=,XF86AudioPrev,exec,playerctl previous
+    # Volume keys.
+    bindl=,XF86AudioMute,exec,swayosd-client --output-volume mute-toggle
+    bindle=,XF86AudioLowerVolume,exec,swayosd-client --output-volume lower
+    bindle=,XF86AudioRaiseVolume,exec,swayosd-client --output-volume raise
+    bindl=,XF86AudioMicMute,exec,swayosd-client --input-volume mute-toggle
 
     # Screen backlight.
-    bind=,XF86MonBrightnessUp,exec,brightnessctl set 2%+
-    bind=,XF86MonBrightnessDown,exec,brightnessctl set 2%-
+    bindl=,XF86MonBrightnessUp,exec,swayosd-client --brightness raise
+    bindl=,XF86MonBrightnessDown,exec,swayosd-client --brightness lower
+
+    # Player controls.
+    bindl=,XF86AudioPlay,exec,playerctl play-pause
+    bindl=,XF86AudioStop,exec,playerctl stop
+    bindl=,XF86AudioNext,exec,playerctl next
+    bindl=,XF86AudioPrev,exec,playerctl previous
 
     # Reload configuration.
     bind=SUPER,C,exec,hyprctl reload
@@ -284,6 +286,7 @@ in {
     exec-once=hyprsunset
     exec-once=hypridle
     exec-once=fcitx5
+    exec-once=swayosd-server
     exec-once=swaync
     exec-once=eww open bar --screen 0 --id primary
   '';

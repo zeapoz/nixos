@@ -2,7 +2,7 @@
 
 * {
   all: unset;
-  font-family: "FiraCode", "Font Awesome 6 Free";
+  font-family: "Fira Sans", "Font Awesome 6 Free";
   font-weight: bold;
   font-size: 12px;
 }
@@ -25,10 +25,13 @@
   padding-right: 0.5em;
 }
 
+.systray:hover,
+.systray *:hover,
 .eventbox:hover,
 button:hover {
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
+  transition: background-color 0.2s;
 }
 
 tooltip {
@@ -63,10 +66,6 @@ tooltip {
         min-height: 10px;
       }
     }
-  }
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.05);
   }
 }
 

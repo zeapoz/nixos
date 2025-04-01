@@ -111,6 +111,9 @@ in {
             ];
           };
         };
+        swayosd = {
+          enable = true;
+        };
         swaync = {
           enable = true;
           settings = {
