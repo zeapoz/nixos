@@ -11,7 +11,7 @@ in {
 
   config = mkIf cfg.enable {
     hm.packages = with pkgs; [
-      markdownlint-cli
+      markdownlint-cli2
       marksman
     ];
   };
