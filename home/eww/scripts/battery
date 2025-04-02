@@ -4,16 +4,20 @@ icons=("" "" "" "" "" "" "" "" "" "")
 num_icons=$(bc <<<"100 / ${#icons[@]}")
 
 geticon() {
-  level=$(awk -v n="$CAPACITY" -v c="$num_icons" 'BEGIN{print int((n-1)/c)}')
-  if [[ "$level" -lt 0 ]]; then
-    level=0
+  if [ "$STATE" = "Charging" ]; then
+    echo ""
+  else
+    level=$(awk -v n="$CAPACITY" -v c="$num_icons" 'BEGIN{print int((n-1)/c)}')
+    if [[ "$level" -lt 0 ]]; then
+      level=0
+    fi
+    echo "${icons[$level]}"
   fi
-  echo "${icons[$level]}"
 }
 
 status() {
   if [ "$STATE" = "Charging" ]; then
-    echo -n "charging"
+    echo -n "Charging"
 
     if [ "$RATE" -gt 0 ]; then
       echo ", $(gettime) left"
@@ -23,12 +27,14 @@ status() {
   elif [ "$STATE" = "Discharging" ]; then
     echo "$(gettime)h left"
   else
-    echo "fully charged"
+    echo "Fully charged"
   fi
 }
 
 class() {
-  if [ "$CAPACITY" -le 10 ]; then
+  if [ "$STATE" = "Charging" ]; then
+    echo "battery-charging"
+  elif [ "$CAPACITY" -le 10 ]; then
     echo 'battery-critical'
   elif [ "$CAPACITY" -le 20 ]; then
     echo 'battery-low'
