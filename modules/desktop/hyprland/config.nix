@@ -61,6 +61,10 @@ in {
       layout=${layout}
       resize_on_border=true
       hover_icon_on_border=false
+
+      snap {
+        enabled=true
+      }
     }
 
     decoration {
@@ -83,7 +87,7 @@ in {
     }
 
     animations {
-      enabled=true
+      enabled=false
 
       animation=windows,1,1,default,popin 95%
       animation=border,1,1,default
@@ -99,6 +103,7 @@ in {
     misc {
       disable_hyprland_logo=true
       disable_splash_rendering=true
+      focus_on_activate=true
     }
 
     binds {
@@ -236,6 +241,27 @@ in {
     bind=ALTSHIFT,semicolon,movetoworkspacesilent,4
     bind=ALTSHIFT,bracketleft,movetoworkspacesilent,5
     bind=ALTSHIFT,bracketright,movetoworkspacesilent,6
+
+    bind=SUPER,1,workspace,1
+    bind=SUPER,2,workspace,2
+    bind=SUPER,3,workspace,3
+    bind=SUPER,4,workspace,4
+    bind=SUPER,5,workspace,5
+    bind=SUPER,6,workspace,6
+
+    bind=ALT,1,movetoworkspace,1
+    bind=ALT,2,movetoworkspace,2
+    bind=ALT,3,movetoworkspace,3
+    bind=ALT,4,movetoworkspace,4
+    bind=ALT,5,movetoworkspace,5
+    bind=ALT,6,movetoworkspace,6
+
+    bind=ALTSHIFT,1,movetoworkspacesilent,1
+    bind=ALTSHIFT,2,movetoworkspacesilent,2
+    bind=ALTSHIFT,3,movetoworkspacesilent,3
+    bind=ALTSHIFT,4,movetoworkspacesilent,4
+    bind=ALTSHIFT,5,movetoworkspacesilent,5
+    bind=ALTSHIFT,6,movetoworkspacesilent,6
 
     bind=SUPER,mouse_down,workspace,e+1
     bind=SUPER,mouse_up,workspace,e-1
