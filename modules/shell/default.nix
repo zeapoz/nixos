@@ -12,6 +12,7 @@ in {
   config = mkIf cfg.enable {
     hm = {
       packages = with pkgs; [
+        appimage-run
         bat
         fd
         fzf

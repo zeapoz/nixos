@@ -23,8 +23,10 @@ in {
     # Start in locked mode.
     exec-once=hyprlock
 
+    windowrulev2=float,class:zenity
+
     # Never lock on fullscreen.
-    windowrulev2 = idleinhibit fullscreen, class:.*
+    windowrulev2=idleinhibit fullscreen,class:.*
 
     layerrule=blur,swaync-notification-window
     layerrule=ignorezero,swaync-notification-window

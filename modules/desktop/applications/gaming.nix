@@ -29,6 +29,7 @@ in {
       prismlauncher
       tetrio-desktop
       wineWowPackages.wayland
+      winetricks
       ryujinx
     ];
 
