@@ -18,6 +18,7 @@
     signal-desktop
     telegram-desktop
     slack
+    zathura
   ];
 
   programs = {
