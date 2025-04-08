@@ -171,6 +171,9 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  servvices.udisks2.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
