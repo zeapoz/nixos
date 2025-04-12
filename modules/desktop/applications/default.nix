@@ -12,6 +12,7 @@
     bitwarden
     discord
     mullvad-vpn
+    obsidian
     pavucontrol
     playerctl
     pulseaudio
