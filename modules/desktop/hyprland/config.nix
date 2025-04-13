@@ -53,8 +53,8 @@ in {
     }
 
     general {
-      gaps_in=4
-      gaps_out=6
+      gaps_in=0
+      gaps_out=0
       border_size=2
 
       col.active_border=rgb(${palette.fg})
@@ -70,7 +70,7 @@ in {
     }
 
     decoration {
-      rounding=10
+      # rounding=10
 
       blur {
         enabled=true
@@ -202,6 +202,9 @@ in {
     bind=SUPER,B,exec,${browser}
     bind=SUPER,P,exec,${terminalCmd} -e fish -c yazi
     bind=SUPER,S,exec,${musicApp}
+
+    # Screenshots.
+    bind=SUPER,C,exec,grim -g "$(slurp -d)" - | wl-copy
 
     # Notification center.
     bind=SUPER,H,exec,swaync-client --toggle-panel

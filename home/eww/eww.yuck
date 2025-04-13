@@ -23,7 +23,7 @@
     (weekday)
     (day)
     (month)
-    (player)
+    (window)
   )
 )
 
@@ -65,8 +65,8 @@
   :namespace "eww-bar"
   :geometry (geometry
     :x "0"
-    :y "4px"
-    :width "1912px"
+    :y "0"
+    :width "100%"
     :height "4px";
     :anchor "bottom center")
   :stacking "fg"

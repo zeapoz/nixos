@@ -1,6 +1,13 @@
 (deflisten window "scripts/get-window-title")
-(defwidget window_w []
-  (box
-    :space-evenly false
-    :class "window"
-    (label :text "${window}")))
+(defwidget window []
+  (eventbox
+    :class "window eventbox"
+    :visible {window.title != ""}
+    (box
+      :space-evenly false
+      :class "module"
+      (label :class "icon ${window.color}" :text {window.icon})
+      (label :class "text" :text {window.title} :limit-width 40)
+    )
+  )
+)

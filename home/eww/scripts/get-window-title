@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+
+SOCKET_PATH="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+
+if [[ ! -e "$SOCKET_PATH" ]]; then
+  echo "Socket not found: $SOCKET_PATH"
+  exit 1
+fi
+
+# Define combined icon and color mappings with simple color names
+declare -A ICON_COLOR_MAP=(
+  [nvim]="|green"
+  [wezterm]="|purple"
+  [discord]="|purple"
+  [spotify]="|green"
+  [zen]="|red"
+  [steam]="|purple"
+  [slack]="󰒱|yellow"
+)
+
+DEFAULT_ICON=""
+DEFAULT_COLOR="white"
+
+# Function to get icon and color based on title
+get_icon_and_color_from_title() {
+  local title="$1"
+  local icon=""
+  local color="$DEFAULT_COLOR"
+
+  for name in "${!ICON_COLOR_MAP[@]}"; do
+    if [[ "$title" == *"$name"* ]]; then
+      icon=$(echo "${ICON_COLOR_MAP[$name]}" | cut -d'|' -f1)
+      color_name=$(echo "${ICON_COLOR_MAP[$name]}" | cut -d'|' -f2)
+      color="$color_name"
+      title="${title//$name/}"                                             # Remove the matched name from title
+      title="$(echo "$title" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')" # Clean extra spaces
+      break
+    fi
+  done
+
+  echo -e "$icon\t$title\t$color"
+}
+
+# Function to get icon and color based on class
+get_icon_and_color_from_class() {
+  local class="$1"
+  local icon=""
+  local color="$DEFAULT_COLOR"
+
+  for name in "${!ICON_COLOR_MAP[@]}"; do
+    if [[ "$class" == *"$name"* ]]; then
+      icon=$(echo "${ICON_COLOR_MAP[$name]}" | cut -d'|' -f1)
+      color_name=$(echo "${ICON_COLOR_MAP[$name]}" | cut -d'|' -f2)
+      color="$color_name"
+      break
+    fi
+  done
+
+  if [[ -z "$icon" ]]; then
+    icon="$DEFAULT_ICON"
+    color="$DEFAULT_COLOR"
+  fi
+
+  echo -e "$icon\t$color"
+}
+
+# Read Hyprland activewindow events and process
+socat -u UNIX-CONNECT:"$SOCKET_PATH" - |
+  stdbuf -o0 awk -F ">>|," '
+/^activewindow>>/ {
+    class = $2
+    title = $3
+
+    gsub(/^ *"| *"$/, "", class)
+    gsub(/^ *"| *"$/, "", title)
+
+    print class "\t" title
+}' |
+  while IFS=$'\t' read -r class title; do
+    # First, try to get the icon and color from the title
+    icon_and_color=$(get_icon_and_color_from_title "$title")
+    icon=$(echo "$icon_and_color" | cut -f1)
+    clean_title=$(echo "$icon_and_color" | cut -f2)
+    color=$(echo "$icon_and_color" | cut -f3)
+
+    # If no icon was found from title, fall back to class
+    if [[ -z "$icon" ]]; then
+      icon_and_color=$(get_icon_and_color_from_class "$class")
+      icon=$(echo "$icon_and_color" | cut -f1)
+      color=$(echo "$icon_and_color" | cut -f2)
+    fi
+
+    # Output JSON with icon and color
+    jaq -n --compact-output --arg icon "$icon" --arg title "$clean_title" --arg color "$color" '{icon: $icon, title: $title, color: $color}'
+  done

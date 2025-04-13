@@ -20,6 +20,7 @@
     telegram-desktop
     slack
     zathura
+    zoom-us
   ];
 
   programs = {
