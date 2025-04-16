@@ -16,7 +16,7 @@
     pavucontrol
     playerctl
     pulseaudio
-    signal-desktop
+    signal-desktop-bin
     telegram-desktop
     slack
     zathura
