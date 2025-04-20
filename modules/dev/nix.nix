@@ -30,6 +30,7 @@ in {
             nd = "nix develop -c fish";
             ndi = "nix develop --impure -c fish";
             ndp = "nix develop --pure-eval -c fish";
+            ns = "nix-shell -p";
           };
         };
       };

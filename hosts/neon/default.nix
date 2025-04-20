@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   imports = [./hardware-configuration.nix];
 
   modules = {
@@ -7,11 +7,7 @@
         enable = true;
         autostart = true;
       };
-      applications = {
-        browsers.enable = true;
-        gaming.enable = true;
-        media.enable = true;
-      };
+      applications.gaming.enable = true;
     };
 
     dev.enable = true;

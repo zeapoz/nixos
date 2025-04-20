@@ -1,8 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./browsers.nix
     ./gaming.nix
-    ./media.nix
   ];
 
   hm.packages = with pkgs; [

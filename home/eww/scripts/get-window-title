@@ -15,7 +15,7 @@ declare -A ICON_COLOR_MAP=(
   [spotify]="|green"
   [zen]="|red"
   [steam]="|purple"
-  [slack]="󰒱|yellow"
+  [Slack]="󰒱|yellow"
 )
 
 DEFAULT_ICON=""

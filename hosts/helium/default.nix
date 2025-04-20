@@ -1,4 +1,4 @@
-{...}: {
+{
   imports = [./hardware-configuration.nix];
 
   modules = {
@@ -7,13 +7,9 @@
         enable = true;
         autostart = true;
       };
-      applications = {
-        browsers.enable = true;
-        gaming = {
-          enable = true;
-          enableStreaming = true;
-        };
-        media.enable = true;
+      applications.gaming = {
+        enable = true;
+        enableStreaming = true;
       };
     };
 
