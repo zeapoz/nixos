@@ -1,7 +1,0 @@
-(deflisten keyboard_lang "scripts/keyboard")
-(defwidget keyboard []
-  (box :class "module keyboard"
-       :orientation "v"
-       :space-evenly false
-    (label :class "icon" :text "")
-    (label :text "${keyboard_lang}")))
