@@ -118,7 +118,7 @@ progressbar trough {
 .monitor-2 { @include workspace ($blue); }
 .monitor-3 { @include workspace ($green); }
 
-.clock { color: $green; }
+.clock { color: $cyan; }
 .weekday { color: $cyan; }
 .day { color: $blue; }
 .month { color: $purple; }

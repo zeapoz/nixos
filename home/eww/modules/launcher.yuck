@@ -1,0 +1,13 @@
+(defwidget launcher []
+  (eventbox
+    :class "launcher eventbox blue"
+    :onclick "hyprctl dispatch exec anyrun"
+    (box :class "module"
+         :orientation "h"
+      (label :class "icon"
+             :tooltip "Open launcher"
+             :text ""
+      )
+    )
+  )
+)

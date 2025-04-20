@@ -1,3 +1,4 @@
+(include "./modules/launcher.yuck")
 (include "./modules/window.yuck")
 (include "./modules/hyprland.yuck")
 (include "./modules/net.yuck")
@@ -19,6 +20,7 @@
     :valign "center"
     :class "left"
     :spacing 8
+    (launcher)
     (clock)
     (weekday)
     (day)
