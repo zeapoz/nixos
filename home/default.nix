@@ -1,5 +1,4 @@
 {
-  options,
   config,
   lib,
   inputs,
@@ -11,21 +10,21 @@ with lib; let
 in {
   # Aliases for a better typing experience.
   # home-manager.users.${config.user.name}                -> hm.user
+  # home-manager.users.${config.user.name}.lib            -> hm.lib
   # home-manager.users.${config.user.name}.xdg.configFile -> hm.configFile
   # home-manager.users.${config.user.name}.home.packages  -> hm.packages
   # home-manager.users.${config.user.name}.home.file      -> hm.file
   # home-manager.users.${config.user.name}.programs       -> hm.programs
-  # home-manager.users.${config.user.name}.services       -> hm.services
-  options = with types; {
-    hm = {
-      user = mkOpt attrs {};
-      file = mkOpt attrs {};
-      configFile = mkOpt attrs {};
-      packages = mkOpt attrs {};
-      programs = mkOpt attrs {};
-      services = mkOpt attrs {};
-    };
-  };
+  # home-manager.users.${confis.user.name}.services       -> hm.services
+  imports = [
+    (mkAliasOptionModule ["hm" "user"] ["home-manager" "users" config.user.name])
+    (mkAliasOptionModule ["hm" "lib"] ["home-manager" "users" config.user.name "lib" "meta"])
+    (mkAliasOptionModule ["hm" "configFile"] ["home-manager" "users" config.user.name "xdg" "configFile"])
+    (mkAliasOptionModule ["hm" "packages"] ["home-manager" "users" config.user.name "home" "packages"])
+    (mkAliasOptionModule ["hm" "file"] ["home-manager" "users" config.user.name "home" "file"])
+    (mkAliasOptionModule ["hm" "programs"] ["home-manager" "users" config.user.name "programs"])
+    (mkAliasOptionModule ["hm" "services"] ["home-manager" "users" config.user.name "services"])
+  ];
 
   config = {
     home-manager = {
@@ -36,36 +35,27 @@ in {
       useGlobalPkgs = true;
       useUserPackages = true;
 
-      users.${config.user.name} = mkAliasDefinitions options.hm.user;
-    };
+      users.${config.user.name} = {
+        inherit imports;
 
-    hm.user = {
-      inherit imports;
+        home = {
+          username = "${config.user.name}";
+          homeDirectory = "/home/${config.user.name}";
 
-      home = {
-        username = "${config.user.name}";
-        homeDirectory = "/home/${config.user.name}";
+          # This value determines the Home Manager release that your
+          # configuration is compatible with. This helps avoid breakage
+          # when a new Home Manager release introduces backwards
+          # incompatible changes.
+          #
+          # You can update Home Manager without changing this value. See
+          # the Home Manager release notes for a list of state version
+          # changes in each release.
+          stateVersion = "22.05";
+        };
 
-        # This value determines the Home Manager release that your
-        # configuration is compatible with. This helps avoid breakage
-        # when a new Home Manager release introduces backwards
-        # incompatible changes.
-        #
-        # You can update Home Manager without changing this value. See
-        # the Home Manager release notes for a list of state version
-        # changes in each release.
-        stateVersion = "22.05";
-
-        packages = mkAliasDefinitions options.hm.packages;
-        file = mkAliasDefinitions options.hm.file;
+        # Let Home Manager install and manage itself.
+        programs.home-manager.enable = true;
       };
-
-      xdg.configFile = mkAliasDefinitions options.hm.configFile;
-      programs = mkAliasDefinitions options.hm.programs;
-      services = mkAliasDefinitions options.hm.services;
     };
-
-    # Let Home Manager install and manage itself.
-    hm.programs.home-manager.enable = true;
   };
 }
