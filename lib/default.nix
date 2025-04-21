@@ -29,6 +29,7 @@ inputs.nixpkgs.lib.extend (final: prev: {
       modules = [
         ../hosts/${hostName}
         ../modules
+        ../theme
         ../home
         inputs.home-manager.nixosModules.home-manager
         {networking.hostName = "${hostName}";}

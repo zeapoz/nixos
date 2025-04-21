@@ -1,8 +1,4 @@
 {pkgs, ...}: {
-  imports = [
-    ./gaming.nix
-  ];
-
   hm.packages = with pkgs; [
     anki
     aseprite

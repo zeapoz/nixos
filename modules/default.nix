@@ -1,15 +1,14 @@
 {
   config,
   pkgs,
+  lib,
   ...
-}: {
-  imports = [
-    ./desktop
-    ./dev
-    ./theme
-    ./hardware
-    ./options.nix
-  ];
+}:
+with lib; let
+  # FIXME: Remove config.nix filter.
+  imports = lib.filter (n: !lib.strings.hasInfix "config.nix" n && !lib.strings.hasInfix "modules/default.nix" n && lib.strings.hasSuffix ".nix" n) (lib.filesystem.listFilesRecursive (builtins.toString ./.));
+in {
+  inherit imports;
 
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
