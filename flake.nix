@@ -31,6 +31,7 @@
 
     lib = import ./lib {inherit inputs;};
 
+    # TODO: Get from folder instead of manually.
     hosts = ["helium" "neon"];
   in {
     nixosConfigurations = with lib;

@@ -1,13 +1,9 @@
 {
   config,
-  lib,
   inputs,
+  lib,
   ...
-}:
-with lib; let
-  # Recursively import all nix modules that are not this file.
-  imports = lib.filter (n: !lib.strings.hasInfix "home/default.nix" n && lib.strings.hasSuffix ".nix" n) (lib.filesystem.listFilesRecursive (builtins.toString ./.));
-in {
+}: {
   # Aliases for a better typing experience.
   # home-manager.users.${config.user.name}                -> hm.user
   # home-manager.users.${config.user.name}.lib            -> hm.lib
@@ -16,7 +12,7 @@ in {
   # home-manager.users.${config.user.name}.home.file      -> hm.file
   # home-manager.users.${config.user.name}.programs       -> hm.programs
   # home-manager.users.${confis.user.name}.services       -> hm.services
-  imports = [
+  imports = with lib; [
     (mkAliasOptionModule ["hm" "user"] ["home-manager" "users" config.user.name])
     (mkAliasOptionModule ["hm" "lib"] ["home-manager" "users" config.user.name "lib" "meta"])
     (mkAliasOptionModule ["hm" "configFile"] ["home-manager" "users" config.user.name "xdg" "configFile"])
@@ -36,8 +32,6 @@ in {
       useUserPackages = true;
 
       users.${config.user.name} = {
-        inherit imports;
-
         home = {
           username = "${config.user.name}";
           homeDirectory = "/home/${config.user.name}";

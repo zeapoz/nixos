@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  programs = {
+  hm.programs = {
     anyrun = {
       enable = true;
       config = {

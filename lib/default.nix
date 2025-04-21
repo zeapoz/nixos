@@ -27,12 +27,11 @@ inputs.nixpkgs.lib.extend (final: prev: {
       specialArgs = {inherit inputs;};
 
       modules = [
+        inputs.home-manager.nixosModules.home-manager
+        {config.networking.hostName = "${hostName}";}
         ../hosts/${hostName}
         ../modules
         ../theme
-        ../home
-        inputs.home-manager.nixosModules.home-manager
-        {networking.hostName = "${hostName}";}
       ];
     };
 
