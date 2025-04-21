@@ -11,7 +11,6 @@
     };
 
     dev.enable = true;
-    shell.enable = true;
     theme.enable = true;
     hardware.bluetooth.enable = true;
   };

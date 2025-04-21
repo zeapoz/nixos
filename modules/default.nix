@@ -6,7 +6,6 @@
   imports = [
     ./desktop
     ./dev
-    ./shell
     ./theme
     ./hardware
     ./options.nix
@@ -155,6 +154,10 @@
       nerd-fonts.fira-code
     ];
   };
+
+  # Use fish as the default user shell
+  users.defaultUserShell = pkgs.fish;
+  programs.fish.enable = true;
 
   programs.dconf.enable = true;
   programs.nix-ld.enable = true;
