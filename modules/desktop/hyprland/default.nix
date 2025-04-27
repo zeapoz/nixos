@@ -7,10 +7,6 @@
 with lib; let
   cfg = config.modules.desktop.hyprland;
 
-  configFile = import ./config.nix {inherit config pkgs blur_passes blur_size;};
-
-  inherit (configFile) hyprlandConfig;
-
   wallpaper = ./wallpaper.jpg;
 
   blur_passes = 4;
@@ -26,13 +22,13 @@ in {
 
     hm = {
       packages = with pkgs; [
+        brightnessctl
         grim
-        slurp
-        wl-clipboard
+        hypridle
         hyprpaper
         hyprsunset
-        hypridle
-        brightnessctl
+        slurp
+        wl-clipboard
       ];
 
       programs.hyprlock = {
@@ -130,7 +126,12 @@ in {
       };
 
       configFile = {
-        "hypr/hyprland.conf".text = hyprlandConfig;
+        "hypr/hyprland.conf".source = config.lib.meta.mkMutableSymlink ./hyprland.conf;
+        "hypr/hyprland-device-specifics.conf".text =
+          if (config.networking.hostName == "helium")
+          then ''            workspace=6,monitor:HDMI-A-2,default:true
+                             monitor=HDMI-A-2,preferred,-1920x0,1''
+          else "monitor=HDMI-A-1,preferred,auto,1,mirror,eDP-1";
 
         # Autostart Hyprland from tty1.
         "fish/conf.d/hyprland.fish" = mkIf cfg.autostart {
