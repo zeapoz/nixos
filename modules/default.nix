@@ -43,11 +43,11 @@ in {
     initrd.systemd.enable = true;
     plymouth = {
       enable = true;
-      theme = "rings";
+      theme = "square_hud";
       themePackages = with pkgs; [
         # By default we would install all themes
         (adi1090x-plymouth-themes.override {
-          selected_themes = ["rings"];
+          selected_themes = ["square_hud"];
         })
       ];
     };
@@ -149,8 +149,8 @@ in {
       fira-code
       fira-code-symbols
       font-awesome
-      noto-fonts-cjk-sans
       nerd-fonts.fira-code
+      noto-fonts-cjk-sans
     ];
   };
 
