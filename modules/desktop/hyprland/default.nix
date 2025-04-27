@@ -23,11 +23,10 @@ in {
     hm = {
       packages = with pkgs; [
         brightnessctl
-        grim
+        grimblast
         hypridle
         hyprpaper
         hyprsunset
-        slurp
         wl-clipboard
       ];
 
