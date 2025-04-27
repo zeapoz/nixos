@@ -46,9 +46,16 @@ in {
   programs = {
     thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [thunar-archive-plugin];
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
     };
 
     file-roller.enable = true;
+    xfconf.enable = true;
   };
+
+  # Thumbnail support for images.
+  services.tumbler.enable = true;
 }
