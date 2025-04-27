@@ -21,7 +21,7 @@ opt.listchars = {
 
 -- Neovide settings.
 if g.neovide then
-  opt.guifont = "FiraCode Nerd Font:h12.5"
+  opt.guifont = "Maple Mono NF:h12.5"
   opt.linespace = -1
 
   g.neovide_transparency = 0.9

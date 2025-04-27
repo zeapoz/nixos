@@ -149,8 +149,12 @@ in {
       fira-code
       fira-code-symbols
       font-awesome
+      maple-mono.NF
+      maple-mono.NL-CN
+      maple-mono.truetype
       nerd-fonts.fira-code
       noto-fonts-cjk-sans
+      maple-mono.variable
     ];
   };
 

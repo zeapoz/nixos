@@ -53,7 +53,8 @@ local vim_pane = nil
 local options = {
   enable_wayland = true,
   font = wezterm.font_with_fallback({
-    "FiraCode Nerd Font",
+    "Maple Mono NF",
+    "Maple Mono NL CN",
     "Font Awesome 6 Free Solid",
   }),
   font_size = 9.0,

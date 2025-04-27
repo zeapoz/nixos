@@ -31,7 +31,7 @@ in {
         gtk = {
           enable = true;
           font = {
-            name = "Fira Sans";
+            name = "Maple Mono";
             size = 12;
           };
           iconTheme = {
