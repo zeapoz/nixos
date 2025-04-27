@@ -135,8 +135,8 @@ in {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     gcc
-    gnumake
     git
+    gnumake
     htop
     vim
     virt-manager

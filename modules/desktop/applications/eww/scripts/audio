@@ -1,9 +1,21 @@
 #!/usr/bin/env bash
 
-volicons=("" "" "")
-
 function vol() {
-  wpctl get-volume @DEFAULT_"$1"@ | awk '{print int($2*100)}'
+  local device="$1"
+  local retries=5
+  local wait_time=0.3
+  local output
+
+  for ((i = 0; i < retries; i++)); do
+    output=$(wpctl get-volume @DEFAULT_"$device"@ 2>/dev/null) && break
+    sleep "$wait_time"
+  done
+
+  if [[ "$output" =~ ([0-9]*\.[0-9]+) ]]; then
+    awk -v vol="${BASH_REMATCH[1]}" 'BEGIN{print int(vol * 100)}'
+  else
+    echo 0
+  fi
 }
 
 function is_muted() {
