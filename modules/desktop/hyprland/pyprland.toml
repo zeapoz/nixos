@@ -1,0 +1,5 @@
+[pyprland]
+plugins = ["expose", "fetch_client_menu"]
+
+[fetch_client_menu]
+separator = ":"

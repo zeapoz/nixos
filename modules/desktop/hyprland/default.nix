@@ -22,7 +22,7 @@ in {
         grimblast
         hypridle
         hyprpaper
-        hyprsunset
+        pyprland
         wl-clipboard
       ];
 
@@ -84,6 +84,8 @@ in {
           else "monitor=HDMI-A-1,preferred,auto,1,mirror,eDP-1";
 
         "hypr/hyprlock.conf".source = config.lib.meta.mkMutableSymlink ./hyprlock.conf;
+
+        "hypr/pyprland.toml".source = config.lib.meta.mkMutableSymlink ./pyprland.toml;
 
         # Autostart Hyprland from tty1.
         "fish/conf.d/hyprland.fish" = mkIf cfg.autostart {

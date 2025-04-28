@@ -31,8 +31,8 @@ in {
         gtk = {
           enable = true;
           font = {
-            name = "Maple Mono";
-            size = 12;
+            name = "Roboto";
+            size = 11;
           };
           iconTheme = {
             name = "Kanagawa";
