@@ -185,6 +185,8 @@ in {
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 
+  services.preload.enable = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

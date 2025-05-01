@@ -14,7 +14,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.hyprland.enable = true;
+    programs = {
+      hyprland = {
+        enable = true;
+        withUWSM = true;
+      };
+    };
 
     hm = {
       packages = with pkgs; [
@@ -88,10 +93,11 @@ in {
         "hypr/pyprland.toml".source = config.lib.meta.mkMutableSymlink ./pyprland.toml;
 
         # Autostart Hyprland from tty1.
-        "fish/conf.d/hyprland.fish" = mkIf cfg.autostart {
+        "fish/conf.d/hyprland-uwsm.fish" = mkIf cfg.autostart {
           text = ''
-            set TTY1 (tty)
-            [ "$TTY1" = /dev/tty1 ] && exec Hyprland
+            if uwsm check may-start
+                uwsm start hyprland-uwsm.desktop
+            end
           '';
           executable = true;
         };
