@@ -42,7 +42,7 @@ in {
             };
             listener = [
               {
-                timeout = 595;
+                timeout = 570;
                 on-timeout = "brightnessctl -s set 1";
                 on-resume = "brightnessctl -r";
               }
@@ -95,7 +95,7 @@ in {
         # Autostart Hyprland from tty1.
         "fish/conf.d/hyprland-uwsm.fish" = mkIf cfg.autostart {
           text = ''
-            if uwsm check may-start
+            if uwsm check may-start -q
                 uwsm start hyprland-uwsm.desktop
             end
           '';

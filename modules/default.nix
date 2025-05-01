@@ -150,7 +150,6 @@ in {
       fira-code-symbols
       font-awesome
       maple-mono.NF
-      maple-mono.NL-CN
       maple-mono.truetype
       maple-mono.variable
       nerd-fonts.fira-code

@@ -54,7 +54,6 @@ local options = {
   enable_wayland = true,
   font = wezterm.font_with_fallback({
     "Maple Mono NF",
-    "Maple Mono NL CN",
     "Font Awesome 6 Free Solid",
   }),
   font_size = 9.0,
