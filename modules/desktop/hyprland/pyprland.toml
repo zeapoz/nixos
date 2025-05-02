@@ -1,5 +1,7 @@
 [pyprland]
-plugins = ["expose", "fetch_client_menu"]
+plugins = ["fetch_client_menu"]
 
 [fetch_client_menu]
 separator = ":"
+engine = "anyrun"
+parameters = "--plugins libstdin.so"

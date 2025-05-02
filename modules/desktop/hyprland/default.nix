@@ -95,8 +95,10 @@ in {
         # Autostart Hyprland from tty1.
         "fish/conf.d/hyprland-uwsm.fish" = mkIf cfg.autostart {
           text = ''
-            if uwsm check may-start -q
-                uwsm start hyprland-uwsm.desktop
+            if string match -q "/dev/tty1" (tty)
+                if uwsm check may-start -q
+                    uwsm start hyprland-uwsm.desktop
+                end
             end
           '';
           executable = true;
