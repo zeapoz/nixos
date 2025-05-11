@@ -12,8 +12,10 @@ in {
   config = mkIf cfg.enable {
     hm = {
       packages = with pkgs; [
-        rustup
         cargo-fuzz
+        cargo-sort
+        cargo-watch
+        rustup
         taplo
       ];
 

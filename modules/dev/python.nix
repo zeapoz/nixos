@@ -13,7 +13,6 @@ in {
     hm.packages = with pkgs; [
       black
       ruff
-      ruff-lsp
       isort
       python3
       pyright
