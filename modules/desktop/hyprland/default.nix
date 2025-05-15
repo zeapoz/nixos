@@ -84,8 +84,10 @@ in {
         "hypr/hyprland.conf".source = config.lib.meta.mkMutableSymlink ./hyprland.conf;
         "hypr/hyprland-device-specifics.conf".text =
           if (config.networking.hostName == "helium")
-          then ''            workspace=6,monitor:HDMI-A-2,default:true
-                             monitor=HDMI-A-2,preferred,-1920x0,1''
+          then ''            workspace=6,monitor:DP-2,default:true
+                             workspace=5,monitor:DP-2,default:true
+                             monitor=DP-1,2560x1440@164.80,0x0,auto
+                             monitor=DP-2,1920x1080@60.00,auto-right,auto,transform,3''
           else "monitor=HDMI-A-1,preferred,auto,1,mirror,eDP-1";
 
         "hypr/hyprlock.conf".source = config.lib.meta.mkMutableSymlink ./hyprlock.conf;
