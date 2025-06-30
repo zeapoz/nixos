@@ -13,6 +13,7 @@ in {
     hm = {
       packages = with pkgs; [
         godot_4
+        nodePackages.cspell
         zig
         zls
       ];

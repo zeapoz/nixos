@@ -3,6 +3,7 @@
   (eventbox
     :class "window eventbox"
     :visible {window.title != ""}
+    :onrightclick "hyprctl dispatch killactive"
     (box
       :space-evenly false
       :class "module"

@@ -16,6 +16,7 @@
       unzip
       wget
       yazi
+      zellij
       zip
     ];
 

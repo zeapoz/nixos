@@ -4,9 +4,6 @@
   ...
 }: {
   hm = {
-    programs.vscode = {
-      enable = true;
-      package = pkgs.vscodium-fhs;
-    };
+    programs.vscode.enable = true;
   };
 }

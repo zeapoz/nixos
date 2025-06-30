@@ -26,11 +26,12 @@ in {
     };
 
     hm.packages = with pkgs; [
+      azahar
       prismlauncher
-      tetrio-desktop
-      wineWowPackages.wayland
-      winetricks
       ryujinx
+      tetrio-desktop
+      winetricks
+      wineWowPackages.wayland
     ];
 
     services.sunshine = mkIf cfg.enableStreaming {
