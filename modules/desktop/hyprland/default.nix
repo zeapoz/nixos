@@ -27,8 +27,10 @@ in {
         grimblast
         hypridle
         hyprpaper
+        hyprpolkitagent
         pyprland
         wl-clipboard
+        keepassxc
       ];
 
       programs.hyprlock.enable = true;
@@ -68,7 +70,12 @@ in {
         swaync = {
           enable = true;
           settings = {
-            widgets = ["title" "dnd" "notifications" "mpris"];
+            widgets = [
+              "title"
+              "dnd"
+              "notifications"
+              "mpris"
+            ];
           };
         };
         hyprpaper = {
@@ -78,13 +85,15 @@ in {
             wallpaper = ",${wallpaper}";
           };
         };
+        hyprpolkitagent.enable = true;
       };
 
       configFile = {
         "hypr/hyprland.conf".source = config.lib.meta.mkMutableSymlink ./hyprland.conf;
         "hypr/hyprland-device-specifics.conf".text =
           if (config.networking.hostName == "helium")
-          then ''            workspace=6,monitor:DP-2,default:true
+          then ''
+            workspace=6,monitor:DP-2,default:true
                              workspace=5,monitor:DP-2,default:true
                              monitor=DP-1,2560x1440@164.80,0x0,auto
                              monitor=DP-2,1920x1080@60.00,auto-right,auto,transform,3''

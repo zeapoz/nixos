@@ -1,14 +1,19 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let cfg = config.modules.hardware.kanata;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.hardware.kanata;
 in {
   options.modules.hardware.kanata.enable = mkEnableOption "kanata";
 
   config = mkIf cfg.enable {
-    environment.defaultPackages = [ pkgs.kanata ];
+    environment.defaultPackages = [pkgs.kanata];
 
     # Enable the uinput module
-    boot.kernelModules = [ "uinput" ];
+    boot.kernelModules = ["uinput"];
 
     # Enable uinput
     hardware.uinput.enable = true;
@@ -19,11 +24,11 @@ in {
     '';
 
     # Ensure the uinput group exists
-    users.groups.uinput = { };
+    users.groups.uinput = {};
 
     # Add the Kanata service user to necessary groupsT
     systemd.services.kanata-internalKeyboard.serviceConfig = {
-      SupplementaryGroups = [ "input" "uinput" ];
+      SupplementaryGroups = ["input" "uinput"];
     };
 
     services.kanata = {
