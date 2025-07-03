@@ -12,7 +12,10 @@
 
     dev.enable = true;
     theme.enable = true;
-    hardware.bluetooth.enable = true;
+    hardware = {
+      bluetooth.enable = true;
+      kanata.enable = true;
+    };
   };
 
   # General settings.
