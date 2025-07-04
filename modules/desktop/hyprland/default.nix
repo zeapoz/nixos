@@ -19,6 +19,14 @@ in {
         enable = true;
         withUWSM = true;
       };
+      seahorse.enable = true;
+    };
+
+    services.gnome.gnome-keyring.enable = true;
+
+    security.pam.services = {
+      login.enableGnomeKeyring = true;
+      greetd.enableGnomeKeyring = true;
     };
 
     hm = {
@@ -30,7 +38,9 @@ in {
         hyprpolkitagent
         pyprland
         wl-clipboard
-        keepassxc
+        seahorse
+        gnome-keyring
+        libsecret
       ];
 
       programs.hyprlock.enable = true;
