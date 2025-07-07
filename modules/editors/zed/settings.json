@@ -1,0 +1,134 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "agent": {
+    "always_allow_tool_actions": true,
+    "model_parameters": [],
+    "default_model": {
+      "provider": "google",
+      "model": "gemini-2.5-flash"
+    },
+    "version": "2"
+  },
+  "theme": "Kanagawa Wave",
+  "icon_theme": "Material Icon Theme",
+  "base_keymap": "VSCode",
+  "auto_update": false,
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  "vim_mode": true,
+  "vim": {
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true
+  },
+  "relative_line_numbers": true,
+  "ui_font_size": 15,
+  "buffer_font_size": 12,
+  "buffer_font_family": "Maple Mono",
+  "buffer_line_height": {
+    "custom": 1.5
+  },
+  "close_on_file_delete": true,
+  "current_line_highlight": "all",
+  "minimap": {
+    "show": "auto"
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true,
+    "show_diagnostics": "all"
+  },
+  "toolbar": {
+    "breadcrumbs": true,
+    "quick_actions": true,
+    "selections_menu": true,
+    "agent_review": true,
+    "code_actions": true
+  },
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "check": {
+          "command": "clippy"
+        }
+      }
+    }
+  },
+  "languages": {
+    "Nix": {
+      "language_servers": ["nil", "!nixd"],
+      "formatter": {
+        "external": {
+          "command": "alejandra",
+          "arguments": ["--quiet", "--"]
+        }
+      }
+    }
+  },
+  "diagnostics": {
+    "button": true,
+    "include_warnings": true,
+    "lsp_pull_diagnostics": {
+      "enabled": true,
+      "debounce_ms": 50
+    },
+    "inline": {
+      "enabled": true,
+      "update_debounce_ms": 150,
+      "padding": 4,
+      "min_column": 0,
+      "max_severity": null
+    },
+    "cargo": null
+  },
+  "indent_guides": {
+    "enabled": true,
+    "line_width": 1,
+    "active_line_width": 2,
+    "coloring": "fixed",
+    "background_coloring": "disabled"
+  },
+  "hover_popover_delay": 200,
+  "inlay_hints": {
+    "enabled": true
+  },
+  "journal": {
+    "hour_format": "hour24"
+  },
+  "use_smartcase_search": true,
+  "terminal": {
+    "dock": "right",
+    "line_height": "standard"
+  },
+  "project_panel": {
+    "indent_size": 15
+  },
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "title_bar": {
+    "show_branch_icon": true,
+    "show_branch_name": true,
+    "show_project_items": true,
+    "show_onboarding_banner": true,
+    "show_user_picture": true,
+    "show_sign_in": true
+  },
+  "experimental.theme_overrides": {
+    "editor.gutter.background": "#1F1F28",
+    // The default Kanagawa Wave one looks awful.
+    "minimap.thumb.background": "#4444",
+    "minimap.thumb.hover_background": "#5555",
+    "minimap.thumb.active_background": "#3333"
+  }
+}

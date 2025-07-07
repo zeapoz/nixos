@@ -1,0 +1,38 @@
+{
+  // Each snippet must have a name and body, but the prefix and description are optional.
+  // The prefix is used to trigger the snippet, but when omitted then the name is used.
+  // Use placeholders like $1, $2 or ${1:defaultValue} to define tab stops.
+  // The $0 determines the final cursor position.
+  // Placeholders with the same value are linked.
+  "Derive": {
+    "prefix": "derive",
+    "body": ["#[derive(Debug, ${1:Clone, Copy}$0)]"],
+    "description": "Derives some common traits"
+  },
+  "Test Module": {
+    "prefix": "modtest",
+    "body": [
+      "#[cfg(test)]",
+      "mod tests {",
+      "    use super::*;",
+      "",
+      "    #[test]",
+      "    fn ${1:test_name}() {",
+      "        ${2:assert_eq!(2 + 2, 4);}",
+      "    }",
+      "}",
+      "$0"
+    ],
+    "description": "Creates a test module with a basic test"
+  },
+  "Test": {
+    "prefix": "test",
+    "body": [
+      "#[test]",
+      "fn ${1:test_name}() {",
+      "    ${0:assert_eq!(2 + 2, 4);}",
+      "}"
+    ],
+    "description": "Creates a basic test function"
+  }
+}

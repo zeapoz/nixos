@@ -1,0 +1,72 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  // Vim motions in dock elements.
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-w left": "workspace::ActivatePaneLeft",
+      "ctrl-w down": "workspace::ActivatePaneRight",
+      "ctrl-w up": "workspace::ActivatePaneUp",
+      "ctrl-w right": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "space .": "file_finder::Toggle",
+      "space f": "file_finder::Toggle",
+      "space space": "file_finder::Toggle",
+      "space s": "outline::Toggle",
+      "space shift-s": "project_symbols::Toggle",
+      "space p": "projects::OpenRecent",
+      "space b": "workspace::ToggleLeftDock",
+      "space e": "project_panel::ToggleFocus",
+      "space g": "git_panel::ToggleFocus",
+      "space n": "workspace::NewFile",
+      "space t": "terminal_panel::ToggleFocus",
+      "space a": "agent::ToggleFocus",
+      // Editor.
+      "space r": "editor::Rename",
+      // Views.
+      "space /": "pane::DeploySearch",
+      "space x": "diagnostics::Deploy",
+      "space h": "git::Diff",
+      // Settings.
+      "space z": "zed::OpenSettings",
+      "space k": "zed::OpenKeymap"
+    }
+  },
+
+  {
+    "bindings": {
+      "ctrl-/": "workspace::ToggleRightDock"
+    }
+  },
+  // Subward motions.
+  {
+    "context": "VimControl && !menu && vim_mode != operator",
+    "bindings": {
+      "w": "vim::NextSubwordStart",
+      "b": "vim::PreviousSubwordStart",
+      "e": "vim::NextSubwordEnd",
+      "g e": "vim::PreviousSubwordEnd"
+    }
+  },
+  // Surround in visual mode.
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "s": ["vim::PushAddSurrounds", {}]
+    }
+  }
+]
