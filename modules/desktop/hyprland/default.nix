@@ -7,6 +7,8 @@
 with lib; let
   cfg = config.modules.desktop.hyprland;
   wallpaper = ./wallpaper.jpg;
+
+  greetCmd = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember exec uwsm start hyprland-uwsm.desktop";
 in {
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
@@ -22,7 +24,19 @@ in {
       seahorse.enable = true;
     };
 
-    services.gnome.gnome-keyring.enable = true;
+    services = {
+      greetd = {
+        enable = true;
+        settings = rec {
+          initial_session = {
+            command = greetCmd;
+            user = "greeter";
+          };
+          default_session = initial_session;
+        };
+      };
+      gnome.gnome-keyring.enable = true;
+    };
 
     security.pam.services = {
       login.enableGnomeKeyring = true;
@@ -32,15 +46,17 @@ in {
     hm = {
       packages = with pkgs; [
         brightnessctl
+        gnome-keyring
         grimblast
         hypridle
+        hyprls
         hyprpaper
         hyprpolkitagent
-        pyprland
-        wl-clipboard
-        seahorse
-        gnome-keyring
         libsecret
+        pyprland
+        seahorse
+        wl-clipboard
+        greetd.tuigreet
       ];
 
       programs.hyprlock.enable = true;
@@ -112,18 +128,6 @@ in {
         "hypr/hyprlock.conf".source = config.lib.meta.mkMutableSymlink ./hyprlock.conf;
 
         "hypr/pyprland.toml".source = config.lib.meta.mkMutableSymlink ./pyprland.toml;
-
-        # Autostart Hyprland from tty1.
-        "fish/conf.d/hyprland-uwsm.fish" = mkIf cfg.autostart {
-          text = ''
-            if string match -q "/dev/tty1" (tty)
-                if uwsm check may-start -q
-                    uwsm start hyprland-uwsm.desktop
-                end
-            end
-          '';
-          executable = true;
-        };
       };
     };
 
