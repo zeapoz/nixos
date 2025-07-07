@@ -26,10 +26,11 @@ in {
 
         git = {
           enable = true;
+          package = pkgs.gitFull;
           userEmail = "zeapo@pm.me";
-          userName = "zeapoz";
+          userName = "Jonathan";
           extraConfig = {
-            credential.helper = "store";
+            credential.helper = "libsecret";
             init.defaultBranch = "main";
           };
           aliases = {
