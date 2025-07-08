@@ -123,12 +123,5 @@
     "show_onboarding_banner": true,
     "show_user_picture": true,
     "show_sign_in": true
-  },
-  "experimental.theme_overrides": {
-    "editor.gutter.background": "#1F1F28",
-    // The default Kanagawa Wave one looks awful.
-    "minimap.thumb.background": "#4444",
-    "minimap.thumb.hover_background": "#5555",
-    "minimap.thumb.active_background": "#3333"
   }
 }
