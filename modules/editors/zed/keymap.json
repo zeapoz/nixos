@@ -31,7 +31,7 @@
       "space p": "projects::OpenRecent",
       "space b": "workspace::ToggleLeftDock",
       "space e": "project_panel::ToggleFocus",
-      "space g": "git_panel::ToggleFocus",
+      "space o g": "git_panel::ToggleFocus",
       "space n": "workspace::NewFile",
       "space t": "terminal_panel::ToggleFocus",
       "space a": "agent::ToggleFocus",
@@ -43,7 +43,10 @@
       "space h": "git::Diff",
       // Settings.
       "space z": "zed::OpenSettings",
-      "space k": "zed::OpenKeymap"
+      "space k": "zed::OpenKeymap",
+      // Tasks.
+      "space u": "task::Spawn",
+      "space g": ["task::Spawn", { "task_name": "Lazygit" }]
     }
   },
 
