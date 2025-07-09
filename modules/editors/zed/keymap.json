@@ -35,18 +35,23 @@
       "space n": "workspace::NewFile",
       "space t": "terminal_panel::ToggleFocus",
       "space a": "agent::ToggleFocus",
+      "space j": "journal::NewJournalEntry",
       // Editor.
       "space r": "editor::Rename",
+      "space g b": "editor::ToggleGitBlameInline",
+      "space g B": "git::Blame",
       // Views.
       "space /": "pane::DeploySearch",
       "space x": "diagnostics::Deploy",
-      "space h": "git::Diff",
+      "space g h": "git::Diff",
+      "space z": "workspace::ToggleZoom",
+      "space Z": "workspace::ToggleCenteredLayout",
       // Settings.
-      "space z": "zed::OpenSettings",
+      "space c": "zed::OpenSettings",
       "space k": "zed::OpenKeymap",
       // Tasks.
       "space u": "task::Spawn",
-      "space g": ["task::Spawn", { "task_name": "Lazygit" }]
+      "space g g": ["task::Spawn", { "task_name": "Lazygit" }]
     }
   },
 

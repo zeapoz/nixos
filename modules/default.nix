@@ -126,7 +126,7 @@ in {
   };
 
   # Enable automatic login for the user.
-  services.getty.autologinUser = "${config.user.name}";
+  # services.getty.autologinUser = "${config.user.name}";
 
   programs.adb.enable = true;
   virtualisation.libvirtd.enable = true;
