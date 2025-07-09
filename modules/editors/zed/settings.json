@@ -121,6 +121,9 @@
       "min_column": 0
     }
   },
+  "completions": {
+    "words": "enabled"
+  },
   "indent_guides": {
     "enabled": true,
     "line_width": 1,
