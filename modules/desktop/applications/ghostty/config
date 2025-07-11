@@ -1,0 +1,15 @@
+font-family = Maple Mono
+font-size = 9
+
+theme = Kanagawa Wave
+
+background-opacity = 0.5
+
+window-padding-x = 20
+window-padding-y = 20
+window-padding-balance = true
+
+mouse-hide-while-typing = true
+
+confirm-close-surface = false
+auto-update = off
