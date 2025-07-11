@@ -21,6 +21,15 @@
     }
   },
   {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-w n": "workspace::NewTerminal",
+      "ctrl-w t": "workspace::NewTerminal",
+      "ctrl-w c": "pane::CloseActiveItem",
+      "ctrl-w q": "pane::CloseActiveItem"
+    }
+  },
+  {
     "context": "VimControl && !menu",
     "bindings": {
       "space .": "file_finder::Toggle",
@@ -40,17 +49,23 @@
       "space r": "editor::Rename",
       "space g b": "editor::ToggleGitBlameInline",
       "space g B": "git::Blame",
+      "tab": "editor::ToggleFold",
       // Views.
       "space /": "pane::DeploySearch",
       "space x": "diagnostics::Deploy",
       "space g h": "git::Diff",
-      "space z": "workspace::ToggleZoom",
-      "space Z": "workspace::ToggleCenteredLayout",
+      "space u z": "workspace::ToggleZoom",
+      "space z": "workspace::ToggleCenteredLayout",
       // Settings.
       "space c": "zed::OpenSettings",
       "space k": "zed::OpenKeymap",
+      "space u w": "editor::ToggleSoftWrap",
+      "space u m": "editor::ToggleMinimap",
+      "space u M": "vim::ToggleMarksView",
+      "space u i": "editor::ToggleInlayHints",
+      "space u d": "editor::ToggleDiagnostics",
       // Tasks.
-      "space u": "task::Spawn",
+      "space w": "task::Spawn",
       "space g g": ["task::Spawn", { "task_name": "Lazygit" }]
     }
   },
