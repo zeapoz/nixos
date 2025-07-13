@@ -71,43 +71,35 @@ in {
     enable32Bit = true;
   };
 
-  # Set your time zone.
   time.timeZone = "Europe/Stockholm";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "sv_SE.UTF-8";
+      LC_IDENTIFICATION = "sv_SE.UTF-8";
+      LC_MEASUREMENT = "sv_SE.UTF-8";
+      LC_MONETARY = "sv_SE.UTF-8";
+      LC_NAME = "sv_SE.UTF-8";
+      LC_NUMERIC = "sv_SE.UTF-8";
+      LC_PAPER = "sv_SE.UTF-8";
+      LC_TELEPHONE = "sv_SE.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "sv_SE.UTF-8";
-    LC_IDENTIFICATION = "sv_SE.UTF-8";
-    LC_MEASUREMENT = "sv_SE.UTF-8";
-    LC_MONETARY = "sv_SE.UTF-8";
-    LC_NAME = "sv_SE.UTF-8";
-    LC_NUMERIC = "sv_SE.UTF-8";
-    LC_PAPER = "sv_SE.UTF-8";
-    LC_TELEPHONE = "sv_SE.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+    # Japanese IME.
+    inputMethod = {
+      enable = true;
+      type = "fcitx5";
+      fcitx5.addons = with pkgs; [fcitx5-mozc fcitx5-gtk];
+      fcitx5.waylandFrontend = true;
+    };
   };
 
-  # Japanese IME.
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5.addons = with pkgs; [fcitx5-mozc fcitx5-gtk];
-    fcitx5.waylandFrontend = true;
-  };
-
-  security.sudo.wheelNeedsPassword = false;
-
-  # Enable sound with pipewire.
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-    wireplumber.enable = true;
+  security = {
+    sudo.wheelNeedsPassword = false;
+    # Enable sound with pipewire.
+    rtkit.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -125,14 +117,8 @@ in {
     ];
   };
 
-  # Enable automatic login for the user.
-  # services.getty.autologinUser = "${config.user.name}";
-
-  programs.adb.enable = true;
   virtualisation.libvirtd.enable = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     gcc
     git
@@ -160,49 +146,43 @@ in {
 
   # Use fish as the default user shell
   users.defaultUserShell = pkgs.fish;
-  programs.fish.enable = true;
 
-  programs.dconf.enable = true;
-  programs.nix-ld.enable = true;
+  programs = {
+    adb.enable = true;
+    fish.enable = true;
+    nix-ld.enable = true;
+    dconf.enable = true;
+  };
 
   # Syncing.
   hm.services.syncthing.enable = true;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  services = {
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+      wireplumber.enable = true;
+    };
 
-  # List services that you want to enable:
+    devmon.enable = true;
+    gvfs.enable = true;
+    udisks2.enable = true;
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-  services.devmon.enable = true;
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
+    preload.enable = true;
 
-  services.preload.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    mullvad-vpn.enable = true;
+  };
 
   # https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online.enable = false;
   systemd.services.systemd-networkd-wait-online.enable = false;
 
   networking = {
+    firewall.enable = false;
+
     # Enable networking.
     networkmanager.enable = true;
 
@@ -210,6 +190,4 @@ in {
     firewall.checkReversePath = "loose";
     wireguard.enable = true;
   };
-
-  services.mullvad-vpn.enable = true;
 }
