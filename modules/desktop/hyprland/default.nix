@@ -124,8 +124,8 @@ in {
           else "monitor=HDMI-A-1,preferred,auto,1,mirror,eDP-1";
 
         "hypr/hyprlock.conf".source = config.lib.meta.mkMutableSymlink ./hyprlock.conf;
-
         "hypr/pyprland.toml".source = config.lib.meta.mkMutableSymlink ./pyprland.toml;
+        "hypr/scripts".source = config.lib.meta.mkMutableSymlink ./scripts;
       };
     };
 
