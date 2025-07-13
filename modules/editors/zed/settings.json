@@ -60,7 +60,8 @@
   "tabs": {
     "file_icons": true,
     "git_status": true,
-    "show_diagnostics": "all"
+    "show_diagnostics": "all",
+    "close_position": "left"
   },
   "preview_tabs": {
     "enabled": true,
