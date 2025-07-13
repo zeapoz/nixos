@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib; let
@@ -19,6 +20,6 @@ in {
       };
     };
 
-    services.blueman.enable = true;
+    hm.packages = with pkgs; [overskride];
   };
 }

@@ -85,14 +85,12 @@ in {
               }
               {
                 timeout = 1200;
-                on-timuout = "systemctl suspend";
+                on-timeout = "systemctl suspend";
               }
             ];
           };
         };
-        swayosd = {
-          enable = true;
-        };
+        swayosd.enable = true;
         swaync = {
           enable = true;
           settings = {

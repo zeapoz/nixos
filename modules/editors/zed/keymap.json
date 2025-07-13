@@ -47,15 +47,19 @@
       "space j": "journal::NewJournalEntry",
       // Editor.
       "space r": "editor::Rename",
-      "space g b": "editor::ToggleGitBlameInline",
-      "space g B": "git::Blame",
       "tab": "editor::ToggleFold",
       // Views.
       "space /": "pane::DeploySearch",
       "space x": "diagnostics::Deploy",
-      "space g h": "git::Diff",
       "space u z": "workspace::ToggleZoom",
       "space z": "workspace::ToggleCenteredLayout",
+      // Git.
+      "space g b": "editor::ToggleGitBlameInline",
+      "space g h": "editor::ToggleSelectedDiffHunks",
+      "space g B": "git::Blame",
+      "space g d": "git::Diff",
+      "space g s": "git::ToggleStaged",
+      "space g r": "git::Restore",
       // Settings.
       "space c": "zed::OpenSettings",
       "space k": "zed::OpenKeymap",
@@ -104,7 +108,11 @@
   {
     "context": "vim_mode == visual",
     "bindings": {
-      "s": ["vim::PushAddSurrounds", {}]
+      "s": "vim::PushAddSurrounds",
+      "ctrl-shift->": "vim::Indent",
+      "ctrl-shift-<": "vim::Outdent",
+      ">": ["workspace::SendKeystrokes", "ctrl-shift-> g v"],
+      "<": ["workspace::SendKeystrokes", "ctrl-shift-< g v"]
     }
   }
 ]
