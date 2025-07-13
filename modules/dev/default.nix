@@ -28,7 +28,7 @@ in {
           enable = true;
           package = pkgs.gitFull;
           userEmail = "zeapo@pm.me";
-          userName = "Jonathan";
+          userName = "Jonathan Andersson";
           extraConfig = {
             credential.helper = "libsecret";
             init.defaultBranch = "main";
