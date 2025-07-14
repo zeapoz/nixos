@@ -8,6 +8,28 @@
 [
   // Vim motions in dock elements.
   {
+    "bindings": {
+      "ctrl-/": "workspace::ToggleRightDock"
+    }
+  },
+  // {
+  //   "bindings": {
+  //     "space .": "file_finder::Toggle",
+  //     "space f": "file_finder::Toggle",
+  //     "space space": "file_finder::Toggle",
+  //     "space s": "outline::Toggle",
+  //     "space shift-s": "project_symbols::Toggle",
+  //     "space p": "projects::OpenRecent",
+  //     "space b": "workspace::ToggleLeftDock",
+  //     "space e": "project_panel::ToggleFocus",
+  //     "space o g": "git_panel::ToggleFocus",
+  //     "space n": "workspace::NewFile",
+  //     "space t": "terminal_panel::ToggleFocus",
+  //     "space a": "agent::ToggleFocus",
+  //     "space j": "journal::NewJournalEntry"
+  //   }
+  // },
+  {
     "context": "Dock",
     "bindings": {
       "ctrl-w h": "workspace::ActivatePaneLeft",
@@ -30,7 +52,7 @@
     }
   },
   {
-    "context": "VimControl && !menu",
+    "context": "VimControl && !menu || ChangesList || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || Welcome",
     "bindings": {
       "space .": "file_finder::Toggle",
       "space f": "file_finder::Toggle",
@@ -87,11 +109,6 @@
       "p": "project_panel::Paste",
       "c": "workspace::CopyRelativePath",
       "C": "workspace::CopyPath"
-    }
-  },
-  {
-    "bindings": {
-      "ctrl-/": "workspace::ToggleRightDock"
     }
   },
   // Subward motions.
