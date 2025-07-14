@@ -7,5 +7,4 @@
   })
 
   inputs.neovim-nightly-overlay.overlays.default
-  inputs.eww.overlays.default
 ]
