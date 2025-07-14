@@ -30,8 +30,9 @@
 
     lib = import ./lib {inherit inputs;};
 
-    # TODO: Get from folder instead of manually.
-    hosts = ["helium" "neon"];
+    hosts = lib.attrNames (lib.filterAttrs
+      (name: type: type == "directory")
+      (builtins.readDir ./hosts));
   in {
     nixosConfigurations = with lib;
       mkHosts {
