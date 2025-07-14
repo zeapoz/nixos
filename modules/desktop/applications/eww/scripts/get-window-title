@@ -10,7 +10,9 @@ fi
 # Define combined icon and color mappings with simple color names
 declare -A ICON_COLOR_MAP=(
   [nvim]="|green"
+  [zed]="|green"
   [wezterm]="|purple"
+  [ghostty]="󰊠|purple"
   [discord]="|purple"
   [spotify]="|green"
   [zen]="|red"
