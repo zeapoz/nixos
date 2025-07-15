@@ -16,7 +16,11 @@
     },
     "version": "2"
   },
-  "theme": "Kanagawa Dragon",
+  "theme": {
+    "mode": "system",
+    "light": "Kanagawa Lotus",
+    "dark": "Kanagawa Dragon"
+  },
   "icon_theme": "Material Icon Theme",
   "base_keymap": "VSCode",
   "auto_update": false,
