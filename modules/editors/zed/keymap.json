@@ -12,23 +12,6 @@
       "ctrl-/": "workspace::ToggleRightDock"
     }
   },
-  // {
-  //   "bindings": {
-  //     "space .": "file_finder::Toggle",
-  //     "space f": "file_finder::Toggle",
-  //     "space space": "file_finder::Toggle",
-  //     "space s": "outline::Toggle",
-  //     "space shift-s": "project_symbols::Toggle",
-  //     "space p": "projects::OpenRecent",
-  //     "space b": "workspace::ToggleLeftDock",
-  //     "space e": "project_panel::ToggleFocus",
-  //     "space o g": "git_panel::ToggleFocus",
-  //     "space n": "workspace::NewFile",
-  //     "space t": "terminal_panel::ToggleFocus",
-  //     "space a": "agent::ToggleFocus",
-  //     "space j": "journal::NewJournalEntry"
-  //   }
-  // },
   {
     "context": "Dock",
     "bindings": {
@@ -61,13 +44,17 @@
       "space shift-s": "project_symbols::Toggle",
       "space p": "projects::OpenRecent",
       "space b": "workspace::ToggleLeftDock",
+      // Panels.
       "space e": "project_panel::ToggleFocus",
       "space o g": "git_panel::ToggleFocus",
-      "space n": "workspace::NewFile",
+      "space o c": "collab_panel::ToggleFocus",
+      "space o o": "outline_panel::ToggleFocus",
+      "space o n": "notification_panel::ToggleFocus",
       "space t": "terminal_panel::ToggleFocus",
       "space a": "agent::ToggleFocus",
       "space j": "journal::NewJournalEntry",
       // Editor.
+      "space n": "workspace::NewFile",
       "space r": "editor::Rename",
       "tab": "editor::ToggleFold",
       // Views.
