@@ -35,12 +35,12 @@ in {
             size = 11;
           };
           iconTheme = {
-            name = "Kanagawa";
-            package = pkgs.kanagawa-icon-theme;
+            name = "Adwaita";
+            package = pkgs.adwaita-icon-theme;
           };
           theme = {
-            name = "Kanagawa-BL";
-            package = pkgs.kanagawa-gtk-theme;
+            name = "Adwaita";
+            package = pkgs.gnome-themes-extra;
           };
         };
       };
