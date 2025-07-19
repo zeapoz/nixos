@@ -16,6 +16,7 @@
     eww-scripts.url = "github:zeapoz/eww-scripts";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    ags.url = "github:Aylur/ags";
   };
 
   outputs = inputs @ {nixpkgs, ...}: let

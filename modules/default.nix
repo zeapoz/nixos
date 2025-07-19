@@ -168,6 +168,8 @@ in {
     gvfs.enable = true;
     udisks2.enable = true;
 
+    upower.enable = true;
+
     preload.enable = true;
 
     mullvad-vpn.enable = true;
