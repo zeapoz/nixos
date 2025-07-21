@@ -31,7 +31,8 @@
       "ctrl-w n": "workspace::NewTerminal",
       "ctrl-w t": "workspace::NewTerminal",
       "ctrl-w c": "pane::CloseActiveItem",
-      "ctrl-w q": "pane::CloseActiveItem"
+      "ctrl-w q": "pane::CloseActiveItem",
+      "ctrl-w a": "pane::CloseAllItems"
     }
   },
   {

@@ -127,7 +127,7 @@
     }
   },
   "completions": {
-    "words": "enabled"
+    "words": "fallback"
   },
   "indent_guides": {
     "enabled": true,
