@@ -1,8 +1,0 @@
- (deflisten battery "scripts/battery")
-  (defwidget battery []
-    (box :class "module battery ${battery.class}"
-         :orientation "h"
-         :visible {get_env("HOST_HAS_BATTERY")}
-         :tooltip {battery.status}
-      (label :class "icon" :text "${battery.icon}")
-      (label :text "${battery.percent}%")))

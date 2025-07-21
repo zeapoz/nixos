@@ -13,16 +13,15 @@
     };
     nix-colors.url = "github:misterio77/nix-colors";
     anyrun.url = "github:Kirottu/anyrun";
-    eww-scripts.url = "github:zeapoz/eww-scripts";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    ags.url = "github:Aylur/ags";
+    kngw-shell.url = "github:zeapx/kngw-shell";
   };
 
   outputs = inputs @ {nixpkgs, ...}: let
     system = "x86_64-linux";
 
-    overlays = import ./overlays {inherit inputs;};
+    overlays = import ./overlays {inherit inputs system;};
 
     pkgs = import nixpkgs {
       inherit system overlays;

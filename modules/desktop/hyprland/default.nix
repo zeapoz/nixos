@@ -42,6 +42,7 @@ in {
 
     hm = {
       packages = with pkgs; [
+        kngw-shell
         brightnessctl
         gnome-keyring
         grimblast
