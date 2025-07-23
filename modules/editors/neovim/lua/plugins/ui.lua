@@ -1,4 +1,17 @@
 return {
+  {
+    "akinsho/bufferline.nvim",
+    opts = {
+      options = {
+        separator_style = { "", "" },
+        hover = {
+          enabled = true,
+          delay = 50,
+          reveal = { "close" },
+        },
+      },
+    },
+  },
 
   {
     "nvim-lualine/lualine.nvim",

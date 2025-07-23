@@ -4,6 +4,9 @@ local opt = vim.opt
 -- Wrap.
 opt.showbreak = "󱞩 "
 
+-- Track mouse movements.
+opt.mousemoveevent = true
+
 opt.fillchars = {
   eob = " ", -- Disable end of buffers tildes (~).
   -- Disable vertical view splits.
