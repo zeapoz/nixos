@@ -1,5 +1,3 @@
-require("config.autosave")
-
 -- Function to sort packages inside a specific block
 local function sort_packages_block(lines)
   local normal_packages = {}

@@ -12,6 +12,7 @@ in {
   config = mkIf cfg.enable {
     hm = {
       packages = with pkgs; [
+        codebook
         godot_4
         nodePackages.cspell
         zig
