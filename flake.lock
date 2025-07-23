@@ -306,11 +306,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1753188928,
-        "narHash": "sha256-lmOrz7Awbw/vEbI6qho4IU0u3c+U4HKsf6slPcFvIhk=",
+        "lastModified": 1753258370,
+        "narHash": "sha256-UzqVulVwiO6JKovjqMC1eMHV/5IxhLK1TFftxW9zMtc=",
         "owner": "zeapx",
         "repo": "kngw-shell",
-        "rev": "16aea377b5e658a0866e67aa460eb9c4929b4f06",
+        "rev": "7f916cd73a5d38ff29640dc9ad489821c429c477",
         "type": "github"
       },
       "original": {
