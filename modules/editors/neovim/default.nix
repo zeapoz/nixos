@@ -6,6 +6,8 @@
         withNodeJs = true;
       };
 
+      neovide.enable = true;
+
       fish.shellAliases.v = "nvim";
     };
 
