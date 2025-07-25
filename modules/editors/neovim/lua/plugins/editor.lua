@@ -11,7 +11,7 @@ return {
     opts = {
       events = { "InsertLeave", "TextChanged", "BufLeave", "FocusLost" },
       silent = false,
-      timeout = nil,
+      timeout = 150,
     },
   },
 }
