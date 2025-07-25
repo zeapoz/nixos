@@ -24,8 +24,10 @@ in {
           name = "Bibata-Original-Ice";
           package = pkgs.bibata-cursors;
           size = 24;
+          enable = true;
           gtk.enable = true;
           x11.enable = true;
+          hyprcursor.enable = true;
         };
 
         gtk = {
@@ -35,8 +37,8 @@ in {
             size = 11;
           };
           iconTheme = {
-            name = "Adwaita";
-            package = pkgs.adwaita-icon-theme;
+            name = "Papirus";
+            package = pkgs.papirus-icon-theme;
           };
           theme = {
             name = "Adwaita";

@@ -11,5 +11,8 @@ return {
       "MunifTanjim/nui.nvim",
     },
     config = true,
+    opts = {
+      lang = "rust"
+    }
   },
 }
