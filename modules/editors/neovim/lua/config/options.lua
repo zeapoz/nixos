@@ -7,16 +7,7 @@ opt.showbreak = "󱞩 "
 -- Track mouse movements.
 opt.mousemoveevent = true
 
-opt.fillchars = {
-  eob = " ", -- Disable end of buffers tildes (~).
-  -- Disable vertical view splits.
-  vert = " ",
-  vertleft = "─",
-  vertright = "─",
-  verthoriz = "─",
-  horizup = "─",
-  horizdown = "─",
-}
+opt.fillchars = { eob = " " } -- Disable end of buffers tildes (~).
 opt.listchars = {
   precedes = "«",
   trail = "·",
