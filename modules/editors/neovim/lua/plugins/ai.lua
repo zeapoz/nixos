@@ -7,11 +7,12 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     keys = {
-      { "<leader>oA", "<cmd>CodeCompanionActions<cr>", desc = "Open AI Actions", mode = { "n", "v" } },
+      { "<leader>a", desc = "AI" },
+      { "<leader>aA", "<cmd>CodeCompanionActions<cr>", desc = "Open Actions", mode = { "n", "v" } },
       {
-        "<leader>oa",
+        "<leader>aa",
         "<cmd>CodeCompanionChat Toggle<cr>",
-        desc = "Open AI Chat",
+        desc = "Open Chat",
         mode = { "n", "v" },
       },
       { "ga", "<cmd>CodeCompanionChat Add<cr>", desc = "Add selected text to Chat", mode = { "v" } },

@@ -18,5 +18,4 @@ map("n", "n", "nzz")
 map("n", "N", "Nzz")
 
 -- Aliases for lsp keys.
-map("n", "g.", vim.lsp.buf.code_action, { desc = "Code Action" })
-map("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Code Action" })
+map({ "n", "v" }, "g.", vim.lsp.buf.code_action, { desc = "Code Action" })
