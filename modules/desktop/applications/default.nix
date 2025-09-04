@@ -28,7 +28,7 @@ in {
       qbittorrent
       signal-desktop-bin
       slack
-      stremio
+      # stremio
       telegram-desktop
       zathura
       zoom-us

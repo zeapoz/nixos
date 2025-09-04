@@ -8,7 +8,7 @@ with lib; let
   cfg = config.modules.desktop.hyprland;
   wallpaper = ./wallpaper.jpg;
 
-  greetCmd = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember exec uwsm start hyprland-uwsm.desktop";
+  greetCmd = "${pkgs.tuigreet}/bin/tuigreet --time --remember exec uwsm start hyprland-uwsm.desktop";
 in {
   options.modules.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
@@ -54,7 +54,7 @@ in {
         pyprland
         seahorse
         wl-clipboard
-        greetd.tuigreet
+        tuigreet
       ];
 
       programs.hyprlock.enable = true;

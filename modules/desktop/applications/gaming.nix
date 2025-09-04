@@ -28,7 +28,6 @@ in {
     hm.packages = with pkgs; [
       azahar
       prismlauncher
-      ryujinx
       tetrio-desktop
       winetricks
       wineWowPackages.wayland
