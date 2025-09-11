@@ -23,11 +23,13 @@ in {
       musescore
       obsidian
       pavucontrol
+      picard
       playerctl
       pulseaudio
       qbittorrent
       signal-desktop-bin
       slack
+      spotify-player
       # stremio
       telegram-desktop
       zathura

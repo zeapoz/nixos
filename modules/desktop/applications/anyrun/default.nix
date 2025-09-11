@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  inputs,
   ...
 }: {
   hm = {
@@ -10,20 +9,20 @@
       config = {
         x = {fraction = 0.5;};
         y = {fraction = 0.3;};
-        width = {fraction = 0.2;};
+        width = {fraction = 0.3;};
         hidePluginInfo = true;
         closeOnClick = true;
         showResultsImmediately = true;
-        plugins = with inputs.anyrun.packages.${pkgs.system}; [
-          applications
-          symbols
-          rink
-          shell
-          translate
-          kidex
-          randr
-          dictionary
-          websearch
+        plugins = [
+          "${pkgs.anyrun}/lib/libapplications.so"
+          "${pkgs.anyrun}/lib/libsymbols.so"
+          "${pkgs.anyrun}/lib/librink.so"
+          "${pkgs.anyrun}/lib/libshell.so"
+          "${pkgs.anyrun}/lib/libtranslate.so"
+          "${pkgs.anyrun}/lib/libkidex.so"
+          "${pkgs.anyrun}/lib/librandr.so"
+          "${pkgs.anyrun}/lib/libdictionary.so"
+          "${pkgs.anyrun}/lib/libwebsearch.so"
         ];
       };
     };
