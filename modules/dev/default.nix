@@ -13,6 +13,7 @@ in {
     hm = {
       packages = with pkgs; [
         codebook
+        gemini-cli
         godot_4
         nodePackages.cspell
         zig
