@@ -1,17 +1,23 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   cfg = {
     configUrl = "https://github.com/zeapoz/nvim.git";
     configDir = config.hm.user.home.homeDirectory + "/.config/nvim";
   };
 in {
   hm = {
+    packages = [
+      pkgs.tree-sitter
+    ];
+
     programs = {
       neovim = {
         enable = true;
         withNodeJs = true;
       };
-
-      # neovide.enable = true;
 
       fish.shellAliases.v = "nvim";
     };
