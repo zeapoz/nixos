@@ -1,43 +1,50 @@
-* {
-    all: unset;
+window {
+  background: transparent;
 }
 
-#window,
-#match,
-#entry,
-#plugin,
-#main {
-    background: transparent;
+box.main {
+  margin: 10px;
+  border-radius: 10px;
+  border: 2px solid @theme_bg_color;
+  background-color: @theme_bg_color;
+  box-shadow: 0 0 5px black;
 }
 
-#match.activatable {
-    border-radius: 8px;
-    margin: 4px 2px;
-    padding: 4px 8px;
-}
-#match.activatable:first-child {
-    margin-top: 12px;
-}
-#match.activatable:last-child {
-    margin-bottom: 0;
+text {
+  min-height: 30px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-#match:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-#match:selected {
-    background: rgba(195, 64, 67, 0.5);
+.matches {
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 10px;
 }
 
-#entry {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    padding: 4px 8px;
+box.plugin:first-child {
+  margin-top: 5px;
 }
 
-box#main {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 12px;
-    border-radius: 16px;
-    border: 2px solid rgba(220, 215, 186, 1);
+box.plugin.info {
+  min-width: 200px;
+}
+
+list.plugin {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+label.match.description {
+  font-size: 10px;
+}
+
+label.plugin.info {
+  font-size: 14px;
+}
+
+.match {
+  background: transparent;
+}
+
+.match:selected {
+  background-color: @theme_selected_bg_color;
 }

@@ -10,9 +10,14 @@
         x = {fraction = 0.5;};
         y = {fraction = 0.3;};
         width = {fraction = 0.3;};
+        hideIcons = false;
+        ignoreExclusiveZones = false;
+        layer = "overlay";
         hidePluginInfo = true;
         closeOnClick = true;
         showResultsImmediately = true;
+        maxEntries = null;
+
         plugins = [
           "${pkgs.anyrun}/lib/libapplications.so"
           "${pkgs.anyrun}/lib/libsymbols.so"

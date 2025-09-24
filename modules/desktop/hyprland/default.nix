@@ -119,7 +119,9 @@ in {
                              workspace=5,monitor:DP-2,default:true
                              monitor=DP-1,2560x1440@164.80,0x0,auto
                              monitor=DP-2,1920x1080@60.00,auto-right,auto,transform,3''
-          else "monitor=HDMI-A-1,preferred,auto,1,mirror,eDP-1";
+          else if (config.networking.hostName == "neon")
+          then "monitor=HDMI-A-1,preferred,auto,1,mirror,eDP-1"
+          else "monitor=eDP-1,2560x1600@180.00,auto,1.25";
 
         "hypr/hyprlock.conf".source = config.lib.meta.mkMutableSymlink ./hyprlock.conf;
         "hypr/pyprland.toml".source = config.lib.meta.mkMutableSymlink ./pyprland.toml;

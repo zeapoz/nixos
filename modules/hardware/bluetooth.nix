@@ -13,13 +13,7 @@ in {
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;
-      settings = {
-        General = {
-          Exerimental = true;
-        };
-      };
     };
-
     hm.packages = with pkgs; [overskride];
   };
 }
